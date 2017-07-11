@@ -1,0 +1,43 @@
+<!-- START CONTAINER FLUID -->
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent" ng-controller="SalesCtrl">
+        <div class="panel-body">
+            <div class="tab-pane " id="tab-nvd3-area">
+                <nvd3 options='nvd3_options' class="line-chart m-t-30 text-center" data='nvd3_data'></nvd3>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="basicTable" ui-options="options">
+                    <thead>
+                        <tr>
+                            <th style="width:25%">Product</th>
+                            <th style="width:25%">Type</th>
+                            <th style="width:25%">Sum</th>
+                            <th style="width:25%">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in salesData">
+                            <td class="v-align-middle">
+                                <p>{{getProductType(i.product)}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{getSalesType(i.type)}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{i.sum}} {{getCurrencyType(i.cur)}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{i.timestamp*1000 | date:"d.MM.yy 'at' H:mm"}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>
+<!-- END CONTAINER FLUID -->

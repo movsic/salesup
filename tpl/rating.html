@@ -1,0 +1,58 @@
+<!-- START CONTAINER FLUID -->
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent" ng-controller="RatingCtrl">
+        <div class="panel-body">
+            <div class="panel">
+                <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+                    <li class="active">
+                        <a href="#userrating" data-toggle="tab" pg-tab role="tab">Your Rating</a>
+                    </li>
+                    <li>
+                        <a href="#toprating" data-toggle="tab" pg-tab role="tab">Top Rating</a>
+                    </li>
+                    <li>
+                        <a href="#branchrating" data-toggle="tab" pg-tab role="tab">Branch Rating</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover" id="basicTable" ui-options="options">
+                    <thead>
+                        <tr>
+                            <th style="width:5%">#</th>
+                            <th style="width:5%"></th>
+                            <th style="width:50%">Name</th>
+                            <th style="width:20%">Branch</th>
+                            <th style="width:20%">Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in ratingData">
+                            <td class="v-align-middle">
+                                <p>{{i.pos}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <div class="profile-img-wrapper m-t-5 inline">
+                                    <img width="35" height="35" ui-jq="unveil" ng-data-src="assets/img/profiles/{{i.img}}" alt="" ng-src="assets/img/profiles/{{i.img}}" data-src-retina="assets/img/profiles/{{i.img}}" >
+                                    <div class="chat-status available"></div>
+                                 </div>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{i.name}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{i.branch}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{i.rating}}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>
+<!-- END CONTAINER FLUID -->

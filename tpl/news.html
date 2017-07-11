@@ -1,0 +1,53 @@
+<div class="container-fluid container-fixed-lg sm-p-l-5">
+    <div class="timeline-container top-circle">
+        <section class="timeline">
+            <div class="timeline-block" ng-repeat="i in newsData">
+                <div class="timeline-point warning" ng-if="i.type==1">
+                    <i class="pg-plus"></i>
+                </div>
+                <div class="timeline-point success" ng-if="i.type==2">
+                    <i class="fa fa-thumbs-up"></i>
+                </div>
+                <div class="timeline-point success" ng-if="i.type==3">
+                    <i class="fa fa-star"></i>
+                </div>
+                <div class="timeline-point danger" ng-if="i.type==4">
+                    <i class="fa fa-close"></i>
+                </div>
+                <!-- timeline-point -->
+                <div class="timeline-content">
+                    <div class="card share full-width">
+                        <div class="circle" data-toggle="tooltip" title="Label" data-container="body">
+                        </div>
+                        <div class="card-header clearfix">
+                            <div class="user-pic">
+                                <img alt="Profile Image" width="33" height="33" ui-jq="unveil" data-src-retina="assets/img/profiles/{{i.img}}" ng-data-src="assets/img/profiles/{{i.img}}" ng-src="assets/img/profiles/{{i.img}}">
+                            </div>
+                            <h5>{{i.name}}</h5>
+                        </div>
+                        <div class="card-description">
+                            <p>{{getType(i.type)}} {{i.result}}</p>
+                        </div>
+                        <div class="card-footer clearfix" ng-show="false">
+                            <div class="time">few seconds ago</div>
+                            <ul class="reactions">
+                                <li><a href="">5,345 <i class="fa fa-comment-o"></i></a>
+                                </li>
+                                <li><a href="">23K <i class="fa fa-heart-o"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="event-date">
+                        <h6 class="font-montserrat all-caps hint-text m-t-0">{{i.branch}}</h6>
+                        <small class="fs-12 hint-text">{{i.timestamp*1000 | date:"d MMMM yyyy, H:mm"}}</small>
+                    </div>
+                </div>
+                <!-- timeline-content -->
+            </div>
+        </section>
+        <!-- timeline -->
+    </div>
+    <!-- -->
+</div>
+<!-- END CONTAINER FLUID -->

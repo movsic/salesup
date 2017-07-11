@@ -1,0 +1,29 @@
+challenges -> today,tomorrow instead date
+sort challenges in list -> reward
+challenges active -> time left
+sales color to type
+peer to peer challenges
+userpic as directive
+social integration ??!!?!
+show new challenges on dashboard
+challenge info->who coins points
+move config to service
+move request to service
+challenges tabs
+sales tabs
+stacked bar on home
+LVL -> lvl to points / coins
+scallable width
+
+Week plan!
+-------
+peer-2-peer challenges
+notifications
+challenges -> coins, points, who
+coins page with bonus calculation (list of successful challenges and sales)
+header/footer
+win modal
+challenge failed / sale made / level achieved -> notification
+debug panel with buttons
+dashboard monthly sales broken axes
+badges new items (timestamp before last login) + (notifications while being logged in)

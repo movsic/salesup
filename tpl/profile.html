@@ -1,0 +1,70 @@
+<div class="lock-container full-height">
+    <div class="container-sm-height full-height sm-p-t-50">
+        <div class="row row-sm-height">
+            <div class="col-sm-6 col-sm-height col-middle">
+                <!-- START Lock Screen User Info -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="inline">
+                            <div class="thumbnail-wrapper circular d48 m-r-10 ">
+                                <img alt="Profile Image" width="43" height="43" ui-jq="unveil" data-src-retina="assets/img/profiles/{{profileData.img}}" ng-data-src="assets/img/profiles/{{profileData.img}}" ng-src="assets/img/profiles/{{profileData.img}}">
+                            </div>
+                        </div>
+                        <div class="inline">
+                            <h5 class="logged hint-text no-margin">
+                                    Logged in as
+                                </h5>
+                            <h2 class="name no-margin">{{profileData.firstName}} {{profileData.lastName}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-t-50">
+                    <div class="col-sm-12">
+                        <span class="label font-montserrat fs-11">
+                            BADGES EARNED
+                        </span>
+                        <div class="p-t-10">
+                            <i class="badges-set {{getBadgeName(i.type)}} inline" title="{{getBadgeDescription(i.type)}} Earned {{i.timestamp*1000 | date:'d MMMM yyyy'}}" data-toggle="tooltip"  onmouseenter="$(this).tooltip('show')" data-placement="bottom" ng-repeat="i in profileData.badges"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Lock Screen User Info -->
+            </div>
+            <div class="col-sm-6 col-sm-height col-middle">
+                <!-- START Lock Screen Form -->
+                <form class="" role="form">
+                    <div pg-form-group class="form-group form-group-default">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" value="{{profileData.firstName}}" required>
+                    </div>
+                    <div pg-form-group class="form-group form-group-default">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" value="{{profileData.lastName}}" required>
+                    </div>
+                    <div pg-form-group class="form-group form-group-default">
+                        <label>Group</label>
+                        <input type="text" class="form-control" value="{{profileData.group}}" required>
+                    </div>
+                    <div pg-form-group class="form-group form-group-default">
+                        <label>Email</label>
+                        <input type="text" class="form-control" value="{{profileData.email}}" required>
+                    </div>
+                    <div pg-form-group class="form-group form-group-default">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" value="{{profileData.phone}}" ui-options="'(999) 999-9999'" required>
+                    </div>
+                    <div pg-form-group class="form-group form-group-default">
+                        <label>Password</label>
+                        <input type="password" class="form-control" value="12345678" required>
+                    </div>
+                </form>
+                <!-- START Lock Screen Notification Icons-->
+                <!-- END Lock Screen Notification Icons-->
+                <!-- END Lock Screen Form -->
+            </div>
+        </div>
+    </div>
+
+    <!-- END PAGE CONTENT WRAPPER -->
+</div>
+
