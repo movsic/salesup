@@ -14,7 +14,15 @@ angular.module('app')
                 .state('app', {
                     abstract: true,
                     url: "/app",
-                    templateUrl: "tpl/app.html"
+                    templateUrl: "tpl/app.html",
+                    controller: 'MainCtrl',
+                    resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'assets/js/controllers/main.js',
+                        ]);
+                    }]
+                }
                 })
                 .state('app.dashboard', {
                     url: "/dashboard",

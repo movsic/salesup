@@ -9,7 +9,7 @@ angular.module('app', ["nvd3"])
     $scope.dashboardData = {
         "profile":{
             "coins":1988,
-            "coinsChange":-5,
+            "coinsChange":5,
             "badges":[
                 {"type": 1, "timestamp": 1499697164},
                 {"type": 2, "timestamp": 1499697164},
@@ -203,7 +203,7 @@ angular.module('app', ["nvd3"])
                 tooltips: false,
                 height: 310,
                 margin: {
-                    left: 15
+                    left: 25
                 },
                 x: function(d) {
                     return d.label

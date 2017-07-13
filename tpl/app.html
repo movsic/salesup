@@ -1,12 +1,14 @@
 <!-- BEGIN SIDEBAR -->
-<div ng-include src=" 'tpl/blocks/sidebar.html' " include-replace></div>
+<!--<div ng-include src=" 'tpl/blocks/sidebar.html' " include-replace></div>-->
 <!-- END SIDEBAR -->
 <!-- START PAGE-CONTAINER -->
 <div class="page-container" ng-class="{'bg-white':is('app.calendar')}">
     <!-- START PAGE HEADER WRAPPER -->
-    <div ng-hide="is('app.calendar')" ng-include=" 'tpl/blocks/header.html' ">
-    </div>
+    <div ng-hide="is('app.calendar')" ng-include=" 'tpl/blocks/header.html' "></div>
     <!-- END PAGE HEADER WRAPPER -->
+
+    <div ng-include=" 'tpl/blocks/modal.html' "></div>
+
     <div ng-if="is('app.calendar')" ng-include=" 'tpl/apps/calendar/mobile_controls.html' ">
     </div>
     <!--<div ng-hide="is('app.home')" ng-include=" 'tpl/blocks/debug_menu.html' "></div>-->

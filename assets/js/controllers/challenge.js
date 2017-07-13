@@ -59,8 +59,27 @@ angular.module('app')
                 "status": 0
             }];
 
-        var table = $('#detailedTable');
+        $scope.modal = {};
+        $scope.modal.slideUp = "default";
+        $scope.modal.stickUp = "default";
 
+        $scope.showNewChallenge = function() {
+            var size = $scope.modal.slideUp;
+            var modalElem = $('#modalSlideUp');
+            //TODO suppost small modals
+            if (size == "mini") {
+                $('#modalSlideUpSmall').modal('show')
+            } else {
+                $('#modalSlideUp').modal('show')
+                if (size == "default") {
+                    modalElem.children('.modal-dialog').removeClass('modal-lg');
+                } else if (size == "full") {
+                    modalElem.children('.modal-dialog').addClass('modal-lg');
+                }
+            }
+        };
+
+        var table = $('#detailedTable');
         $scope.expand = function(event) {
             var element = event.currentTarget;
             if ($(element).hasClass('shown') && $(element).next().hasClass('row-details')) {

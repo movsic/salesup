@@ -2,28 +2,37 @@ challenges -> today,tomorrow instead date
 sort challenges in list -> reward
 challenges active -> time left
 sales color to type
-peer to peer challenges
 userpic as directive
 social integration ??!!?!
 show new challenges on dashboard
-challenge info->who coins points
 move config to service
 move request to service
-challenges tabs
-sales tabs
 stacked bar on home
 LVL -> lvl to points / coins
 scallable width
+add npm install modules
+notification autoclose
+modal close only on buton click
+define notifications
+coins icon fix
+badges new items (timestamp before last login) + (notifications while being logged in)
+
+clean
+-------
+move notifications to service
 
 Week plan!
 -------
+challenges tabs(active finished new) finish
+sales tabs
 peer-2-peer challenges
-notifications
-challenges -> coins, points, who
+add level to profile
++notifications
+challenges additional data -> json data
 coins page with bonus calculation (list of successful challenges and sales)
 header/footer
-win modal
++win modal
 challenge failed / sale made / level achieved -> notification
-debug panel with buttons
-dashboard monthly sales broken axes
-badges new items (timestamp before last login) + (notifications while being logged in)
++debug panel with buttons
+collect - data change animated - turning
+offline font
