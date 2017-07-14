@@ -2,21 +2,21 @@
 
 /* Controllers */
 
-angular.module('app')
+angular.module('app', ['ui.select'])
     .controller('ChallengeCtrl', ['$scope', function($scope) {
-        var challengeStatusDict={0:"Open",1:"In Progress",2:"Finished",3:"Failed",4:"Canceled"};
-        var challengeType={1:"Sell"};
-        var challengeProduct={1:"Product"};
+        var challengeStatusDict={0:"Open",1:"In Progress",2:"Finished",3:"Failed",4:"Canceled",5:"Pending"};
+        $scope.challengeType={1:"Sell"};
+        $scope.challengeProduct={1:"Product"};
+        $scope.challengeTarget={1:"Daria Minina",2:"Grigory Movsesyan",3:"Vlad Shalaev",4:"Max Kornev"}
 
         $scope.newChallenge = {};
 
         $scope.getStatus=function(status){return challengeStatusDict[status];};
 
-        $scope.getTitle=function(type, amount, product){return challengeType[type] + ' ' + amount + ' of ' + challengeProduct[product];};
+        $scope.getTitle=function(type, amount, product){return $scope.challengeType[type] + ' ' + amount + ' of ' + $scope.challengeProduct[product];};
 
         $scope.challengeData = [
             {
-                "id": 1,
                 "type": 1,
                 "amount": 5,
                 "product": 1,
@@ -25,7 +25,6 @@ angular.module('app')
                 "status": 1
             },
             {
-                "id": 2,
                 "type": 1,
                 "amount": 10,
                 "product": 1,
@@ -34,7 +33,6 @@ angular.module('app')
                 "status": 2
             },
             {
-                "id": 3,
                 "type": 1,
                 "amount": 5,
                 "product": 1,
@@ -43,7 +41,6 @@ angular.module('app')
                 "status": 3
             },
             {
-                "id": 4,
                 "type": 1,
                 "amount": 5,
                 "product": 1,
@@ -52,7 +49,6 @@ angular.module('app')
                 "status": 4
             },
             {
-                "id": 5,
                 "type": 1,
                 "amount": 5,
                 "product": 1,
@@ -60,6 +56,19 @@ angular.module('app')
                 "expires": 1499786564,
                 "status": 0
             }];
+
+        $scope.createChallenge = function(){ 
+            console.log($scope.newChallenge);
+            $scope.challengeData.push({
+                "type": $scope.newChallenge.challengeType.id,
+                "amount": $scope.newChallenge.productAmount,
+                "product": $scope.newChallenge.productType.id,
+                "progress": 0,
+                "expires": new Date($scope.newChallenge.endDate).getTime()/1000,
+                "status": 5
+            });
+            console.log($scope.challengeData);
+        };
 
         $scope.modal = {};
         $scope.modal.slideUp = "default";

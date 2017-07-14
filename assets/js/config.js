@@ -103,6 +103,18 @@ angular.module('app')
                     }]
                 }
             })
+            .state('app.coins', {
+                url: '/coins',
+                controller: 'CoinsCtrl',
+                templateUrl: 'tpl/coins.html',
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            'assets/js/controllers/coins.js'
+                        ]);
+                    }]
+                }
+            })
             .state('app.challenge', {
                 url: '/challenge',
                 controller: 'ChallengeCtrl',
@@ -110,8 +122,17 @@ angular.module('app')
                 resolve: {
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([
-                            'assets/js/controllers/challenge.js'
-                        ]);
+                                'select',
+                                'switchery',
+                                'select',
+                                'moment',
+                                'datepicker'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/challenge.js');
+                            });
                     }]
                 }
             })

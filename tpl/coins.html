@@ -3,34 +3,34 @@
     <!-- START PANEL -->
     <div class="panel panel-transparent">
         <div class="panel-body">
-            <div class="tab-pane " id="tab-nvd3-area">
-                <nvd3 options='nvd3_options' class="line-chart m-t-30 text-center" data='nvd3_data'></nvd3>
-            </div>
-        </div>
-        <div class="panel-body">
             <div class="table-responsive">
                 <table class="table table-hover" id="basicTable" ui-options="options">
                     <thead>
                         <tr>
-                            <th style="width:25%">Product</th>
-                            <th style="width:25%">Type</th>
-                            <th style="width:25%">Sum</th>
-                            <th style="width:25%">Date</th>
+                            <th style="width:75%">Type</th>
+                            <th style="width:20%">Date</th>
+                            <th style="width:5%">Sum</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="i in salesData">
-                            <td class="v-align-middle">
-                                <p>{{getProductType(i.product)}}</p>
+                        <tr>
+                            <td colspan="3">
+                                <div class="text-right">
+                                    <span>
+                                        TOTAL: 1988 coins
+                                    </span>
+                                </div>
                             </td>
+                        </tr>
+                        <tr ng-repeat="i in coinsData">
                             <td class="v-align-middle">
-                                <p>{{getSalesType(i.type)}}</p>
-                            </td>
-                            <td class="v-align-middle">
-                                <p>{{i.sum}} {{getCurrencyType(i.cur)}}</p>
+                                <p>{{getCoinsType(i.type)}}</p>
                             </td>
                             <td class="v-align-middle">
                                 <p>{{i.timestamp*1000 | date:"d.MM.yy 'at' H:mm"}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{i.sum}}</p>
                             </td>
                         </tr>
                     </tbody>

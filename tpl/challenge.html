@@ -1,7 +1,7 @@
 <!-- START CONTAINER FLUID -->
 <div class="container-fluid container-fixed-lg bg-white">
     <!-- START PANEL -->
-    <div class="panel panel-transparent" ng-controller="ChallengeCtrl">
+    <div class="panel panel-transparent">
         <div class="panel-body">
             <div class="panel">
                 <button class="btn btn-success pull-right" id="btnToggleSlideUpSize" ng-click="showNewChallenge()">
@@ -37,7 +37,7 @@
                             </td>
 
                             <td class="v-align-middle">
-                                <p>{{i.expires*1000 | date:"d.MM.yy 'at' H:mm"}}</p>
+                                <p>{{i.expires*1000 | date:"d.MM.yy"}}</p>
                             </td>
                             <td class="v-align-middle">
                                 <p ng-if="i.status==1">
@@ -61,6 +61,9 @@
                             </td>
                             <td class="v-align-middle" ng-show="i.status==4">
                                 <p>Canceled</p>
+                            </td>
+                            <td class="v-align-middle" ng-show="i.status==5">
+                                <p>Pending</p>
                             </td>
                         </tr>
                         <!--DETAILED INFO ABOUT CHALLENGE-->
@@ -91,50 +94,100 @@
                 <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
-                    <h5>Payment <span class="semi-bold">Information</span></h5>
-                    <p class="p-b-10">We need payment information inorder to process your order</p>
+                    <h5>New Challenge</h5>
+                    <p class="p-b-10">We need information about your new challenge.</p>
                 </div>
                 <div class="modal-body">
                     <form role="form">
                         <div class="form-group-attached">
                             <div class="row">
-                                <div class="form-group">
-                                    <label>Your name</label>
-                                    <span class="help">e.g. "Mona Lisa Portrait"</span>
-                                    <select class="cs-select cs-skin-slide" cs-select>
-                                        <option value="{{i}}" ng-repeat="i in challengeType">{{i}}</option>
-                                    </select>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Challenge type</label>
+                                        <!--<span class="help">Select new challenge type</span>-->
+                                        <br/>
+                                        <ui-select class="form-control" ng-model="newChallenge.challengeType" theme="select2" ng-disabled="disabled" search-enabled="false" required>
+                                            <ui-select-match placeholder="Select challenge type...">{{newChallenge.challengeType.value}}</ui-select-match>
+                                            <ui-select-choices repeat="(id, type) in challengeType">
+                                                {{type.value}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-8">
-                                    <div pg-form-group class="form-group form-group-default">
-                                        <label>Card Number</label>
-                                        <input type="text" class="form-control">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Amount</label>
+                                        <input type="text" class="form-control" ng-model="newChallenge.productAmount" required>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div pg-form-group class="form-group form-group-default">
-                                        <label>Card Holder</label>
-                                        <input type="text" class="form-control">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Product Type</label>
+                                        <br/>
+                                        <ui-select class="form-control" ng-model="newChallenge.productType" theme="select2" ng-disabled="disabled" search-enabled="false" required>
+                                            <ui-select-match placeholder="Select challenge product type...">{{newChallenge.productType.value}}</ui-select-match>
+                                            <ui-select-choices repeat="(id, type) in challengeProduct">
+                                                {{type.value}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Challenge Target</label>
+                                        <br/>
+                                        <ui-select class="form-control" ng-model="newChallenge.challengeTarget" theme="select2" ng-disabled="disabled" search-enabled="false" required>
+                                            <ui-select-match placeholder="Select challenge target...">{{newChallenge.challengeTarget.value}}</ui-select-match>
+                                            <ui-select-choices repeat="(id, type) in challengeTarget">
+                                                {{type.value}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>End Date</label>
+                                        <br/>
+                                        <div id="datepicker-component" class="input-group date col-sm-8 p-l-0" ui-jq="datepicker" ng-model="newChallenge.challengeEnd" required>
+                                            <input type="text" class="form-control" ng-model="newChallenge.endDate"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Your bid</label>
+                                        <input type="text" class="form-control" ng-model="newChallenge.bid" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </form>
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <div class="p-t-20 clearfix p-l-10 p-r-10">
                                 <div class="pull-left">
-                                    <p class="bold font-montserrat text-uppercase">TOTAL</p>
+                                    <p class="bold font-montserrat text-uppercase"></p>
                                 </div>
                                 <div class="pull-right">
-                                    <p class="bold font-montserrat text-uppercase">$20.00</p>
+                                    <p class="bold font-montserrat text-uppercase"></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-4 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-primary btn-block m-t-5">Pay Now</button>
+                        <div class="col-sm-3 m-t-10 sm-m-t-10">
+                            <button data-dismiss="modal" type="button" class="btn btn-success btn-block m-t-5" ng-click="createChallenge()">Create</button>
+                        </div>
+                        <div class="col-sm-3 m-t-10 sm-m-t-10">
+                            <button data-dismiss="modal" type="button" class="btn btn-danger btn-block m-t-5">Cancel</button>
                         </div>
                     </div>
                 </div>

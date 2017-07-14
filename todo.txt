@@ -16,6 +16,7 @@ modal close only on buton click
 define notifications
 coins icon fix
 badges new items (timestamp before last login) + (notifications while being logged in)
+dashboard graph hight
 
 clean
 -------
