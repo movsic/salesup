@@ -8,6 +8,8 @@ angular.module('app')
         var challengeType={1:"Sell"};
         var challengeProduct={1:"Product"};
 
+        $scope.newChallenge = {};
+
         $scope.getStatus=function(status){return challengeStatusDict[status];};
 
         $scope.getTitle=function(type, amount, product){return challengeType[type] + ' ' + amount + ' of ' + challengeProduct[product];};

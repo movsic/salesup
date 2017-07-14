@@ -24,6 +24,8 @@ move notifications to service
 Week plan!
 -------
 challenges tabs(active finished new) finish
+pending challenges
+decline challenge
 sales tabs
 peer-2-peer challenges
 add level to profile

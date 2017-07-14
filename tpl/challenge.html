@@ -98,11 +98,12 @@
                     <form role="form">
                         <div class="form-group-attached">
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div pg-form-group class="form-group form-group-default">
-                                        <label>Company Name</label>
-                                        <input type="email" class="form-control">
-                                    </div>
+                                <div class="form-group">
+                                    <label>Your name</label>
+                                    <span class="help">e.g. "Mona Lisa Portrait"</span>
+                                    <select class="cs-select cs-skin-slide" cs-select>
+                                        <option value="{{i}}" ng-repeat="i in challengeType">{{i}}</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row">
