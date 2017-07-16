@@ -88,7 +88,6 @@
                                     'bars2',
                                     'stack1',
                                     'stack2',
-                                    'stacked',
                                     'multibar',
                                     'discretebar',
                                     'pie',

@@ -109,9 +109,35 @@ angular.module('app')
                 templateUrl: 'tpl/coins.html',
                 resolve: {
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                         return $ocLazyLoad.load([
+                                'nvd3'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/coins.js');
+                            });
+                    }]
+                }
+            })
+            .state('app.shop', {
+                url: '/shop',
+                controller: 'ShopCtrl',
+                templateUrl: 'tpl/shop.html',
+                resolve: {
+                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([
-                            'assets/js/controllers/coins.js'
-                        ]);
+                            'isotope',
+                            'codropsDialogFx',
+                            'metrojs',
+                            'angularBootstrap',
+                            'noUiSlider'
+                        ], {
+                            insertBefore: '#lazyload_placeholder'
+                        })
+                        .then(function() {
+                            return $ocLazyLoad.load('assets/js/controllers/shop.js');
+                        });
                     }]
                 }
             })

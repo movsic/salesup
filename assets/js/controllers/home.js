@@ -104,28 +104,122 @@ angular.module('app', ["nvd3"])
         ],
         "sales":[
             {
-                "label":1499130000,"value":10
+                "key":"Product1",
+                "values":[
+                    {
+                        "label":1499130000,"value":10
+                    },
+                    {
+                        "label":1499214600,"value":20
+                    },
+                    {
+                        "label":1499299200,"value":40
+                    },
+                    {
+                        "label":1499385600,"value":80
+                    },
+                    {
+                        "label":1499472000,"value":160
+                    },
+                    {
+                        "label":1499558400,"value":320
+                    },
+                    {
+                        "label":1499644800,"value":640
+                    },
+                ],
             },
             {
-                "label":1499214600,"value":20
+                "key":"Product2",
+                "values":[
+                    {
+                        "label":1499130000,"value":10
+                    },
+                    {
+                        "label":1499214600,"value":20
+                    },
+                    {
+                        "label":1499299200,"value":40
+                    },
+                    {
+                        "label":1499385600,"value":80
+                    },
+                    {
+                        "label":1499472000,"value":160
+                    },
+                    {
+                        "label":1499558400,"value":320
+                    },
+                    {
+                        "label":1499644800,"value":640
+                    },
+                ]
             },
             {
-                "label":1499299200,"value":40
-            },
-            {
-                "label":1499385600,"value":80
-            },
-            {
-                "label":1499472000,"value":160
-            },
-            {
-                "label":1499558400,"value":320
-            },
-            {
-                "label":1499644800,"value":640
-            },
+                "key":"Product3",
+                "values":[
+                    {
+                        "label":1499130000,"value":10
+                    },
+                    {
+                        "label":1499214600,"value":20
+                    },
+                    {
+                        "label":1499299200,"value":40
+                    },
+                    {
+                        "label":1499385600,"value":80
+                    },
+                    {
+                        "label":1499472000,"value":160
+                    },
+                    {
+                        "label":1499558400,"value":320
+                    },
+                    {
+                        "label":1499644800,"value":640
+                    },
+                ]
+            }
         ]
     };  
+
+    var testStackBar = [
+           {
+              "values":[
+                 {
+                    "label":4,
+                    "x":1499130000
+                 },
+                 {
+                    "y":5,
+                    "x":1499214600
+                 },
+                 {
+                    "y":6,
+                    "x":1499299200
+                 }
+              ],
+              "key":"Product1"
+           },
+           {
+              "values":[
+                 {
+                    "y":1,
+                    "x":1499130000
+                 },
+                 {
+                    "y":2,
+                    "x":1499214600
+                 },
+                 {
+                    "y":3,
+                    "x":1499299200
+                 }
+              ],
+              "key":"Product2"
+           }
+        ];
 
     var badgeData = {
                 "1":{
@@ -199,9 +293,12 @@ angular.module('app', ["nvd3"])
 
         $scope.nvd3_sales_options = {
             chart: {
-                type: 'discreteBarChart',
+                type: 'multiBarChart',
                 tooltips: false,
+                stacked: true,
+                showControls: false,
                 height: 310,
+                reduceXTicks: false,
                 margin: {
                     left: 25
                 },
@@ -212,8 +309,9 @@ angular.module('app', ["nvd3"])
                     return d.value
                 },
                 color: [
-                    $.Pages.getColor('success', .7)
-
+                    $.Pages.getColor('success', .7),
+                    $.Pages.getColor('danger', .7),
+                    $.Pages.getColor('warning', .7)
                 ],
                 showValues: true,
                 duration: 500,
@@ -228,8 +326,5 @@ angular.module('app', ["nvd3"])
             }
         };
 
-        $scope.nvd3_sales_data = [{
-            "key": "Monthly sales",
-            "values": $scope.dashboardData.sales
-        }];
+        $scope.nvd3_sales_data = $scope.dashboardData.sales;
 }]);

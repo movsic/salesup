@@ -31,7 +31,8 @@ angular.module('app')
                 }, {
                     name: 'owlCarousel',
                     files: [
-                        'assets/plugins/owl-carousel/owl.carousel.min.js',
+                        'assets/plugins/owl-carousel/owl.carousel.js',
+                        //'assets/plugins/angular-owl-carousel/angular-owl-carousel.js',
                         'assets/plugins/owl-carousel/assets/owl.carousel.css'
                     ]
                 }, {
@@ -140,6 +141,12 @@ angular.module('app')
                     files: [
                         'assets/plugins/angular-bootstrap-nav-tree/abn_tree_directive.js',
                         'assets/plugins/angular-bootstrap-nav-tree/abn_tree.css'
+                    ]
+                }, {
+                    name: 'angularBootstrap',
+                    files: [
+                        'assets/plugins/angular-animate/angular-animate.js',
+                        'assets/plugins/angular-bootstrap/ui-bootstrap-tpls.min.js'
                     ]
                 }, {
                     name: 'nestable',

@@ -7,16 +7,16 @@ social integration ??!!?!
 show new challenges on dashboard
 move config to service
 move request to service
-stacked bar on home
 LVL -> lvl to points / coins
 scallable width
-add npm install modules
+add npm install modules -> nvd3 problem https://github.com/krispo/angular-nvd3/issues/100
 notification autoclose
 modal close only on buton click
 define notifications
 coins icon fix
 badges new items (timestamp before last login) + (notifications while being logged in)
 dashboard graph hight
+shop tile on dashboard with carousel photos
 
 clean
 -------
@@ -39,3 +39,11 @@ challenge failed / sale made / level achieved -> notification
 +debug panel with buttons
 collect - data change animated - turning
 offline font
+
+Vlad:
+shop -> iphone, fitness, training, dinner with boss
+shop carousel, shop button disable
+graph period
+product real names
+challenge name in challenge won
+

@@ -3,6 +3,21 @@
     <!-- START PANEL -->
     <div class="panel panel-transparent">
         <div class="panel-body">
+            <div class="panel">
+                <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+                    <li class="active">
+                        <a href="#" data-toggle="tab" pg-tab role="tab">Shop</a>
+                    </li>
+                    <li>
+                        <a href="#" data-toggle="tab" pg-tab role="tab" active>Coins balance</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel">
+                <div class="tab-pane " id="tab-nvd3-area">
+                    <nvd3 options='nvd3_options' class="line-chart m-t-30 text-center" data='nvd3_data'></nvd3>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table table-hover" id="basicTable" ui-options="options">
                     <thead>

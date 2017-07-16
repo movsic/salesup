@@ -58,8 +58,7 @@ angular.module('app', ['ui.select'])
             }];
 
         $scope.createChallenge = function(){ 
-            console.log($scope.newChallenge);
-            $scope.challengeData.push({
+            $scope.challengeData.unshift({
                 "type": $scope.newChallenge.challengeType.id,
                 "amount": $scope.newChallenge.productAmount,
                 "product": $scope.newChallenge.productType.id,
@@ -67,7 +66,6 @@ angular.module('app', ['ui.select'])
                 "expires": new Date($scope.newChallenge.endDate).getTime()/1000,
                 "status": 5
             });
-            console.log($scope.challengeData);
         };
 
         $scope.modal = {};

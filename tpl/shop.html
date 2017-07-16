@@ -1,0 +1,81 @@
+<div class="container-fluid container-fixed-lg sm-p-l-20 sm-p-r-20" ng-init="init()">
+    <!-- START CATEGORY -->
+    <div class="gallery" ui-jq="isotope" ui-options="{
+            itemSelector: '.gallery-item',
+            masonry: {
+                columnWidth: 280,
+                gutter: 10,
+                isFitWidth: true
+            }
+        }">
+        <!-- START GALLERY ITEM -->
+        <!-- 
+                    FOR DEMO PURPOSES, FIRST GALLERY ITEM (.first) IS HIDDEN 
+                    FOR SCREENS <920px. PLEASE REMOVE THE CLASS 'first' WHEN YOU IMPLEMENT 
+                -->
+        <div class="gallery-item first" span ng-attr-data-width="{{i.promoted ? 2 : 1}}" span ng-attr-data-height="{{i.promoted ? 2 : 1}}" ng-click="showItemDetails(i)" ng-repeat="i in shopData">
+            <!-- START PREVIEW -->
+            <!--<img src="assets/img/gallery/1.jpg" alt="" class="image-responsive-height" ng-if="">-->
+
+            <div class="live-tile slide" data-speed="750" data-delay="4000" data-mode="carousel" ui-jq="liveTile">
+                <div ng-class="$first ? 'slide-front' : 'slide-back'" ng-repeat="img in i.img">
+                    <img ng-src="assets/img/gallery/{{img}}" alt="" class="image-responsive-height">
+                </div>
+            </div>
+            <!-- END PREVIEW -->
+            <!-- START ITEM OVERLAY DESCRIPTION -->
+            <div class="overlayer bottom-left full-width">
+                <div class="overlayer-wrapper item-info ">
+                    <div class="gradient-grey p-l-20 p-r-20 p-t-20 p-b-5">
+                        <div class="">
+                            <p class="pull-left bold text-white fs-14 p-t-10">{{i.title}}</p>
+                            <h5 class="pull-right semi-bold text-white font-montserrat bold">{{i.price}} coins</h5>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="m-t-10">
+                            <div class="pull-right m-t-10">
+                                <button class="btn btn-white btn-xs btn-mini bold fs-14" type="button">+</button>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END PRODUCT OVERLAY DESCRIPTION -->
+        </div>
+        <!-- END GALLERY ITEM -->
+    </div>
+    <!-- END CATEGORY -->
+</div>
+<!-- END CONTAINER FLUID -->
+<!-- START DIALOG -->
+<div id="itemDetails" class="dialog item-details">
+    <div class="dialog__overlay"></div>
+    <div class="dialog__content">
+        <div class="container-fluid">
+            <div class="row dialog__overview">
+                <div class="col-sm-7 no-padding item-slideshow-wrapper full-height">
+                    <div uib-carousel active="active" no-wrap="true"  active="0">
+                        <div uib-slide ng-repeat="img in activeItem.img  track by $index"  index="$index">
+                            <img ng-src="assets/img/gallery/{{img}}" style="margin:auto;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 p-r-35 p-t-35 p-l-35 full-height item-description">
+                    <h2 class="semi-bold no-margin font-montserrat">{{activeItem.title}}</h2>
+                    <p class="fs-13">{{activeItem.description}}
+                    </p>
+                    <div class="row m-b-20 m-t-20">
+                        <div class="col-sm-5"><span class="font-montserrat all-caps fs-11">Price </span>
+                        </div>
+                        <div class="col-sm-5 text-right">{{activeItem.price}} Coins</div>
+                    </div>
+                    <button class="btn btn-primary buy-now">Buy Now</button>
+                </div>
+            </div>
+        </div>
+        <button class="close action top-right" data-dialog-close><i class="pg-close fs-14"></i>
+        </button>
+    </div>
+</div>
+<!-- END DIALOG -->
