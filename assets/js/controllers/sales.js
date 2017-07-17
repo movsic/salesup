@@ -7,10 +7,13 @@ angular.module('app', ['nvd3'])
         var salesType={1:"Sale",2:"Return"};
         $scope.getSalesType=function(type){return salesType[type]};
 
+        var productGroup={1:"Phones",2:"Tablets",3:"Laptops"};
+        $scope.getProductGroup=function(type){return productGroup[type]};
+
         var currencyType={1:"RUB",2:"USD"};
         $scope.getCurrencyType=function(type){return currencyType[type]};
 
-        var productType={1:"Product1",2:"Product2"};
+        var productType={1:"Samsung Galaxy 7", 2:"Xiaomi Mi5 32GB",3:"Sony Xperia XA1 Dual",4:"LG X cam",5:"Samsung Galaxy J5 Prime Duos",6:"Huawei Honor 8 Lite",7:"Vertex Impress Eagle",8:"Apple iPhone SE 32GB"};
         $scope.getProductType=function(type){return productType[type]};
 
         $scope.salesData = [
@@ -18,64 +21,72 @@ angular.module('app', ['nvd3'])
                 "id": 1,
                 "product":1,
                 "type": 1,
-                "sum": 50,
-                "cur": 1,
+                "group": 1,
+                "sum": 650,
+                "cur": 2,
                 "timestamp": 1499686564
             },
             {
                 "id": 2,
                 "product":1,
-                "type": 1,
-                "sum": 70,
-                "cur": 1,
+                "type": 2,
+                "group": 1,
+                "sum": 650,
+                "cur": 2,
                 "timestamp": 1499686564
             },
             {
                 "id": 3,
-                "product":1,
-                "type": 2,
-                "sum": 20,
-                "cur": 1,
+                "product":2,
+                "type": 1,
+                "group": 1,
+                "sum": 135,
+                "cur": 2,
                 "timestamp": 1499596564
             },
             {
                 "id": 4,
-                "product":1,
+                "product":4,
                 "type": 1,
-                "sum": 10,
-                "cur": 1,
+                "group": 1,
+                "sum": 280,
+                "cur": 2,
                 "timestamp": 1498966564
             },
             {
                 "id": 5,
-                "product":1,
+                "product":6,
                 "type": 1,
-                "sum": 300,
-                "cur": 1,
+                "group": 1,
+                "sum": 370,
+                "cur": 2,
                 "timestamp": 1497656564
             },
             {
                 "id": 6,
-                "product":1,
+                "product":8,
                 "type": 1,
-                "sum": 30,
-                "cur": 1,
+                "group": 1,
+                "sum": 299,
+                "cur": 2,
                 "timestamp": 1495486564
             },
             {
                 "id": 7,
-                "product":1,
+                "product":3,
                 "type": 1,
-                "sum": 60,
-                "cur": 1,
+                "group": 1,
+                "sum": 320,
+                "cur": 2,
                 "timestamp": 1492386564
             },
             {
                 "id": 8,
                 "product":1,
                 "type": 1,
-                "sum": 80,
-                "cur": 1,
+                "group": 1,
+                "sum": 650,
+                "cur": 2,
                 "timestamp": 1499483564
             }];
 

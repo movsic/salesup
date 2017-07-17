@@ -5,33 +5,34 @@
 angular.module('app')
     .controller('RatingCtrl', ['$scope', function($scope) {
          $scope.ratingData = [
+            
             {
-                "pos": 1,
+                "pos": 11,
+                "img": "vlad.jpeg",
+                "name": "Dmitry (MegaMozg) Nikolaev",
+                "branch": "Universitet",
+                "rating": 14320
+            },
+            {
+                "pos": 12,
                 "img": "dasha.jpeg",
                 "name": "Daria (Mini) Minina",
-                "branch": "Nomos",
-                "rating": 100500
+                "branch": "Strogino",
+                "rating": 12560
             },
             {
-                "pos": 2,
-                "img": "vlad.jpeg",
-                "name": "Vlad (MegaMozg) Shalaev",
-                "branch": "Kube Solutions",
-                "rating": 100499
-            },
-            {
-                "pos": 3,
+                "pos": 13,
                 "img": "max.jpeg",
-                "name": "Max (SuperKoder) Kornev",
-                "branch": "Nomos",
-                "rating": 100498
+                "name": "Alexandr(SuperKoder) Sorokin",
+                "branch": "Kievskaya",
+                "rating": 12450
             },
             {
-                "pos": 4,
+                "pos": 14,
                 "img": "grisha.jpeg",
                 "name": "Grisha (Mouse) Movsesyan",
-                "branch": "Divan inc",
-                "rating": 100497
+                "branch": "Kievskaya",
+                "rating": 10020
             }];
 
     }]);

@@ -7,34 +7,34 @@ angular.module('app', ['ngAnimate','ui.bootstrap'])
         $scope.activeItem={};
         $scope.shopData = [
             {
-                "title": "Title 1",
-                "img": ["1.jpg"],
-                "description":"description1",
-                "price": 100,
+                "title": "Iphone 7 Red",
+                "img": ["iphone.jpg"],
+                "description":"Take your iPhone experience to the next level with iPhone 7 (PRODUCT) RED Special Edition. Featuring new camera systems, a better battery-life, an efficient processor and powerful stereo speakers, this smartphone will drastically enhance your iPhone experience. With a sharp and vibrant display, and a sleek water-resistant body, this phone is as powerful as it is attractive.",
+                "price": 7000,
             },
             {
-                "title": "Title 2",
-                "img": ["2_1.jpg"],
+                "title": "AIDA, 21.12.2017",
+                "img": ["theater_570.jpg"],
                 "promoted": true,
-                "description":"description2",
-                "price": 200,
+                "description":"World premiere: Cairo Opera House, 1871. This grandest of grand operas features an epic backdrop for what is in essence an intimate love story. Set in ancient Egypt, Aida never loses sight of its three protagonists: Amneris, the proud daughter of the pharaoh; her slave, Aida, who is the princess of the rival kingdom of Ethiopia; and Radamès, the Egyptian warrior they both love. Few operas have matched Aida in its exploration of the conflict of private emotion and public duty.",
+                "price": 5000,
             },
             {
-                "title": "Title 3",
-                "img": ["3.jpg"],
-                "description":"description3",
-                "price": 300,
+                "title": "Apple whatch, 38 mm, white band ",
+                "img": ["watch.jpg"],
+                "description":"Strap on the Apple Watch and stay connected throughout the day, always. This water-resistant smartwatch comes with a sturdy Ion-X glass display, a heart rate sensor, an accelerometer, an ambient light sensor and a gyroscope, making it perfect for both indoor and outdoor use. The built-in speaker and microphone let you conveniently make calls, right from your wrist.",
+                "price": 3500,
             },
             {
-                "title": "Title 4",
-                "img": ["4.jpg"],
-                "description":"description4",
+                "title": "2-month fitness membership",
+                "img": ["gym.jpg"],
+                "description":"Kaifu Lodge is a high-end fitness center and spa with a free climbing area, squash courts, restaurant and four studios that offer over 200 courses per week. The gym has cardio machines, 70 Cybex strength training machines, a free weight area and a stretching area. The spa facilities include 2 indoor pools, one heated outdoor pool, 4 Finnish saunas, steam bath, ice room, Kneipp zone, fire place room, tanning benches and massage areas. The courses offered cover 40 different fitness/dance possibilities which include yoga, Pilates, Tai Chi etc.",
                 "price": 400,
             },
             {
-                "title": "Title 5",
-                "img": ["5.jpg"],
-                "description":"description5",
+                "title": "Inbound Sales Certification",
+                "img": ["course.jpg"],
+                "description":"Inbound Sales Certification features five classes that introduce you to the Inbound Sales Methodology. From identifying potential buyers, to developing outreach strategies, to building personalized presentations, this free sales training course covers the basics of what inbound sales is all about. Whether you're leading a sales team, just getting started or you're a seasoned professional, the Inbound Sales Certification will prepare you to better identify, connect, explore, and advise today’s empowered buyer.",
                 "price": 500,
             }];
 

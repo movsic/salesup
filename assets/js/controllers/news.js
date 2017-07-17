@@ -13,38 +13,38 @@ angular.module('app')
             {
                 "id": 1,
                 "timestamp":1499786564,
-                "branch": "Munich",
+                "branch": "Strogino",
                 "img": "dasha.jpeg",
                 "name": "Daria Minina",
                 "type": 1,
-                "result": "Hardcore Challenge"
+                "result": "Sell 5 of Sony Xperia XA1 Dual"
             },
             {
                 "id": 1,
                 "timestamp":1499786564,
-                "branch": "Moscow",
+                "branch": "Universitet",
                 "img": "vlad.jpeg",
-                "name": "Vlad Shalaev",
+                "name": "Dmitry Nikolaev",
                 "type": 2,
-                "result": "SuperSeller Challenge"
+                "result": "Sell 5 of Samsung Galaxy 7"
             },
             {
                 "id": 1,
                 "timestamp":1499786564,
-                "branch": "Moscow",
+                "branch": "Kievskaya",
                 "img": "max.jpeg",
-                "name": "Max Kornev",
+                "name": "Alexandr Sorokin",
                 "type": 3,
-                "result": "Super Badge"
+                "result": "Best agent today!"
             },
             {
                 "id": 1,
                 "timestamp":1499786564,
-                "branch": "Munich",
+                "branch": "Kievskaya",
                 "img": "grisha.jpeg",
                 "name": "Grisha Movsesyan",
                 "type": 4,
-                "result": "Impossible Challenge"
+                "result": "Sell 5 of Samsung Galaxy 7"
             }];
 
     }]);

@@ -21,37 +21,37 @@ angular.module('app', ["nvd3"])
             {
                 "id": 1,
                 "timestamp":1499786564,
-                "branch": "Munich",
+                "branch": "Strogino",
                 "img": "dasha.jpeg",
                 "name": "Daria Minina",
                 "type": 1,
-                "result": "Hardcore Challenge"
+                "result": "Sell 5 of Sony Xperia XA1 Dual"
             },
             {
                 "id": 2,
                 "timestamp":1499786564,
-                "branch": "Moscow",
+                "branch": "Universitet",
                 "img": "vlad.jpeg",
-                "name": "Vlad Shalaev",
+                "name": "Dmitry Nikolaev",
                 "type": 2,
-                "result": "SuperSeller Challenge"
+                "result": "Sell 5 of Samsung Galaxy 7"
             },
             {
                 "id": 3,
                 "timestamp":1499786564,
-                "branch": "Moscow",
+                "branch": "Kievskaya",
                 "img": "max.jpeg",
-                "name": "Max Kornev",
+                "name": "Alexandr Sorokin",
                 "type": 3,
-                "result": "Super Badge"
+                "result": "Best agent today!"
             }
         ],
         "rating":{
-            "points":31337,
+            "points":12560,
             "ratingChange":5,
-            "level":42,
-            "nextLevel":35000,
-            "prevLevel":30000,
+            "level":25,
+            "nextLevel":13000,
+            "prevLevel":10000,
             "position":13,
             "totalPositions":1256,
             "ratingPoints":[
@@ -69,7 +69,7 @@ angular.module('app', ["nvd3"])
                 "id": 1,
                 "type": 1,
                 "amount": 5,
-                "product": 1,
+                "product": 3,
                 "progress": 75,
                 "expires": 1499697164,
                 "status": 1
@@ -77,17 +77,17 @@ angular.module('app', ["nvd3"])
             {
                 "id": 2,
                 "type": 1,
-                "amount": 10,
-                "product": 1,
-                "progress": 100,
+                "amount": 7,
+                "product": 5,
+                "progress": 80,
                 "expires": 1499786564,
                 "status": 2
             },
             {
                 "id": 3,
                 "type": 1,
-                "amount": 5,
-                "product": 1,
+                "amount": 3,
+                "product": 7,
                 "progress": 50,
                 "expires": 1499786564,
                 "status": 3
@@ -95,8 +95,8 @@ angular.module('app', ["nvd3"])
             {
                 "id": 4,
                 "type": 1,
-                "amount": 5,
-                "product": 1,
+                "amount": 10,
+                "product": 8,
                 "progress": 50,
                 "expires": 1499786564,
                 "status": 4
@@ -104,7 +104,7 @@ angular.module('app', ["nvd3"])
         ],
         "sales":[
             {
-                "key":"Product1",
+                "key":"phones",
                 "values":[
                     {
                         "label":1499130000,"value":10
@@ -130,7 +130,7 @@ angular.module('app', ["nvd3"])
                 ],
             },
             {
-                "key":"Product2",
+                "key":"tablets",
                 "values":[
                     {
                         "label":1499130000,"value":10
@@ -156,7 +156,7 @@ angular.module('app', ["nvd3"])
                 ]
             },
             {
-                "key":"Product3",
+                "key":"laptops",
                 "values":[
                     {
                         "label":1499130000,"value":10
@@ -251,7 +251,7 @@ angular.module('app', ["nvd3"])
 
         var challengeStatusDict={0:"Open",1:"In Progress",2:"Finished",3:"Failed",4:"Canceled"};
         var challengeType={1:"Sell"};
-        var challengeProduct={1:"Product"};
+        var challengeProduct={1:"Samsung Galaxy 7", 2:"Xiaomi Mi5 32GB",3:"Sony Xperia XA1 Dual",4:"LG X cam",5:"Samsung Galaxy J5 Prime",6:"Huawei Honor 8 Lite",7:"Vertex Impress Eagle",8:"Apple iPhone SE 32GB"};
 
         $scope.getChallengeStatus=function(status){return challengeStatusDict[status];};
 

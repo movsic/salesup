@@ -30,7 +30,7 @@ angular.module('app')
         $scope.getBadgeName = function(type){ return badgeData[type].name;};
 
          $scope.profileData = {
-                "firstName": "Dasha",
+                "firstName": "Daria",
                 "lastName": "Minina",
                 "group": "cubesolutions",
                 "img": "dasha.jpeg",

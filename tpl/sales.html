@@ -14,8 +14,9 @@
                         <tr>
                             <th style="width:25%">Product</th>
                             <th style="width:25%">Type</th>
-                            <th style="width:25%">Sum</th>
-                            <th style="width:25%">Date</th>
+                            <th style="width:16%">Group</th>
+                            <th style="width:16%">Sum</th>
+                            <th style="width:16%">Date</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +26,9 @@
                             </td>
                             <td class="v-align-middle">
                                 <p>{{getSalesType(i.type)}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{getProductGroup(i.group)}}</p>
                             </td>
                             <td class="v-align-middle">
                                 <p>{{i.sum}} {{getCurrencyType(i.cur)}}</p>
