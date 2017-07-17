@@ -12,8 +12,8 @@ angular.module('app')
             modules: [{
                     name: 'isotope',
                     files: [
-                        'assets/plugins/imagesloaded/imagesloaded.pkgd.min.js',
-                        'assets/plugins/jquery-isotope/isotope.pkgd.min.js'
+                        'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
+                        'bower_components/isotope/dist/isotope.pkgd.min.js'
                     ]
                 }, {
                     name: 'codropsDialogFx',

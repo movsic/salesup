@@ -17,6 +17,8 @@ coins icon fix
 badges new items (timestamp before last login) + (notifications while being logged in)
 dashboard graph hight
 shop tile on dashboard with carousel photos
+LOGIN
+list of pics
 
 clean
 -------
