@@ -20,7 +20,8 @@ shop tile on dashboard with carousel photos
 LOGIN
 list of pics
 DIALOGFX!!!!!!!!! <-may be better ?
-angular-translate
+angular-translate -> text strings fron config
+ng-src in image - different sizes ?!
 
 clean
 -------

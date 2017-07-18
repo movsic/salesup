@@ -6,7 +6,7 @@ angular.module('app')
 
     .controller('MainCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
 
-    	console.log(DataProviderService.data());
+    	$scope.profileData = DataProviderService.getProfileData();
 
     	$scope.showNotification = function(name, img, message) {
 	        var color = "success"; // Info, Success, Error etc

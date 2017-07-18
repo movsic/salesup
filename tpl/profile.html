@@ -6,15 +6,13 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="inline">
-                            <div class="thumbnail-wrapper circular d48 m-r-10 ">
-                                <img alt="Profile Image" width="43" height="43" ui-jq="unveil" data-src-retina="assets/img/profiles/{{profileData.img}}" ng-data-src="assets/img/profiles/{{profileData.img}}" ng-src="assets/img/profiles/{{profileData.img}}">
-                            </div>
+                            <user-pic data="{{profileData.img}}" size="big"></user-pic>
                         </div>
                         <div class="inline">
                             <h5 class="logged hint-text no-margin">
                                     Logged in as
                                 </h5>
-                            <h2 class="name no-margin">{{profileData.firstName}} {{profileData.lastName}}</h2>
+                            <h2 class="name no-margin">{{profileData.firstname}} {{profileData.lastname}}</h2>
                         </div>
                     </div>
                 </div>
@@ -35,11 +33,11 @@
                 <form class="" role="form">
                     <div pg-form-group class="form-group form-group-default">
                         <label>First Name</label>
-                        <input type="text" class="form-control" value="{{profileData.firstName}}" required>
+                        <input type="text" class="form-control" value="{{profileData.firstname}}" required>
                     </div>
                     <div pg-form-group class="form-group form-group-default">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" value="{{profileData.lastName}}" required>
+                        <input type="text" class="form-control" value="{{profileData.lastname}}" required>
                     </div>
                     <div pg-form-group class="form-group form-group-default">
                         <label>Group</label>
@@ -47,14 +45,14 @@
                     </div>
                     <div pg-form-group class="form-group form-group-default">
                         <label>Email</label>
-                        <input type="text" class="form-control" value="{{profileData.email}}" required>
-                    </div>
-                    <div pg-form-group class="form-group form-group-default">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" value="{{profileData.phone}}" ui-options="'(999) 999-9999'" required>
+                        <input type="text" class="form-control" value="{{profileData.mail}}" required>
                     </div>
                     <div pg-form-group class="form-group form-group-default">
                         <label>Password</label>
+                        <input type="password" class="form-control" value="12345678" required>
+                    </div>
+                    <div pg-form-group class="form-group form-group-default">
+                        <label>Confirm Password</label>
                         <input type="password" class="form-control" value="12345678" required>
                     </div>
                 </form>

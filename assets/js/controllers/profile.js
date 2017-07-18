@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('ProfileCtrl', ['$scope', function($scope) {
+    .controller('ProfileCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
         var badgeData = {
                 "1":{
                         "name":"fire",
@@ -29,19 +29,5 @@ angular.module('app')
         $scope.getBadgeDescription = function(type){ return badgeData[type].title + ' ' + badgeData[type].description;};
         $scope.getBadgeName = function(type){ return badgeData[type].name;};
 
-         $scope.profileData = {
-                "firstName": "Daria",
-                "lastName": "Minina",
-                "group": "cubesolutions",
-                "img": "dasha.jpeg",
-                "email": "dm@cubesolutions.com",
-                "phone": "+79031234567",
-                "badges":[
-                    {"type": 1, "timestamp": 1499697164},
-                    {"type": 2, "timestamp": 1499697164},
-                    {"type": 3, "timestamp": 1499697164},
-                    {"type": 4, "timestamp": 1499697164},
-                ]
-
-            };
+        $scope.profileData = DataProviderService.getProfileData();
     }]);
