@@ -130,3 +130,18 @@
   height:106px;
   width:79px;
 }
+
+/*MetroJS overwrite*/
+.live-tile,
+.list-tile,
+.copy-tile,
+.tile-strip .flip-list > li {
+  height: 100%;
+  margin: 0px;
+  outline: 1px solid transparent;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0px;
+  width: 100%;
+}

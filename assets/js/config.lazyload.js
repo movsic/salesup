@@ -10,6 +10,27 @@ angular.module('app')
             debug: true,
             events: true,
             modules: [{
+                    name: 'nvd3',
+                    files: [
+                        'bower_components/d3/d3.min.js',
+                        'bower_components/nvd3/build/nv.d3.min.js',
+                        'bower_components/nvd3/build/nv.d3.min.css',
+                        'bower_components/angular-nvd3/dist/angular-nvd3.min.js',
+                        //'assets/plugins/nvd3/src/utils.js',
+                        //'assets/plugins/nvd3/src/tooltip.js',
+                        //'assets/plugins/nvd3/src/interactiveLayer.js',
+                        //'assets/plugins/nvd3/src/models/axis.js',
+                        //'assets/plugins/nvd3/src/models/line.js',
+                        //'assets/plugins/nvd3/src/models/lineWithFocusChart.js',
+                    ],
+                    serie: true // load in the exact order
+                }, {
+                    name: 'metrojs',
+                    files: [
+                        'bower_components/metrojs/release/MetroJs.Full/MetroJs.min.js',
+                        'bower_components/metrojs/release/MetroJs.Full/MetroJs.min.css'
+                    ]
+                }, {
                     name: 'isotope',
                     files: [
                         'bower_components/imagesloaded/imagesloaded.pkgd.min.js',
@@ -18,22 +39,9 @@ angular.module('app')
                 }, {
                     name: 'codropsDialogFx',
                     files: [
-                        'assets/plugins/codrops-dialogFx/dialogFx.js',
-                        'assets/plugins/codrops-dialogFx/dialog.css',
-                        'assets/plugins/codrops-dialogFx/dialog-sandra.css'
-                    ]
-                }, {
-                    name: 'metrojs',
-                    files: [
-                        'assets/plugins/jquery-metrojs/MetroJs.min.js',
-                        'assets/plugins/jquery-metrojs/MetroJs.css'
-                    ]
-                }, {
-                    name: 'owlCarousel',
-                    files: [
-                        'assets/plugins/owl-carousel/owl.carousel.js',
-                        //'assets/plugins/angular-owl-carousel/angular-owl-carousel.js',
-                        'assets/plugins/owl-carousel/assets/owl.carousel.css'
+                        'bower_components/dialogfx/js/dialogFx.js',
+                        'bower_components/dialogfx/css/dialog.css',
+                        'bower_components/dialogfx/css/dialog-sandra.css'
                     ]
                 }, {
                     name: 'noUiSlider',
@@ -43,20 +51,36 @@ angular.module('app')
                         'assets/plugins/jquery-nouislider/jquery.nouislider.css'
                     ]
                 }, {
-                    name: 'nvd3',
+                    name: 'moment',
                     files: [
-                        'assets/plugins/nvd3/lib/d3.v3.js',
-                        'assets/plugins/nvd3/nv.d3.min.js',
-                        'assets/plugins/nvd3/src/utils.js',
-                        'assets/plugins/nvd3/src/tooltip.js',
-                        'assets/plugins/nvd3/src/interactiveLayer.js',
-                        'assets/plugins/nvd3/src/models/axis.js',
-                        'assets/plugins/nvd3/src/models/line.js',
-                        'assets/plugins/nvd3/src/models/lineWithFocusChart.js',
-                        'assets/plugins/angular-nvd3/angular-nvd3.js',
-                        'assets/plugins/nvd3/nv.d3.min.css'
-                    ],
-                    serie: true // load in the exact order
+                        'assets/plugins/moment/moment.min.js',
+                        'assets/plugins/moment/moment-with-locales.min.js'
+                    ]
+                }, {
+                    //https://github.com/angular-ui/ui-select
+                    name: 'select',
+                    files: [
+                        'assets/plugins/bootstrap-select2/select2.css',
+                        'assets/plugins/angular-ui-select/select.min.css',
+                        'assets/plugins/angular-ui-select/pages-select2-old.css',
+                        'assets/plugins/angular-ui-select/select.min.js'
+                    ]
+                }, {
+                    name: 'datepicker',
+                    files: [
+                        'assets/plugins/bootstrap-datepicker/css/datepicker3.css',
+                        'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
+                    ]
+                }, 
+//------------------------------------------------------------------------------------------------------
+
+                {
+                    name: 'owlCarousel',
+                    files: [
+                        'assets/plugins/owl-carousel/owl.carousel.js',
+                        //'assets/plugins/angular-owl-carousel/angular-owl-carousel.js',
+                        'assets/plugins/owl-carousel/assets/owl.carousel.css'
+                    ]
                 }, {
                     name: 'rickshaw',
                     files: [
@@ -112,11 +136,6 @@ angular.module('app')
                     name: 'jquery-ui',
                     files: ['assets/plugins/jquery-ui-touch/jquery.ui.touch-punch.min.js']
                 }, {
-                    name: 'moment',
-                    files: ['assets/plugins/moment/moment.min.js',
-                        'assets/plugins/moment/moment-with-locales.min.js'
-                    ]
-                }, {
                     name: 'moment-locales',
                     files: ['assets/plugins/moment/moment-with-locales.min.js'
                     ]
@@ -154,21 +173,6 @@ angular.module('app')
                         'assets/plugins/jquery-nestable/jquery.nestable.css',
                         'assets/plugins/jquery-nestable/jquery.nestable.js',
                         'assets/plugins/angular-nestable/angular-nestable.js'
-                    ]
-                }, {
-                    //https://github.com/angular-ui/ui-select
-                    name: 'select',
-                    files: [
-                        'assets/plugins/bootstrap-select2/select2.css',
-                        'assets/plugins/angular-ui-select/select.min.css',
-                        'assets/plugins/angular-ui-select/pages-select2-old.css',
-                        'assets/plugins/angular-ui-select/select.min.js'
-                    ]
-                }, {
-                    name: 'datepicker',
-                    files: [
-                        'assets/plugins/bootstrap-datepicker/css/datepicker3.css',
-                        'assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js',
                     ]
                 }, {
                     name: 'daterangepicker',

@@ -13,8 +13,7 @@
                     FOR DEMO PURPOSES, FIRST GALLERY ITEM (.first) IS HIDDEN 
                     FOR SCREENS <920px. PLEASE REMOVE THE CLASS 'first' WHEN YOU IMPLEMENT 
                 -->
-        <div class="gallery-item first" span ng-attr-data-width="{{i.promoted ? 2 : 1}}" span ng-attr-data-height="{{i.promoted ? 2 : 1}}" ng-repeat="i in shopData">
-        <!--ng-click="showItemDetails(i)"-->
+        <div class="gallery-item first" span ng-attr-data-width="{{i.promoted ? 2 : 1}}" span ng-attr-data-height="{{i.promoted ? 2 : 1}}" ng-click="showItemDetails(i)" ng-repeat="i in shopData">
             <!-- START PREVIEW -->
             <!--<img src="assets/img/gallery/1.jpg" alt="" class="image-responsive-height" ng-if="">-->
 
@@ -49,6 +48,7 @@
     </div>
     <!-- END CATEGORY -->
 </div>
+
 <!-- END CONTAINER FLUID -->
 <!-- START DIALOG -->
 <div id="itemDetails" class="dialog item-details">
@@ -57,11 +57,15 @@
         <div class="container-fluid">
             <div class="row dialog__overview">
                 <div class="col-sm-7 no-padding item-slideshow-wrapper full-height">
-                    <div uib-carousel active="active" no-wrap="true"  active="0">
-                        <div uib-slide ng-repeat="img in activeItem.img  track by $index"  index="$index">
-                            <img ng-src="assets/img/gallery/{{img}}" style="margin:auto;">
+                
+                        <div id="myCarousel" class="carousel slide full-width full-height" data-ride="carousel">
+                          <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item" ng-class="{'active': $first}" ng-repeat="img in activeItem.img">
+                              <img class="d-block img-fluid full-height full-width" ng-src="assets/img/gallery/{{img}}">
+                            </div>
+                          </div>
                         </div>
-                    </div>
+
                 </div>
                 <div class="col-sm-5 p-r-35 p-t-35 p-l-35 full-height item-description">
                     <h2 class="semi-bold no-margin font-montserrat">{{activeItem.title}}</h2>

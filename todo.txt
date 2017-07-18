@@ -19,6 +19,8 @@ dashboard graph hight
 shop tile on dashboard with carousel photos
 LOGIN
 list of pics
+DIALOGFX!!!!!!!!! <-may be better ?
+angular-translate
 
 clean
 -------
@@ -48,4 +50,3 @@ shop carousel, shop button disable
 graph period
 product real names
 challenge name in challenge won
-

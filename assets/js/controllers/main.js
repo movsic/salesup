@@ -4,7 +4,10 @@
 
 angular.module('app')
 
-    .controller('MainCtrl', ['$scope', function($scope) {
+    .controller('MainCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
+
+    	console.log(DataProviderService.data());
+
     	$scope.showNotification = function(name, img, message) {
 	        var color = "success"; // Info, Success, Error etc
 	        var position = "top-right" // Placement of the notification

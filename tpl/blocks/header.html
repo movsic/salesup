@@ -153,17 +153,13 @@
               </li>
               <li class="p-r-15 inline">
                 <div class="dropdown">
-                    <a data-target="#" href="" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                        <i class="icon-set grid-box"></i>
-                    </a>
-                    <ul class="dropdown-menu pull-right" role="menu">
-                        <li>
-                          <a ng-click="showNotification('Vlad Shalaev', 'vlad.jpeg', 'Won challenge')">Show Notification</a>
-                        </li>
-                        <li>
-                          <a ng-click="showModal()">Show Win</a>
-                        </li>
-                    </ul>
+                  <a href="" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                    <i class="icon-set grid-box"></i>
+                  </a>
+                  <div class="dropdown-menu pull-right" role="menu">
+                    <a class="dropdown-item" ng-click="showNotification('Vlad Shalaev', 'vlad.jpeg', 'Won challenge')">Show Notification</a>
+                    <a class="dropdown-item" ng-click="showModal()">Show Win</a>
+                  </div>
                 </div>
               </li>
             </ul>

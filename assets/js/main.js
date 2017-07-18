@@ -15,7 +15,7 @@ angular.module('app')
                 menuBehind: false,
                 theme: 'pages/css/pages.css'
             },
-            author: 'Revox'
+            author: 'Cube Solutions'
         }
         // Checks if the given state is the current state
         $scope.is = function(name) {

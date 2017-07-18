@@ -17,14 +17,145 @@ angular.module('app')
                     templateUrl: "tpl/app.html",
                     controller: 'MainCtrl',
                     resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            'assets/js/controllers/main.js',
-                        ]);
-                    }]
-                }
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/main.js',
+                            ]);
+                        }]
+                    }
                 })
-                .state('app.dashboard', {
+                .state('app.home', {
+                    url: "/home",
+                    templateUrl: "tpl/home.html",
+                    controller: 'HomeCtrl',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'nvd3',
+                                'metrojs'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load([
+                                    'assets/js/controllers/home.js'
+                                ]);
+                            });
+                        }]
+                    }
+                })
+                .state('app.rating', {
+                    url: '/rating',
+                    controller: 'RatingCtrl',
+                    templateUrl: 'tpl/rating.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/rating.js',
+                            ]);
+                        }]
+                    }
+                })
+                .state('app.sales', {
+                    url: '/sales',
+                    controller: 'SalesCtrl',
+                    templateUrl: 'tpl/sales.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                    'nvd3'
+                                ], {
+                                    insertBefore: '#lazyload_placeholder'
+                                })
+                                .then(function() {
+                                    return $ocLazyLoad.load('assets/js/controllers/sales.js');
+                                });
+                        }]
+                    }
+                })
+                .state('app.coins', {
+                    url: '/coins',
+                    controller: 'CoinsCtrl',
+                    templateUrl: 'tpl/coins.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'nvd3'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/coins.js');
+                            });
+                        }]
+                    }
+                })
+                .state('app.shop', {
+                    url: '/shop',
+                    controller: 'ShopCtrl',
+                    templateUrl: 'tpl/shop.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'isotope',
+                                'codropsDialogFx',
+                                'metrojs',
+                                'noUiSlider'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/shop.js');
+                            });
+                        }]
+                    }
+                })
+                .state('app.challenge', {
+                    url: '/challenge',
+                    controller: 'ChallengeCtrl',
+                    templateUrl: 'tpl/challenge.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'select',
+                                'moment',
+                                'datepicker'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/challenge.js');
+                            });
+                        }]
+                    }
+                })
+                .state('app.news', {
+                    url: '/news',
+                    controller: 'NewsCtrl',
+                    templateUrl: 'tpl/news.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/news.js'
+                            ]);
+                        }]
+                    }
+                })
+                .state('app.profile', {
+                    url: '/profile',
+                    controller: 'ProfileCtrl',
+                    templateUrl: 'tpl/profile.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/profile.js',
+                            ]);
+                        }]
+                    }
+                })
+
+//-------------------------------------------------------------------------
+            .state('app.dashboard', {
                     url: "/dashboard",
                     templateUrl: "tpl/dashboard.html",
                     controller: 'DashboardCtrl',
@@ -49,143 +180,6 @@ angular.module('app')
                         }]
                     }
                 })
-            .state('app.home', {
-                url: "/home",
-                templateUrl: "tpl/home.html",
-                controller: 'HomeCtrl',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                                'nvd3',
-                                'mapplic',
-                                'rickshaw',
-                                'metrojs',
-                                'sparkline',
-                                'skycons',
-                                'switchery'
-                            ], {
-                                insertBefore: '#lazyload_placeholder'
-                            })
-                            .then(function() {
-                                return $ocLazyLoad.load([
-                                    'assets/js/controllers/home.js'
-                                ]);
-                            });
-                        }]
-                    }
-                })
-            .state('app.rating', {
-                url: '/rating',
-                controller: 'RatingCtrl',
-                templateUrl: 'tpl/rating.html',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            'assets/js/controllers/rating.js',
-                        ]);
-                    }]
-                }
-            })
-            .state('app.sales', {
-                url: '/sales',
-                controller: 'SalesCtrl',
-                templateUrl: 'tpl/sales.html',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                                'nvd3'
-                            ], {
-                                insertBefore: '#lazyload_placeholder'
-                            })
-                            .then(function() {
-                                return $ocLazyLoad.load('assets/js/controllers/sales.js');
-                            });
-                    }]
-                }
-            })
-            .state('app.coins', {
-                url: '/coins',
-                controller: 'CoinsCtrl',
-                templateUrl: 'tpl/coins.html',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                         return $ocLazyLoad.load([
-                                'nvd3'
-                            ], {
-                                insertBefore: '#lazyload_placeholder'
-                            })
-                            .then(function() {
-                                return $ocLazyLoad.load('assets/js/controllers/coins.js');
-                            });
-                    }]
-                }
-            })
-            .state('app.shop', {
-                url: '/shop',
-                controller: 'ShopCtrl',
-                templateUrl: 'tpl/shop.html',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            'isotope',
-                            'codropsDialogFx',
-                            'metrojs',
-                            'angularBootstrap',
-                            'noUiSlider'
-                        ], {
-                            insertBefore: '#lazyload_placeholder'
-                        })
-                        .then(function() {
-                            return $ocLazyLoad.load('assets/js/controllers/shop.js');
-                        });
-                    }]
-                }
-            })
-            .state('app.challenge', {
-                url: '/challenge',
-                controller: 'ChallengeCtrl',
-                templateUrl: 'tpl/challenge.html',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                                'select',
-                                'switchery',
-                                'select',
-                                'moment',
-                                'datepicker'
-                            ], {
-                                insertBefore: '#lazyload_placeholder'
-                            })
-                            .then(function() {
-                                return $ocLazyLoad.load('assets/js/controllers/challenge.js');
-                            });
-                    }]
-                }
-            })
-            .state('app.news', {
-                url: '/news',
-                controller: 'NewsCtrl',
-                templateUrl: 'tpl/news.html',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            'assets/js/controllers/news.js'
-                        ]);
-                    }]
-                }
-            })
-            .state('app.profile', {
-                url: '/profile',
-                controller: 'ProfileCtrl',
-                templateUrl: 'tpl/profile.html',
-                resolve: {
-                    deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            'assets/js/controllers/profile.js',
-                        ]);
-                    }]
-                }
-            })
 
             // Email app
             .state('app.email', {

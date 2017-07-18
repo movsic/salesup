@@ -364,7 +364,7 @@
     * @requires jquery-ioslist.js
     */
     Pages.prototype.initListView = function(context) {
-        $.fn.ioslist && $('[data-init-list-view="ioslist"]', context).ioslist();
+        //$.fn.ioslist && $('[data-init-list-view="ioslist"]', context).ioslist();
         $.fn.scrollbar && $('.list-view-wrapper', context).scrollbar({
             ignoreOverlay: false
         });

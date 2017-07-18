@@ -2,19 +2,20 @@
 
 /* Controllers */
 
-angular.module('app', ['ngAnimate','ui.bootstrap'])
+angular.module('app')
     .controller('ShopCtrl', ['$scope', function($scope) {
         $scope.activeItem={};
+
         $scope.shopData = [
             {
                 "title": "Iphone 7 Red",
-                "img": ["iphone.jpg"],
+                "img": ["iphone.jpg","1.jpg"],
                 "description":"Take your iPhone experience to the next level with iPhone 7 (PRODUCT) RED Special Edition. Featuring new camera systems, a better battery-life, an efficient processor and powerful stereo speakers, this smartphone will drastically enhance your iPhone experience. With a sharp and vibrant display, and a sleek water-resistant body, this phone is as powerful as it is attractive.",
                 "price": 7000,
             },
             {
                 "title": "AIDA, 21.12.2017",
-                "img": ["theater_570.jpg"],
+                "img": ["theater_570.jpg","2_1.jpg","2_2.jpg"],
                 "promoted": true,
                 "description":"World premiere: Cairo Opera House, 1871. This grandest of grand operas features an epic backdrop for what is in essence an intimate love story. Set in ancient Egypt, Aida never loses sight of its three protagonists: Amneris, the proud daughter of the pharaoh; her slave, Aida, who is the princess of the rival kingdom of Ethiopia; and Radamès, the Egyptian warrior they both love. Few operas have matched Aida in its exploration of the conflict of private emotion and public duty.",
                 "price": 5000,
@@ -46,6 +47,8 @@ angular.module('app', ['ngAnimate','ui.bootstrap'])
                     'background-size': 'cover'
                 })
             });
+
+            $('#myCarousel').carousel({});
         }
         $scope.showItemDetails = function(item) {
             $scope.activeItem=item;
