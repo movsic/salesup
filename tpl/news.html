@@ -20,9 +20,7 @@
                         <div class="circle" data-toggle="tooltip" title="Label" data-container="body">
                         </div>
                         <div class="card-header clearfix">
-                            <div class="user-pic">
-                                <img alt="Profile Image" width="33" height="33" ui-jq="unveil" data-src-retina="assets/img/profiles/{{i.img}}" ng-data-src="assets/img/profiles/{{i.img}}" ng-src="assets/img/profiles/{{i.img}}">
-                            </div>
+                            <user-pic data="{{i.img}}"></user-pic>
                             <h5>{{i.name}}</h5>
                         </div>
                         <div class="card-description">

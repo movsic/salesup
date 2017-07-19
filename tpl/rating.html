@@ -33,10 +33,7 @@
                                 <p>{{i.pos}}</p>
                             </td>
                             <td class="v-align-middle">
-                                <div class="profile-img-wrapper m-t-5 inline">
-                                    <img width="35" height="35" ui-jq="unveil" ng-data-src="assets/img/profiles/{{i.img}}" alt="" ng-src="assets/img/profiles/{{i.img}}" data-src-retina="assets/img/profiles/{{i.img}}" >
-                                    <div class="chat-status available"></div>
-                                 </div>
+                                <user-pic data="{{i.img}}"></user-pic>
                             </td>
                             <td class="v-align-middle">
                                 <p>{{i.name}}</p>

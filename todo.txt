@@ -1,53 +1,56 @@
+Challenges:
+peer-2-peer challenges
+pending challenges
+decline challenge
+challenges tabs(active finished new) finish
 challenges -> today,tomorrow instead date
 sort challenges in list -> reward
 challenges active -> time left
-sales color to type
-userpic as directive
-social integration ??!!?!
 show new challenges on dashboard
+challenges additional data -> json data
+challenge name in challenge won
+
+Sales:
+sales tabs
+sales color to type
+
+Coins:
+coins page with bonus calculation (list of successful challenges and sales)
+
+Badges:
+badge modal
+badges definition
+
+Profile:
+add level to profile
+
+Big fitures:
+LVL -> lvl to points / coins, with config tables
 move config to service
-move request to service
-LVL -> lvl to points / coins
-scallable width
-add npm install modules -> nvd3 problem https://github.com/krispo/angular-nvd3/issues/100
-notification autoclose
-modal close only on buton click
-define notifications
-coins icon fix
-badges new items (timestamp before last login) + (notifications while being logged in)
-dashboard graph hight
-shop tile on dashboard with carousel photos
+social integration
+scallable width -> mobile support 
+badges with new items counter (timestamp before last login) + (notifications while being logged in)
 LOGIN
 list of pics
-DIALOGFX!!!!!!!!! <-may be better ?
-angular-translate -> text strings fron config
-ng-src in image - different sizes ?!
-
-clean
--------
-move notifications to service
-
-Week plan!
--------
-challenges tabs(active finished new) finish
-pending challenges
-decline challenge
-sales tabs
-peer-2-peer challenges
-add level to profile
-+notifications
-challenges additional data -> json data
-coins page with bonus calculation (list of successful challenges and sales)
-header/footer
-+win modal
-challenge failed / sale made / level achieved -> notification
-+debug panel with buttons
 collect - data change animated - turning
+
+Misc:
+angular-translate
+modal close only on buton click
+coins icon
+dashboard graph hight
+DIALOGFX!!!!!!!!! <-may be better ?
+badge,challenge directive
+user pic ng-src in image - different sizes ?!
+main js -> render user pic in notification
+move notifications to service
 offline font
 
-Vlad:
-shop -> iphone, fitness, training, dinner with boss
-shop carousel, shop button disable
-graph period
-product real names
-challenge name in challenge won
+Notifications:
+notification autoclose
+define types notifications
+challenge failed / sale made / level achieved -> notification
+
+Home:
+sales graph height
+shop tile on dashboard with carousel photos??

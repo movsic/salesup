@@ -3,7 +3,6 @@
 /* Controllers */
 
 angular.module('app')
-
     .controller('MainCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
 
     	$scope.profileData = DataProviderService.getProfileData();
@@ -21,7 +20,12 @@ angular.module('app')
 	            position: position,
 	            timeout: 0,
 	            type: color,
-	            thumbnail: '<img width="40" height="40" style="display: inline-block;" src="assets/img/profiles/' + img + '" data-src="assets/img/profiles/avatar.jpg" ui-jq="unveil" data-src-retina="assets/img/profiles/avatar2x.jpg" alt="">'
+	            thumbnail: `<img width="40" height="40" 
+	            style="display: inline-block;" 
+	            src="assets/img/profiles/`+img+`" 
+	            data-src="assets/img/profiles/`+img+`" 
+	            ui-jq="unveil" 
+	            data-src-retina="assets/img/profiles/`+img+`" alt="">`
 	        }).show();
 	    }
 

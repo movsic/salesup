@@ -24,6 +24,7 @@
     "angular-ui-utils":"0.2.x",
     "angular-sanitize":"1.4.x",
     "oclazyload":"1.0.x",
+    "angular-translate": "2.x",
     
     "angular-bootstrap":"2.5.x",
     "angular-animate":"1.6.x",

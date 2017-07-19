@@ -4,46 +4,11 @@
 
 angular.module('app', ["nvd3"])
     // Chart controller 
-    .controller('HomeCtrl', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
+    .controller('HomeCtrl', ['$scope', '$http', '$timeout', 'DataProviderService', function($scope, $http, $timeout, DataProviderService) {
 
-      
-
-    var testStackBar = [
-           {
-              "values":[
-                 {
-                    "label":4,
-                    "x":1499130000
-                 },
-                 {
-                    "y":5,
-                    "x":1499214600
-                 },
-                 {
-                    "y":6,
-                    "x":1499299200
-                 }
-              ],
-              "key":"Product1"
-           },
-           {
-              "values":[
-                 {
-                    "y":1,
-                    "x":1499130000
-                 },
-                 {
-                    "y":2,
-                    "x":1499214600
-                 },
-                 {
-                    "y":3,
-                    "x":1499299200
-                 }
-              ],
-              "key":"Product2"
-           }
-        ];
+    $scope.newsData = DataProviderService.getNewsData();
+    $scope.challengeData = DataProviderService.getChallengeData();
+    $scope.salesData = DataProviderService.getSalesAggregateData();
 
     var badgeData = {
                 "1":{
@@ -150,5 +115,5 @@ angular.module('app', ["nvd3"])
             }
         };
 
-        $scope.nvd3_sales_data = $scope.dashboardData.sales;
+        $scope.nvd3_sales_data = $scope.salesData;
 }]);

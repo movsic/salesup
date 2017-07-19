@@ -15,7 +15,7 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <div class="p-t-20" ng-repeat="i in dashboardData.challenges">
+                                <div class="p-t-20" ng-repeat="i in challengeData">
                                     <div class="">      
                                         <div class="pull-left">
                                             <h5 class="no-margin overflow-ellipsis">{{getChallengeTitle(i.type,i.amount,i.product)}}</h5>
@@ -67,7 +67,7 @@
                             </div>                      
                             <div class="panel-body no-padding">
                                 <div class="metro live-tile" data-mode="carousel" data-start-now="true" data-speed="750" data-delay="5000" ui-jq="liveTile">
-                                    <div class="tiles" ng-class="i.id == 1 ? 'slide-front slide active':'slide-back'" ng-repeat="i in dashboardData.news">
+                                    <div class="tiles" ng-class="i.id == 1 ? 'slide-front slide active':'slide-back'" ng-repeat="i in newsData">
                                         <div class="padding-30">
                                             <div class="pull-top">
                                                 <div class="pull-left visible-lg visible-xlg">
@@ -77,7 +77,7 @@
                                             </div>
                                             <div class="pull-bottom p-b-30">
                                                  <div class="row p-l-20 p-r-20 p-b-30">
-                                                    <div class="thumbnail-wrapper d32 circular b-white m-r-10 b-a b-white"><img alt="" ng-data-src="assets/img/profiles/{{i.img}}" data-src-retina="assets/img/profiles/{{i.img}}" height="30" ng-src="assets/img/profiles/{{i.img}}" width="30"></div>
+                                                    <user-pic data="{{i.img}}"></user-pic>
                                                     <div class="no-padding">
                                                         <h3 class="text-black">{{i.name}}</h3>
                                                         <h4 class="text-black">{{getNewsType(i.type)}} {{i.result}}</h4>
@@ -115,14 +115,8 @@
                             <div class="panel-body">
                                 <div class="pull-bottom">
                                     <div>
-                                        <h2 class="no-margin text-white inline">{{dashboardData.rating.position}}</h2>
-                                        <h4 class="no-margin text-white inline">/{{dashboardData.rating.totalPositions}}</h4>
-                                        <p class="font-montserrat text-success no-margin fs-16 inline" ng-if="dashboardData.rating.ratingChange>=0">
-                                            <i class="fa fa-caret-up"></i> +{{dashboardData.rating.ratingChange}}
-                                        </p>
-                                        <p class="font-montserrat text-danger no-margin fs-16 inline" ng-if="dashboardData.rating.ratingChange<0">
-                                            <i class="fa fa-caret-down"></i> {{dashboardData.rating.ratingChange}}
-                                        </p>
+                                        <h2 class="no-margin text-white inline">{{profileData.position}}</h2>
+                                        <h4 class="no-margin text-white inline">/{{profileData.totalPositions}}</h4>
                                     </div>
                                 </div>
                             </div>
@@ -146,12 +140,12 @@
                             <div class="panel-body">
                                 <div class="pull-bottom bottom-left bottom-right"> 
                                     <div>
-                                        <h2 class="no-margin p-l-20 p-b-15  text-white inline">{{dashboardData.rating.level}}</h2>
-                                        <h4 class="no-margin p-b-15 text-white inline">[{{dashboardData.rating.points}}]</h4>
+                                        <h2 class="no-margin p-l-20 p-b-15  text-white inline">{{profileData.level}}</h2>
+                                        <h4 class="no-margin p-b-15 text-white inline">[{{profileData.points}}]</h4>
                                     </div>  
-                                    <span class="text-white small hint-text padding-15">{{dashboardData.rating.nextLevel-dashboardData.rating.points}} points more to the next level </span>
+                                    <span class="text-white small hint-text padding-15">{{profileData.nextLevel-profileData.points}} points more to the next level </span>
                                     <div class="progress progress-small m-b-20">
-                                        <div class="progress-bar progress-bar-white" style="width:{{getLevelComplete(dashboardData.rating.points,dashboardData.rating.prevLevel,dashboardData.rating.nextLevel)}}%"></div>
+                                        <div class="progress-bar progress-bar-white" style="width:{{getLevelComplete(profileData.points,profileData.prevLevel,profileData.nextLevel)}}%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +169,7 @@
                                 <div class="pull-bottom bottom-left bottom-right padding-15">
                                     <div>
                                         <div class="p-t-10">
-                                            <i class="badges-set {{getBadgeName(i.type)}} inline" title="{{getBadgeDescription(i.type)}} Earned {{i.timestamp*1000 | date:'d MMMM yyyy'}}" data-toggle="tooltip" onmouseenter="$(this).tooltip('show')" data-placement="bottom" ng-repeat="i in dashboardData.profile.badges"></i>
+                                            <i class="badges-set {{getBadgeName(i.type)}} inline" title="{{getBadgeDescription(i.type)}} Earned {{i.timestamp*1000 | date:'d MMMM yyyy'}}" data-toggle="tooltip" onmouseenter="$(this).tooltip('show')" data-placement="bottom" ng-repeat="i in profileData.badges"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -198,12 +192,12 @@
                             </div>
                             <div class="panel-body">
                                 <div class="pull-bottom bottom-left bottom-right padding-25">
-                                    <h2 class="no-margin text-white padding-15 inline">{{dashboardData.profile.coins}}</h2>
-                                    <p class="font-montserrat text-success no-margin fs-16 inline" ng-if="dashboardData.profile.coinsChange>=0">
-                                        <i class="fa fa-caret-up"></i> +{{dashboardData.profile.coinsChange}}
+                                    <h2 class="no-margin text-white padding-15 inline">{{profileData.coins}}</h2>
+                                    <p class="font-montserrat text-success no-margin fs-16 inline" ng-if="profileData.coinsChange>=0">
+                                        <i class="fa fa-caret-up"></i> +{{profileData.coinsChange}}
                                     </p>
-                                    <p class="font-montserrat text-danger no-margin fs-16 inline" ng-if="dashboardData.profile.coinsChange<0">
-                                        <i class="fa fa-caret-down"></i> {{dashboardData.profile.coinsChange}}
+                                    <p class="font-montserrat text-danger no-margin fs-16 inline" ng-if="profileData.coinsChange<0">
+                                        <i class="fa fa-caret-down"></i> {{profileData.coinsChange}}
                                     </p>
                                 </div>
                             </div>
