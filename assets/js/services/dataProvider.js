@@ -63,69 +63,73 @@ angular.module('app')
 
         var challengeData = [
             {
+            	"id":0,
                 "type": 1,
                 "amount": 5,
-                "product": 3,
-                "progress": 75,
-                "expires": 1499697164,
+                "product": 0,
+                "yourProgress": 75,
+                "assigned": "manager",
+                "opponentProgress": 50,
+                "expires": "2017-10-22 12:00",
+                "fee": 20,
+                "reward": {"coins":100,"points":200},
+                "acceptedby":["Ivan Ivanov", "Grigory Movsesyan"],
+                "status": 0
+            },
+            {
+            	"id":1,
+                "type": 1,
+                "amount": 5,
+                "product": 0,
+                "yourProgress": 75,
+                "assigned": "Grigory Movsesyan",
+                "opponentProgress": 50,
+                "expires": "2017-08-30 12:00",
+                "fee": 20,
+                "reward": {"coins":90,"points":300},
+                "acceptedby":["Grigory Movsesyan"],
                 "status": 1
             },
             {
+            	"id":2,
                 "type": 1,
-                "amount": 10,
-                "product": 2,
-                "progress": 100,
-                "expires": 1499786564,
+                "amount": 5,
+                "product": 0,
+                "progress": 75,
+                "assigned": "manager",
+                "expires": "2017-07-07 13:13",
+                "fee": 20,
+                "reward": {"coins":30,"points":90},
+                "acceptedby":[],
                 "status": 2
             },
             {
+            	"id":3,
                 "type": 1,
                 "amount": 5,
-                "product": 1,
-                "progress": 50,
-                "expires": 1499786564,
+                "product": 0,
+                "progress": 75,
+                "assigned": "manager",
+                "expires": "2017-07-07 13:13",
+                "fee": 20,
+                "reward": {"coins":30,"points":90},
+                "acceptedby":[],
                 "status": 3
             },
             {
+            	"id":4,
                 "type": 1,
                 "amount": 5,
-                "product": 4,
-                "progress": 50,
-                "expires": 1499786564,
-                "status": 4
-            },
-            {
-                "type": 1,
-                "amount": 5,
-                "product": 5,
-                "progress": 0,
-                "expires": 1499786564,
-                "status": 0
-            },
-            {
-                "type": 1,
-                "amount": 7,
-                "product": 6,
-                "progress": 80,
-                "expires": 1499786564,
-                "status": 0
-            },
-            {
-                "type": 1,
-                "amount": 3,
-                "product": 7,
-                "progress": 50,
-                "expires": 1499786564,
-                "status": 0
-            },
-            {
-                "type": 1,
-                "amount": 10,
-                "product": 8,
-                "progress": 50,
-                "expires": 1499786564,
-                "status": 0
+                "product": 0,
+                "progress": 75,
+                "assigned": "Grigory Movsesyan",
+                "expires": "2017-07-07 13:13",
+                "fee": 20,
+                "reward": {"coins":30,"points":90},
+                "acceptedby":[],
+                "status": 5
             }
+
         ];
 
         var salesAggregateData = [

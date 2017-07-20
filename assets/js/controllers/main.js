@@ -7,6 +7,19 @@ angular.module('app')
 
     	$scope.profileData = DataProviderService.getProfileData();
 
+    	$scope.formatDate = function (datetime, format){
+    		if(Number.isInteger(datetime)){
+	    		//if timestamp is before 01.01.2017 -> seems it is im secs and we need to convert it to ms
+	    		datetime = datetime<99999999999 ? datetime*1000 : datetime;
+	    	}
+	    	if(format=="fromNow"){
+    			return  moment(datetime).fromNow();
+	    	}else{
+	    		//d.MM.yy 'at' H:mm
+	    		return  moment(datetime).format("DD.MM.YYYY [at] H:mm");
+	    	}
+    	};
+
     	$scope.showNotification = function(name, img, message) {
 	        var color = "success"; // Info, Success, Error etc
 	        var position = "top-right" // Placement of the notification

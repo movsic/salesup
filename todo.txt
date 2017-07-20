@@ -1,14 +1,15 @@
 Challenges:
-peer-2-peer challenges
-pending challenges
-decline challenge
-challenges tabs(active finished new) finish
-challenges -> today,tomorrow instead date
-sort challenges in list -> reward
-challenges active -> time left
-show new challenges on dashboard
-challenges additional data -> json data
-challenge name in challenge won
+timestamp of last login
+timestamp of status change -> badges with new
+search in users
+??type field
+bid number field
+challenge abort -> modal
+news ????
+challenge name in modal
+chellenge type -> disable if one
+element width if no action
+
 
 Sales:
 sales tabs
@@ -23,6 +24,9 @@ badges definition
 
 Profile:
 add level to profile
+add things to profile
+add save to profile
+profile click on header
 
 Big fitures:
 LVL -> lvl to points / coins, with config tables
@@ -50,6 +54,7 @@ Notifications:
 notification autoclose
 define types notifications
 challenge failed / sale made / level achieved -> notification
+notifications on short on challenge end
 
 Home:
 sales graph height

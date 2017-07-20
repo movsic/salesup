@@ -4,10 +4,31 @@
 
 angular.module('app', ['ui.select'])
     .controller('ChallengeCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
-        var challengeStatusDict={0:"Open",1:"In Progress",2:"Finished",3:"Failed",4:"Canceled",5:"Pending"};
+        var challengeStatusDict={0:"Open",1:"In Progress",2:"Finished",3:"Failed",4:"Pending"};
         $scope.challengeType={1:"Sell"};
-        $scope.challengeProduct={1:"Samsung Galaxy 7", 2:"Xiaomi Mi5 32GB",3:"Sony Xperia XA1 Dual",4:"LG X cam",5:"Samsung Galaxy J5 Prime Duos",6:"Huawei Honor 8 Lite",7:"Vertex Impress Eagle",8:"Apple iPhone SE 32GB"};
-        $scope.challengeTarget={1:"Daria Minina",2:"Grigory Movsesyan",3:"Anastasia Sorokina",4:"Dmitry Nikolaev"}
+        $scope.challengeProduct={0:"Phone", 1:"Tablet",2:"Notebook"};
+        $scope.challengeTarget={1:"Daria Minina",2:"Grigory Movsesyan",3:"Anastasia Sorokina",4:"Dmitry Nikolaev"};
+
+        $scope.active=0;
+
+        $('.progressr[data-toggle="tooltip"]').tooltip({
+            animated: 'fade',
+            placement: 'bottom'
+        });
+
+        $scope.challengeAccept = function(id) {
+            var challenge = $scope.challengeData.find(x => x.id === id);
+            challenge.status=1;
+        }
+
+        $scope.challengeAbort = function(id) {
+            var challenge = $scope.challengeData.find(x => x.id === id);
+            challenge.status=3;
+        }
+
+        $scope.setActive = function(id){
+            $scope.active=id;
+        };
 
         $scope.newChallenge = {};
 
@@ -19,6 +40,7 @@ angular.module('app', ['ui.select'])
 
         $scope.createChallenge = function(){ 
             $scope.challengeData.unshift({
+                "id": $scope.challengeData.length+1,
                 "type": $scope.newChallenge.challengeType.id,
                 "amount": $scope.newChallenge.productAmount,
                 "product": $scope.newChallenge.productType.id,
@@ -28,12 +50,17 @@ angular.module('app', ['ui.select'])
             });
         };
 
-        $scope.modal = {};
-        $scope.modal.slideUp = "default";
-        $scope.modal.stickUp = "default";
+        $scope.isChallengeValid = function(){ 
+            return "challengeType" in $scope.newChallenge 
+            && "productAmount" in $scope.newChallenge 
+            && "productType" in $scope.newChallenge 
+            && "endDate" in $scope.newChallenge 
+            && "bid" in $scope.newChallenge;
+        };
 
         $scope.showNewChallenge = function() {
-            var size = $scope.modal.slideUp;
+            $scope.newChallenge={};
+            var size = "default";
             var modalElem = $('#modalSlideUp');
             //TODO suppost small modals
             if (size == "mini") {
@@ -48,7 +75,6 @@ angular.module('app', ['ui.select'])
             }
         };
 
-        var table = $('#detailedTable');
         $scope.expand = function(event) {
             var element = event.currentTarget;
             if ($(element).hasClass('shown') && $(element).next().hasClass('row-details')) {
@@ -57,16 +83,11 @@ angular.module('app', ['ui.select'])
                 return;
             }
             var tr = $(element).closest('tr');
-            //var row = table.DataTable().row(tr);
 
             $(element).parents('tbody').find('.shown').removeClass('shown');
             $(element).next().hide();
-            //$(element).parents('tbody').find('.row-details').remove();
 
             tr.addClass('shown');
             $(element).next().show();
-            //tr.next().addClass('row-details');
         }
-
-
     }]);
