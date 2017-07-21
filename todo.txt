@@ -9,6 +9,10 @@ news ????
 challenge name in modal
 chellenge type -> disable if one
 element width if no action
+opponent name in challenge
+
+script to load js async
+add badge to userpic
 
 
 Sales:

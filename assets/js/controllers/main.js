@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('MainCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
+    .controller('MainCtrl', ['$scope', '$translate', 'DataProviderService',  function($scope, $translate, DataProviderService) {
 
     	$scope.profileData = DataProviderService.getProfileData();
 

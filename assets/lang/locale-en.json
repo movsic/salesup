@@ -1,0 +1,25 @@
+{
+	"challenge-button-new": "New",
+	"challenge-button-accept": "Accept",
+	"challenge-button-abort": "Abort",
+
+	"challenge-tab-new": "New",
+	"challenge-tab-active": "Active",
+	"challenge-tab-successful": "Successful",
+	"challenge-tab-failed": "Failed",
+	"challenge-tab-pending": "Pending",
+
+	"ChallengeType0": "Sell",
+
+	"ProductType0": "Phone",
+	"ProductType1": "Tablet",
+	"ProductType2": "Notebook",
+
+	"ChallengeStatus0": "Open",
+	"ChallengeStatus1": "In Progress",
+	"ChallengeStatus2": "Successful",
+	"ChallengeStatus3": "Failed",
+	"ChallengeStatus4": "Pending",
+
+	"ChallengeTitle": "{{type}} {{amount}} of {{product}}"
+}

@@ -4,13 +4,8 @@
 
 angular.module('app', ['ui.select'])
     .controller('ChallengeCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
-        var challengeStatusDict={0:"Open",1:"In Progress",2:"Finished",3:"Failed",4:"Pending"};
-        $scope.challengeType={1:"Sell"};
-        $scope.challengeProduct={0:"Phone", 1:"Tablet",2:"Notebook"};
-        $scope.challengeTarget={1:"Daria Minina",2:"Grigory Movsesyan",3:"Anastasia Sorokina",4:"Dmitry Nikolaev"};
 
         $scope.active=0;
-
         $('.progressr[data-toggle="tooltip"]').tooltip({
             animated: 'fade',
             placement: 'bottom'
@@ -32,11 +27,9 @@ angular.module('app', ['ui.select'])
 
         $scope.newChallenge = {};
 
-        $scope.getStatus=function(status){return challengeStatusDict[status];};
-
-        $scope.getTitle=function(type, amount, product){return $scope.challengeType[type] + ' ' + amount + ' of ' + $scope.challengeProduct[product];};
-
+       
         $scope.challengeData = DataProviderService.getChallengeData();
+        $scope.newChallengeData = DataProviderService.getNewChallengeData();
 
         $scope.createChallenge = function(){ 
             $scope.challengeData.unshift({

@@ -3,10 +3,17 @@ angular.module('app')
 	    this.getProfileData = function () { return profileData};
 	    this.getNewsData = function () { return newsData};
 	    this.getChallengeData = function () { return challengeData};
+	    this.getNewChallengeData = function () { return newChallengeData};
 	    this.getSalesData = function () { return salesData};
 	    this.getSalesAggregateData = function () { return salesAggregateData};
 	    this.getCoinsData = function () { return coinsData};
 	    this.getRatingData = function () { return ratingData};
+
+	    var newChallengeData = {
+	    	"type": [0],
+	    	"product": [0,1,2],
+	    	"target": {0:"All",1:"Ivan Ivanov",2:"Petr Petrov"}
+	    };
 
 	    var profileData = {
 	    	"firstname": "Daria",
@@ -23,6 +30,7 @@ angular.module('app')
 	    	"prevLevel":1000,
             "coins":1988,
             "coinsChange":5,
+            "lastLogin": 1500649789,
             "badges":[
                 {"type": 1, "timestamp": 1499697164},
                 {"type": 2, "timestamp": 1499697164},
@@ -64,10 +72,10 @@ angular.module('app')
         var challengeData = [
             {
             	"id":0,
-                "type": 1,
-                "amount": 5,
+                "type": 0,
+                "amount": 20,
                 "product": 0,
-                "yourProgress": 75,
+                "yourProgress": 0,
                 "assigned": "manager",
                 "opponentProgress": 50,
                 "expires": "2017-10-22 12:00",
@@ -78,9 +86,9 @@ angular.module('app')
             },
             {
             	"id":1,
-                "type": 1,
-                "amount": 5,
-                "product": 0,
+                "type": 0,
+                "amount": 10,
+                "product": 2,
                 "yourProgress": 75,
                 "assigned": "Grigory Movsesyan",
                 "opponentProgress": 50,
@@ -92,43 +100,46 @@ angular.module('app')
             },
             {
             	"id":2,
-                "type": 1,
-                "amount": 5,
-                "product": 0,
-                "progress": 75,
+                "type": 0,
+                "amount": 30,
+                "product": 3,
+                "yourProgress": 100,
                 "assigned": "manager",
-                "expires": "2017-07-07 13:13",
+                "opponentProgress": 0,
+                "expires": "2017-08-30 12:00",
                 "fee": 20,
-                "reward": {"coins":30,"points":90},
-                "acceptedby":[],
+                "reward": {"coins":90,"points":300},
+                "acceptedby":["Grigory Movsesyan"],
                 "status": 2
             },
             {
             	"id":3,
-                "type": 1,
-                "amount": 5,
+                "type": 0,
+                "amount": 40,
                 "product": 0,
-                "progress": 75,
+                "yourProgress": 75,
                 "assigned": "manager",
-                "expires": "2017-07-07 13:13",
+                "opponentProgress": 0,
+                "expires": "2017-08-30 12:00",
                 "fee": 20,
-                "reward": {"coins":30,"points":90},
-                "acceptedby":[],
+                "reward": {"coins":90,"points":300},
+                "acceptedby":["Grigory Movsesyan"],
                 "status": 3
             },
             {
             	"id":4,
-                "type": 1,
-                "amount": 5,
-                "product": 0,
-                "progress": 75,
+                "type": 0,
+                "amount": 50,
+                "product": 1,
+                "yourProgress": 0,
                 "assigned": "Grigory Movsesyan",
-                "expires": "2017-07-07 13:13",
+                "opponentProgress": 0,
+                "expires": "2017-08-30 12:00",
                 "fee": 20,
-                "reward": {"coins":30,"points":90},
-                "acceptedby":[],
-                "status": 5
-            }
+                "reward": {"coins":90,"points":300},
+                "acceptedby":["Grigory Movsesyan"],
+                "status": 4
+            },
 
         ];
 

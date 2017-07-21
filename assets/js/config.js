@@ -4,9 +4,22 @@
  * ============================================================ */
 
 angular.module('app')
-    .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
+    .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$translateProvider',
 
-        function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+        function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $translateProvider) {    
+            // configures staticFilesLoader
+            
+            $translateProvider
+                .useStaticFilesLoader({
+                    prefix: 'assets/lang/locale-',
+                    suffix: '.json'
+                })
+
+            $translateProvider
+                // load 'en' table on startup
+                .preferredLanguage('en');
+                
+
             $urlRouterProvider
                 .otherwise('/app/home');
 

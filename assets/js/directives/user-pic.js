@@ -4,7 +4,7 @@ angular.module('app')
             restrict: 'E',  
             transclude: false,
             template: function(elem, attr) {
-                size=32
+                var size=32;
                 if(attr.size=="big"){
                     size=48;
                 }
