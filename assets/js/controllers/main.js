@@ -5,7 +5,22 @@
 angular.module('app')
     .controller('MainCtrl', ['$scope', '$translate', 'DataProviderService',  function($scope, $translate, DataProviderService) {
 
+    	//recieve all data
     	$scope.profileData = DataProviderService.getProfileData();
+    	$scope.newsData = DataProviderService.getNewsData();
+	    $scope.challengeData = DataProviderService.getChallengeData();
+	    $scope.salesData = DataProviderService.getSalesAggregateData();
+
+	    //todo: remove debug
+	    $scope.addSale()=function (){
+	    	var newSale={
+	    		"product":1,
+                "type": 1,
+                "sum": 650,
+                "timestamp": 1499686564
+	    	};
+	    	$scope.salesData.push(newSale);
+	    };
 
     	$scope.formatDate = function (datetime, format){
     		if(Number.isInteger(datetime)){

@@ -3,6 +3,12 @@
 	"challenge-button-accept": "Accept",
 	"challenge-button-abort": "Abort",
 
+	"challenge-table-th-challenge": "Challenge",
+	"challenge-table-th-expires": "Expires",
+	"challenge-table-th-progress": "Progress",
+	"challenge-table-th-status": "Status",
+	"challenge-table-th-action": "Action",
+
 	"challenge-tab-new": "New",
 	"challenge-tab-active": "Active",
 	"challenge-tab-successful": "Successful",

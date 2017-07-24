@@ -30,17 +30,17 @@
                     <table class="table table-hover table-condensed table-detailed" id="detailedTable" ui-options="options">
                     <thead>
                         <tr>
-                            <th style="width:30%">Challenge</th>
-                            <th style="width:20%">Expires</th>
-                            <th style="width:20%">Progress</th>
-                            <th style="width:20%">Status</th>
-                            <th style="width:10%">Action</th>
+                            <th style="width:30%" translate>{{'challenge-table-th-challenge'}}</th>
+                            <th style="width:20%" translate>{{'challenge-table-th-expires'}}</th>
+                            <th style="width:20%" translate>{{'challenge-table-th-progress'}}</th>
+                            <th style="width:15%" translate>{{'challenge-table-th-status'}}</th>
+                            <th style="width:15%" translate>{{'challenge-table-th-action'}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat-start="i in challengeData | filter:{ status: active }" ng-click="expand($event)">
-                            <td class="v-align-middle" translate>
-                                <challenge-title type="i.type" amount="i.amount" product="i.product"></challenge-title>
+                            <td class="v-align-middle">
+                                <challenge-title data="i"></challenge-title>
                             </td>
 
                             <td class="v-align-middle">
@@ -53,8 +53,8 @@
                                         <div class="progress-bar bg-success" style="width:{{i.yourProgress}}%"></div>
                                     </div>
                                 </div>
-                                <div ng-if="i.assigned != 'manager'">
-                                    <p class="small hint-text" >Opponent progress {{i.opponentProgress}}%</p>
+                                <div ng-if="i.assignee">
+                                    <p class="small hint-text">Opponent progress {{i.opponentProgress}}%</p>
                                     <div class="progress">
                                         <div class="progress-bar bg-warning" style="width:{{i.opponentProgress}}%"></div>
                                     </div>
@@ -89,7 +89,7 @@
                         <tr class="row-details" ng-repeat-end style="display:none">
                             <td colspan=4>
                                 <p> Expires: {{formatDate(i.expires, "full")}} </p>
-                                <p> Assigned by: {{i.assigned}} </p>
+                                <p ng-if="i.opponent"> Assigned by: {{i.assignee}} </p>
                                 <p> Fee: {{i.fee}} coins </p>
                                 <p> Rewards: {{i.reward.coins}} coins and {{i.reward.points}} points </p>
                                 <p> Already accepted by: {{i.acceptedby.join()}} </p>
@@ -107,7 +107,7 @@
 <!-- END CONTAINER FLUID -->
 
 <!--MODAL-->
-<div class="modal fade slide-up disable-scroll" id="modalSlideUp" tabindex="-1" role="dialog" aria-hidden="false">
+<div class="modal fade slide-up disable-scroll" id="newChallengeModal" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog ">
         <div class="modal-content-wrapper">
             <div class="modal-content">

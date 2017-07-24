@@ -13,6 +13,7 @@ opponent name in challenge
 
 script to load js async
 add badge to userpic
+add global config - lvl to xz, fee for new challenge, coin calculations
 
 
 Sales:

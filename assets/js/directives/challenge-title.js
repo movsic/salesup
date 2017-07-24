@@ -3,14 +3,16 @@ angular.module('app')
         return {
             restrict: 'E',
             scope: {
-            	type: "=",
-            	amount: "=",
-            	product: "=",
+            	data: "=",
             },  
             link: function (scope, element, attrs) {
-                var typeText = $translate.instant('ChallengeType' + scope.type);
-                var productText = $translate.instant('ProductType' + scope.product);
-            	element.text($translate.instant('ChallengeTitle', { type: typeText, amount: scope.amount, product: productText }));
+                var typeText = $translate.instant('ChallengeType' + scope.data.type);
+                var productText = $translate.instant('ProductType' + scope.data.product);
+                var text = $translate.instant('ChallengeTitle', { type: typeText, amount: scope.data.amount, product: productText });
+                if(scope.data.opponent){
+                    text+=" vs " + scope.data.opponent;
+                }
+            	element.text(text);
 			}
         };
     }]);

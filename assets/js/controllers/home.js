@@ -6,10 +6,6 @@ angular.module('app', ["nvd3"])
     // Chart controller 
     .controller('HomeCtrl', ['$scope', '$http', '$timeout', 'DataProviderService', function($scope, $http, $timeout, DataProviderService) {
 
-    $scope.newsData = DataProviderService.getNewsData();
-    $scope.challengeData = DataProviderService.getChallengeData();
-    $scope.salesData = DataProviderService.getSalesAggregateData();
-
     var badgeData = {
                 "1":{
                         "name":"fire",

@@ -12,13 +12,12 @@ angular.module('app', ['ui.select'])
         });
 
         $scope.challengeAccept = function(id) {
-            var challenge = $scope.challengeData.find(x => x.id === id);
+            $scope.challengeData.find(x => x.id === id).status=1;
             challenge.status=1;
         }
 
         $scope.challengeAbort = function(id) {
-            var challenge = $scope.challengeData.find(x => x.id === id);
-            challenge.status=3;
+            var challenge = $scope.challengeData.find(x => x.id === id).status=3;
         }
 
         $scope.setActive = function(id){
@@ -51,21 +50,10 @@ angular.module('app', ['ui.select'])
             && "bid" in $scope.newChallenge;
         };
 
+        //todo: redo!!!!
         $scope.showNewChallenge = function() {
             $scope.newChallenge={};
-            var size = "default";
-            var modalElem = $('#modalSlideUp');
-            //TODO suppost small modals
-            if (size == "mini") {
-                $('#modalSlideUpSmall').modal('show')
-            } else {
-                $('#modalSlideUp').modal('show')
-                if (size == "default") {
-                    modalElem.children('.modal-dialog').removeClass('modal-lg');
-                } else if (size == "full") {
-                    modalElem.children('.modal-dialog').addClass('modal-lg');
-                }
-            }
+            $('#newChallengeModal').modal('show')   
         };
 
         $scope.expand = function(event) {
