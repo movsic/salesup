@@ -12,7 +12,7 @@ angular.module('app')
 	    $scope.salesData = DataProviderService.getSalesAggregateData();
 
 	    //todo: remove debug
-	    $scope.addSale()=function (){
+	    $scope.addSale = function (){
 	    	var newSale={
 	    		"product":1,
                 "type": 1,

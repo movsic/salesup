@@ -76,7 +76,8 @@ angular.module('app')
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
-                                    'nvd3'
+                                    'nvd3',
+                                    'moment'
                                 ], {
                                     insertBefore: '#lazyload_placeholder'
                                 })

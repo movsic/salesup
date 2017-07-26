@@ -226,10 +226,10 @@ angular.module('app')
 
         var salesData = [
             {
-                "type":1,
-                "name":"test descroption",
+                "type":0,
+                "name":"Apple iPhone 5s 32Gb",
                 "sum": 650,
-                "timestamp": 1499686564
+                "timestamp": "2017-10-13 12:00"
             }
         ];
 
