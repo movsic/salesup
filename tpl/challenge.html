@@ -9,19 +9,19 @@
                 </button>
                 <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
                     <li ng-class="{'active': active==0}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)">{{'challenge-tab-new' | translate}}</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'challenge-tab-new'}}</a>
                     </li">
                     <li ng-class="{'active': active==1}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)">{{'challenge-tab-active' | translate}}</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'challenge-tab-active'}}</a>
                     </li>
                     <li ng-class="{'active': active==2}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(2)">{{'challenge-tab-successful' | translate}}</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(2)" translate>{{'challenge-tab-successful'}}</a>
                     </li>
                     <li ng-class="{'active': active==3}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(3)">{{'challenge-tab-failed' | translate}}</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(3)" translate>{{'challenge-tab-failed'}}</a>
                     </li>
                     <li ng-class="{'active': active==4}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(4)">{{'challenge-tab-pending' | translate}}</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(4)" translate>{{'challenge-tab-pending'}}</a>
                     </li>
                 </ul>
             </div>
@@ -48,13 +48,13 @@
                             </td>
                             <td class="v-align-middle">
                                 <div>
-                                    <p class="small hint-text">Your progress {{i.yourProgress}}%</p>
+                                    <p class="small hint-text" translate translate-values='{ progress: i.yourProgress}'>{{'challenge-your-progress'}}</p>
                                     <div class="progress">
                                         <div class="progress-bar bg-success" style="width:{{i.yourProgress}}%"></div>
                                     </div>
                                 </div>
-                                <div ng-if="i.assignee">
-                                    <p class="small hint-text">Opponent progress {{i.opponentProgress}}%</p>
+                                <div ng-if="i.opponent">
+                                    <p class="small hint-text" translate  translate-values='{ progress: i.opponentProgress}'>{{'challenge-opponent-progress'}}</p>
                                     <div class="progress">
                                         <div class="progress-bar bg-warning" style="width:{{i.opponentProgress}}%"></div>
                                     </div>
@@ -89,7 +89,7 @@
                         <tr class="row-details" ng-repeat-end style="display:none">
                             <td colspan=4>
                                 <p> Expires: {{formatDate(i.expires, "full")}} </p>
-                                <p ng-if="i.opponent"> Assigned by: {{i.assignee}} </p>
+                                <p ng-if="i.opponent"> Assigned by: {{i.opponent}} </p>
                                 <p> Fee: {{i.fee}} coins </p>
                                 <p> Rewards: {{i.reward.coins}} coins and {{i.reward.points}} points </p>
                                 <p> Already accepted by: {{i.acceptedby.join()}} </p>

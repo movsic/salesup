@@ -42,6 +42,7 @@ badges with new items counter (timestamp before last login) + (notifications whi
 LOGIN
 list of pics
 collect - data change animated - turning
+raiting challenges - timelimit to get to first place
 
 Misc:
 angular-translate
@@ -54,6 +55,7 @@ user pic ng-src in image - different sizes ?!
 main js -> render user pic in notification
 move notifications to service
 offline font
+nestables in config - products
 
 Notifications:
 notification autoclose

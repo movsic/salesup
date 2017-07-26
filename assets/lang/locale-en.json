@@ -27,5 +27,8 @@
 	"ChallengeStatus3": "Failed",
 	"ChallengeStatus4": "Pending",
 
-	"ChallengeTitle": "{{type}} {{amount}} of {{product}}"
+	"ChallengeTitle": "{{type}} {{amount}} of {{product}}",
+
+	"challenge-your-progress": "Your progress {{progress}}%",
+	"challenge-opponent-progress": "Opponent progress {{progress}}%"
 }
