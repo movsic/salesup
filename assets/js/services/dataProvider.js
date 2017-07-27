@@ -9,23 +9,62 @@ angular.module('app')
 	    this.getCoinsData = function () { return coinsData};
 	    this.getRatingData = function () { return ratingData};
 
-	    var newChallengeData = {
-	    	"challengeType": [0],
-	    	"productType": [0,1,2],
-            "product": [
-                {"name":"Tablet", "type":1},
-                {"name":"iPhone SE", "type":0},
-                {"name":"iPhone 6S", "type":0},
-                {"name":"iPhone 7", "type":0},
-                {"name":"iPad Pro", "type":1},
-                {"name":"iPad", "type":1},
-                {"name":"iPad Mini", "type":1},
-                {"name":"Macbook", "type":2},
-                {"name":"Macbook Air", "type":2},
-                {"name":"Macbook Pro", "type":2},
-            ],
-	    	"target": {0:"All",1:"Ivan Ivanov",2:"Petr Petrov"}
-	    };
+        this.getProductData = function () { return productData};
+        this.getChallengeTypeData = function () { return challengeTypeData};
+
+        this.getPersonData = function (name) { 
+            return personData;
+        };
+
+        this.getProductData = function (name) { 
+            var productTypes = [];
+            for(var i in productData){
+                //if name in search
+                if(name && name.length > 0 && productData[i].name.toLowerCase().indexOf(name.toLowerCase()) !== -1){
+                    productTypes.push(productData[i]);
+                //initial content - tab content - only categories
+                } else if (productData[i].type == 0) {
+                    productTypes.push(productData[i]);
+                }
+            }
+            return productTypes;
+        };
+
+	    var productData = [
+            {"id":0, "name":"Anything", "type":0},
+            {"id":1, "name":"Phone", "type":0},
+            {"id":2, "name":"Tablet", "type":0},
+            {"id":3, "name":"Notebook", "type":0},
+            {"id":4, "name":"iPhone SE", "type":1},
+            {"id":5, "name":"iPhone 6S", "type":1},
+            {"id":6, "name":"iPhone 7", "type":1},
+            {"id":7, "name":"iPad Pro", "type":2},
+            {"id":8, "name":"iPad", "type":2},
+            {"id":9, "name":"iPad Mini", "type":2},
+            {"id":10, "name":"Macbook", "type":3},
+            {"id":11, "name":"Macbook Air", "type":3},
+            {"id":12, "name":"Macbook Pro", "type":3},
+        ];
+
+        var personData = [
+            {"id":0,"name":"Stan Marsh","img":"1.jpg"},
+            {"id":1,"name":"Kyle Broflovski","img":"2.jpg"},
+            {"id":2,"name":"Eric Cartman","img":"3.jpg"},
+            {"id":3,"name":"Kenny McCormick","img":"4.jpg"},
+            {"id":4,"name":"Butters Stotch","img":"5.jpg"},
+            {"id":5,"name":"Wendy Testaburger","img":"6.jpg"},
+            {"id":6,"name":"Tweek Tweak","img":"7.jpg"},
+            {"id":7,"name":"Bebe Stevens","img":"8.jpg"},
+            {"id":8,"name":"Bradley Biggle","img":"9.jpg"},
+            {"id":9,"name":"Clyde Donovan","img":"a.jpg"},
+            {"id":10,"name":"Craig Tucker","img":"c.jpg"},
+            {"id":11,"name":"Dougie","img":"be.jpg"},
+            {"id":12,"name":"Heidi Turner","img":"d.jpg"},
+        ];
+
+        var challengeTypeData = [
+            {"id":0,"name":"SellingChallenge"},
+        ];
 
 	    var profileData = {
 	    	"firstname": "Daria",

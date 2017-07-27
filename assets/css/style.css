@@ -145,3 +145,8 @@
   padding: 0px;
   width: 100%;
 }
+
+/*ui-select workaround*/
+.ui-select-multiple input.ui-select-search:not(.ng-touched) {
+    width: 100% !important;
+}

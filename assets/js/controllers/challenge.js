@@ -3,9 +3,28 @@
 /* Controllers */
 
 angular.module('app', ['ui.select'])
-    .controller('ChallengeCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
+    .controller('ChallengeCtrl', ['$scope', '$translate', 'DataProviderService', function($scope, $translate, DataProviderService) {
 
-        $scope.active=0;
+        $scope.challengeData = DataProviderService.getChallengeData();
+
+        $scope.activeTab=0;
+
+        $scope.setActive = function(id){
+            $scope.activeTab=id;
+        };
+
+        $scope.getChallengeTypes = function(){
+            return DataProviderService.getChallengeTypeData();
+        };
+
+        $scope.findProduct = function(name){
+            return DataProviderService.getProductData(name);
+        }
+
+        $scope.findPerson = function(name){
+            return DataProviderService.getPersonData(name);
+        }
+
         $('.progressr[data-toggle="tooltip"]').tooltip({
             animated: 'fade',
             placement: 'bottom'
@@ -20,15 +39,11 @@ angular.module('app', ['ui.select'])
             var challenge = $scope.challengeData.find(x => x.id === id).status=3;
         }
 
-        $scope.setActive = function(id){
-            $scope.active=id;
-        };
-
         $scope.newChallenge = {};
 
-       
-        $scope.challengeData = DataProviderService.getChallengeData();
-        $scope.newChallengeData = DataProviderService.getNewChallengeData();
+        $scope.transleteGroup = function (item){
+            return $translate.instant('ProductType' + item.type);;
+        };
 
         $scope.createChallenge = function(){ 
             $scope.challengeData.unshift({

@@ -8,19 +8,19 @@
                     <i class="fa fa-plus"></i> <span translate>{{'challenge-button-new'}}</>
                 </button>
                 <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
-                    <li ng-class="{'active': active==0}">
+                    <li ng-class="{'active': activeTab==0}">
                         <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'challenge-tab-new'}}</a>
                     </li">
-                    <li ng-class="{'active': active==1}">
+                    <li ng-class="{'active': activeTab==1}">
                         <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'challenge-tab-active'}}</a>
                     </li>
-                    <li ng-class="{'active': active==2}">
+                    <li ng-class="{'active': activeTab==2}">
                         <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(2)" translate>{{'challenge-tab-successful'}}</a>
                     </li>
-                    <li ng-class="{'active': active==3}">
+                    <li ng-class="{'active': activeTab==3}">
                         <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(3)" translate>{{'challenge-tab-failed'}}</a>
                     </li>
-                    <li ng-class="{'active': active==4}">
+                    <li ng-class="{'active': activeTab==4}">
                         <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(4)" translate>{{'challenge-tab-pending'}}</a>
                     </li>
                 </ul>
@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat-start="i in challengeData | filter:{ status: active }" ng-click="expand($event)">
+                        <tr ng-repeat-start="i in challengeData | filter:{ status: activeTab }" ng-click="expand($event)">
                             <td class="v-align-middle">
                                 <challenge-title data="i"></challenge-title>
                             </td>
@@ -88,9 +88,10 @@
                         <!--DETAILED INFO ABOUT CHALLENGE-->
                         <tr class="row-details" ng-repeat-end style="display:none">
                             <td colspan=4>
+                                <p ng-if="i.opponent"> Type: <span>P2P Challenge with {{i.opponent}}</span></p>
+                                <p ng-if="!i.opponent"> Type: <span>Regular Challenge</span></p>
                                 <p> Starts: {{formatDate(i.startDate, "full")}} </p>
                                 <p> Ends: {{formatDate(i.endDate, "full")}} </p>
-                                <p ng-if="i.opponent"> Assigned by: {{i.opponent}} </p>
                                 <p> Fee: {{i.fee}} coins </p>
                                 <p> Rewards: {{i.reward.coins}} coins and {{i.reward.points}} points </p>
                                 <p> Already accepted by: {{i.acceptedby.join()}} </p>
@@ -129,10 +130,10 @@
                                         <br/>
                                         <ui-select class="form-control" ng-model="newChallenge.challengeType" theme="select2" search-enabled="false"  required>
                                             <ui-select-match placeholder="Select challenge type...">
-                                                {{'NewChallengeType'+newChallenge.challengeType | translate }}
+                                                {{'NewChallengeType' + newChallenge.challengeType.id | translate }}
                                             </ui-select-match>
-                                            <ui-select-choices repeat="type in newChallengeData.challengeType">     
-                                                {{'NewChallengeType'+type | translate}}
+                                            <ui-select-choices repeat="i in getChallengeTypes()">     
+                                                {{'NewChallengeType' + i.id | translate}}
                                             </ui-select-choices>
                                         </ui-select>
                                     </div>
@@ -141,30 +142,14 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>Product Type</label>
+                                        <label>Product</label>
                                         <br/>
-                                        <ui-select class="form-control" ng-model="newChallenge.productType" theme="select2" search-enabled="false" required>
-                                            <ui-select-match placeholder="Select challenge product type...">
-                                                {{'ProductType'+newChallenge.productType | translate}}
+                                        <ui-select class="form-control" ng-model="newChallenge.product" theme="select2" close-on-select="false" limit="5" multiple required>
+                                            <ui-select-match placeholder="Type product name...">
+                                                {{$item.name}}
                                             </ui-select-match>
-                                            <ui-select-choices repeat="type in newChallengeData.productType">
-                                                {{'ProductType'+type | translate}}
-                                            </ui-select-choices>
-                                        </ui-select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        <label>Product Type</label>
-                                        <br/>
-                                        <ui-select class="form-control" ng-model="newChallenge.product" theme="select2" search-enabled="false" required>
-                                            <ui-select-match placeholder="Select challenge product type...">
-                                                {{newChallenge.product.name}}
-                                            </ui-select-match>
-                                            <ui-select-choices repeat="type in newChallengeData.product"  group-by="'type'">
-                                                {{type.name}}
+                                            <ui-select-choices repeat="i in findProduct($select.search) | filter: {name: $select.search}" refresh="findProduct($select.search)" refresh-delay="0">
+                                                <span ng-class="{'bold' : i.type==0}">{{i.name}}</span>
                                             </ui-select-choices>
                                         </ui-select>
                                     </div>
@@ -174,19 +159,21 @@
                                 <div class="col-sm-12">
                                     <div class="form-group" required>
                                         <label>Amount</label>
-                                        <input type="text" name="productAmount" class="form-control" ng-model="newChallenge.productAmount" required>
+                                        <input type="number" min="0" step="1" name="productAmount" class="form-control" ng-model="newChallenge.productAmount" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>Challenge Target</label>
+                                        <label>Person to Challenge</label>
                                         <br/>
-                                        <ui-select class="form-control" ng-model="newChallenge.challengeTarget" theme="select2" search-enabled="false" required>
-                                            <ui-select-match placeholder="Select challenge target...">{{newChallenge.challengeTarget.value}}</ui-select-match>
-                                            <ui-select-choices repeat="(id, type) in newChallengeData.target">
-                                                {{type.value}}
+                                        <ui-select class="form-control" ng-model="newChallenge.opponent" theme="select2" search-enabled="true" required>
+                                            <ui-select-match placeholder="Type user name...">
+                                                {{newChallenge.opponent.name}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="i in findPerson($select.search) | filter: {name: $select.search}" minimum-input-length="1" refresh="findPerson($select.search)" refresh-delay="0">
+                                                <div style="height:32px;"><user-pic data="{{i.img}}"></user-pic> <span class="v-align-middle p-l-10"> {{i.name}}</span></div>
                                             </ui-select-choices>
                                         </ui-select>
                                     </div>
@@ -207,7 +194,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Your bid</label>
-                                        <input type="text" class="form-control" ng-model="newChallenge.bid" required>
+                                        <input type="number" min="0" step="1" class="form-control" ng-model="newChallenge.bid" required>
                                     </div>
                                 </div>
                             </div>

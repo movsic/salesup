@@ -8,7 +8,7 @@ angular.module('app')
                 if(attr.size=="big"){
                     size=48;
                 }
-                return `<span class="thumbnail-wrapper d` + size + ` circular inline m-t-5">
+                return `<span class="thumbnail-wrapper d` + size + ` circular inline">
                     <img ng-src="assets/img/profiles/` + attr.data + `" 
                     alt="" 
                     ng-data-src="assets/img/profiles/` + attr.data + `" 

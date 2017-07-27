@@ -10,6 +10,7 @@ challenge name in modal
 chellenge type -> disable if one
 element width if no action
 opponent name in challenge
+create challenge wizard with different screens?
 
 script to load js async
 add badge to userpic
@@ -56,6 +57,8 @@ main js -> render user pic in notification
 move notifications to service
 offline font
 nestables in config - products
+remove search! complitely!
+load additional people directly to persondata
 
 Notifications:
 notification autoclose
@@ -66,3 +69,7 @@ notifications on short on challenge end
 Home:
 sales graph height
 shop tile on dashboard with carousel photos??
+
+
+to read
+https://www.gd.ru/articles/4112-geymifikatsiya-v-motivatsii-personala

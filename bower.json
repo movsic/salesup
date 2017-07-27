@@ -40,7 +40,7 @@
     "nouislider": "latest",
     "moment": "latest",
     "select2": "latest",
-    "angular-ui-select": "latest",
+    "angular-ui-select": "0.x",
     "eonasdan-bootstrap-datetimepicker": "latest"
   }
 }
