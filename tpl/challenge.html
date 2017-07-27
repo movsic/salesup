@@ -5,7 +5,7 @@
         <div class="panel-body">
             <div class="panel">
                 <button class="btn btn-success pull-right" id="btnToggleSlideUpSize" ng-click="showNewChallenge()">
-                    <i class="fa fa-plus"></i> {{'challenge-button-new' | translate }}
+                    <i class="fa fa-plus"></i> <span translate>{{'challenge-button-new'}}</>
                 </button>
                 <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
                     <li ng-class="{'active': active==0}">
@@ -44,7 +44,7 @@
                             </td>
 
                             <td class="v-align-middle">
-                                <p>{{formatDate(i.expires, "fromNow")}}</p>
+                                <p>{{formatDate(i.endDate, "fromNow")}}</p>
                             </td>
                             <td class="v-align-middle">
                                 <div>
@@ -61,16 +61,16 @@
                                 </div>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==0">
-                                New
+                                <p>New</p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==0">
-                                <button class="btn btn-success btn-cons" ng-click="challengeAccept(i.id)">Accept</button>
+                                <button class="btn btn-success btn-cons" ng-click="challengeAccept(i.id)" translate>{{'challenge-button-accept'}}</button>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==1">
-                                In Progress
+                                <p>In Progress</p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==1">
-                                <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)">Abort</button>
+                                <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-abort'}}</button>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==2">
                                 <p>Successful</p>
@@ -82,13 +82,14 @@
                                 <p>Pending</p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==4">
-                                <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)">Cancel</button>
+                                <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-cancel'}}</button>
                             </td>
                         </tr>
                         <!--DETAILED INFO ABOUT CHALLENGE-->
                         <tr class="row-details" ng-repeat-end style="display:none">
                             <td colspan=4>
-                                <p> Expires: {{formatDate(i.expires, "full")}} </p>
+                                <p> Starts: {{formatDate(i.startDate, "full")}} </p>
+                                <p> Ends: {{formatDate(i.endDate, "full")}} </p>
                                 <p ng-if="i.opponent"> Assigned by: {{i.opponent}} </p>
                                 <p> Fee: {{i.fee}} coins </p>
                                 <p> Rewards: {{i.reward.coins}} coins and {{i.reward.points}} points </p>
@@ -126,10 +127,12 @@
                                         <label>Challenge type</label>
                                         <!--<span class="help">Select new challenge type</span>-->
                                         <br/>
-                                        <ui-select class="form-control" ng-model="newChallenge.challengeType" theme="select2" search-enabled="false" disabled required>
-                                            <ui-select-match placeholder="Select challenge type...">{{newChallenge.challengeType.value}}</ui-select-match>
-                                            <ui-select-choices repeat="(id, type) in newChallengeData.type">     
-                                                {{'ChallengeType'+type.value | translate}}
+                                        <ui-select class="form-control" ng-model="newChallenge.challengeType" theme="select2" search-enabled="false"  required>
+                                            <ui-select-match placeholder="Select challenge type...">
+                                                {{'NewChallengeType'+newChallenge.challengeType | translate }}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="type in newChallengeData.challengeType">     
+                                                {{'NewChallengeType'+type | translate}}
                                             </ui-select-choices>
                                         </ui-select>
                                     </div>
@@ -141,9 +144,27 @@
                                         <label>Product Type</label>
                                         <br/>
                                         <ui-select class="form-control" ng-model="newChallenge.productType" theme="select2" search-enabled="false" required>
-                                            <ui-select-match placeholder="Select challenge product type...">{{newChallenge.productType.value}}</ui-select-match>
-                                            <ui-select-choices repeat="(id, type) in newChallengeData.product">
-                                                {{'ChallengeType'+type.value | translate}}
+                                            <ui-select-match placeholder="Select challenge product type...">
+                                                {{'ProductType'+newChallenge.productType | translate}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="type in newChallengeData.productType">
+                                                {{'ProductType'+type | translate}}
+                                            </ui-select-choices>
+                                        </ui-select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Product Type</label>
+                                        <br/>
+                                        <ui-select class="form-control" ng-model="newChallenge.product" theme="select2" search-enabled="false" required>
+                                            <ui-select-match placeholder="Select challenge product type...">
+                                                {{newChallenge.product.name}}
+                                            </ui-select-match>
+                                            <ui-select-choices repeat="type in newChallengeData.product"  group-by="'type'">
+                                                {{type.name}}
                                             </ui-select-choices>
                                         </ui-select>
                                     </div>

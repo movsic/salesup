@@ -10,8 +10,20 @@ angular.module('app')
 	    this.getRatingData = function () { return ratingData};
 
 	    var newChallengeData = {
-	    	"type": [0],
-	    	"product": [0,1,2],
+	    	"challengeType": [0],
+	    	"productType": [0,1,2],
+            "product": [
+                {"name":"Tablet", "type":1},
+                {"name":"iPhone SE", "type":0},
+                {"name":"iPhone 6S", "type":0},
+                {"name":"iPhone 7", "type":0},
+                {"name":"iPad Pro", "type":1},
+                {"name":"iPad", "type":1},
+                {"name":"iPad Mini", "type":1},
+                {"name":"Macbook", "type":2},
+                {"name":"Macbook Air", "type":2},
+                {"name":"Macbook Pro", "type":2},
+            ],
 	    	"target": {0:"All",1:"Ivan Ivanov",2:"Petr Petrov"}
 	    };
 
@@ -78,7 +90,8 @@ angular.module('app')
                 "yourProgress": 0,
                 "opponent": null,
                 "opponentProgress": 50,
-                "expires": "2017-10-13 12:00",
+                "startDate": "2017-09-13 12:00",
+                "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":100,"points":200},
                 "acceptedby":["Ivan Ivanov", "Grigory Movsesyan"],
@@ -92,7 +105,8 @@ angular.module('app')
                 "yourProgress": 75,
                 "opponent": "Grigory Movsesyan",
                 "opponentProgress": 50,
-                "expires": "2017-12-01 12:00",
+                "startDate": "2017-09-13 12:00",
+                "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
                 "acceptedby":["Grigory Movsesyan"],
@@ -106,7 +120,8 @@ angular.module('app')
                 "yourProgress": 100,
                 "opponent": null,
                 "opponentProgress": 0,
-                "expires": "2017-06-30 12:00",
+                "startDate": "2017-09-13 12:00",
+                "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
                 "acceptedby":["Grigory Movsesyan"],
@@ -120,7 +135,8 @@ angular.module('app')
                 "yourProgress": 75,
                 "opponent": null,
                 "opponentProgress": 0,
-                "expires": "2017-04-23 12:00",
+                "startDate": "2017-09-13 12:00",
+                "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
                 "acceptedby":["Grigory Movsesyan"],
@@ -134,94 +150,14 @@ angular.module('app')
                 "yourProgress": 0,
                 "opponent": "Grigory Movsesyan",
                 "opponentProgress": 0,
-                "expires": "2017-10-30 12:00",
+                "startDate": "2017-09-13 12:00",
+                "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
                 "acceptedby":["Grigory Movsesyan"],
                 "status": 4
             },
 
-        ];
-
-        var salesAggregateData = [
-            {
-                "key":"phones",
-                "values":[
-                    {
-                        "label":1499130000,"value":10
-                    },
-                    {
-                        "label":1499214600,"value":20
-                    },
-                    {
-                        "label":1499299200,"value":40
-                    },
-                    {
-                        "label":1499385600,"value":80
-                    },
-                    {
-                        "label":1499472000,"value":160
-                    },
-                    {
-                        "label":1499558400,"value":320
-                    },
-                    {
-                        "label":1499644800,"value":640
-                    },
-                ],
-            },
-            {
-                "key":"tablets",
-                "values":[
-                    {
-                        "label":1499130000,"value":10
-                    },
-                    {
-                        "label":1499214600,"value":20
-                    },
-                    {
-                        "label":1499299200,"value":40
-                    },
-                    {
-                        "label":1499385600,"value":80
-                    },
-                    {
-                        "label":1499472000,"value":160
-                    },
-                    {
-                        "label":1499558400,"value":320
-                    },
-                    {
-                        "label":1499644800,"value":640
-                    },
-                ]
-            },
-            {
-                "key":"laptops",
-                "values":[
-                    {
-                        "label":1499130000,"value":10
-                    },
-                    {
-                        "label":1499214600,"value":20
-                    },
-                    {
-                        "label":1499299200,"value":40
-                    },
-                    {
-                        "label":1499385600,"value":80
-                    },
-                    {
-                        "label":1499472000,"value":160
-                    },
-                    {
-                        "label":1499558400,"value":320
-                    },
-                    {
-                        "label":1499644800,"value":640
-                    },
-                ]
-            }
         ];
 
         var salesData = [
@@ -319,6 +255,87 @@ angular.module('app')
                 "name": "Grisha (Mouse) Movsesyan",
                 "branch": "Kievskaya",
                 "rating": 10020
+            }
+        ];
+
+        var salesAggregateData = [
+            {
+                "key":"phones",
+                "values":[
+                    {
+                        "label":1499130000,"value":10
+                    },
+                    {
+                        "label":1499214600,"value":20
+                    },
+                    {
+                        "label":1499299200,"value":40
+                    },
+                    {
+                        "label":1499385600,"value":80
+                    },
+                    {
+                        "label":1499472000,"value":160
+                    },
+                    {
+                        "label":1499558400,"value":320
+                    },
+                    {
+                        "label":1499644800,"value":640
+                    },
+                ],
+            },
+            {
+                "key":"tablets",
+                "values":[
+                    {
+                        "label":1499130000,"value":10
+                    },
+                    {
+                        "label":1499214600,"value":20
+                    },
+                    {
+                        "label":1499299200,"value":40
+                    },
+                    {
+                        "label":1499385600,"value":80
+                    },
+                    {
+                        "label":1499472000,"value":160
+                    },
+                    {
+                        "label":1499558400,"value":320
+                    },
+                    {
+                        "label":1499644800,"value":640
+                    },
+                ]
+            },
+            {
+                "key":"laptops",
+                "values":[
+                    {
+                        "label":1499130000,"value":10
+                    },
+                    {
+                        "label":1499214600,"value":20
+                    },
+                    {
+                        "label":1499299200,"value":40
+                    },
+                    {
+                        "label":1499385600,"value":80
+                    },
+                    {
+                        "label":1499472000,"value":160
+                    },
+                    {
+                        "label":1499558400,"value":320
+                    },
+                    {
+                        "label":1499644800,"value":640
+                    },
+                ]
             }
         ];
 

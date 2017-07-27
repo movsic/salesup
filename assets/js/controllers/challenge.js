@@ -37,11 +37,13 @@ angular.module('app', ['ui.select'])
                 "amount": $scope.newChallenge.productAmount,
                 "product": $scope.newChallenge.productType.id,
                 "progress": 0,
-                "expires": new Date($scope.newChallenge.endDate).getTime()/1000,
+                "startDate": new Date().getTime()/1000,
+                "endDate": new Date($scope.newChallenge.endDate).getTime()/1000,
                 "status": 5
             });
         };
 
+        //todo: strange
         $scope.isChallengeValid = function(){ 
             return "challengeType" in $scope.newChallenge 
             && "productAmount" in $scope.newChallenge 
@@ -56,6 +58,7 @@ angular.module('app', ['ui.select'])
             $('#newChallengeModal').modal('show')   
         };
 
+        //todo: redo!!!!
         $scope.expand = function(event) {
             var element = event.currentTarget;
             if ($(element).hasClass('shown') && $(element).next().hasClass('row-details')) {

@@ -31,7 +31,7 @@ angular.module('app')
     			return  moment(datetime).fromNow();
 	    	}else{
 	    		//d.MM.yy 'at' H:mm
-	    		return  moment(datetime).format("DD.MM.YYYY [at] H:mm");
+	    		return  moment(datetime).format("DD.MM.YYYY H:mm");
 	    	}
     	};
 

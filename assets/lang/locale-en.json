@@ -2,6 +2,7 @@
 	"challenge-button-new": "New",
 	"challenge-button-accept": "Accept",
 	"challenge-button-abort": "Abort",
+	"challenge-button-cancel": "Cancel",
 
 	"challenge-table-th-challenge": "Challenge",
 	"challenge-table-th-expires": "Expires",
@@ -27,8 +28,10 @@
 	"ChallengeStatus3": "Failed",
 	"ChallengeStatus4": "Pending",
 
+	"NewChallengeType0": "Selling challenge",
+
 	"ChallengeTitle": "{{type}} {{amount}} of {{product}}",
 
 	"challenge-your-progress": "Your progress {{progress}}%",
-	"challenge-opponent-progress": "Opponent progress {{progress}}%"
+	"challenge-opponent-progress": "Opponent's progress {{progress}}%"
 }
