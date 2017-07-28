@@ -20,6 +20,7 @@ no challenges available text
 ?localstorage https://github.com/grevory/angular-local-storage#setprefix
 storageservice
 actionservice
+bind data from storageservice
 
 script to load js async
 add badge to userpic

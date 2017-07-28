@@ -2,8 +2,7 @@ angular.module('app')
 	.service('DataProviderService', function () {
 	    this.getProfileData = function () { return profileData};
 	    this.getNewsData = function () { return newsData};
-	    this.getChallengeData = function () { return challengeData};
-	    this.getNewChallengeData = function () { return newChallengeData};
+	    this.getChallengesData = function () { return challengeData};
 	    this.getSalesData = function () { return salesData};
 	    this.getSalesAggregateData = function () { return salesAggregateData};
 	    this.getCoinsData = function () { return coinsData};

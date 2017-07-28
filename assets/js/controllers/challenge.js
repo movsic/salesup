@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('app', ['ui.select'])
-    .controller('ChallengeCtrl', ['$scope', '$translate', 'DataProviderService', function($scope, $translate, DataProviderService) {
+    .controller('ChallengeCtrl', ['$scope', '$translate', 'StorageService', function($scope, $translate, StorageService) {
 
-        $scope.challengeData = DataProviderService.getChallengeData();
+        $scope.challengeData = StorageService.data.challengs;
 
         $scope.activeTab=0;
 
@@ -38,7 +38,7 @@ angular.module('app', ['ui.select'])
 
         //debug
         $scope.recalcChallenges = function(){
-            
+
         }
 
         //$scope.challengeAbort = function(id) {

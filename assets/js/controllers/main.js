@@ -5,11 +5,11 @@
 angular.module('app')
     .controller('MainCtrl', ['$scope', '$translate', 'DataProviderService', 'ActionService', 'StorageService', function($scope, $translate, DataProviderService, ActionService, StorageService) {
 
+    	console.log("LOADING MAIN CONTROLLER!!!")
+
+    	ActionService.loadInitData();
     	//recieve all data
-    	$scope.profileData = DataProviderService.getProfileData();
-    	$scope.newsData = DataProviderService.getNewsData();
-	    $scope.challengeData = DataProviderService.getChallengeData();
-	    $scope.salesData = DataProviderService.getSalesAggregateData();
+
 
 	    //todo: remove debug
 	    $scope.addSale = function (){
