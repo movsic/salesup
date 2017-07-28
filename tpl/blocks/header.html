@@ -29,7 +29,7 @@
                     <i class="icon-set grid-box"></i>
                   </a>
                   <div class="dropdown-menu pull-right" role="menu">
-                    <a class="dropdown-item" ng-click="showNotification('Vlad Shalaev', 'vlad.jpeg', 'Won challenge')">Show Notification</a>
+                    <a class="dropdown-item" ng-click="showNotification('success', 'Won challenge', 'Vlad Shalaev', 'vlad.jpeg')">Show Notification</a>
                     <a class="dropdown-item" ng-click="showModal()">Show Win</a>
                     <a class="dropdown-item" ng-click="addSale()">Add Sale</a>
                   </div>
@@ -44,7 +44,9 @@
         <!-- START User Info-->
         <div class="visible-lg visible-md m-t-10">
             <div class="pull-left p-r-10 p-t-5 p-b-5 fs-16 font-heading">
-                <span class="semi-bold">{{profileData.firstname}}</span> <span class="text-master">{{profileData.lastname}}</span>
+                <span class="bold">{{profileData.coins}}</span> 
+                <span class="semi-bold">{{profileData.firstname}}</span> 
+                <span class="text-master">{{profileData.lastname}}</span>
             </div>
             <div class="dropdown pull-left">
                 <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

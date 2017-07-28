@@ -29,6 +29,21 @@ angular.module('app')
             return productTypes;
         };
 
+        this.acceptChallenge = function(challenge){
+
+            if(profileData.coins < challenge.fee)
+                return {"error":"Error1","text":"Not enough coins!"};
+            console.log(profileData.coins, challenge.bid);
+            profileData.coins -= challenge.fee;
+            challenge.status = 1;
+            challenge.acceptDate = new Date().getTime();
+
+            return [
+                {"name":"challenges","type":"update","data":challenge},
+                {"name":"profile","type":"update","data":profileData},
+            ];
+        }
+
         //block of debug data!
 	    var productData = [
             {"id":0, "name":"Anything", "type":0},
@@ -79,7 +94,7 @@ angular.module('app')
 	    	"totalPositions":45,
 	    	"nextLevel":1500,
 	    	"prevLevel":1000,
-            "coins":1988,
+            "coins":10,
             "coinsChange":5,
             "lastLogin": 1500649789,
             "badges":[

@@ -30,21 +30,16 @@
                     <table class="table table-hover table-condensed table-detailed" id="detailedTable" ui-options="options">
                     <thead>
                         <tr>
-                            <th style="width:30%" translate>{{'challenge-table-th-challenge'}}</th>
-                            <th style="width:20%" translate>{{'challenge-table-th-expires'}}</th>
-                            <th style="width:20%" translate>{{'challenge-table-th-progress'}}</th>
+                            <th style="width:40%" translate>{{'challenge-table-th-challenge'}}</th>
+                            <th style="width:30%" translate>{{'challenge-table-th-progress'}}</th>
+                            <th style="width:15%" translate>{{'challenge-table-th-expires'}}</th>
                             <th style="width:15%" translate>{{'challenge-table-th-status'}}</th>
-                            <th style="width:15%" translate>{{'challenge-table-th-action'}}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat-start="i in challengeData | filter:{ status: activeTab }" ng-click="expand($event)">
                             <td class="v-align-middle">
                                 <challenge-title data="i"></challenge-title>
-                            </td>
-
-                            <td class="v-align-middle">
-                                <p>{{formatDate(i.endDate, "fromNow")}}</p>
                             </td>
                             <td class="v-align-middle">
                                 <div>
@@ -60,11 +55,11 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="v-align-middle" ng-show="i.status==0">
-                                <p>New</p>
+                            <td class="v-align-middle">
+                                <p>{{formatDate(i.endDate, "fromNow")}}</p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==0">
-                                <button class="btn btn-success btn-cons" ng-click="challengeAccept(i.id)" translate>{{'challenge-button-accept'}}</button>
+                                <button class="btn btn-success btn-cons" ng-click="acceptChallenge(i)" translate>{{'challenge-button-accept'}}</button>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==1">
                                 <p>In Progress</p>
@@ -77,9 +72,6 @@
                             </td>
                             <td class="v-align-middle" ng-show="i.status==3">
                                 <p>Failed</p>
-                            </td>
-                            <td class="v-align-middle" ng-show="i.status==4">
-                                <p>Pending</p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==4">
                                 <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-cancel'}}</button>
@@ -200,7 +192,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Your bid</label>
-                                        <input name="bid" type="number" min="0" step="1" class="form-control" ng-model="newChallenge.bid" required>
+                                        <input name="bid" type="number" min="0" step="1" class="form-control" ng-model="newChallenge.fee" required>
                                         <p ng-show="newChallengeForm.bid.$invalid && newChallengeForm.bid.$touched" class="help-block error">Bid is required.</p>
                                     </div>
                                 </div>

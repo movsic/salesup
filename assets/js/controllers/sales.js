@@ -3,9 +3,10 @@
 /* Controllers */
 
 angular.module('app', ['nvd3'])
-    .controller('SalesCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
+    .controller('SalesCtrl', ['$scope', 'ActionService', function($scope, ActionService) {
 
-        $scope.salesData = DataProviderService.getSalesData();
+        $scope.salesData = ActionService.getStorageData('sales');
+        console.log($scope.salesData)
 
         $scope.nvd3_options = {
             chart: {
@@ -30,6 +31,7 @@ angular.module('app', ['nvd3'])
             }
         };
 
+        
         var calcTimeline = function(salesData){
             var salesKeyValue=[];
             for(var i in salesData){
@@ -42,6 +44,7 @@ angular.module('app', ['nvd3'])
             salesArray=salesArray.sort();
             return salesArray;
         }
+        
 
         $scope.nvd3_data = [{
                 "key": "Monthly sales",

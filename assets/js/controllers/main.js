@@ -3,24 +3,11 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('MainCtrl', ['$scope', '$translate', 'DataProviderService', 'ActionService', 'StorageService', function($scope, $translate, DataProviderService, ActionService, StorageService) {
-
-    	console.log("LOADING MAIN CONTROLLER!!!")
-
+    .controller('MainCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
     	ActionService.loadInitData();
-    	//recieve all data
 
-
-	    //todo: remove debug
-	    $scope.addSale = function (){
-	    	var newSale={
-	    		"product":1,
-                "type": 1,
-                "sum": 650,
-                "timestamp": 1499686564
-	    	};
-	    	$scope.salesData.push(newSale);
-	    };
+    	$scope.profileData = ActionService.getStorageData('profile');
+    	$scope.showNotification = ActionService.showNotification;
 
     	$scope.formatDate = function (datetime, format){
     		if(Number.isInteger(datetime)){
@@ -34,28 +21,6 @@ angular.module('app')
 	    		return  moment(datetime).format("DD.MM.YYYY H:mm");
 	    	}
     	};
-
-    	$scope.showNotification = function(name, img, message) {
-	        var color = "success"; // Info, Success, Error etc
-	        var position = "top-right" // Placement of the notification
-
-	        // Slide-in a circle notification from sides
-	        // You have to provide the HTML for thumbnail 
-	        $('body').pgNotification({
-	            style: 'circle',
-	            title: name,
-	            message: message,
-	            position: position,
-	            timeout: 0,
-	            type: color,
-	            thumbnail: `<img width="40" height="40" 
-	            style="display: inline-block;" 
-	            src="assets/img/profiles/`+img+`" 
-	            data-src="assets/img/profiles/`+img+`" 
-	            ui-jq="unveil" 
-	            data-src-retina="assets/img/profiles/`+img+`" alt="">`
-	        }).show();
-	    }
 
 	    $scope.showModal = function() {
             $('#modalFillIn').modal('show');

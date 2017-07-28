@@ -17,10 +17,9 @@ filter on date
 dynamic dates
 ?message to p2p new challenge
 no challenges available text
-?localstorage https://github.com/grevory/angular-local-storage#setprefix
-storageservice
-actionservice
-bind data from storageservice
+move modal to separate controller - else data loads on startup
+helper service
+reward points in challenhges!!!
 
 script to load js async
 add badge to userpic
@@ -64,7 +63,6 @@ DIALOGFX!!!!!!!!! <-may be better ?
 badge,challenge directive
 user pic ng-src in image - different sizes ?!
 main js -> render user pic in notification
-move notifications to service
 offline font
 nestables in config - products
 remove search! complitely!

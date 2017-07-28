@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('app', ['ui.select'])
-    .controller('ChallengeCtrl', ['$scope', '$translate', 'StorageService', function($scope, $translate, StorageService) {
+    .controller('ChallengeCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
 
-        $scope.challengeData = StorageService.data.challengs;
+        $scope.challengeData = ActionService.getStorageData('challenges');
 
         $scope.activeTab=0;
 
@@ -14,15 +14,15 @@ angular.module('app', ['ui.select'])
         };
 
         $scope.getChallengeTypes = function(){
-            return DataProviderService.getChallengeTypeData();
+            return ActionService.getChallengeTypeData();
         };
 
         $scope.findProduct = function(name){
-            return DataProviderService.getProductData(name);
+            return ActionService.getProductData(name);
         }
 
         $scope.findPerson = function(name){
-            return DataProviderService.getPersonData(name);
+            return ActionService.getPersonData(name);
         }
 
         $('.progressr[data-toggle="tooltip"]').tooltip({
@@ -30,20 +30,9 @@ angular.module('app', ['ui.select'])
             placement: 'bottom'
         });
 
-        $scope.challengeAccept = function(id) {
-            var challenge = $scope.challengeData.find(x => x.id === id);
-            challenge.status = 1;
-            challenge.acceptDate = new Date().getTime();
+        $scope.acceptChallenge = function(item) {
+            ActionService.acceptChallenge(item);
         }
-
-        //debug
-        $scope.recalcChallenges = function(){
-
-        }
-
-        //$scope.challengeAbort = function(id) {
-        //    var challenge = $scope.challengeData.find(x => x.id === id).status=3;
-        //}
 
         $scope.newChallenge = {};
 
@@ -57,8 +46,6 @@ angular.module('app', ['ui.select'])
                 return; 
             }
 
-            console.log($scope.newChallenge);
-
             $scope.challengeData.unshift({
                 "id": $scope.challengeData.length+1,
                 "type": $scope.newChallenge.challengeType.id,
@@ -70,7 +57,7 @@ angular.module('app', ['ui.select'])
                 "createDate": new Date().getTime(),
                 "endDate": new Date($scope.newChallenge.endDate).getTime()/1000,
                 "status": 4,
-                "fee": $scope.newChallenge.bid,
+                "fee": $scope.newChallenge.fee,
                 "reward": {"coins":$scope.newChallenge.bid*2,"points":100}
             });
 
