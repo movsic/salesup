@@ -69,9 +69,9 @@
                             <td class="v-align-middle" ng-show="i.status==1">
                                 <p>In Progress</p>
                             </td>
-                            <td class="v-align-middle" ng-show="i.status==1">
+                            <!--<td class="v-align-middle" ng-show="i.status==1">
                                 <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-abort'}}</button>
-                            </td>
+                            </td>-->
                             <td class="v-align-middle" ng-show="i.status==2">
                                 <p>Successful</p>
                             </td>
@@ -90,7 +90,8 @@
                             <td colspan=4>
                                 <p ng-if="i.opponent"> Type: <span>P2P Challenge with {{i.opponent}}</span></p>
                                 <p ng-if="!i.opponent"> Type: <span>Regular Challenge</span></p>
-                                <p> Starts: {{formatDate(i.startDate, "full")}} </p>
+                                <p> Created: {{formatDate(i.createDate, "full")}} </p>
+                                <p ng-if="i.acceptDate"> Accepted: {{formatDate(i.acceptDate, "full")}} </p>
                                 <p> Ends: {{formatDate(i.endDate, "full")}} </p>
                                 <p> Fee: {{i.fee}} coins </p>
                                 <p> Rewards: {{i.reward.coins}} coins and {{i.reward.points}} points </p>
@@ -120,7 +121,7 @@
                     <p class="p-b-10">We need information about your new challenge.</p>
                 </div>
                 <div class="modal-body">
-                    <form role="form" novalidate>
+                    <ng-form name="newChallengeForm">
                         <div class="form-group-attached">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -128,7 +129,7 @@
                                         <label>Challenge type</label>
                                         <!--<span class="help">Select new challenge type</span>-->
                                         <br/>
-                                        <ui-select class="form-control" ng-model="newChallenge.challengeType" theme="select2" search-enabled="false"  required>
+                                        <ui-select name="challenge" class="form-control" ng-model="newChallenge.challengeType" theme="select2" search-enabled="false"  required>
                                             <ui-select-match placeholder="Select challenge type...">
                                                 {{'NewChallengeType' + newChallenge.challengeType.id | translate }}
                                             </ui-select-match>
@@ -136,6 +137,7 @@
                                                 {{'NewChallengeType' + i.id | translate}}
                                             </ui-select-choices>
                                         </ui-select>
+                                        <p ng-show="newChallengeForm.challenge.$invalid && newChallengeForm.challenge.$touched" class="help-block error">Challenge type is required.</p>
                                     </div>
                                 </div>
                             </div>
@@ -144,7 +146,7 @@
                                     <div class="form-group">
                                         <label>Product</label>
                                         <br/>
-                                        <ui-select class="form-control" ng-model="newChallenge.product" theme="select2" close-on-select="false" limit="5" multiple required>
+                                        <ui-select name="product" class="form-control" ng-model="newChallenge.product" theme="select2" close-on-select="false" limit="5" multiple required>
                                             <ui-select-match placeholder="Type product name...">
                                                 {{$item.name}}
                                             </ui-select-match>
@@ -152,6 +154,7 @@
                                                 <span ng-class="{'bold' : i.type==0}">{{i.name}}</span>
                                             </ui-select-choices>
                                         </ui-select>
+                                        <p ng-show="newChallengeForm.product.$invalid && newChallengeForm.product.$touched" class="help-block error">Product is required.</p>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +162,8 @@
                                 <div class="col-sm-12">
                                     <div class="form-group" required>
                                         <label>Amount</label>
-                                        <input type="number" min="0" step="1" name="productAmount" class="form-control" ng-model="newChallenge.productAmount" required>
+                                        <input name="amount" type="number" min="0" step="1" name="productAmount" class="form-control" ng-model="newChallenge.productAmount" required>
+                                        <p ng-show="newChallengeForm.amount.$invalid && newChallengeForm.amount.$touched" class="help-block error">Amount is required.</p>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +172,7 @@
                                     <div class="form-group">
                                         <label>Person to Challenge</label>
                                         <br/>
-                                        <ui-select class="form-control" ng-model="newChallenge.opponent" theme="select2" search-enabled="true" required>
+                                        <ui-select name="opponent" class="form-control" ng-model="newChallenge.opponent" theme="select2" search-enabled="true" required>
                                             <ui-select-match placeholder="Type user name...">
                                                 {{newChallenge.opponent.name}}
                                             </ui-select-match>
@@ -176,17 +180,19 @@
                                                 <div style="height:32px;"><user-pic data="{{i.img}}"></user-pic> <span class="v-align-middle p-l-10"> {{i.name}}</span></div>
                                             </ui-select-choices>
                                         </ui-select>
+                                        <p ng-show="newChallengeForm.opponent.$invalid && newChallengeForm.opponent.$touched" class="help-block error">Person is required.</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>End Date</label>
+                                        <label>Challenge End Date</label>
                                         <br/>
-                                        <div id="datepicker-component" class="input-group date col-sm-8 p-l-0" ui-jq="datepicker" ng-model="newChallenge.challengeEnd" required>
-                                            <input type="text" class="form-control" ng-model="newChallenge.endDate"><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <div id="datepicker-component" class="input-group date col-sm-8 p-l-0" ui-jq="datepicker">
+                                            <input name="endDate" type="text" class="form-control" ng-model="newChallenge.endDate" required><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                         </div>
+                                        <p ng-show="newChallengeForm.endDate.$invalid && newChallengeForm.endDate.$touched" class="help-block error">Date is required.</p>
                                     </div>
                                 </div>
                             </div>
@@ -194,12 +200,13 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label>Your bid</label>
-                                        <input type="number" min="0" step="1" class="form-control" ng-model="newChallenge.bid" required>
+                                        <input name="bid" type="number" min="0" step="1" class="form-control" ng-model="newChallenge.bid" required>
+                                        <p ng-show="newChallengeForm.bid.$invalid && newChallengeForm.bid.$touched" class="help-block error">Bid is required.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </ng-form>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="p-t-20 clearfix p-l-10 p-r-10">
@@ -212,7 +219,7 @@
                             </div>
                         </div>
                         <div class="col-sm-3 m-t-10 sm-m-t-10">
-                            <button data-dismiss="modal" type="button" class="btn btn-success btn-block m-t-5" ng-click="createChallenge()" ng-disabled="!isChallengeValid()">Create</button>
+                            <button type="button" class="btn btn-success btn-block m-t-5" ng-click="createChallenge(newChallengeForm)">Create</button>
                         </div>
                         <div class="col-sm-3 m-t-10 sm-m-t-10">
                             <button data-dismiss="modal" type="button" class="btn btn-danger btn-block m-t-5">Cancel</button>

@@ -11,6 +11,15 @@ chellenge type -> disable if one
 element width if no action
 opponent name in challenge
 create challenge wizard with different screens?
+strange validation behaviour for product on new challenge
+finish translations -> vs problem
+filter on date
+dynamic dates
+?message to p2p new challenge
+no challenges available text
+?localstorage https://github.com/grevory/angular-local-storage#setprefix
+storageservice
+actionservice
 
 script to load js async
 add badge to userpic

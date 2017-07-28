@@ -31,13 +31,19 @@ angular.module('app', ['ui.select'])
         });
 
         $scope.challengeAccept = function(id) {
-            $scope.challengeData.find(x => x.id === id).status=1;
-            challenge.status=1;
+            var challenge = $scope.challengeData.find(x => x.id === id);
+            challenge.status = 1;
+            challenge.acceptDate = new Date().getTime();
         }
 
-        $scope.challengeAbort = function(id) {
-            var challenge = $scope.challengeData.find(x => x.id === id).status=3;
+        //debug
+        $scope.recalcChallenges = function(){
+            
         }
+
+        //$scope.challengeAbort = function(id) {
+        //    var challenge = $scope.challengeData.find(x => x.id === id).status=3;
+        //}
 
         $scope.newChallenge = {};
 
@@ -45,35 +51,38 @@ angular.module('app', ['ui.select'])
             return $translate.instant('ProductType' + item.type);;
         };
 
-        $scope.createChallenge = function(){ 
+        $scope.createChallenge = function(form){
+            //do not submit on invalid form
+            if(!form.$valid){
+                return; 
+            }
+
+            console.log($scope.newChallenge);
+
             $scope.challengeData.unshift({
                 "id": $scope.challengeData.length+1,
                 "type": $scope.newChallenge.challengeType.id,
                 "amount": $scope.newChallenge.productAmount,
-                "product": $scope.newChallenge.productType.id,
-                "progress": 0,
-                "startDate": new Date().getTime()/1000,
+                "product": $scope.newChallenge.product.map(function (obj) {return obj.name}),
+                "yourProgress": 0,
+                "opponent": $scope.newChallenge.opponent.name,
+                "opponentProgress": 0,
+                "createDate": new Date().getTime(),
                 "endDate": new Date($scope.newChallenge.endDate).getTime()/1000,
-                "status": 5
+                "status": 4,
+                "fee": $scope.newChallenge.bid,
+                "reward": {"coins":$scope.newChallenge.bid*2,"points":100}
             });
+
+            $('#newChallengeModal').modal('hide'); 
         };
 
-        //todo: strange
-        $scope.isChallengeValid = function(){ 
-            return "challengeType" in $scope.newChallenge 
-            && "productAmount" in $scope.newChallenge 
-            && "productType" in $scope.newChallenge 
-            && "endDate" in $scope.newChallenge 
-            && "bid" in $scope.newChallenge;
-        };
-
-        //todo: redo!!!!
         $scope.showNewChallenge = function() {
             $scope.newChallenge={};
-            $('#newChallengeModal').modal('show')   
+            $('#newChallengeModal').modal('show');   
         };
 
-        //todo: redo!!!!
+        //todo: maybe redo
         $scope.expand = function(event) {
             var element = event.currentTarget;
             if ($(element).hasClass('shown') && $(element).next().hasClass('row-details')) {

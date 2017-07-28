@@ -18,10 +18,10 @@
 
 	"ChallengeType0": "Sell",
 
-	"ProductType0": "Category",
-	"ProductType1": "Phone",
-	"ProductType2": "Tablet",
-	"ProductType3": "Notebook",
+	"Anything": "Anything",
+	"Phone": "Phone",
+	"Tablet": "Tablet",
+	"Notebook": "Notebook",
 
 	"ChallengeStatus0": "Open",
 	"ChallengeStatus1": "In Progress",

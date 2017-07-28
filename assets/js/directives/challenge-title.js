@@ -7,7 +7,7 @@ angular.module('app')
             },  
             link: function (scope, element, attrs) {
                 var typeText = $translate.instant('ChallengeType' + scope.data.type);
-                var productText = $translate.instant('ProductType' + scope.data.product);
+                var productText = scope.data.product.map(function(v) {return $translate.instant(v);}).join();;
                 var text = $translate.instant('ChallengeTitle', { type: typeText, amount: scope.data.amount, product: productText });
                 if(scope.data.opponent){
                     text+=" vs " + scope.data.opponent;
