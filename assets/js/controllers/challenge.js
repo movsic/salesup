@@ -25,11 +25,6 @@ angular.module('app', ['ui.select'])
             return ActionService.getPersonData(name);
         }
 
-        $('.progressr[data-toggle="tooltip"]').tooltip({
-            animated: 'fade',
-            placement: 'bottom'
-        });
-
         $scope.acceptChallenge = function(item) {
             ActionService.acceptChallenge(item);
         }
@@ -69,20 +64,12 @@ angular.module('app', ['ui.select'])
             $('#newChallengeModal').modal('show');   
         };
 
-        //todo: maybe redo
-        $scope.expand = function(event) {
-            var element = event.currentTarget;
-            if ($(element).hasClass('shown') && $(element).next().hasClass('row-details')) {
-                $(element).removeClass('shown');
-                $(element).next().hide();
-                return;
-            }
-            var tr = $(element).closest('tr');
+        $scope.showDetails = -1;
 
-            $(element).parents('tbody').find('.shown').removeClass('shown');
-            $(element).next().hide();
-
-            tr.addClass('shown');
-            $(element).next().show();
+        $scope.expand = function(id) {
+            if ($scope.showDetails == id)
+                $scope.showDetails = -1;
+            else
+                $scope.showDetails = id; 
         }
     }]);

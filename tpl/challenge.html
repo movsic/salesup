@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat-start="i in challengeData | filter:{ status: activeTab }" ng-click="expand($event)">
+                        <tr ng-repeat-start="i in challengeData | filter:{ status: activeTab }" ng-class="{'shown':showDetails==i.id}"  ng-click="expand(i.id)">
                             <td class="v-align-middle">
                                 <challenge-title data="i"></challenge-title>
                             </td>
@@ -78,7 +78,7 @@
                             </td>
                         </tr>
                         <!--DETAILED INFO ABOUT CHALLENGE-->
-                        <tr class="row-details" ng-repeat-end style="display:none">
+                        <tr class="row-details" ng-repeat-end ng-show="showDetails==i.id">
                             <td colspan=4>
                                 <p ng-if="i.opponent"> Type: <span>P2P Challenge with {{i.opponent}}</span></p>
                                 <p ng-if="!i.opponent"> Type: <span>Regular Challenge</span></p>
