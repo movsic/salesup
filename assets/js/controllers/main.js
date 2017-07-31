@@ -9,16 +9,30 @@ angular.module('app')
     	$scope.profileData = ActionService.getStorageData('profile');
     	$scope.showNotification = ActionService.showNotification;
 
+    	$scope.changeLanguage = function () {
+    		if($translate.use()=='en'){
+				$translate.use('ru');
+				moment.locale('ru');
+			}else{
+				$translate.use('en');
+				moment.locale('en');
+			}
+		};
+
     	$scope.formatDate = function (datetime, format){
     		if(Number.isInteger(datetime)){
 	    		//if timestamp is before 01.01.2017 -> seems it is im secs and we need to convert it to ms
-	    		datetime = datetime<99999999999 ? datetime*1000 : datetime;
+	    		datetime = datetime < 99999999999 ? datetime * 1000 : datetime;
 	    	}
 	    	if(format=="fromNow"){
-    			return  moment(datetime).fromNow();
+    			return moment(datetime).fromNow();
+    		}
+    		else if(format=="timestamp"){
+    			console.log(moment(datetime).unix());
+    			return moment(datetime).unix();
 	    	}else{
 	    		//d.MM.yy 'at' H:mm
-	    		return  moment(datetime).format("DD.MM.YYYY H:mm");
+	    		return moment(datetime).format("DD.MM.YYYY H:mm");
 	    	}
     	};
 

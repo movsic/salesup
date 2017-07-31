@@ -54,7 +54,11 @@ angular.module('app')
                     name: 'moment',
                     files: [
                         'assets/plugins/moment/moment.min.js',
-                        'assets/plugins/moment/moment-with-locales.min.js'
+                        'assets/plugins/moment/moment-with-locales.min.js',
+                        'bower_components/moment/locale/ru.js',
+                        //'bower_components/moment/min/moment.min.js',
+                        //'bower_components/moment/min/moment-with-locales.min.js',
+                        //'bower_components/angular-moment/angular-moment.js',
                     ]
                 }, {
                     //https://github.com/angular-ui/ui-select

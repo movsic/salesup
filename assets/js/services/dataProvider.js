@@ -2,8 +2,23 @@ angular.module('app')
 	.service('DataProviderService', function () {
 	    this.getProfileData = function () { return profileData};
 	    this.getNewsData = function () { return newsData};
-	    this.getChallengesData = function () { return challengeData};
-	    this.getSalesData = function () { return salesData};
+
+	    this.getChallengesData = function () { 
+            //for (var i in challengeData){
+            //    challengeData[i].createDate = moment(challengeData[i].createDate).unix();
+            //    challengeData[i].endDate = moment(challengeData[i].endDate).unix();
+            //    challengeData[i].acceptDate = moment(challengeData[i].acceptDate).unix();
+            //}
+            return challengeData;
+        };
+
+	    this.getSalesData = function () { 
+            //for (var i in salesData){
+            //    salesData[i].timestamp = moment(salesData[i].timestamp).unix();
+            //}
+            return salesData;
+        };
+
 	    this.getSalesAggregateData = function () { return salesAggregateData};
 	    this.getCoinsData = function () { return coinsData};
 	    this.getRatingData = function () { return ratingData};
@@ -62,19 +77,19 @@ angular.module('app')
         ];
 
         var personData = [
-            {"id":0,"name":"Stan Marsh","img":"1.jpg"},
-            {"id":1,"name":"Kyle Broflovski","img":"2.jpg"},
-            {"id":2,"name":"Eric Cartman","img":"3.jpg"},
-            {"id":3,"name":"Kenny McCormick","img":"4.jpg"},
-            {"id":4,"name":"Butters Stotch","img":"5.jpg"},
-            {"id":5,"name":"Wendy Testaburger","img":"6.jpg"},
-            {"id":6,"name":"Tweek Tweak","img":"7.jpg"},
-            {"id":7,"name":"Bebe Stevens","img":"8.jpg"},
-            {"id":8,"name":"Bradley Biggle","img":"9.jpg"},
-            {"id":9,"name":"Clyde Donovan","img":"a.jpg"},
-            {"id":10,"name":"Craig Tucker","img":"c.jpg"},
-            {"id":11,"name":"Dougie","img":"be.jpg"},
-            {"id":12,"name":"Heidi Turner","img":"d.jpg"},
+            {"id":0,"name":"Scott Pilgrim","img":"1.jpg"},
+            {"id":1,"name":"Ramona Flowers","img":"2.jpg"},
+            {"id":2,"name":"Wallace Wells","img":"3.jpg"},
+            {"id":3,"name":"Knives Chau","img":"4.jpg"},
+            {"id":4,"name":"Stephen Stills","img":"5.jpg"},
+            {"id":5,"name":"Kim Pine","img":"6.jpg"},
+            {"id":6,"name":"Young Neil","img":"7.jpg"},
+            {"id":7,"name":"Envy Adams","img":"8.jpg"},
+            {"id":8,"name":"Stacey Pilgrim","img":"9.jpg"},
+            {"id":9,"name":"Julie Powers","img":"a.jpg"},
+            {"id":10,"name":"Lynette Guycott","img":"c.jpg"},
+            {"id":11,"name":"Michael Comeau","img":"be.jpg"},
+            {"id":12,"name":"Simon Lee","img":"d.jpg"},
         ];
 
         var challengeTypeData = [
@@ -149,7 +164,7 @@ angular.module('app')
                 "endDate": "2017-11-13 12:00",
                 "fee": 20,
                 "reward": {"coins":100,"points":200},
-                "acceptedby":["Ivan Ivanov", "Grigory Movsesyan"],
+                "acceptedby":["Scott Pilgrim", "Ramona Flowers"],
                 "status": 0
             },
             {
@@ -158,14 +173,14 @@ angular.module('app')
                 "amount": 20,
                 "product": ['iPhone SE','iPhone 6S'],
                 "yourProgress": 0,
-                "opponent": "Grigory Movsesyan",
+                "opponent": "Knives Chau",
                 "opponentProgress": 0,
                 "createDate": "2017-07-15 12:00",
                 "acceptDate": null,
                 "endDate": "2017-10-10 12:00",
                 "fee": 20,
                 "reward": {"coins":100,"points":200},
-                "acceptedby":["Ivan Ivanov", "Grigory Movsesyan"],
+                "acceptedby":["Knives Chau"],
                 "status": 0
             },
             {
@@ -174,14 +189,14 @@ angular.module('app')
                 "amount": 10,
                 "product": ['Tablet'],
                 "yourProgress": 75,
-                "opponent": "Grigory Movsesyan",
+                "opponent": "Kim Pine",
                 "opponentProgress": 50,
                 "createDate": "2017-07-13 12:00",
                 "acceptDate": "2017-07-14 12:00",
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
-                "acceptedby":["Grigory Movsesyan"],
+                "acceptedby":["Kim Pine"],
                 "status": 1
             },
             {
@@ -197,7 +212,7 @@ angular.module('app')
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
-                "acceptedby":["Grigory Movsesyan"],
+                "acceptedby":["Young Neil"],
                 "status": 2
             },
             {
@@ -213,7 +228,7 @@ angular.module('app')
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
-                "acceptedby":["Grigory Movsesyan"],
+                "acceptedby":["Stephen Stills","Stacey Pilgrim"],
                 "status": 3
             },
             {
@@ -222,14 +237,14 @@ angular.module('app')
                 "amount": 50,
                 "product": ['Tablet'],
                 "yourProgress": 0,
-                "opponent": "Grigory Movsesyan",
+                "opponent": "Julie Powers",
                 "opponentProgress": 0,
                 "createDate": "2017-09-13 12:00",
                 "acceptDate": null,
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
                 "reward": {"coins":90,"points":300},
-                "acceptedby":["Grigory Movsesyan"],
+                "acceptedby":[],
                 "status": 4
             },
 
@@ -237,11 +252,42 @@ angular.module('app')
 
         var salesData = [
             {
-                "type":0,
-                "name":"Apple iPhone 5s 32Gb",
-                "sum": 650,
-                "timestamp": "2017-10-13 12:00"
-            }
+                "type":1,
+                "name":"iPhone SE",
+                "sum": 600,
+                "timestamp": "2017-07-13 12:00"
+            },
+            {
+                "type":1,
+                "name":"iPhone 6S",
+                "sum": 800,
+                "timestamp": "2017-07-12 12:00"
+            },
+            {
+                "type":1,
+                "name":"iPhone 7",
+                "sum": 900,
+                "timestamp": "2017-07-11 12:00"
+            },
+            {
+                "type":2,
+                "name":"iPad Pro",
+                "sum": 800,
+                "timestamp": "2017-07-13 12:00"
+            },
+            {
+                "type":2,
+                "name":"iPad",
+                "sum": 500,
+                "timestamp": "2017-07-12 12:00"
+            },
+            {
+                "type":2,
+                "name":"iPad Mini",
+                "sum": 400,
+                "timestamp": "2017-07-11 12:00"
+            },
+
         ];
 
         var coinsData = [

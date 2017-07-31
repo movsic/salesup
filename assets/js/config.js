@@ -77,7 +77,7 @@ angular.module('app')
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                     'nvd3',
-                                    'moment'
+                                    //'moment'
                                 ], {
                                     insertBefore: '#lazyload_placeholder'
                                 })
@@ -132,7 +132,7 @@ angular.module('app')
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 'select',
-                                'moment',
+                                //'moment',
                                 'datepicker'
                             ], {
                                 insertBefore: '#lazyload_placeholder'

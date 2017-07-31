@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="i in salesData">
+                        <tr ng-repeat="i in salesData | orderBy:formatDate(i.timestamp,'timestamp')">
                             <td class="v-align-middle">
                                 <p>{{i.name}}</p>
                             </td>

@@ -38,7 +38,8 @@
     "isotope": "latest",
     "dialogfx": "latest",
     "nouislider": "latest",
-    "moment": "latest",
+    "moment": "2.x",
+    "angular-moment": "1.x",
     "select2": "latest",
     "angular-ui-select": "0.x",
     "eonasdan-bootstrap-datetimepicker": "latest"

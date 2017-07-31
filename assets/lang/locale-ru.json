@@ -1,0 +1,66 @@
+{
+	"challenge-button-new": "Добавить",
+	"challenge-button-accept": "Принять",
+	"challenge-button-abort": "Отказаться",
+	"challenge-button-cancel": "Отмена",
+	"challenge-button-create": "Создать",
+
+	"challenge-table-th-challenge": "Имя",
+	"challenge-table-th-expires": "Истекает",
+	"challenge-table-th-progress": "Прогресс",
+	"challenge-table-th-status": "Статус",
+
+	"challenge-tab-new": "Новые",
+	"challenge-tab-active": "Активные",
+	"challenge-tab-successful": "Успешные",
+	"challenge-tab-failed": "Проваленные",
+	"challenge-tab-pending": "Ожидающие",
+
+	"ChallengeType0": "Продать",
+
+	"Anything": "Любой",
+	"Phone": "Телефон",
+	"Tablet": "Планшет",
+	"Notebook": "Ноутбук",
+
+	"ChallengeStatus0": "Новый",
+	"ChallengeStatus1": "Текущий",
+	"ChallengeStatus2": "Успешный",
+	"ChallengeStatus3": "Проваленый",
+	"ChallengeStatus4": "Ожидающий",
+
+	"NewChallengeType0": "Миссия по продаже",
+
+	"ChallengeTitle0": "Продать {{amount}} продуктов {{product}}",
+
+	"challenge-your-progress": "Ваш прогресс {{progress}}%",
+	"challenge-opponent-progress": "Прогресс оппонента {{progress}}%",
+
+	"challenge-details-p2p": "Тип: P2P миссия против {{opponent}}",
+	"challenge-details-regular": "Тип: Стандартная миссия",
+	"challenge-details-created": "Создано: {{date}}",
+	"challenge-details-accepted": "Принято: {{date}}",
+	"challenge-details-ends": "Заканчивается: {{date}}",
+	"challenge-details-fee": "Цена: {{fee}} монет",
+	"challenge-details-reward": "Награда: {{reward.coins}} монет и {{reward.points}} очков",
+	"challenge-details-acceptedby": "Также учавствуют: {{accepted}}",
+
+	"challenge-modal-caption":"Новая P2P миссия",
+	"challenge-modal-subcaption":"Зполните необходимые поля",
+	"challenge-modal-field-challenge":"Тип миссии",
+	"challenge-modal-field-challenge-required":"Введите тип миссии",
+	"challenge-modal-field-challenge-placeholder":"Выберите тип миссии...",
+	"challenge-modal-field-product":"Продукт",
+	"challenge-modal-field-product-required":"Выберите продукты",
+	"challenge-modal-field-product-placeholder":"Введите название продукта...",
+	"challenge-modal-field-amount":"Количество",
+	"challenge-modal-field-amount-required":"Введите количество продукта",
+	"challenge-modal-field-person":"Оппонент",
+	"challenge-modal-field-person-required":"Выберите оппонента",
+	"challenge-modal-field-person-placeholder":"Введите имя оппонента...",
+	"challenge-modal-field-end":"Дата окончания миссии",
+	"challenge-modal-field-end-required":"Введите дату",
+	"challenge-modal-field-bid":"Ваша ставка",
+	"challenge-modal-field-bid-required":"Выберите ставку",
+	"challenge-modal-form-invalid": "Все поля должны быть заполнены"
+}

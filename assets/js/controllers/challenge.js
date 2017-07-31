@@ -37,6 +37,7 @@ angular.module('app', ['ui.select'])
 
         $scope.createChallenge = function(form){
             //do not submit on invalid form
+            form.$setSubmitted();
             if(!form.$valid){
                 return; 
             }

@@ -3,12 +3,12 @@
 	"challenge-button-accept": "Accept",
 	"challenge-button-abort": "Abort",
 	"challenge-button-cancel": "Cancel",
+	"challenge-button-create": "Create",
 
 	"challenge-table-th-challenge": "Challenge",
 	"challenge-table-th-expires": "Expires",
 	"challenge-table-th-progress": "Progress",
 	"challenge-table-th-status": "Status",
-	"challenge-table-th-action": "Action",
 
 	"challenge-tab-new": "New",
 	"challenge-tab-active": "Active",
@@ -31,8 +31,36 @@
 
 	"NewChallengeType0": "Selling challenge",
 
-	"ChallengeTitle": "{{type}} {{amount}} of {{product}}",
+	"ChallengeTitle0": "Sell {{amount}} of {{product}}",
 
 	"challenge-your-progress": "Your progress {{progress}}%",
-	"challenge-opponent-progress": "Opponent's progress {{progress}}%"
+	"challenge-opponent-progress": "Opponent's progress {{progress}}%",
+
+	"challenge-details-p2p": "Type: P2P Challenge with {{opponent}}",
+	"challenge-details-regular": "Type: Regular Challenge",
+	"challenge-details-created": "Created: {{date}}",
+	"challenge-details-accepted": "Accepted: {{date}}",
+	"challenge-details-ends": "Ends: {{date}}",
+	"challenge-details-fee": "Fee: {{fee}} coins",
+	"challenge-details-reward": "Rewards: {{reward.coins}} coins and {{reward.points}} points",
+	"challenge-details-acceptedby": "Already accepted by: {{accepted}}",
+
+	"challenge-modal-caption":"New P2P Challenge",
+	"challenge-modal-subcaption":"We need information about your new challenge",
+	"challenge-modal-field-challenge":"Challenge type",
+	"challenge-modal-field-challenge-required":"Challenge type is required",
+	"challenge-modal-field-challenge-placeholder":"Select challenge type...",
+	"challenge-modal-field-product":"Product",
+	"challenge-modal-field-product-required":"Product is required",
+	"challenge-modal-field-product-placeholder":"Type product name...",
+	"challenge-modal-field-amount":"Amount",
+	"challenge-modal-field-amount-required":"Amount is required",
+	"challenge-modal-field-person":"Person to Challenge",
+	"challenge-modal-field-person-required":"Person is required",
+	"challenge-modal-field-person-placeholder":"Type person name...",
+	"challenge-modal-field-end":"Challenge End Date",
+	"challenge-modal-field-end-required":"End Date is required",
+	"challenge-modal-field-bid":"Your bid",
+	"challenge-modal-field-bid-required":"Bid is required",
+	"challenge-modal-form-invalid": "All fields must be filled"
 }

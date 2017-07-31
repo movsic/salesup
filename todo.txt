@@ -1,25 +1,21 @@
 Challenges:
 timestamp of last login
 timestamp of status change -> badges with new
-search in users
 ??type field
-bid number field
 challenge abort -> modal
 news ????
 challenge name in modal
 chellenge type -> disable if one
-element width if no action
-opponent name in challenge
 create challenge wizard with different screens?
 strange validation behaviour for product on new challenge
-finish translations -> vs problem
 filter on date
-dynamic dates
+dynamic dates -> dynamic data
 ?message to p2p new challenge
 no challenges available text
 move modal to separate controller - else data loads on startup
-helper service
-reward points in challenhges!!!
+helper service for data transformations
+reward points in challenhges calculation -> config
+challenge name translation problem + vs
 
 script to load js async
 add badge to userpic
@@ -29,6 +25,7 @@ add global config - lvl to xz, fee for new challenge, coin calculations
 Sales:
 sales tabs
 sales color to type
+moment from bower??
 
 Coins:
 coins page with bonus calculation (list of successful challenges and sales)
@@ -55,7 +52,8 @@ collect - data change animated - turning
 raiting challenges - timelimit to get to first place
 
 Misc:
-angular-translate
+general coins info ?
+font problem + russian
 modal close only on buton click
 coins icon
 dashboard graph hight
@@ -67,6 +65,9 @@ offline font
 nestables in config - products
 remove search! complitely!
 load additional people directly to persondata
+avatar generation to mshow achivements
+calendar of challenges?
+AUTOGENERATE TEST DATA!!!
 
 Notifications:
 notification autoclose
@@ -78,6 +79,10 @@ Home:
 sales graph height
 shop tile on dashboard with carousel photos??
 
+Sales:
+add sale to you
+add sale to opponent
+sales period week /month /year
 
 to read
 https://www.gd.ru/articles/4112-geymifikatsiya-v-motivatsii-personala
