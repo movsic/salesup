@@ -20,6 +20,10 @@ angular.module('app')
 			
 		};
 
+		this.addSale = function(){
+			this.updateStorage(DataProviderService.addSale());
+		}
+
 		this.updateStorage = function(response) {
 			console.log(response);
 			if(response.error){

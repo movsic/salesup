@@ -9,6 +9,10 @@ angular.module('app')
     	$scope.profileData = ActionService.getStorageData('profile');
     	$scope.showNotification = ActionService.showNotification;
 
+    	$scope.addSale = function(){
+    		ActionService.addSale();
+    	};
+
     	$scope.changeLanguage = function () {
     		if($translate.use()=='en'){
 				$translate.use('ru');
@@ -28,7 +32,6 @@ angular.module('app')
     			return moment(datetime).fromNow();
     		}
     		else if(format=="timestamp"){
-    			console.log(moment(datetime).unix());
     			return moment(datetime).unix();
 	    	}else{
 	    		//d.MM.yy 'at' H:mm

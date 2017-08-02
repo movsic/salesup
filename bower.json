@@ -31,8 +31,8 @@
     "angular-bootstrap":"2.5.x",
     "angular-animate":"1.6.x",
 
-    "nvd3": "latest",
-    "angular-nvd3": "latest",
+    "nvd3": "1.x",
+    "angular-nvd3": "1.x",
     "metrojs": "0.9.*",
     "imagesloaded": "latest",
     "isotope": "latest",

@@ -1,7 +1,7 @@
 angular.module('app')
 	.service('DataProviderService', function () {
-	    this.getProfileData = function () { return profileData};
-	    this.getNewsData = function () { return newsData};
+	    this.getProfileData = function () { return JSON.parse(JSON.stringify(profileData))};
+	    this.getNewsData = function () { return JSON.parse(JSON.stringify(newsData))};
 
 	    this.getChallengesData = function () { 
             //for (var i in challengeData){
@@ -9,23 +9,21 @@ angular.module('app')
             //    challengeData[i].endDate = moment(challengeData[i].endDate).unix();
             //    challengeData[i].acceptDate = moment(challengeData[i].acceptDate).unix();
             //}
-            return challengeData;
+            return JSON.parse(JSON.stringify(challengeData));
         };
 
 	    this.getSalesData = function () { 
-            //for (var i in salesData){
-            //    salesData[i].timestamp = moment(salesData[i].timestamp).unix();
-            //}
-            return salesData;
+            for (var i in salesData){
+                salesData[i].timestamp = moment(salesData[i].timestamp).unix();
+            }
+            return JSON.parse(JSON.stringify(salesData));
         };
 
-	    this.getSalesAggregateData = function () { return salesAggregateData};
-	    this.getCoinsData = function () { return coinsData};
-	    this.getRatingData = function () { return ratingData};
+	    this.getSalesAggregateData = function () { return JSON.parse(JSON.stringify(salesAggregateData))};
+	    this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
+	    this.getRatingData = function () { return JSON.parse(JSON.stringify(ratingData))};
 
-        this.getProductData = function () { return productData};
         this.getChallengeTypeData = function () { return challengeTypeData};
-
         this.getPersonData = function (name) { 
             return personData;
         };
@@ -45,10 +43,9 @@ angular.module('app')
         };
 
         this.acceptChallenge = function(challenge){
-
+            var challenge = challengeData.find(x => x.id === challenge.id);
             if(profileData.coins < challenge.fee)
                 return {"error":"Error1","text":"Not enough coins!"};
-            console.log(profileData.coins, challenge.bid);
             profileData.coins -= challenge.fee;
             challenge.status = 1;
             challenge.acceptDate = new Date().getTime();
@@ -56,6 +53,15 @@ angular.module('app')
             return [
                 {"name":"challenges","type":"update","data":challenge},
                 {"name":"profile","type":"update","data":profileData},
+            ];
+        }
+
+        //debug
+        this.addSale = function(){
+            var newSale = {"type":"Phone","name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
+            salesData.push(newSale);
+            return [
+                {"name":"sales","type":"add","data":newSale}
             ];
         }
 
@@ -252,37 +258,37 @@ angular.module('app')
 
         var salesData = [
             {
-                "type":1,
+                "type":"Phone",
                 "name":"iPhone SE",
                 "sum": 600,
                 "timestamp": "2017-07-13 12:00"
             },
             {
-                "type":1,
+                "type":"Phone",
                 "name":"iPhone 6S",
                 "sum": 800,
                 "timestamp": "2017-07-12 12:00"
             },
             {
-                "type":1,
+                "type":"Phone",
                 "name":"iPhone 7",
                 "sum": 900,
                 "timestamp": "2017-07-11 12:00"
             },
             {
-                "type":2,
+                "type":"Tablet",
                 "name":"iPad Pro",
                 "sum": 800,
                 "timestamp": "2017-07-13 12:00"
             },
             {
-                "type":2,
+                "type":"Tablet",
                 "name":"iPad",
                 "sum": 500,
                 "timestamp": "2017-07-12 12:00"
             },
             {
-                "type":2,
+                "type":"Tablet",
                 "name":"iPad Mini",
                 "sum": 400,
                 "timestamp": "2017-07-11 12:00"

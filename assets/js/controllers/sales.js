@@ -3,11 +3,9 @@
 /* Controllers */
 
 angular.module('app', ['nvd3'])
-    .controller('SalesCtrl', ['$scope', 'ActionService', function($scope, ActionService) {
+    .controller('SalesCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
 
         $scope.salesData = ActionService.getStorageData('sales');
-
-        $scope.nvd3_sales_data = $scope.salesData;
         
         var calcTimeline = function(salesData){
             var salesKeyValue=[];
@@ -22,48 +20,61 @@ angular.module('app', ['nvd3'])
             return salesArray;
         }
         
-        $scope.dataPrepare = function(data){
-            /*
-            "type":0,
-            "name":"iPhone SE",
-            "sum": 600,
-            "timestamp": "2017-10-13 12:00"
-            */
-            var formattedData = {};
+        $scope.nvd3format = function(data){
+            var dataArray = [];
+            var nvd3array = [];
             for(var i in data){
-                var time = moment(data[i].timestamp).format('L');
-                if(!(data[i].type in formattedData)){
-                    formattedData[data[i].type] = {};
+                var time = moment(data[i].timestamp*1000).format("DD.MM.YYYY");
+                if(!(data[i].type in dataArray)){
+                    dataArray[data[i].type] = [];
                 }
-                if(!(time in formattedData[data[i].type])){
-                    formattedData[data[i].type][time] = data[i].sum;               
+                if(!(time in dataArray[data[i].type])){
+                    dataArray[data[i].type][time] = data[i].sum;               
                 }else{
-                    formattedData[data[i].type][time] += data[i].sum;
+                    dataArray[data[i].type][time] += data[i].sum;
                 }
             }
-            console.log(formattedData);
+            console.log(dataArray);
+            for(var i in dataArray){
+
+                var ordered = {};
+                Object.keys(dataArray[i]).reverse().forEach(function(key) {ordered[key] = dataArray[i][key];});
+
+                var values = Object.keys(ordered).map(function(key) {return {x: key, y: ordered[key]};});
+                nvd3array.push({"key":$translate.instant(i),"values":values});
+            }
+            console.log(nvd3array);
+            return nvd3array;
         }
-        $scope.dataPrepare($scope.salesData);
 
-        $scope.nvd3_data = [{
-                "key": "Monthly sales",
-                "values": calcTimeline($scope.salesData)
-            },{
+        $scope.$watch(
+            function () {
+                return $scope.salesData;
+            }, 
+            function (newValue, oldValue) {
+                if (!angular.equals(oldValue.length, newValue.length)) {
+                    $scope.nvd3_data = $scope.nvd3format($scope.salesData);
+                }
+            },
+            true);
+            //console.log('watch->salesData');
+            //$scope.nvd3_data = $scope.nvd3format($scope.salesData);
+        //});
 
-            },{
+        $scope.nvd3_data = $scope.nvd3format($scope.salesData);
 
-            }];
-
-        $scope.nvd3_sales_options = {
+        $scope.nvd3_options = {
             chart: {
                 type: 'multiBarChart',
                 tooltips: false,
                 stacked: true,
                 showControls: false,
-                height: null,
+                height: 400,
                 reduceXTicks: false,
-                x: function(d) { return d.label },
-                y: function(d) { return d.value },
+                refreshDataOnly: true,
+                deepWatchData: true,
+                x: function(d) { return d.x },
+                y: function(d) { return d.y },
                 color: [
                     $.Pages.getColor('success', .7),
                     $.Pages.getColor('danger', .7),
@@ -73,7 +84,7 @@ angular.module('app', ['nvd3'])
                 duration: 500,
                 xAxis: {
                     tickFormat: function(d) {
-                        return d3.time.format('%d.%m.%Y')(new Date(d*1000))
+                        return d
                     }
                 },
                 yAxis: {

@@ -32,7 +32,7 @@ angular.module('app', ['ui.select'])
         $scope.newChallenge = {};
 
         $scope.transleteGroup = function (item){
-            return $translate.instant('ProductType' + item.type);;
+            return $translate.instant('ProductType' + item.type);
         };
 
         $scope.createChallenge = function(form){

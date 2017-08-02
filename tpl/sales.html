@@ -3,8 +3,18 @@
     <!-- START PANEL -->
     <div class="panel panel-transparent">
         <div class="panel-body">
-            <div class="tab-pane " id="tab-nvd3-area">
-                <nvd3 options='nvd3_options' class="line-chart m-t-30 text-center" data='nvd3_data'></nvd3>
+            <!--<div class="full-width">
+                <ul class="list-inline">
+                    <li class="active"><a href="#" class="font-montserrat  bg-master-light text-master">Week</a>
+                    </li>
+                    <li><a href="#" class="font-montserrat text-master">Month</a>
+                    </li>
+                    <li><a href="#" class="font-montserrat text-master">Year</a>
+                    </li>
+                </ul>
+            </div>-->
+            <div class="tab-pane" id="tab-nvd3-area">
+                <nvd3 options='nvd3_options' class="line-chart m-t-30 text-center" data='nvd3_data'"></nvd3>
             </div>
         </div>
         <div class="panel-body">
@@ -19,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="i in salesData | orderBy:formatDate(i.timestamp,'timestamp')">
+                        <tr ng-repeat="i in salesData | orderBy:'timestamp':true track by $index">
                             <td class="v-align-middle">
                                 <p>{{i.name}}</p>
                             </td>
