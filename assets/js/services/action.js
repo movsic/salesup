@@ -26,21 +26,31 @@ angular.module('app')
 
 		this.updateStorage = function(response) {
 			console.log(response);
+			//first show error if any
 			if(response.error){
 				this.showNotification("error", "Error", response.text);
 				throw "Error " + response.error + " " + response.text;
 			}
+			//next it's time for notifications
 			if(response.notifications){
 				for(var i in response.notifications){
-					var noti = response.notifications[i];
-					this.showNotification(noti.type, noti.header, noti.text);
+					var notification = response.notifications[i];
+					if(notification.type == "win"){
+						this.showModal(notification.type, notification.event);
+					}else{
+						this.showNotification(notification.type, notification.header, notification.text);
+					}
 				}
 			}
+			//and now let's apply changed to model data
 			StorageService.apply(response.data);
 		};
 
 		this.showNotification = function(type, header, text, img){
 			NotificationService.showNotification(type, header, text, img);
+		}
+		this.showModal = function(type, event){
+			NotificationService.showModal(type, event);
 		}
 
 	});

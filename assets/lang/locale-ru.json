@@ -35,8 +35,8 @@
 
 	"ChallengeTitle0": "Продать {{amount}} продуктов {{product}}",
 
-	"challenge-your-progress": "Ваш прогресс {{progress}}%",
-	"challenge-opponent-progress": "Прогресс оппонента {{progress}}%",
+	"challenge-your-progress": "Ваш прогресс {{progress | number:0}}%",
+	"challenge-opponent-progress": "Прогресс оппонента {{progress | number:0}}%",
 
 	"challenge-details-p2p": "Тип: P2P миссия против {{opponent}}",
 	"challenge-details-regular": "Тип: Стандартная миссия",

@@ -25,6 +25,11 @@
 
 	"ErrorNotEnoughCoins": "Not enough coins!",
 
+	"notification-win-congratulations": "Congratulations!",
+	"notification-win-name": "You won the {{challenge}} challenge!",
+	"notification-win-reward": "Your reward is {{challenge.reward.coins}} coins and {{challenge.reward.points}} points!",
+	"notification-win-collect": "Collect your reward!",
+
 	"ChallengeStatus0": "Open",
 	"ChallengeStatus1": "In Progress",
 	"ChallengeStatus2": "Successful",
@@ -35,8 +40,8 @@
 
 	"ChallengeTitle0": "Sell {{amount}} of {{product}}",
 
-	"challenge-your-progress": "Your progress {{progress}}%",
-	"challenge-opponent-progress": "Opponent's progress {{progress}}%",
+	"challenge-your-progress": "Your progress {{progress | number:0}}%",
+	"challenge-opponent-progress": "Opponent's progress {{progress | number:0}}%",
 
 	"challenge-details-p2p": "Type: P2P Challenge with {{opponent}}",
 	"challenge-details-regular": "Type: Regular Challenge",

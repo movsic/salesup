@@ -8,6 +8,7 @@ angular.module('app')
 
     	$scope.profileData = ActionService.getStorageData('profile');
     	$scope.showNotification = ActionService.showNotification;
+    	$scope.showModal = ActionService.showModal;
 
     	$scope.addSale = function(){
     		ActionService.addSale();
@@ -38,17 +39,4 @@ angular.module('app')
 	    		return moment(datetime).format("DD.MM.YYYY H:mm");
 	    	}
     	};
-
-	    $scope.showModal = function() {
-            $('#modalFillIn').modal('show');
-            // Only for fillin modals so that the backdrop action is still there
-            $('#modalFillIn').on('show.bs.modal', function(e) {
-                $('body').addClass('fill-in-modal');
-            })
-            $('#modalFillIn').on('hidden.bs.modal', function(e) {
-                $('body').removeClass('fill-in-modal');
-            })
-
-        }
-
     }]);

@@ -33,6 +33,18 @@ change all dates in dataprovider to dynamic
 notification on new sale
 notification on challenge complete
 
+//--------------------------
+challenge name
+coins and points before button click )= 
+notification autoclose
+notifications on startup!!
+challenge win notification
+translate win 
+opponent sell debug
+challenge loose notification
+translate notifications (ALL)
+//--------------------------
+
 Coins:
 coins page with bonus calculation (list of successful challenges and sales)
 
@@ -75,12 +87,14 @@ avatar generation to mshow achivements
 calendar of challenges?
 AUTOGENERATE TEST DATA!!!
 move noti status icons from profiles
+formatTime function from main to angular moment
 
 Notifications:
 notification autoclose
 define types notifications
 challenge failed / sale made / level achieved -> notification
 notifications on short on challenge end
+notifications as links
 
 Home:
 sales graph height

@@ -9,6 +9,7 @@
 angular.module('app', [
     'ui.router',
     'ui.utils',
+    'ui.bootstrap',
     'oc.lazyLoad',
     'pascalprecht.translate'
 ]);

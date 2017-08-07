@@ -72,7 +72,8 @@ angular.module('app')
                         profileData.coins += challengeData[i].reward.coins;
                         profileData.points += challengeData[i].reward.points;
                         update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
-                        update.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+                        update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+                        update.notifications.push({"type":"win","event":challengeData[i]});
                     }
                     update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
                 }
@@ -227,7 +228,7 @@ angular.module('app')
             {
                 "id":3,
                 "type": 0,
-                "amount": 5,
+                "amount": 3,
                 "product": ['Phone'],
                 "productId": [1],
                 "yourProgress": 0,

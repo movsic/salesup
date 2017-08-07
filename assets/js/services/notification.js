@@ -1,5 +1,5 @@
 angular.module('app')
-	.service('NotificationService', function () {
+	.service('NotificationService', function ($uibModal) {
 		this.showNotification = function(type, header, message, img) {
 	        // Slide-in a circle notification from sides
 	        // You have to provide the HTML for thumbnail 
@@ -22,4 +22,25 @@ angular.module('app')
 	        }).show();
 	    }
 
+	    this.showModal = function(type, event) {
+	    	var modalInstance = $uibModal.open({
+    			templateUrl: 'tpl/blocks/modal_' + type + '.html',
+		      	openedClass: 'fill-in-modal',
+		      	windowClass: 'fill-in show',
+		      	controller: ['$scope', '$uibModalInstance', 'params', 
+		      		function ($scope, $uibModalInstance, params) {
+		      			$scope.params = params;
+		      			$scope.ok = function () {
+    						$uibModalInstance.close();
+  						};
+  					}
+  				],
+		      	resolve: {
+			        params: function () {
+			        	return event;
+			        }
+		    	},
+		  	})
+		  	modalInstance.result.then(function (){console.log('REWARD')});
+        }
 	})
