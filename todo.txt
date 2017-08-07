@@ -10,12 +10,14 @@ create challenge wizard with different screens?
 strange validation behaviour for product on new challenge
 filter on date
 dynamic dates -> dynamic data
-?message to p2p new challenge
+?message box to p2p new challenge
 no challenges available text
 move modal to separate controller - else data loads on startup
 helper service for data transformations
 reward points in challenhges calculation -> config
 challenge name translation problem + vs
+CREATE NEW CHALLENGE VIA CONTROLLER!!!
+translate error not enough gold
 
 script to load js async
 add badge to userpic
@@ -25,10 +27,11 @@ add global config - lvl to xz, fee for new challenge, coin calculations
 Sales:
 sales tabs
 sales translate
-sales add sale -> recalc challenge
 sales time periods week month year? data from server? or not?
 dynamic nvd3 data update
-moment from bower??
+change all dates in dataprovider to dynamic
+notification on new sale
+notification on challenge complete
 
 Coins:
 coins page with bonus calculation (list of successful challenges and sales)

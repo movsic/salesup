@@ -17,10 +17,10 @@ angular.module('app')
 		};
 		this.update = function (name, value){
 			if(name == 'profile'){
-				data[name] = value;
+				data[name][value.key] = value.value;
 			}else{
-				var item = data[name].find(x => x.id === value.id);
-				item = value;
+				var idx = data[name].findIndex(x => x.id === value.id);
+				data[name][idx] = value;
 			}
 		};
 		this.add = function (name, value) {

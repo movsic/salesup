@@ -23,6 +23,8 @@
 	"Tablet": "Tablet",
 	"Notebook": "Notebook",
 
+	"ErrorNotEnoughCoins": "Not enough coins!",
+
 	"ChallengeStatus0": "Open",
 	"ChallengeStatus1": "In Progress",
 	"ChallengeStatus2": "Successful",

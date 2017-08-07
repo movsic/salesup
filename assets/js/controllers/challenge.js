@@ -47,6 +47,7 @@ angular.module('app', ['ui.select'])
                 "type": $scope.newChallenge.challengeType.id,
                 "amount": $scope.newChallenge.productAmount,
                 "product": $scope.newChallenge.product.map(function (obj) {return obj.name}),
+                "productId": $scope.newChallenge.product.map(function (obj) {return obj.id}),
                 "yourProgress": 0,
                 "opponent": $scope.newChallenge.opponent.name,
                 "opponentProgress": 0,
@@ -54,7 +55,7 @@ angular.module('app', ['ui.select'])
                 "endDate": new Date($scope.newChallenge.endDate).getTime()/1000,
                 "status": 4,
                 "fee": $scope.newChallenge.fee,
-                "reward": {"coins":$scope.newChallenge.bid*2,"points":100}
+                "reward": {"coins":$scope.newChallenge.fee*2,"points":100}
             });
 
             $('#newChallengeModal').modal('hide'); 

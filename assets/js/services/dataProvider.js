@@ -13,9 +13,6 @@ angular.module('app')
         };
 
 	    this.getSalesData = function () { 
-            for (var i in salesData){
-                salesData[i].timestamp = moment(salesData[i].timestamp).unix();
-            }
             return JSON.parse(JSON.stringify(salesData));
         };
 
@@ -45,24 +42,42 @@ angular.module('app')
         this.acceptChallenge = function(challenge){
             var challenge = challengeData.find(x => x.id === challenge.id);
             if(profileData.coins < challenge.fee)
-                return {"error":"Error1","text":"Not enough coins!"};
+                return {"error":"ErrorNotEnoughCoins","text":"Not enough coins!"};
             profileData.coins -= challenge.fee;
             challenge.status = 1;
             challenge.acceptDate = new Date().getTime();
 
             return [
                 {"name":"challenges","type":"update","data":challenge},
-                {"name":"profile","type":"update","data":profileData},
+                {"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}},
             ];
         }
 
         //debug
         this.addSale = function(){
-            var newSale = {"type":"Phone","name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
+            var update = [];
+            var newSale = {"type":"Phone","typeId":1,"name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
             salesData.push(newSale);
-            return [
-                {"name":"sales","type":"add","data":newSale}
-            ];
+
+            update.push({"name":"sales","type":"add","data":newSale});
+            
+            for (var i in challengeData){
+
+                if ((challengeData[i].productId.indexOf(newSale.typeId) > -1 || challengeData[i].productId.indexOf(productData[newSale.typeId].typed) > -1)
+                    && challengeData[i].status == 1 && challengeData[i].type == 0){
+                    challengeData[i].yourProgress += 1;
+                    if (challengeData[i].yourProgress >= challengeData[i].amount){
+                        challengeData[i].status = 2;
+                        profileData.coins += challengeData[i].reward.coins;
+                        profileData.points += challengeData[i].reward.points;
+                        update.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
+                        update.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+                    }
+                    update.push({"name":"challenges","type":"update","data":challengeData[i]});
+                }
+            }
+
+            return update;
         }
 
         //block of debug data!
@@ -115,7 +130,7 @@ angular.module('app')
 	    	"totalPositions":45,
 	    	"nextLevel":1500,
 	    	"prevLevel":1000,
-            "coins":10,
+            "coins":20,
             "coinsChange":5,
             "lastLogin": 1500649789,
             "badges":[
@@ -162,13 +177,14 @@ angular.module('app')
                 "type": 0,
                 "amount": 20,
                 "product": ['Phone'],
+                "productId": [1],
                 "yourProgress": 0,
                 "opponent": null,
                 "opponentProgress": 0,
                 "createDate": "2017-07-13 12:00",
                 "acceptDate": null,
                 "endDate": "2017-11-13 12:00",
-                "fee": 20,
+                "fee": 5,
                 "reward": {"coins":100,"points":200},
                 "acceptedby":["Scott Pilgrim", "Ramona Flowers"],
                 "status": 0
@@ -176,15 +192,16 @@ angular.module('app')
             {
                 "id":1,
                 "type": 0,
-                "amount": 20,
+                "amount": 5,
                 "product": ['iPhone SE','iPhone 6S'],
+                "productId": [4,5],
                 "yourProgress": 0,
                 "opponent": "Knives Chau",
                 "opponentProgress": 0,
                 "createDate": "2017-07-15 12:00",
                 "acceptDate": null,
                 "endDate": "2017-10-10 12:00",
-                "fee": 20,
+                "fee": 10,
                 "reward": {"coins":100,"points":200},
                 "acceptedby":["Knives Chau"],
                 "status": 0
@@ -194,9 +211,10 @@ angular.module('app')
                 "type": 0,
                 "amount": 10,
                 "product": ['Tablet'],
-                "yourProgress": 75,
+                "productId": [2],
+                "yourProgress": 8,
                 "opponent": "Kim Pine",
-                "opponentProgress": 50,
+                "opponentProgress": 4,
                 "createDate": "2017-07-13 12:00",
                 "acceptDate": "2017-07-14 12:00",
                 "endDate": "2017-10-13 12:00",
@@ -206,11 +224,29 @@ angular.module('app')
                 "status": 1
             },
             {
-            	"id":3,
+                "id":3,
+                "type": 0,
+                "amount": 5,
+                "product": ['Phone'],
+                "productId": [1],
+                "yourProgress": 0,
+                "opponent": null,
+                "opponentProgress": 0,
+                "createDate": "2017-07-13 12:00",
+                "acceptDate": "2017-07-14 12:00",
+                "endDate": "2017-10-13 12:00",
+                "fee": 20,
+                "reward": {"coins":90,"points":300},
+                "acceptedby":["Kim Pine"],
+                "status": 1
+            },
+            {
+            	"id":4,
                 "type": 0,
                 "amount": 30,
                 "product": ['Notebook'],
-                "yourProgress": 100,
+                "productId": [3],
+                "yourProgress": 30,
                 "opponent": null,
                 "opponentProgress": 0,
                 "createDate": "2017-09-13 12:00",
@@ -222,11 +258,12 @@ angular.module('app')
                 "status": 2
             },
             {
-            	"id":4,
+            	"id":5,
                 "type": 0,
                 "amount": 40,
                 "product": ['Phone'],
-                "yourProgress": 75,
+                "productId": [1],
+                "yourProgress": 30,
                 "opponent": null,
                 "opponentProgress": 0,
                 "createDate": "2017-09-13 12:00",
@@ -238,10 +275,11 @@ angular.module('app')
                 "status": 3
             },
             {
-            	"id":5,
+            	"id":6,
                 "type": 0,
                 "amount": 50,
                 "product": ['Tablet'],
+                "productId": [2],
                 "yourProgress": 0,
                 "opponent": "Julie Powers",
                 "opponentProgress": 0,
@@ -259,39 +297,45 @@ angular.module('app')
         var salesData = [
             {
                 "type":"Phone",
+                "typeId":4,
                 "name":"iPhone SE",
                 "sum": 600,
-                "timestamp": "2017-07-13 12:00"
+                "timestamp": moment().subtract(1,'days').unix()
             },
             {
                 "type":"Phone",
+                "typeId":5,
                 "name":"iPhone 6S",
                 "sum": 800,
-                "timestamp": "2017-07-12 12:00"
+                "timestamp": moment().subtract(2,'days').unix()
             },
             {
                 "type":"Phone",
+                "typeId":6,
                 "name":"iPhone 7",
                 "sum": 900,
-                "timestamp": "2017-07-11 12:00"
+                "timestamp": moment().subtract(3,'days').unix()
             },
             {
                 "type":"Tablet",
+                "typeId":7,
                 "name":"iPad Pro",
                 "sum": 800,
-                "timestamp": "2017-07-13 12:00"
+                "timestamp": moment().subtract(1,'days').unix()
             },
             {
                 "type":"Tablet",
+                "typeId":8,
                 "name":"iPad",
                 "sum": 500,
-                "timestamp": "2017-07-12 12:00"
+                "timestamp": moment().subtract(2,'days').unix()
             },
             {
                 "type":"Tablet",
+                "typeId":9,
                 "name":"iPad Mini",
                 "sum": 400,
-                "timestamp": "2017-07-11 12:00"
+                "timestamp": moment().subtract(3,'days').unix()
             },
 
         ];

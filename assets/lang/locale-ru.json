@@ -23,6 +23,8 @@
 	"Tablet": "Планшет",
 	"Notebook": "Ноутбук",
 
+	"ErrorNotEnoughCoins": "Недостаточно монет!",
+
 	"ChallengeStatus0": "Новый",
 	"ChallengeStatus1": "Текущий",
 	"ChallengeStatus2": "Успешный",

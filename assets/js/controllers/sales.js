@@ -6,6 +6,8 @@ angular.module('app', ['nvd3'])
     .controller('SalesCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
 
         $scope.salesData = ActionService.getStorageData('sales');
+        console.log($scope.salesData)
+        console.log(moment().subtract(1,'days').unix())
         
         var calcTimeline = function(salesData){
             var salesKeyValue=[];
@@ -23,16 +25,18 @@ angular.module('app', ['nvd3'])
         $scope.nvd3format = function(data){
             var dataArray = [];
             var nvd3array = [];
+            var timePeriod = 7;
             for(var i in data){
-                var time = moment(data[i].timestamp*1000).format("DD.MM.YYYY");
                 if(!(data[i].type in dataArray)){
                     dataArray[data[i].type] = [];
+                    for(var d = 0; d < timePeriod; d++){
+                        var day = moment().subtract(d,'days').format("DD.MM.YYYY");
+                        dataArray[data[i].type][day] = 0;
+                    }
                 }
-                if(!(time in dataArray[data[i].type])){
-                    dataArray[data[i].type][time] = data[i].sum;               
-                }else{
-                    dataArray[data[i].type][time] += data[i].sum;
-                }
+                var time = moment(data[i].timestamp*1000).format("DD.MM.YYYY");
+                dataArray[data[i].type][time] += data[i].sum;
+                console.log(data[i].timestamp);
             }
             console.log(dataArray);
             for(var i in dataArray){
@@ -43,7 +47,7 @@ angular.module('app', ['nvd3'])
                 var values = Object.keys(ordered).map(function(key) {return {x: key, y: ordered[key]};});
                 nvd3array.push({"key":$translate.instant(i),"values":values});
             }
-            console.log(nvd3array);
+
             return nvd3array;
         }
 
