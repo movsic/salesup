@@ -74,6 +74,7 @@ load additional people directly to persondata
 avatar generation to mshow achivements
 calendar of challenges?
 AUTOGENERATE TEST DATA!!!
+move noti status icons from profiles
 
 Notifications:
 notification autoclose

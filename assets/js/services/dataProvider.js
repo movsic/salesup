@@ -47,19 +47,20 @@ angular.module('app')
             challenge.status = 1;
             challenge.acceptDate = new Date().getTime();
 
-            return [
+            return {"data":[
                 {"name":"challenges","type":"update","data":challenge},
                 {"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}},
-            ];
+            ]};
         }
 
         //debug
         this.addSale = function(){
-            var update = [];
+            var update = {"data":[],"notifications":[]};
             var newSale = {"type":"Phone","typeId":1,"name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
             salesData.push(newSale);
 
-            update.push({"name":"sales","type":"add","data":newSale});
+            update.data.push({"name":"sales","type":"add","data":newSale});
+            update.notifications.push({"type":"success","header":"New sale!","text":"Great work! Keep it going!"});
             
             for (var i in challengeData){
 
@@ -70,10 +71,10 @@ angular.module('app')
                         challengeData[i].status = 2;
                         profileData.coins += challengeData[i].reward.coins;
                         profileData.points += challengeData[i].reward.points;
-                        update.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
+                        update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
                         update.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
                     }
-                    update.push({"name":"challenges","type":"update","data":challengeData[i]});
+                    update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
                 }
             }
 
@@ -201,7 +202,7 @@ angular.module('app')
                 "createDate": "2017-07-15 12:00",
                 "acceptDate": null,
                 "endDate": "2017-10-10 12:00",
-                "fee": 10,
+                "fee": 30,
                 "reward": {"coins":100,"points":200},
                 "acceptedby":["Knives Chau"],
                 "status": 0

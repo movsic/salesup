@@ -30,7 +30,13 @@ angular.module('app')
 				this.showNotification("error", "Error", response.text);
 				throw "Error " + response.error + " " + response.text;
 			}
-			StorageService.apply(response);
+			if(response.notifications){
+				for(var i in response.notifications){
+					var noti = response.notifications[i];
+					this.showNotification(noti.type, noti.header, noti.text);
+				}
+			}
+			StorageService.apply(response.data);
 		};
 
 		this.showNotification = function(type, header, text, img){

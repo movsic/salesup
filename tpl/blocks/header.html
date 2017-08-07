@@ -22,7 +22,7 @@
                 <!--<img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" ui-jq="unveil" data-src-retina="assets/img/logo_2x.png" width="78" height="22">-->
             </div>
             <!-- START NOTIFICATION LIST -->
-            <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20">
+            <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20 fs-16">
               <li class="p-r-15 inline">
                 <div class="dropdown">
                   <a href="" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
@@ -48,8 +48,12 @@
     <div class=" pull-right">
         <!-- START User Info-->
         <div class="visible-lg visible-md m-t-10">
-            <div class="pull-left p-r-10 p-t-5 p-b-5 fs-16 font-heading">
-                <span class="bold">{{profileData.coins}}</span> 
+            <div class="pull-left p-t-5 p-b-5 fs-16 font-heading p-l-20 p-r-20 b-grey b-l b-r no-style">
+              <i class="fa fa-chevron-circle-up"></i> <span class="bold p-r-20">{{profileData.level}} </span>
+                <i class="fa fa-star"></i> <span class="bold p-r-20">{{profileData.points}} </span> 
+                <i class="fa fa-database"></i> <span class="bold">{{profileData.coins}} </span> 
+            </div>
+            <div  class="pull-left p-t-5 p-b-5 fs-16 font-heading p-l-20">
                 <span class="semi-bold">{{profileData.firstname}}</span> 
                 <span class="text-master">{{profileData.lastname}}</span>
             </div>
