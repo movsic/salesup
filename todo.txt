@@ -36,13 +36,14 @@ notification on challenge complete
 //--------------------------
 challenge name
 coins and points before button click )= 
-notification autoclose
 notifications on startup!!
 challenge win notification
 translate win 
 opponent sell debug
 challenge loose notification
 translate notifications (ALL)
+add points on sale and write about it in noti
+random messages in noti
 //--------------------------
 
 Coins:
@@ -90,7 +91,6 @@ move noti status icons from profiles
 formatTime function from main to angular moment
 
 Notifications:
-notification autoclose
 define types notifications
 challenge failed / sale made / level achieved -> notification
 notifications on short on challenge end

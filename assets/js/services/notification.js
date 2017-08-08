@@ -11,8 +11,8 @@ angular.module('app')
 	            title: header,
 	            message: message,
 	            position: "top-right",
-	            timeout: 0,
 	            type: type,
+	            timeout: 5000,
 	            thumbnail: `<img width="40" height="40" 
 	            style="display: inline-block;" 
 	            src="assets/img/profiles/`+img+`" 
