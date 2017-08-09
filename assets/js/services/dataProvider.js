@@ -4,11 +4,6 @@ angular.module('app')
 	    this.getNewsData = function () { return JSON.parse(JSON.stringify(newsData))};
 
 	    this.getChallengesData = function () { 
-            //for (var i in challengeData){
-            //    challengeData[i].createDate = moment(challengeData[i].createDate).unix();
-            //    challengeData[i].endDate = moment(challengeData[i].endDate).unix();
-            //    challengeData[i].acceptDate = moment(challengeData[i].acceptDate).unix();
-            //}
             return JSON.parse(JSON.stringify(challengeData));
         };
 
@@ -24,6 +19,18 @@ angular.module('app')
         this.getPersonData = function (name) { 
             return personData;
         };
+
+        this.getNotifications = function() {
+            return {"notifications":[{
+                "type":"success",
+                "header":"Hello " + profileData.firstname + " " + profileData.lastname + "!",
+                "text":"Welcome back!"
+            }]};
+        }
+
+        this.getPointsForSell = function (level) {
+            return level*10;
+        }
 
         this.getProductData = function (name) { 
             var productTypes = [];
@@ -58,9 +65,11 @@ angular.module('app')
             var update = {"data":[],"notifications":[]};
             var newSale = {"type":"Phone","typeId":1,"name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
             salesData.push(newSale);
-
+            profileData.points += this.getPointsForSell(profileData.level);
             update.data.push({"name":"sales","type":"add","data":newSale});
-            update.notifications.push({"type":"success","header":"New sale!","text":"Great work! Keep it going!"});
+            update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+
+            update.notifications.push({"type":"success","header":"You sold "+newSale.name+"!","text":"You get "+this.getPointsForSell(profileData.level)+" points!"});
             
             for (var i in challengeData){
 

@@ -18,6 +18,7 @@ reward points in challenhges calculation -> config
 challenge name translation problem + vs
 CREATE NEW CHALLENGE VIA CONTROLLER!!!
 translate error not enough gold
+new and active challenges redo
 
 script to load js async
 add badge to userpic
@@ -36,14 +37,11 @@ notification on challenge complete
 //--------------------------
 challenge name
 coins and points before button click )= 
-notifications on startup!!
-challenge win notification
-translate win 
-opponent sell debug
-challenge loose notification
+-opponent sell debug
+-challenge loose notification
 translate notifications (ALL)
-add points on sale and write about it in noti
-random messages in noti
+recalc level
+tooltips lvl points coins
 //--------------------------
 
 Coins:

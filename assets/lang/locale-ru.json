@@ -25,6 +25,11 @@
 
 	"ErrorNotEnoughCoins": "Недостаточно монет!",
 
+	"notification-win-congratulations": "Поздравляем!",
+	"notification-win-name": "Вы успешно завершили миссию!",
+	"notification-win-reward": "Ваша награда: {{challenge.reward.coins}} монет и {{challenge.reward.points}} очков!",
+	"notification-win-collect": "Собрать награду!",
+
 	"ChallengeStatus0": "Новый",
 	"ChallengeStatus1": "Текущий",
 	"ChallengeStatus2": "Успешный",

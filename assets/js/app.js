@@ -11,6 +11,7 @@ angular.module('app', [
     'ui.utils',
     'ui.bootstrap',
     'oc.lazyLoad',
-    'pascalprecht.translate'
+    'pascalprecht.translate',
+    'ui.odometer'
 ]);
  

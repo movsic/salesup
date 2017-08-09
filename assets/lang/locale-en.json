@@ -26,7 +26,7 @@
 	"ErrorNotEnoughCoins": "Not enough coins!",
 
 	"notification-win-congratulations": "Congratulations!",
-	"notification-win-name": "You won the {{challenge}} challenge!",
+	"notification-win-name": "You won the challenge!",
 	"notification-win-reward": "Your reward is {{challenge.reward.coins}} coins and {{challenge.reward.points}} points!",
 	"notification-win-collect": "Collect your reward!",
 

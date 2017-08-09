@@ -27,6 +27,7 @@ angular.module('app')
     			templateUrl: 'tpl/blocks/modal_' + type + '.html',
 		      	openedClass: 'fill-in-modal',
 		      	windowClass: 'fill-in show',
+		      	backdrop: 'static',
 		      	controller: ['$scope', '$uibModalInstance', 'params', 
 		      		function ($scope, $uibModalInstance, params) {
 		      			$scope.params = params;

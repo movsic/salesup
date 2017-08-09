@@ -30,6 +30,8 @@
     
     "angular-bootstrap":"2.5.x",
     "angular-animate":"1.6.x",
+    "odometer":"0.x",
+    "angular-odometer-js":"0.x",
 
     "nvd3": "1.x",
     "angular-nvd3": "1.x",
