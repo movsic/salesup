@@ -25,6 +25,10 @@ angular.module('app')
 			this.updateStorage(DataProviderService.addSale());
 		}
 
+		this.addOpponentSale = function(){
+			this.updateStorage(DataProviderService.addOpponentSale());
+		}
+
 		this.updateStorage = function(response) {
 			console.log(response);
 			//first show error if any

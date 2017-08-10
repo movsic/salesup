@@ -91,11 +91,9 @@ angular.module('app')
             profileData.points += this.getPointsForSell(profileData.level);
             update.data.push({"name":"sales","type":"add","data":newSale});
             
-
             update.notifications.push({"type":"success","header":"You sold "+newSale.name+"!","text":"You get "+this.getPointsForSell(profileData.level)+" points!"});
             
             for (var i in challengeData){
-
                 if ((challengeData[i].productId.indexOf(newSale.typeId) > -1 || challengeData[i].productId.indexOf(productData[newSale.typeId].typed) > -1)
                     && challengeData[i].status == 1 && challengeData[i].type == 0){
                     challengeData[i].yourProgress += 1;
@@ -119,6 +117,23 @@ angular.module('app')
                 update.modals.push({"type":"levelup","event":{"level":profileData.level}});
             }
 
+            return update;
+        }
+
+        this.addOpponentSale = function(){
+            var opponentId = 1;
+            var update = {"data":[],"notifications":[],"modals":[]};
+            update.notifications[0]={"type":"warning","header":"Your opponent made a sale!","text":"Try to catch up!"};
+            for (var i in challengeData){
+                if (challengeData[i].opponentId == opponentId && challengeData[i].status == 1 && challengeData[i].type == 0){
+                    challengeData[i].opponentProgress += 1;
+                    if (challengeData[i].opponentProgress >= challengeData[i].amount){
+                        challengeData[i].status = 2;
+                        update.notifications[0]={"type":"error","header":"You've lost the challenge!","text":"Keep on trying!"};
+                    }
+                    update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
+                }
+            }
             return update;
         }
 
@@ -219,6 +234,7 @@ angular.module('app')
                 "productId": [1],
                 "yourProgress": 0,
                 "opponent": null,
+                "opponentId": null,
                 "opponentProgress": 0,
                 "createDate": "2017-07-13 12:00",
                 "acceptDate": null,
@@ -236,6 +252,7 @@ angular.module('app')
                 "productId": [4,5],
                 "yourProgress": 0,
                 "opponent": "Knives Chau",
+                "opponentId": 3,
                 "opponentProgress": 0,
                 "createDate": "2017-07-15 12:00",
                 "acceptDate": null,
@@ -248,12 +265,13 @@ angular.module('app')
             {
             	"id":2,
                 "type": 0,
-                "amount": 10,
+                "amount": 5,
                 "product": ['Tablet'],
                 "productId": [2],
-                "yourProgress": 8,
-                "opponent": "Kim Pine",
-                "opponentProgress": 4,
+                "yourProgress": 4,
+                "opponent": "Ramona Flowers",
+                "opponentId": 1,
+                "opponentProgress": 3,
                 "createDate": "2017-07-13 12:00",
                 "acceptDate": "2017-07-14 12:00",
                 "endDate": "2017-10-13 12:00",
@@ -270,6 +288,7 @@ angular.module('app')
                 "productId": [1],
                 "yourProgress": 0,
                 "opponent": null,
+                "opponentId": null,
                 "opponentProgress": 0,
                 "createDate": "2017-07-13 12:00",
                 "acceptDate": "2017-07-14 12:00",
@@ -287,6 +306,7 @@ angular.module('app')
                 "productId": [3],
                 "yourProgress": 30,
                 "opponent": null,
+                "opponentId": null,
                 "opponentProgress": 0,
                 "createDate": "2017-09-13 12:00",
                 "acceptDate": null,
@@ -304,6 +324,7 @@ angular.module('app')
                 "productId": [1],
                 "yourProgress": 30,
                 "opponent": null,
+                "opponentId": null,
                 "opponentProgress": 0,
                 "createDate": "2017-09-13 12:00",
                 "acceptDate": null,

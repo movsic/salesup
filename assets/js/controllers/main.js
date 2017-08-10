@@ -13,6 +13,9 @@ angular.module('app')
     	$scope.addSale = function(){
     		ActionService.addSale();
     	};
+    	$scope.addOpponentSale = function(){
+    		ActionService.addOpponentSale();
+    	};
 
     	$scope.changeLanguage = function () {
     		if($translate.use()=='en'){

@@ -35,13 +35,12 @@ notification on new sale
 notification on challenge complete
 
 //--------------------------
-challenge name
+challenge name in notifications and modals
 coins and points before button click )= 
--opponent sell debug
--challenge loose notification
 translate notifications (ALL)
-recalc level
-tooltips lvl points coins
+???tooltips lvl points coins
+autogenerate names from ids on return!
+redo sale to challenge callculation -> addSale(userId, .....)
 //--------------------------
 
 Coins:

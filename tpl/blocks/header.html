@@ -32,6 +32,7 @@
                             <a class="dropdown-item" ng-click="showNotification('success', 'Won challenge', 'Vlad Shalaev', 'vlad.jpeg')">Show Notification</a>
                             <a class="dropdown-item" ng-click="showModal('win', {'reward':{'coins':10,'points':100}})">Show Win</a>
                             <a class="dropdown-item" ng-click="showModal('levelup', {'reward':{'coins':10,'points':100}})">Show LevelUp</a>
+                            <a class="dropdown-item" ng-click="addOpponentSale()">Add Opponent Sale</a>
                             <a class="dropdown-item" ng-click="addSale()">Add Own Sale</a>
                         </div>
                     </div>
@@ -58,9 +59,9 @@
                 </div>
             </div>
             <div class="pull-left p-t-5 p-b-5 fs-16 font-heading p-l-20 p-r-20 b-grey b-l b-r no-style">
-                <i class="fa fa-chevron-circle-up"></i> <span class="bold p-r-20" odometer="profileData.level" odometer-options="{format: 'd'}"> </span>
-                <i class="fa fa-star"></i> <span class="bold p-r-20" odometer="profileData.points" odometer-options="{format: 'd'}"> </span> 
-                <i class="fa fa-database"></i> <span class="bold" odometer="profileData.coins" odometer-options="{format: 'd'}"> </span> 
+                <i class="fa fa-chevron-circle-up" uib-tooltip="level"></i> <span class="bold p-r-20" odometer="profileData.level" odometer-options="{format: 'd'}"> </span>
+                <i class="fa fa-star" uib-tooltip="points"></i> <span class="bold p-r-20" odometer="profileData.points" odometer-options="{format: 'd'}"> </span> 
+                <i class="fa fa-database" uib-tooltip="coins"></i> <span class="bold" odometer="profileData.coins" odometer-options="{format: 'd'}"> </span> 
             </div>
             <div  class="pull-left p-t-5 p-b-5 fs-16 font-heading p-l-20">
                 <span class="semi-bold">{{profileData.firstname}}</span> 
