@@ -28,6 +28,7 @@ angular.module('app')
 		      	openedClass: 'fill-in-modal',
 		      	windowClass: 'fill-in show',
 		      	backdrop: 'static',
+		      	keyboard  : false,
 		      	controller: ['$scope', '$uibModalInstance', 'params', 
 		      		function ($scope, $uibModalInstance, params) {
 		      			$scope.params = params;

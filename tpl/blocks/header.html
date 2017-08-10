@@ -4,42 +4,43 @@
     <div class="relative">
       <!-- LEFT SIDE -->
       
-      <div class="pull-left hidden-md hidden-lg">
-        <div class="header-inner">
-          <div class="brand inline">
-            <a ui-sref="app.home">
-              <img src="assets/img/logo_salesup.png" alt="logo" data-src="assets/img/logo_salesup.png" data-src-retina="assets/img/logo_salesup.png" width="200" height="58">
-            </a>
-          </div>
+        <div class="pull-left hidden-md hidden-lg">
+            <div class="header-inner">
+                <div class="brand inline">
+                    <a ui-sref="app.home">
+                        <img src="assets/img/logo_salesup.png" alt="logo" data-src="assets/img/logo_salesup.png" data-src-retina="assets/img/logo_salesup.png" width="200" height="58">
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
       <!-- RIGHT SIDE -->
     </div>
     <!-- END MOBILE CONTROLS -->
     <div class=" pull-left sm-table hidden-xs hidden-sm">
         <div class="header-inner">
-            <div class="brand inline">
-                <!--<img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" ui-jq="unveil" data-src-retina="assets/img/logo_2x.png" width="78" height="22">-->
-            </div>
+            <!--<div class="brand inline">
+                <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" ui-jq="unveil" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+            </div>-->
             <!-- START NOTIFICATION LIST -->
             <ul class="notification-list no-margin hidden-sm hidden-xs b-grey b-l b-r no-style p-l-30 p-r-20 fs-16">
-              <li class="p-r-15 inline">
-                <div class="dropdown">
-                  <a href="" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                    <i class="pg pg-extra"></i>
-                  </a>
-                  <div class="dropdown-menu pull-right" role="menu">
-                    <a class="dropdown-item" ng-click="showNotification('success', 'Won challenge', 'Vlad Shalaev', 'vlad.jpeg')">Show Notification</a>
-                    <a class="dropdown-item" ng-click="showModal('win', {'reward':{'coins':10,'points':100}})">Show Win</a>
-                    <a class="dropdown-item" ng-click="addSale()">Add Sale</a>
-                  </div>
-                </div>
-              </li>
-              <li class="p-r-15 inline">
-                <a href="" role="button" ng-click="changeLanguage()">
-                  <i class="fa fa-globe"></i>
-                </a>
-              </li>
+                <li class="p-r-15 inline">
+                    <div class="dropdown">
+                        <a href="" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
+                            <i class="pg pg-extra"></i>
+                        </a>
+                        <div class="dropdown-menu pull-right" role="menu">
+                            <a class="dropdown-item" ng-click="showNotification('success', 'Won challenge', 'Vlad Shalaev', 'vlad.jpeg')">Show Notification</a>
+                            <a class="dropdown-item" ng-click="showModal('win', {'reward':{'coins':10,'points':100}})">Show Win</a>
+                            <a class="dropdown-item" ng-click="showModal('levelup', {'reward':{'coins':10,'points':100}})">Show LevelUp</a>
+                            <a class="dropdown-item" ng-click="addSale()">Add Own Sale</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-r-15 inline">
+                    <a href="" role="button" ng-click="changeLanguage()">
+                      <i class="fa fa-globe"></i>
+                    </a>
+                </li>
             </ul>
             <!-- END NOTIFICATIONS LIST -->
         </div>
@@ -48,8 +49,16 @@
     <div class=" pull-right">
         <!-- START User Info-->
         <div class="visible-lg visible-md m-t-10">
+            <div class="pull-left p-b-5 p-l-20 p-r-20 b-grey no-style">
+                <div class="brand inline">
+                    <p class="small hint-text">{{profileData.points}}/{{profileData.nextLevel}}</p>
+                    <div class="progress m-b-5">
+                        <div class="progress-bar bg-success" style="width:{{((profileData.points-profileData.prevLevel)/(profileData.nextLevel-profileData.prevLevel))*100}}%"></div>
+                    </div>
+                </div>
+            </div>
             <div class="pull-left p-t-5 p-b-5 fs-16 font-heading p-l-20 p-r-20 b-grey b-l b-r no-style">
-              <i class="fa fa-chevron-circle-up"></i> <span class="bold p-r-20" odometer="profileData.level" odometer-options="{format: 'd'}"> </span>
+                <i class="fa fa-chevron-circle-up"></i> <span class="bold p-r-20" odometer="profileData.level" odometer-options="{format: 'd'}"> </span>
                 <i class="fa fa-star"></i> <span class="bold p-r-20" odometer="profileData.points" odometer-options="{format: 'd'}"> </span> 
                 <i class="fa fa-database"></i> <span class="bold" odometer="profileData.coins" odometer-options="{format: 'd'}"> </span> 
             </div>

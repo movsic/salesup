@@ -1,6 +1,16 @@
 angular.module('app')
 	.service('DataProviderService', function () {
-	    this.getProfileData = function () { return JSON.parse(JSON.stringify(profileData))};
+	    this.getProfileData = function () { 
+            return JSON.parse(JSON.stringify(this.updateProfile(profileData)));
+        };
+
+        this.updateProfile = function (profileData){
+            profileData.level = this.getLevelForPoints(profileData.points);
+            profileData.nextLevel = this.getPointsForLevel(profileData.level+1);
+            profileData.prevLevel = this.getPointsForLevel(profileData.level);
+            return profileData;
+        };
+
 	    this.getNewsData = function () { return JSON.parse(JSON.stringify(newsData))};
 
 	    this.getChallengesData = function () { 
@@ -29,7 +39,19 @@ angular.module('app')
         }
 
         this.getPointsForSell = function (level) {
-            return level*10;
+            return level;
+        }
+
+        this.getPointsForChallenge = function (level) {
+            return level*2;
+        }
+
+        this.getLevelForPoints = function (points) {
+            return Math.floor(Math.pow(points,1/3));
+        }
+
+        this.getPointsForLevel = function (level) {
+            return Math.pow(level,3);
         }
 
         this.getProductData = function (name) { 
@@ -62,12 +84,13 @@ angular.module('app')
 
         //debug
         this.addSale = function(){
-            var update = {"data":[],"notifications":[]};
+            var update = {"data":[],"notifications":[],"modals":[]};
             var newSale = {"type":"Phone","typeId":1,"name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
+            var lvl = profileData.level;
             salesData.push(newSale);
             profileData.points += this.getPointsForSell(profileData.level);
             update.data.push({"name":"sales","type":"add","data":newSale});
-            update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+            
 
             update.notifications.push({"type":"success","header":"You sold "+newSale.name+"!","text":"You get "+this.getPointsForSell(profileData.level)+" points!"});
             
@@ -80,12 +103,20 @@ angular.module('app')
                         challengeData[i].status = 2;
                         profileData.coins += challengeData[i].reward.coins;
                         profileData.points += challengeData[i].reward.points;
-                        update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
-                        update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
-                        update.notifications.push({"type":"win","event":challengeData[i]});
+                        update.modals.push({"type":"win","event":challengeData[i]});
                     }
                     update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
                 }
+            }
+
+            update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
+            update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+            var newLvl = this.updateProfile(profileData).level;
+            if(lvl < newLvl){
+                update.data.push({"name":"profile","type":"update","data":{"key":"level","value":profileData.level}});
+                update.data.push({"name":"profile","type":"update","data":{"key":"prevLevel","value":profileData.prevLevel}});
+                update.data.push({"name":"profile","type":"update","data":{"key":"nextLevel","value":profileData.nextLevel}});
+                update.modals.push({"type":"levelup","event":{"level":profileData.level}});
             }
 
             return update;
@@ -135,12 +166,9 @@ angular.module('app')
 	    	"mail":"d.minina@cubesolutions.ru",
 	    	"company": "cubesolutions",
 	    	"group": "moscow",
-	    	"level": 11,
-	    	"points":1234,
-	    	"position":13,
-	    	"totalPositions":45,
-	    	"nextLevel":1500,
-	    	"prevLevel":1000,
+	    	"points":90,          
+	    	"position":3,
+	    	"totalPositions":10,
             "coins":20,
             "coinsChange":5,
             "lastLogin": 1500649789,

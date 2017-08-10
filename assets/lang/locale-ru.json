@@ -25,10 +25,15 @@
 
 	"ErrorNotEnoughCoins": "Недостаточно монет!",
 
-	"notification-win-congratulations": "Поздравляем!",
-	"notification-win-name": "Вы успешно завершили миссию!",
-	"notification-win-reward": "Ваша награда: {{challenge.reward.coins}} монет и {{challenge.reward.points}} очков!",
-	"notification-win-collect": "Собрать награду!",
+	"modal-win-congratulations": "Поздравляем!",
+	"modal-win-name": "Вы успешно завершили миссию!",
+	"modal-win-reward": "Ваша награда: {{challenge.reward.coins}} монет и {{challenge.reward.points}} очков!",
+	"modal-win-done": "Собрать награду!",
+
+	"modal-levelup-congratulations":"Новый уровень!",
+	"modal-levelup-name":"Вы достигли уровня {{level}}!",
+	"modal-levelup-reward":"Теперь вы будете получать больше монет и очков!",
+	"modal-levelup-done":"Закрыть",
 
 	"ChallengeStatus0": "Новый",
 	"ChallengeStatus1": "Текущий",

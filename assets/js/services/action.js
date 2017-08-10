@@ -36,11 +36,13 @@ angular.module('app')
 			if(response.notifications){
 				for(var i in response.notifications){
 					var notification = response.notifications[i];
-					if(notification.type == "win"){
-						this.showModal(notification.type, notification.event);
-					}else{
-						this.showNotification(notification.type, notification.header, notification.text);
-					}
+					this.showNotification(notification.type, notification.header, notification.text);
+				}
+			}
+			if(response.modals){
+				for(var i in response.modals){
+					var modal = response.modals[i];
+					this.showModal(modal.type, modal.event);
 				}
 			}
 			//and now let's apply changed to model data

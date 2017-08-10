@@ -25,10 +25,15 @@
 
 	"ErrorNotEnoughCoins": "Not enough coins!",
 
-	"notification-win-congratulations": "Congratulations!",
-	"notification-win-name": "You won the challenge!",
-	"notification-win-reward": "Your reward is {{challenge.reward.coins}} coins and {{challenge.reward.points}} points!",
-	"notification-win-collect": "Collect your reward!",
+	"modal-win-congratulations": "Congratulations!",
+	"modal-win-name": "You won the challenge!",
+	"modal-win-reward": "Your reward is {{challenge.reward.coins}} coins and {{challenge.reward.points}} points!",
+	"modal-win-done": "Collect your reward!",
+
+	"modal-levelup-congratulations":"Level Up!",
+	"modal-levelup-name":"You've reached level {{level}}!",
+	"modal-levelup-reward":"You will receive more coins and points!",
+	"modal-levelup-done":"Close",
 
 	"ChallengeStatus0": "Open",
 	"ChallengeStatus1": "In Progress",
