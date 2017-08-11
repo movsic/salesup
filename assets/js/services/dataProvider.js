@@ -31,10 +31,11 @@ angular.module('app')
         };
 
         this.getNotifications = function() {
+            //+ profileData.firstname + " " + profileData.lastname + "!",
             return {"notifications":[{
                 "type":"success",
-                "header":"Hello " + profileData.firstname + " " + profileData.lastname + "!",
-                "text":"Welcome back!"
+                "text":"greeting",
+                "params":{"firstname":profileData.firstname,"lastname":profileData.lastname}
             }]};
         }
 
@@ -71,7 +72,7 @@ angular.module('app')
         this.acceptChallenge = function(challenge){
             var challenge = challengeData.find(x => x.id === challenge.id);
             if(profileData.coins < challenge.fee)
-                return {"error":"ErrorNotEnoughCoins","text":"Not enough coins!"};
+                return {"error":"ErrorNotEnoughCoins","text":"error-coins"};
             profileData.coins -= challenge.fee;
             challenge.status = 1;
             challenge.acceptDate = new Date().getTime();
@@ -91,7 +92,7 @@ angular.module('app')
             profileData.points += this.getPointsForSell(profileData.level);
             update.data.push({"name":"sales","type":"add","data":newSale});
             
-            update.notifications.push({"type":"success","header":"You sold "+newSale.name+"!","text":"You get "+this.getPointsForSell(profileData.level)+" points!"});
+            update.notifications.push({"type":"success","text":"your-sell","param":{"sale":newSale.name,"points":this.getPointsForSell(profileData.level)}});
             
             for (var i in challengeData){
                 if ((challengeData[i].productId.indexOf(newSale.typeId) > -1 || challengeData[i].productId.indexOf(productData[newSale.typeId].typed) > -1)
@@ -123,13 +124,13 @@ angular.module('app')
         this.addOpponentSale = function(){
             var opponentId = 1;
             var update = {"data":[],"notifications":[],"modals":[]};
-            update.notifications[0]={"type":"warning","header":"Your opponent made a sale!","text":"Try to catch up!"};
+            update.notifications[0]={"type":"warning","text":"opponent-sale"};
             for (var i in challengeData){
                 if (challengeData[i].opponentId == opponentId && challengeData[i].status == 1 && challengeData[i].type == 0){
                     challengeData[i].opponentProgress += 1;
                     if (challengeData[i].opponentProgress >= challengeData[i].amount){
                         challengeData[i].status = 2;
-                        update.notifications[0]={"type":"error","header":"You've lost the challenge!","text":"Keep on trying!"};
+                        update.notifications[0]={"type":"error","text":"challenge-loss"};
                     }
                     update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
                 }

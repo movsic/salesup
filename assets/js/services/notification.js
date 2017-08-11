@@ -1,24 +1,24 @@
 angular.module('app')
-	.service('NotificationService', function ($uibModal) {
-		this.showNotification = function(type, header, message, img) {
+	.service('NotificationService', function ($uibModal, $translate) {
+		this.showNotification = function(type, text, params) {
 	        // Slide-in a circle notification from sides
 	        // You have to provide the HTML for thumbnail 
-	       	if(!img){
-	       		img = type + ".png";
+	       	if(!params.img){
+	       		params.img = type + ".png";
 	       	}
 	        $('body').pgNotification({
 	            style: 'circle',
-	            title: header,
-	            message: message,
+	            title: $translate.instant('notification-' + text + '-header', { "params": params }),
+	            message: $translate.instant('notification-' + text + '-text', { "params": params }),
 	            position: "top-right",
 	            type: type,
 	            timeout: 5000,
 	            thumbnail: `<img width="40" height="40" 
 	            style="display: inline-block;" 
-	            src="assets/img/profiles/`+img+`" 
-	            data-src="assets/img/profiles/`+img+`" 
+	            src="assets/img/profiles/`+params.img+`" 
+	            data-src="assets/img/profiles/`+params.img+`" 
 	            ui-jq="unveil" 
-	            data-src-retina="assets/img/profiles/`+img+`" alt="">`
+	            data-src-retina="assets/img/profiles/`+params.img+`" alt="">`
 	        }).show();
 	    }
 

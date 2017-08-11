@@ -33,14 +33,14 @@ angular.module('app')
 			console.log(response);
 			//first show error if any
 			if(response.error){
-				this.showNotification("error", "Error", response.text);
-				throw "Error " + response.error + " " + response.text;
+				this.showNotification("error", response.text);
+				throw "Error " + response.text;
 			}
 			//next it's time for notifications
 			if(response.notifications){
 				for(var i in response.notifications){
 					var notification = response.notifications[i];
-					this.showNotification(notification.type, notification.header, notification.text);
+					this.showNotification(notification.type, notification.text, notification.params);
 				}
 			}
 			if(response.modals){

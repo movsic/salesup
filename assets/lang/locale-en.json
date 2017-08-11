@@ -35,6 +35,22 @@
 	"modal-levelup-reward":"You will receive more coins and points!",
 	"modal-levelup-done":"Close",
 
+	"notification-challenge-loss-header":"You've lost the challenge!",
+	"notification-challenge-loss-text":"Keep on trying!",
+
+	"notification-greeting-header":"Hello {{params.firstname}} {{params.lastname}}!",
+	"notification-greeting-text":"Welcome back!",
+
+	"notification-error-coins-header":"Error!",
+	"notification-error-coins-text":"Not enough coins!",
+
+	"notification-your-sale-header":"You sold {{params.sale}}!",
+	"notification-your-sale-text":"You get {{params.points}} points!",
+
+	"notification-opponent-sale-header":"Your opponent made a sale!",
+	"notification-opponent-sale-text":"Try to catch up!",
+
+
 	"ChallengeStatus0": "Open",
 	"ChallengeStatus1": "In Progress",
 	"ChallengeStatus2": "Successful",
