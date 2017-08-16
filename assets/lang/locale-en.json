@@ -50,6 +50,9 @@
 	"notification-opponent-sale-header":"Your opponent made a sale!",
 	"notification-opponent-sale-text":"Try to catch up!",
 
+	"notification-example-header":"Scott Piligrim",
+	"notification-example-text":"Won challenge!",
+
 
 	"ChallengeStatus0": "Open",
 	"ChallengeStatus1": "In Progress",
@@ -90,5 +93,10 @@
 	"challenge-modal-field-end-required":"End Date is required",
 	"challenge-modal-field-bid":"Your bid",
 	"challenge-modal-field-bid-required":"Bid is required",
-	"challenge-modal-form-invalid": "All fields must be filled"
+	"challenge-modal-form-invalid": "All fields must be filled",
+
+	"sales-table-th-product": "Product",
+	"sales-table-th-type": "Type",
+	"sales-table-th-sum": "Sum",
+	"sales-table-th-date": "Date"
 }

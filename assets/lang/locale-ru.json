@@ -35,6 +35,24 @@
 	"modal-levelup-reward":"Теперь вы будете получать больше монет и очков!",
 	"modal-levelup-done":"Закрыть",
 
+	"notification-challenge-loss-header":"Вы проиграли миссию!",
+	"notification-challenge-loss-text":"Попробуйте еще раз!",
+
+	"notification-greeting-header":"Привет {{params.firstname}} {{params.lastname}}!",
+	"notification-greeting-text":"Добро пожаловать!",
+
+	"notification-error-coins-header":"Ошибка!",
+	"notification-error-coins-text":"Недостаточно монет!",
+
+	"notification-your-sale-header":"Вы продали {{params.sale}}!",
+	"notification-your-sale-text":"и получаете {{params.points}} очков!",
+
+	"notification-opponent-sale-header":"Оппонент продал!",
+	"notification-opponent-sale-text":"Догоняйте!",
+
+	"notification-example-header":"Scott Piligrim",
+	"notification-example-text":"Выиграл миссию!",
+
 	"ChallengeStatus0": "Новый",
 	"ChallengeStatus1": "Текущий",
 	"ChallengeStatus2": "Успешный",
@@ -74,5 +92,10 @@
 	"challenge-modal-field-end-required":"Введите дату",
 	"challenge-modal-field-bid":"Ваша ставка",
 	"challenge-modal-field-bid-required":"Выберите ставку",
-	"challenge-modal-form-invalid": "Все поля должны быть заполнены"
+	"challenge-modal-form-invalid": "Все поля должны быть заполнены",
+
+	"sales-table-th-product": "Продукт",
+	"sales-table-th-type": "Тип",
+	"sales-table-th-sum": "Сумма",
+	"sales-table-th-date": "Дата"
 }

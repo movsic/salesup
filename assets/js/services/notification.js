@@ -2,7 +2,8 @@ angular.module('app')
 	.service('NotificationService', function ($uibModal, $translate) {
 		this.showNotification = function(type, text, params) {
 	        // Slide-in a circle notification from sides
-	        // You have to provide the HTML for thumbnail 
+	        // You have to provide the HTML for thumbnail
+	        if(!params) params = {};
 	       	if(!params.img){
 	       		params.img = type + ".png";
 	       	}

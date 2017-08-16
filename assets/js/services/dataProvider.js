@@ -92,7 +92,7 @@ angular.module('app')
             profileData.points += this.getPointsForSell(profileData.level);
             update.data.push({"name":"sales","type":"add","data":newSale});
             
-            update.notifications.push({"type":"success","text":"your-sell","param":{"sale":newSale.name,"points":this.getPointsForSell(profileData.level)}});
+            update.notifications.push({"type":"success","text":"your-sale","params":{"sale":newSale.name,"points":this.getPointsForSell(profileData.level)}});
             
             for (var i in challengeData){
                 if ((challengeData[i].productId.indexOf(newSale.typeId) > -1 || challengeData[i].productId.indexOf(productData[newSale.typeId].typed) > -1)

@@ -12,32 +12,24 @@ filter on date
 dynamic dates -> dynamic data
 ?message box to p2p new challenge
 no challenges available text
-move modal to separate controller - else data loads on startup
 helper service for data transformations
-reward points in challenhges calculation -> config
 challenge name translation problem + vs
 CREATE NEW CHALLENGE VIA CONTROLLER!!!
-translate error not enough gold
 new and active challenges redo
+points reward, coins reward, callenge fee -> config
 
 script to load js async
 add badge to userpic
-add global config - lvl to xz, fee for new challenge, coin calculations
-
+coints, points, lvl tooltip?!
 
 Sales:
 sales tabs
-sales translate
 sales time periods week month year? data from server? or not?
-dynamic nvd3 data update
 change all dates in dataprovider to dynamic
-notification on new sale
-notification on challenge complete
 
 //--------------------------
 challenge name in notifications and modals
 coins and points before button click )= 
-translate notifications (ALL)
 ???tooltips lvl points coins
 autogenerate names from ids on return!
 redo sale to challenge callculation -> addSale(userId, .....)
@@ -64,20 +56,16 @@ scallable width -> mobile support
 badges with new items counter (timestamp before last login) + (notifications while being logged in)
 LOGIN
 list of pics
-collect - data change animated - turning
 raiting challenges - timelimit to get to first place
 
 Misc:
 general coins info ?
 font problem + russian
-modal close only on buton click
 coins icon
 dashboard graph hight
 DIALOGFX!!!!!!!!! <-may be better ?
 badge,challenge directive
 user pic ng-src in image - different sizes ?!
-main js -> render user pic in notification
-offline font
 nestables in config - products
 remove search! complitely!
 load additional people directly to persondata
@@ -89,18 +77,12 @@ formatTime function from main to angular moment
 
 Notifications:
 define types notifications
-challenge failed / sale made / level achieved -> notification
 notifications on short on challenge end
 notifications as links
 
 Home:
 sales graph height
 shop tile on dashboard with carousel photos??
-
-Sales:
-add sale to you
-add sale to opponent
-sales period week /month /year
 
 to read
 https://www.gd.ru/articles/4112-geymifikatsiya-v-motivatsii-personala
