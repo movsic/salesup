@@ -9,6 +9,7 @@ angular.module('app')
 	    	StorageService.set('news',DataProviderService.getNewsData());
 		    StorageService.set('challenges',DataProviderService.getChallengesData());
 		    StorageService.set('sales',DataProviderService.getSalesData());
+		    StorageService.set('rating',DataProviderService.getRatingData());
 		    this.updateStorage(DataProviderService.getNotifications());
 		};
 

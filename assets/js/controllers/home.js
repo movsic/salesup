@@ -4,7 +4,7 @@
 
 angular.module('app', ["nvd3"])
     // Chart controller 
-    .controller('HomeCtrl', ['$scope', '$http', '$timeout', 'DataProviderService', function($scope, $http, $timeout, DataProviderService) {
+    .controller('HomeCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
 
     var badgeData = {
                 "1":{
@@ -30,13 +30,6 @@ angular.module('app', ["nvd3"])
             };
         $scope.getBadgeDescription = function(type){ return badgeData[type].title + ' ' + badgeData[type].description;};
         $scope.getBadgeName = function(type){ return badgeData[type].name;};
-
-        var newsType={1:"Started Challenge",2:"Won Challenge",3:"Earned Badge",4:"Canceled Challenge"};
-        $scope.getNewsType=function(type){return newsType[type]};
-
-        var challengeStatusDict={0:"Open",1:"In Progress",2:"Finished",3:"Failed",4:"Canceled"};
-        var challengeType={1:"Sell"};
-        var challengeProduct={1:"Samsung Galaxy 7", 2:"Xiaomi Mi5 32GB",3:"Sony Xperia XA1 Dual",4:"LG X cam",5:"Samsung Galaxy J5 Prime",6:"Huawei Honor 8 Lite",7:"Vertex Impress Eagle",8:"Apple iPhone SE 32GB"};
 
         $scope.getChallengeStatus=function(status){return challengeStatusDict[status];};
 

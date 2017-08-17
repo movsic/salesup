@@ -3,7 +3,6 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('RatingCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
-         $scope.ratingData = DataProviderService.getRatingData();
-
+    .controller('RatingCtrl', ['$scope', 'ActionService', function($scope, ActionService) {
+        $scope.ratingData = ActionService.getStorageData('rating');
     }]);

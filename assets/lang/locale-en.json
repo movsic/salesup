@@ -98,5 +98,9 @@
 	"sales-table-th-product": "Product",
 	"sales-table-th-type": "Type",
 	"sales-table-th-sum": "Sum",
-	"sales-table-th-date": "Date"
+	"sales-table-th-date": "Date",
+
+	"tooltip_level": "Level",
+	"tooltip_points": "Points",
+	"tooltip_coins": "Coins"
 }

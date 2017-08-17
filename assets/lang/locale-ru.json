@@ -97,5 +97,9 @@
 	"sales-table-th-product": "Продукт",
 	"sales-table-th-type": "Тип",
 	"sales-table-th-sum": "Сумма",
-	"sales-table-th-date": "Дата"
+	"sales-table-th-date": "Дата",
+
+	"tooltip_level": "Уровень",
+	"tooltip_points": "Очки",
+	"tooltip_coins": "Монеты"
 }

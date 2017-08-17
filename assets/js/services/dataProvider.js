@@ -14,6 +14,10 @@ angular.module('app')
 	    this.getNewsData = function () { return JSON.parse(JSON.stringify(newsData))};
 
 	    this.getChallengesData = function () { 
+            for( var i in challengeData){
+                if(challengeData[i].opponentId in personData)
+                    challengeData[i].opponent = personData[challengeData[i].opponentId].name;
+            }
             return JSON.parse(JSON.stringify(challengeData));
         };
 
@@ -23,7 +27,15 @@ angular.module('app')
 
 	    this.getSalesAggregateData = function () { return JSON.parse(JSON.stringify(salesAggregateData))};
 	    this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
-	    this.getRatingData = function () { return JSON.parse(JSON.stringify(ratingData))};
+	    this.getRatingData = function () { 
+            personData.push({
+                "id":profileData.id,
+                "name":profileData.firstname + " " + profileData.lastname,
+                "img":profileData.img,
+                "points":profileData.points,
+            });
+            return JSON.parse(JSON.stringify(personData));
+        };
 
         this.getChallengeTypeData = function () { return challengeTypeData};
         this.getPersonData = function (name) { 
@@ -31,7 +43,6 @@ angular.module('app')
         };
 
         this.getNotifications = function() {
-            //+ profileData.firstname + " " + profileData.lastname + "!",
             return {"notifications":[{
                 "type":"success",
                 "text":"greeting",
@@ -44,7 +55,7 @@ angular.module('app')
         }
 
         this.getPointsForChallenge = function (level) {
-            return level*2;
+            return level * 2;
         }
 
         this.getLevelForPoints = function (points) {
@@ -110,6 +121,8 @@ angular.module('app')
 
             update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
             update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+            //update rating
+            update.data.push({"name":"rating","type":"update","data":{"id":profileData.id,"name":profileData.firstname + " " + profileData.lastname,"img":profileData.img,"points":profileData.points}});
             var newLvl = this.updateProfile(profileData).level;
             if(lvl < newLvl){
                 update.data.push({"name":"profile","type":"update","data":{"key":"level","value":profileData.level}});
@@ -156,19 +169,19 @@ angular.module('app')
         ];
 
         var personData = [
-            {"id":0,"name":"Scott Pilgrim","img":"1.jpg"},
-            {"id":1,"name":"Ramona Flowers","img":"2.jpg"},
-            {"id":2,"name":"Wallace Wells","img":"3.jpg"},
-            {"id":3,"name":"Knives Chau","img":"4.jpg"},
-            {"id":4,"name":"Stephen Stills","img":"5.jpg"},
-            {"id":5,"name":"Kim Pine","img":"6.jpg"},
-            {"id":6,"name":"Young Neil","img":"7.jpg"},
-            {"id":7,"name":"Envy Adams","img":"8.jpg"},
-            {"id":8,"name":"Stacey Pilgrim","img":"9.jpg"},
-            {"id":9,"name":"Julie Powers","img":"a.jpg"},
-            {"id":10,"name":"Lynette Guycott","img":"c.jpg"},
-            {"id":11,"name":"Michael Comeau","img":"be.jpg"},
-            {"id":12,"name":"Simon Lee","img":"d.jpg"},
+            {"id":1,"name":"Scott Pilgrim","img":"1.jpg","points":10240},
+            {"id":2,"name":"Ramona Flowers","img":"2.jpg","points":20480},
+            {"id":3,"name":"Wallace Wells","img":"3.jpg","points":5120},
+            {"id":4,"name":"Knives Chau","img":"4.jpg","points":2560},
+            {"id":5,"name":"Stephen Stills","img":"5.jpg","points":1280},
+            {"id":6,"name":"Kim Pine","img":"6.jpg","points":640},
+            {"id":7,"name":"Young Neil","img":"7.jpg","points":320},
+            {"id":8,"name":"Envy Adams","img":"8.jpg","points":160},
+            {"id":9,"name":"Stacey Pilgrim","img":"9.jpg","points":80},
+            {"id":10,"name":"Julie Powers","img":"a.jpg","points":40},
+            {"id":11,"name":"Lynette Guycott","img":"c.jpg","points":20},
+            {"id":12,"name":"Michael Comeau","img":"be.jpg","points":10},
+            {"id":13,"name":"Simon Lee","img":"d.jpg","points":0},
         ];
 
         var challengeTypeData = [
@@ -176,13 +189,17 @@ angular.module('app')
         ];
 
 	    var profileData = {
+            "id":0,
 	    	"firstname": "Daria",
 	    	"lastname": "Minina",
 	    	"img":"dasha.jpeg",
 	    	"mail":"d.minina@cubesolutions.ru",
 	    	"company": "cubesolutions",
 	    	"group": "moscow",
-	    	"points":90,          
+	    	"points":90,
+            "level":null,
+            "prevLevel":null,
+            "nextLevel":null,          
 	    	"position":3,
 	    	"totalPositions":10,
             "coins":20,
@@ -252,8 +269,8 @@ angular.module('app')
                 "product": ['iPhone SE','iPhone 6S'],
                 "productId": [4,5],
                 "yourProgress": 0,
-                "opponent": "Knives Chau",
-                "opponentId": 3,
+                "opponent": null,
+                "opponentId": 1,
                 "opponentProgress": 0,
                 "createDate": "2017-07-15 12:00",
                 "acceptDate": null,
@@ -270,8 +287,8 @@ angular.module('app')
                 "product": ['Tablet'],
                 "productId": [2],
                 "yourProgress": 4,
-                "opponent": "Ramona Flowers",
-                "opponentId": 1,
+                "opponent": null,
+                "opponentId": 2,
                 "opponentProgress": 3,
                 "createDate": "2017-07-13 12:00",
                 "acceptDate": "2017-07-14 12:00",
@@ -342,7 +359,8 @@ angular.module('app')
                 "product": ['Tablet'],
                 "productId": [2],
                 "yourProgress": 0,
-                "opponent": "Julie Powers",
+                "opponent": null,
+                "opponentId": 4,
                 "opponentProgress": 0,
                 "createDate": "2017-09-13 12:00",
                 "acceptDate": null,
@@ -378,6 +396,27 @@ angular.module('app')
                 "timestamp": moment().subtract(3,'days').unix()
             },
             {
+                "type":"Phone",
+                "typeId":6,
+                "name":"iPhone 7",
+                "sum": 900,
+                "timestamp": moment().subtract(4,'days').unix()
+            },
+            {
+                "type":"Phone",
+                "typeId":6,
+                "name":"iPhone 7",
+                "sum": 900,
+                "timestamp": moment().subtract(5,'days').unix()
+            },
+            {
+                "type":"Phone",
+                "typeId":6,
+                "name":"iPhone 7",
+                "sum": 900,
+                "timestamp": moment().subtract(6,'days').unix()
+            },
+            {
                 "type":"Tablet",
                 "typeId":7,
                 "name":"iPad Pro",
@@ -397,6 +436,27 @@ angular.module('app')
                 "name":"iPad Mini",
                 "sum": 400,
                 "timestamp": moment().subtract(3,'days').unix()
+            },
+            {
+                "type":"Tablet",
+                "typeId":9,
+                "name":"iPad Mini",
+                "sum": 400,
+                "timestamp": moment().subtract(4,'days').unix()
+            },
+            {
+                "type":"Tablet",
+                "typeId":9,
+                "name":"iPad Mini",
+                "sum": 400,
+                "timestamp": moment().subtract(5,'days').unix()
+            },
+            {
+                "type":"Tablet",
+                "typeId":9,
+                "name":"iPad Mini",
+                "sum": 400,
+                "timestamp": moment().subtract(6,'days').unix()
             },
 
         ];
@@ -456,37 +516,6 @@ angular.module('app')
                 "type": 3,
                 "sum": 80,
                 "timestamp": 1499483564
-            }
-        ];
-
-        var ratingData = [         
-            {
-                "pos": 11,
-                "img": "vlad.jpeg",
-                "name": "Dmitry (MegaMozg) Nikolaev",
-                "branch": "Universitet",
-                "rating": 14320
-            },
-            {
-                "pos": 12,
-                "img": "dasha.jpeg",
-                "name": "Daria (Mini) Minina",
-                "branch": "Strogino",
-                "rating": 12560
-            },
-            {
-                "pos": 13,
-                "img": "max.jpeg",
-                "name": "Alexandr(SuperKoder) Sorokin",
-                "branch": "Kievskaya",
-                "rating": 12450
-            },
-            {
-                "pos": 14,
-                "img": "grisha.jpeg",
-                "name": "Grisha (Mouse) Movsesyan",
-                "branch": "Kievskaya",
-                "rating": 10020
             }
         ];
 

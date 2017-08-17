@@ -6,8 +6,6 @@ angular.module('app', ['nvd3'])
     .controller('SalesCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
 
         $scope.salesData = ActionService.getStorageData('sales');
-        console.log($scope.salesData)
-        console.log(moment().subtract(1,'days').unix())
         
         var calcTimeline = function(salesData){
             var salesKeyValue=[];
@@ -36,9 +34,7 @@ angular.module('app', ['nvd3'])
                 }
                 var time = moment(data[i].timestamp*1000).format("DD.MM.YYYY");
                 dataArray[data[i].type][time] += data[i].sum;
-                console.log(data[i].timestamp);
             }
-            console.log(dataArray);
             for(var i in dataArray){
 
                 var ordered = {};
@@ -47,7 +43,6 @@ angular.module('app', ['nvd3'])
                 var values = Object.keys(ordered).map(function(key) {return {x: key, y: ordered[key]};});
                 nvd3array.push({"key":$translate.instant(i),"values":values});
             }
-
             return nvd3array;
         }
 
@@ -61,9 +56,6 @@ angular.module('app', ['nvd3'])
                 }
             },
             true);
-            //console.log('watch->salesData');
-            //$scope.nvd3_data = $scope.nvd3format($scope.salesData);
-        //});
 
         $scope.nvd3_data = $scope.nvd3format($scope.salesData);
 
@@ -88,7 +80,7 @@ angular.module('app', ['nvd3'])
                 duration: 500,
                 xAxis: {
                     tickFormat: function(d) {
-                        return d
+                        return d;
                     }
                 },
                 yAxis: {

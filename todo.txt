@@ -20,7 +20,8 @@ points reward, coins reward, callenge fee -> config
 
 script to load js async
 add badge to userpic
-coints, points, lvl tooltip?!
+strange looking tooltips
+tooltip translations 
 
 Sales:
 sales tabs
@@ -30,10 +31,20 @@ change all dates in dataprovider to dynamic
 //--------------------------
 challenge name in notifications and modals
 coins and points before button click )= 
-???tooltips lvl points coins
-autogenerate names from ids on return!
 redo sale to challenge callculation -> addSale(userId, .....)
+redo challenge ids from "your" and "opponent" to "participants"
+challengeData -> acceptedby to ids
+challengeData -> productsIds get from product table
+debug add rating
+debug add sale - id from personData
+update only single fields of object!
+translate rating
+add branch
 //--------------------------
+
+Rating:
+hightlight you
+league with timelimit + modal + cheat
 
 Coins:
 coins page with bonus calculation (list of successful challenges and sales)
@@ -77,6 +88,7 @@ formatTime function from main to angular moment
 
 Notifications:
 define types notifications
+longer notification text
 notifications on short on challenge end
 notifications as links
 

@@ -150,3 +150,7 @@
 .ui-select-multiple input.ui-select-search:not(.ng-touched) {
     width: 100% !important;
 }
+
+.tooltip {
+  opacity: 0.9 !important;;
+}

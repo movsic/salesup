@@ -28,9 +28,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="i in ratingData">
+                        <tr ng-repeat="i in ratingData | orderBy : '-points'">
                             <td class="v-align-middle">
-                                <p>{{i.pos}}</p>
+                                <p>{{ $index+1 }}</p>
                             </td>
                             <td class="v-align-middle">
                                 <user-pic data="{{i.img}}"></user-pic>
@@ -42,7 +42,7 @@
                                 <p>{{i.branch}}</p>
                             </td>
                             <td class="v-align-middle">
-                                <p>{{i.rating}}</p>
+                                <p>{{i.points}}</p>
                             </td>
                         </tr>
                     </tbody>
