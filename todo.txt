@@ -39,7 +39,8 @@ debug add rating
 debug add sale - id from personData
 update only single fields of object!
 translate rating
-add branch
+add branch to rating
+tooltip for debug and translate
 //--------------------------
 
 Rating:
@@ -60,6 +61,7 @@ add save to profile
 profile click on header
 
 Big fitures:
+Add back notification block in header - save info about your events
 LVL -> lvl to points / coins, with config tables
 move config to service
 social integration

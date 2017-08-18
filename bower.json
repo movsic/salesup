@@ -27,6 +27,7 @@
     "angular-translate": "2.x",
     "angular-translate-loader-url": "2.x",
     "angular-translate-loader-static-files": "2.x",
+    "popper.js": "1.x",
     
     "angular-bootstrap":"2.5.x",
     "angular-animate":"1.6.x",
