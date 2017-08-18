@@ -101,5 +101,7 @@
 
 	"tooltip_level": "Уровень",
 	"tooltip_points": "Очки",
-	"tooltip_coins": "Монеты"
+	"tooltip_coins": "Монеты",
+	"tooltip_debug": "Дебаг",
+	"tooltip_lang": "Язык"	
 }

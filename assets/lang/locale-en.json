@@ -102,5 +102,7 @@
 
 	"tooltip_level": "Level",
 	"tooltip_points": "Points",
-	"tooltip_coins": "Coins"
+	"tooltip_coins": "Coins",
+	"tooltip_debug": "Debug",
+	"tooltip_lang": "Language"	
 }

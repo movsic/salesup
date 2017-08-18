@@ -26,7 +26,7 @@
                 <li class="p-r-15 inline">
                     <div class="dropdown">
                         <a href="" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                            <i class="pg pg-extra"></i>
+                            <i class="pg pg-extra" uib-tooltip="{{ 'tooltip_debug' | translate }}" tooltip-placement="bottom"></i>
                         </a>
                         <div class="dropdown-menu pull-right" role="menu">
                             <a class="dropdown-item" ng-click="showNotification('success', 'example', {img:'vlad.jpeg'})">Show Notification</a>
@@ -39,7 +39,7 @@
                 </li>
                 <li class="p-r-15 inline">
                     <a href="" role="button" ng-click="changeLanguage()">
-                      <i class="fa fa-globe"></i>
+                      <i class="fa fa-globe" uib-tooltip="{{ 'tooltip_lang' | translate }}" tooltip-placement="bottom"></i>
                     </a>
                 </li>
             </ul>

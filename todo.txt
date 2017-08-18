@@ -2,7 +2,7 @@ Challenges:
 timestamp of last login
 timestamp of status change -> badges with new
 ??type field
-challenge abort -> modal
+challenge abort(is it possible at all?) -> modal
 news ????
 challenge name in modal
 chellenge type -> disable if one
@@ -40,7 +40,7 @@ debug add sale - id from personData
 update only single fields of object!
 translate rating
 add branch to rating
-tooltip for debug and translate
+favico icon
 //--------------------------
 
 Rating:
