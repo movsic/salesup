@@ -38,7 +38,7 @@
 	"notification-challenge-loss-header":"Вы проиграли миссию!",
 	"notification-challenge-loss-text":"Попробуйте еще раз!",
 
-	"notification-greeting-header":"Привет {{params.firstname}} {{params.lastname}}!",
+	"notification-greeting-header":"Привет {{params.name}}!",
 	"notification-greeting-text":"Добро пожаловать!",
 
 	"notification-error-coins-header":"Ошибка!",

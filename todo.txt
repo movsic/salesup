@@ -3,7 +3,7 @@ timestamp of last login
 timestamp of status change -> badges with new
 ??type field
 challenge abort(is it possible at all?) -> modal
-news ????
+news ???? add notifications in news
 challenge name in modal
 chellenge type -> disable if one
 create challenge wizard with different screens?

@@ -38,7 +38,7 @@
 	"notification-challenge-loss-header":"You've lost the challenge!",
 	"notification-challenge-loss-text":"Keep on trying!",
 
-	"notification-greeting-header":"Hello {{params.firstname}} {{params.lastname}}!",
+	"notification-greeting-header":"Hello {{params.name}}!",
 	"notification-greeting-text":"Welcome back!",
 
 	"notification-error-coins-header":"Error!",

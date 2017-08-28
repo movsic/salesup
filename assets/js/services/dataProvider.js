@@ -27,15 +27,7 @@ angular.module('app')
 
 	    this.getSalesAggregateData = function () { return JSON.parse(JSON.stringify(salesAggregateData))};
 	    this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
-	    this.getRatingData = function () { 
-            personData.push({
-                "id":profileData.id,
-                "name":profileData.firstname + " " + profileData.lastname,
-                "img":profileData.img,
-                "points":profileData.points,
-            });
-            return JSON.parse(JSON.stringify(personData));
-        };
+	    this.getRatingData = function () { return JSON.parse(JSON.stringify(personData));};
 
         this.getChallengeTypeData = function () { return challengeTypeData};
         this.getPersonData = function (name) { 
@@ -46,7 +38,7 @@ angular.module('app')
             return {"notifications":[{
                 "type":"success",
                 "text":"greeting",
-                "params":{"firstname":profileData.firstname,"lastname":profileData.lastname}
+                "params":{"name":profileData.name}
             }]};
         }
 
@@ -122,7 +114,7 @@ angular.module('app')
             update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
             update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
             //update rating
-            update.data.push({"name":"rating","type":"update","data":{"id":profileData.id,"name":profileData.firstname + " " + profileData.lastname,"img":profileData.img,"points":profileData.points}});
+            update.data.push({"name":"rating","type":"update","data":{"id":profileData.id,"name":profileData.name,"img":profileData.img,"points":profileData.points}});
             var newLvl = this.updateProfile(profileData).level;
             if(lvl < newLvl){
                 update.data.push({"name":"profile","type":"update","data":{"key":"level","value":profileData.level}});
@@ -190,8 +182,7 @@ angular.module('app')
 
 	    var profileData = {
             "id":0,
-	    	"firstname": "Daria",
-	    	"lastname": "Minina",
+	    	"name": "Daria Minina",
 	    	"img":"dasha.jpeg",
 	    	"mail":"d.minina@cubesolutions.ru",
 	    	"company": "cubesolutions",
