@@ -113,8 +113,6 @@ angular.module('app')
 
             update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
             update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
-            //update rating
-            update.data.push({"name":"rating","type":"update","data":{"id":profileData.id,"name":profileData.name,"img":profileData.img,"points":profileData.points}});
             var newLvl = this.updateProfile(profileData).level;
             if(lvl < newLvl){
                 update.data.push({"name":"profile","type":"update","data":{"key":"level","value":profileData.level}});

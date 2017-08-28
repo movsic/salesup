@@ -10,6 +10,8 @@ angular.module('app')
 		    StorageService.set('challenges',DataProviderService.getChallengesData());
 		    StorageService.set('sales',DataProviderService.getSalesData());
 		    StorageService.set('rating',DataProviderService.getRatingData());
+		    //add yourself to rating
+		    this.getStorageData('rating').push(this.getStorageData('profile'));
 		    this.updateStorage(DataProviderService.getNotifications());
 		};
 
