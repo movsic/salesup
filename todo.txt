@@ -18,13 +18,13 @@ CREATE NEW CHALLENGE VIA CONTROLLER!!!
 new and active challenges redo
 points reward, coins reward, callenge fee -> config
 
+Uncaught Error: tile data is missing.
 script to load js async
-add badge to userpic
+add badge or lvl to userpic
 strange looking tooltips
-tooltip translations 
 
 Sales:
-sales tabs
+sales tabs <- needed?
 sales time periods week month year? data from server? or not?
 change all dates in dataprovider to dynamic
 
@@ -36,13 +36,15 @@ redo challenge ids from "your" and "opponent" to "participants"
 challengeData -> acceptedby to ids
 challengeData -> productsIds get from product table
 separate method to check if challenge is finished
-debug add rating
+debug add rating (for time limited leages)
 debug add sale - id from personData
 update only single fields of object!
 translate rating
 favico icon
 think about the way to support own rating
 add discriptions to rating tables
+lvl in rating -> config points-to-lvl -> client calculation
+stars in cahllenge (q: how to end challenge)
 //--------------------------
 
 Rating:
@@ -64,7 +66,7 @@ add save to profile
 profile click on header
 
 Big fitures:
-Add back notification block in header - save info about your events
+Add back notification block in header - save info about your events -> news for others events
 LVL -> lvl to points / coins, with config tables
 move config to service
 social integration
@@ -78,7 +80,7 @@ Misc:
 general coins info ?
 font problem + russian
 coins icon
-dashboard graph hight
+dashboard graph height
 DIALOGFX!!!!!!!!! <-may be better ?
 badge,challenge directive
 user pic ng-src in image - different sizes ?!
@@ -103,3 +105,4 @@ shop tile on dashboard with carousel photos??
 
 to read
 https://www.gd.ru/articles/4112-geymifikatsiya-v-motivatsii-personala
+http://gametrek.ru/%D0%B1%D0%BB%D0%BE%D0%B3/

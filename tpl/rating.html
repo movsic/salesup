@@ -5,15 +5,12 @@
         <div class="panel-body">
             <div class="panel">
                 <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
-                    <li class="active">
-                        <a href="#userrating" data-toggle="tab" pg-tab role="tab">Your Rating</a>
+                    <li ng-class="{'active': activeTab == 0}">
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)">Your Branch Rating</a>
                     </li>
-                    <li>
-                        <a href="#toprating" data-toggle="tab" pg-tab role="tab">Top Rating</a>
-                    </li>
-                    <li>
-                        <a href="#branchrating" data-toggle="tab" pg-tab role="tab">Branch Rating</a>
-                    </li>
+                    <li ng-class="{'active': activeTab == 1}">
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)">Top Rating</a>
+                    </li> 
                 </ul>
             </div>
             <div class="table-responsive">
@@ -23,12 +20,13 @@
                             <th style="width:5%">#</th>
                             <th style="width:5%"></th>
                             <th style="width:50%">Name</th>
-                            <th style="width:20%">Group</th>
+                            <th style="width:5%">Level</th>
+                            <th style="width:15%">Group</th>
                             <th style="width:20%">Points</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="i in ratingData | orderBy : '-points'" class="bg-succe">
+                        <tr ng-repeat="i in ratingData | filter:{ group: groupFilter } | orderBy : '-points'">
                             <td class="v-align-middle">
                                 <p>{{ $index+1 }}</p>
                             </td>
@@ -37,6 +35,9 @@
                             </td>
                             <td class="v-align-middle">
                                 <p>{{i.name}}</p>
+                            </td>
+                            <td class="v-align-middle">
+                                <p>{{i.points}}</p>
                             </td>
                             <td class="v-align-middle">
                                 <p>{{i.group}}</p>
