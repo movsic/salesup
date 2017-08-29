@@ -17,7 +17,7 @@ angular.module('app')
 
             $translateProvider
                 // load 'en' table on startup
-                .preferredLanguage('en');
+                .preferredLanguage('ru');
                 
 
             $urlRouterProvider
@@ -39,7 +39,7 @@ angular.module('app')
                 })
                 .state('app.home', {
                     url: "/home",
-                    templateUrl: "tpl/home.html",
+                    templateUrl: "tpl/salesup_main.html",
                     controller: 'HomeCtrl',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -54,6 +54,49 @@ angular.module('app')
                                     'assets/js/controllers/home.js'
                                 ]);
                             });
+                        }]
+                    }
+                })
+                .state('app.test1', {
+                    url: '/test1',
+                    controller: 'TestCtrl',
+                    templateUrl: 'tpl/salesup_tests.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/test.js',
+                            ]);
+                        }]
+                    }
+                })
+                .state('app.new', {
+                    url: '/new',
+                    controller: 'NewCtrl',
+                    templateUrl: 'tpl/salesup_p2p.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'select',
+                                //'moment',
+                                'datepicker'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/new.js');
+                            });
+                        }]
+                    }
+                })
+                .state('app.test2', {
+                    url: '/test2',
+                    controller: 'TestCtrl',
+                    templateUrl: 'tpl/salesup_tests_2.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/test.js',
+                            ]);
                         }]
                     }
                 })
@@ -107,7 +150,7 @@ angular.module('app')
                 .state('app.shop', {
                     url: '/shop',
                     controller: 'ShopCtrl',
-                    templateUrl: 'tpl/shop.html',
+                    templateUrl: 'tpl/salesup_shop.html',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
@@ -146,7 +189,7 @@ angular.module('app')
                 .state('app.news', {
                     url: '/news',
                     controller: 'NewsCtrl',
-                    templateUrl: 'tpl/news.html',
+                    templateUrl: 'tpl/salesup_news.html',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
@@ -158,7 +201,7 @@ angular.module('app')
                 .state('app.profile', {
                     url: '/profile',
                     controller: 'ProfileCtrl',
-                    templateUrl: 'tpl/profile.html',
+                    templateUrl: 'tpl/salesup_results.html',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([

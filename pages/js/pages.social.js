@@ -59,6 +59,7 @@
                     "isFitWidth": true
                 }
             });
+           _this.$day.isotope('layout');
         }.bind(this), 500);
 
     }

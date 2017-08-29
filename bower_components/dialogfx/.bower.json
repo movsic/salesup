@@ -1,0 +1,13 @@
+{
+  "name": "dialogfx",
+  "homepage": "https://github.com/codrops/DialogEffects",
+  "_release": "e20e20d3f5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e20e20d3f509b06299030e245abf5ba6f64f1f46"
+  },
+  "_source": "https://github.com/codrops/DialogEffects.git",
+  "_target": "*",
+  "_originalSource": "dialogfx"
+}

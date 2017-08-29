@@ -13,7 +13,7 @@ angular.module('app')
             layout: {
                 menuPin: false,
                 menuBehind: false,
-                theme: 'pages/css/pages.css'
+                //theme: 'pages/css/pages.css'
             },
             author: 'Cube Solutions'
         }

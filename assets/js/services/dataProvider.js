@@ -190,8 +190,8 @@ angular.module('app')
 
 	    var profileData = {
             "id":0,
-	    	"firstname": "Daria",
-	    	"lastname": "Minina",
+	    	"firstname": "Max",
+	    	"lastname": "Kornev",
 	    	"img":"dasha.jpeg",
 	    	"mail":"d.minina@cubesolutions.ru",
 	    	"company": "cubesolutions",

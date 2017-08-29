@@ -1,5 +1,7 @@
 angular.module('app')
 	.service('ActionService', function (StorageService, DataProviderService, NotificationService) {
+		this.newChallenge = {};
+
 		this.getStorageData = function(id){
 			return StorageService.get(id);
 		}
@@ -60,5 +62,23 @@ angular.module('app')
 		this.showModal = function(type, event){
 			NotificationService.showModal(type, event);
 		}
+
+		this.initParallax = function (){
+            $('[data-pages="parallax"]').each(function() {
+                var $parallax = $(this)
+                $parallax.parallax($parallax.data())
+            });
+            $(window).on('scroll', function() {
+                // Disable parallax for Touch devices
+                //if (Modernizr.touch) {
+                //    return;
+                //}
+                $('[data-pages="parallax"]').parallax('animate');
+            });
+            $('[data-pages-progress="circle"]').each(function() {
+	            var $progress = $(this)
+	            $progress.circularProgress($progress.data())
+	        })
+        };
 
 	});

@@ -4,7 +4,36 @@
 
 angular.module('app', ["nvd3"])
     // Chart controller 
-    .controller('HomeCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
+    .controller('HomeCtrl', ['$scope', '$timeout', 'ActionService', 'DataProviderService', function($scope, $timeout, ActionService, DataProviderService) {
+
+    ActionService.initParallax()
+
+    $scope.new = ActionService.newChallenge;
+
+    $("#example_camp").ionRangeSlider({
+            min: 0,
+            max: 5,
+            from: 3,
+            type: 'single',
+            step: 1,
+            postfix: " аб.",
+            prettify_enabled: false,
+            grid: true,
+            disable: true
+        });
+
+    $("#example_new").ionRangeSlider({
+            min: 0,
+            max: 5,
+            from: 0,
+            type: 'single',
+            step: 1,
+            postfix: " шт.",
+            prettify_enabled: false,
+            grid: true,
+            disable: true
+        });
+
 
     var badgeData = {
                 "1":{
@@ -105,4 +134,26 @@ angular.module('app', ["nvd3"])
         };
 
         $scope.nvd3_sales_data = $scope.salesData;
+
+        $scope.game = {};
+        $scope.game.scale=100;
+        $scope.game.show = false;
+        $scope.game.anim = 0;
+        $scope.game.dist = 0;
+        $scope.showGame = function (){
+            $scope.game.show = true;
+        };
+        $scope.switchStage = function () {
+            if($scope.game.anim == 3){ 
+                $scope.game.anim = -1;
+                $scope.game.dist = 0;
+            }
+            $scope.game.anim += 1;
+            $scope.game.dist = 18 * $scope.game.anim;
+            if($scope.game.anim == 2){
+                $timeout(function() { $scope.game.anim = 3;$scope.game.dist = 36;}, 800);
+            }
+            
+        }
+
 }]);

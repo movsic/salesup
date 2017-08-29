@@ -1,156 +1,162 @@
 /*
-
 * Override Pages default styles or create your own styles here
-
 */
 
-.badges-set {
-  background: url('../img/badges/gamification_sm.png') no-repeat;
-  position: relative;
-  display: block;
-}.badges-set.star1 {
-  background-position: -1px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.star2 {
-  background-position: -67px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.star3 {
-  background-position: -133px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.star4 {
-  background-position: -200px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.ok {
-  background-position: -267px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.run {
-  background-position: -334px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.alarm {
-  background-position: -1px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.smile {
-  background-position: -67px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.man {
-  background-position: -133px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.light {
-  background-position: -200px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.basket {
-  background-position: -267px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.eighty {
-  background-position: -334px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.fire {
-  background-position: -1px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.calendar {
-  background-position: -67px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.love {
-  background-position: -133px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.group {
-  background-position: -200px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.ninety {
-  background-position: -267px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.chat {
-  background-position: -334px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.coin {
-  background-image: url('../../assets/img/social/coin.png');
-  position: relative;
-  display: block;
-  height:40px;
-  width:40px;
-}
-.cup {
-  background-image: url('../../assets/img/social/cup2.png');
-  position: relative;
-  display: block;
-  height:106px;
-  width:79px;
+/* Geometria fonts */
+
+@font-face {
+    font-family: "Geometria-Bold";
+    src: url(../../pages/fonts/Geometria/Geometria-Bold.otf) format("truetype");
 }
 
-/*MetroJS overwrite*/
-.live-tile,
-.list-tile,
-.copy-tile,
-.tile-strip .flip-list > li {
-  height: 100%;
-  margin: 0px;
-  outline: 1px solid transparent;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0px;
-  width: 100%;
+@font-face {
+    font-family: "Geometria-BoldItalic";
+    src: url(../../pages/fonts/Geometria/Geometria-BoldItalic.otf) format("truetype");
 }
 
-/*ui-select workaround*/
-.ui-select-multiple input.ui-select-search:not(.ng-touched) {
-    width: 100% !important;
+@font-face {
+    font-family: "Geometria-ExtaBlack";
+    src: url(../../pages/fonts/Geometria/Geometria-ExtaBlack.otf) format("truetype");
 }
 
-.tooltip {
-  opacity: 0.9 !important;;
+@font-face {
+    font-family: "Geometria-ExtraBlackItalic";
+    src: url(../../pages/fonts/Geometria/Geometria-ExtraBlackItalic.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-ExtraLight";
+    src: url(../../pages/fonts/Geometria/Geometria-ExtraLight.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-ExtraLightItalic";
+    src: url(../../pages/fonts/Geometria/Geometria-ExtraLightItalic.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-Heavy";
+    src: url(../../pages/fonts/Geometria/Geometria-Heavy.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-HeavyItalic";
+    src: url(../../pages/fonts/Geometria/Geometria-HeavyItalic.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-Italic";
+    src: url(../../pages/fonts/Geometria/Geometria-Italic.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-Light";
+    src: url(../../pages/fonts/Geometria/Geometria-Light.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-LightItalic";
+    src: url(../../pages/fonts/Geometria/Geometria-LightItalic.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-Medium";
+    src: url(../../pages/fonts/Geometria/Geometria-Medium.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-MediumItalic";
+    src: url(../../pages/fonts/Geometria/Geometria-MediumItalic.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-Thin";
+    src: url(../../pages/fonts/Geometria/Geometria-Thin.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria-ThinItalic";
+    src: url(../../pages/fonts/Geometria/Geometria-ThinItalic.otf) format("truetype");
+}
+
+@font-face {
+    font-family: "Geometria";
+    src: url(../../pages/fonts/Geometria/Geometria.otf) format("truetype");
+}
+
+/* Text styles */
+
+h1 {
+    font-family: "Geometria", sans-serif;
+    font-size: 38px;
+    letter-spacing: -0.5px;
+}
+
+h3 {
+    font-family: "Geometria", sans-serif;
+    font-size: 24px;
+    letter-spacing: -0.5px;
+}
+
+h6 {
+    font-family: "Geometria-Heavy", sans-serif;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+h5 {
+    font-family: "Geometria", sans-serif;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+h8 {
+    font-family: "Geometria-Bold", sans-serif;
+    font-size: 12px;
+    letter-spacing: -0.5px;
+}
+
+body {
+    background-color: white;
+    font-family: "Geometria-Bold", sans-serif;
+    color: #333;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+p {
+    font-family: "Geometria-Bold", sans-serif;
+    font-size: 13px;
+    letter-spacing: -0.5px;
+    line-height: 200%;
+}
+
+
+/* Font Weights
+------------------------------------
+ */
+.normal {
+    font-weight: normal;
+    font-family: "Geometria-Medium", sans-serif;
+    letter-spacing: -0.5px;
+}
+
+.semi-bold {
+    font-weight: 400 !important;
+    font-family: "Geometria-ExtaBlack", sans-serif;
+    letter-spacing: -0.5px;
+}
+.bold {
+    font-weight: bold !important;
+    font-family: "Geometria-Heavy", sans-serif;
+    letter-spacing: -0.5px;
+}
+.light {
+    font-weight: 300 !important;
+    font-family: "Geometria", sans-serif;
+}
+
+.title {
+    font-weight: bold !important;
+    font-family: "Geometria-ExtaBlack", sans-serif;
 }
