@@ -159,19 +159,19 @@ angular.module('app')
         ];
 
         var personData = [
-            {"id":1,"name":"Scott Pilgrim","img":"1.jpg","points":10240},
-            {"id":2,"name":"Ramona Flowers","img":"2.jpg","points":20480},
-            {"id":3,"name":"Wallace Wells","img":"3.jpg","points":5120},
-            {"id":4,"name":"Knives Chau","img":"4.jpg","points":2560},
-            {"id":5,"name":"Stephen Stills","img":"5.jpg","points":1280},
-            {"id":6,"name":"Kim Pine","img":"6.jpg","points":640},
-            {"id":7,"name":"Young Neil","img":"7.jpg","points":320},
-            {"id":8,"name":"Envy Adams","img":"8.jpg","points":160},
-            {"id":9,"name":"Stacey Pilgrim","img":"9.jpg","points":80},
-            {"id":10,"name":"Julie Powers","img":"a.jpg","points":40},
-            {"id":11,"name":"Lynette Guycott","img":"c.jpg","points":20},
-            {"id":12,"name":"Michael Comeau","img":"be.jpg","points":10},
-            {"id":13,"name":"Simon Lee","img":"d.jpg","points":0},
+            {"id":1,"name":"Scott Pilgrim","img":"1.jpg","points":10240,"group":"Moscow"},
+            {"id":2,"name":"Ramona Flowers","img":"2.jpg","points":20480,"group":"Moscow"},
+            {"id":3,"name":"Wallace Wells","img":"3.jpg","points":5120,"group":"Moscow"},
+            {"id":4,"name":"Knives Chau","img":"4.jpg","points":2560,"group":"Moscow"},
+            {"id":5,"name":"Stephen Stills","img":"5.jpg","points":1280,"group":"Moscow"},
+            {"id":6,"name":"Kim Pine","img":"6.jpg","points":640,"group":"Moscow"},
+            {"id":7,"name":"Young Neil","img":"7.jpg","points":320,"group":"Moscow"},
+            {"id":8,"name":"Envy Adams","img":"8.jpg","points":160,"group":"Moscow"},
+            {"id":9,"name":"Stacey Pilgrim","img":"9.jpg","points":80,"group":"Moscow"},
+            {"id":10,"name":"Julie Powers","img":"a.jpg","points":40,"group":"Vologda"},
+            {"id":11,"name":"Lynette Guycott","img":"c.jpg","points":20,"group":"Vologda"},
+            {"id":12,"name":"Michael Comeau","img":"be.jpg","points":10,"group":"Vologda"},
+            {"id":13,"name":"Simon Lee","img":"d.jpg","points":0,"group":"Vologda"},
         ];
 
         var challengeTypeData = [
@@ -184,7 +184,7 @@ angular.module('app')
 	    	"img":"dasha.jpeg",
 	    	"mail":"d.minina@cubesolutions.ru",
 	    	"company": "cubesolutions",
-	    	"group": "moscow",
+	    	"group": "Moscow",
 	    	"points":90,
             "level":null,
             "prevLevel":null,

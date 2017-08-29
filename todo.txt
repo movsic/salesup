@@ -35,17 +35,20 @@ redo sale to challenge callculation -> addSale(userId, .....)
 redo challenge ids from "your" and "opponent" to "participants"
 challengeData -> acceptedby to ids
 challengeData -> productsIds get from product table
+separate method to check if challenge is finished
 debug add rating
 debug add sale - id from personData
 update only single fields of object!
 translate rating
-add branch to rating
 favico icon
+think about the way to support own rating
+add discriptions to rating tables
 //--------------------------
 
 Rating:
 hightlight you
 league with timelimit + modal + cheat
+add pagnation
 
 Coins:
 coins page with bonus calculation (list of successful challenges and sales)
