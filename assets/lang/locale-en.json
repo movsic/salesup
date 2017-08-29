@@ -104,5 +104,15 @@
 	"tooltip_points": "Points",
 	"tooltip_coins": "Coins",
 	"tooltip_debug": "Debug",
-	"tooltip_lang": "Language"	
+	"tooltip_lang": "Language",
+
+	"rating-tab-group": "Your Branch Rating",
+	"rating-tab-top": "Top Rating",
+
+	"rating-table-th-position": "#",
+	"rating-table-th-image": "",
+	"rating-table-th-name": "Name",
+	"rating-table-th-level": "Level",
+	"rating-table-th-group": "Group",
+	"rating-table-th-points": "Points"
 }

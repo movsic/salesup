@@ -6,10 +6,10 @@
             <div class="panel">
                 <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
                     <li ng-class="{'active': activeTab == 0}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)">Your Branch Rating</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'rating-tab-group'}}</a>
                     </li>
                     <li ng-class="{'active': activeTab == 1}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)">Top Rating</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'rating-tab-top'}}</a>
                     </li> 
                 </ul>
             </div>
@@ -17,12 +17,12 @@
                 <table class="table table-hover" id="basicTable" ui-options="options">
                     <thead>
                         <tr>
-                            <th style="width:5%">#</th>
-                            <th style="width:5%"></th>
-                            <th style="width:50%">Name</th>
-                            <th style="width:5%">Level</th>
-                            <th style="width:15%">Group</th>
-                            <th style="width:20%">Points</th>
+                            <th style="width:5%" translate>{{'rating-table-th-position'}}</th>
+                            <th style="width:5%" translate>{{'rating-table-th-image'}}</th>
+                            <th style="width:50%" translate>{{'rating-table-th-name'}}</th>
+                            <th style="width:5%" translate>{{'rating-table-th-level'}}</th>
+                            <th style="width:15%" translate>{{'rating-table-th-group'}}</th>
+                            <th style="width:20%" translate>{{'rating-table-th-points'}}</th>
                         </tr>
                     </thead>
                     <tbody>

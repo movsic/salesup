@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('RatingCtrl', ['$scope', 'ActionService', function($scope, ActionService) {
+    .controller('RatingCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
         $scope.ratingData = ActionService.getStorageData('rating');
 
         $scope.activeTab = 0;

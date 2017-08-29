@@ -39,7 +39,6 @@ separate method to check if challenge is finished
 debug add rating (for time limited leages)
 debug add sale - id from personData
 update only single fields of object!
-translate rating
 favico icon
 think about the way to support own rating
 add discriptions to rating tables

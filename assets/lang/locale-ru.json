@@ -103,5 +103,15 @@
 	"tooltip_points": "Очки",
 	"tooltip_coins": "Монеты",
 	"tooltip_debug": "Дебаг",
-	"tooltip_lang": "Язык"	
+	"tooltip_lang": "Язык",
+
+	"rating-tab-group": "Рейтинг Филиала",
+	"rating-tab-top": "Рейтинг лидеров",
+
+	"rating-table-th-position": "№",
+	"rating-table-th-image": "",
+	"rating-table-th-name": "Имя",
+	"rating-table-th-level": "Уровень",
+	"rating-table-th-group": "Филиал",
+	"rating-table-th-points": "Очки"
 }
