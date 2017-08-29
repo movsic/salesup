@@ -44,6 +44,7 @@ think about the way to support own rating
 add discriptions to rating tables
 lvl in rating -> config points-to-lvl -> client calculation
 stars in cahllenge (q: how to end challenge)
+limit max level points gain
 //--------------------------
 
 Rating:

@@ -1,13 +1,13 @@
 angular.module('app')
-	.service('DataProviderService', function () {
+	.service('DataProviderService', function (HelperService) {
 	    this.getProfileData = function () { 
             return JSON.parse(JSON.stringify(this.updateProfile(profileData)));
         };
 
         this.updateProfile = function (profileData){
-            profileData.level = this.getLevelForPoints(profileData.points);
-            profileData.nextLevel = this.getPointsForLevel(profileData.level+1);
-            profileData.prevLevel = this.getPointsForLevel(profileData.level);
+            profileData.level = HelperService.getLevelForPoints(profileData.points, configData);
+            profileData.nextLevel = HelperService.getPointsForLevel(profileData.level+1, configData);
+            profileData.prevLevel = HelperService.getPointsForLevel(profileData.level, configData);
             return profileData;
         };
 
@@ -48,14 +48,6 @@ angular.module('app')
 
         this.getPointsForChallenge = function (level) {
             return level * 2;
-        }
-
-        this.getLevelForPoints = function (points) {
-            return Math.floor(Math.pow(points,1/3));
-        }
-
-        this.getPointsForLevel = function (level) {
-            return Math.pow(level,3);
         }
 
         this.getProductData = function (name) { 
@@ -140,6 +132,10 @@ angular.module('app')
             }
             return update;
         }
+
+        var configData = {
+            "pointsToLevel":[0,1,16,81,256,625,1296,2401,4096,6561,10000],
+        };
 
         //block of debug data!
 	    var productData = [
