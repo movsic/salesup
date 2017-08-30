@@ -149,9 +149,9 @@ angular.module('app', ["nvd3"])
                 $scope.game.dist = 0;
             }
             $scope.game.anim += 1;
-            $scope.game.dist = 18 * $scope.game.anim;
+            $scope.game.dist = 15 * $scope.game.anim;
             if($scope.game.anim == 2){
-                $timeout(function() { $scope.game.anim = 3;$scope.game.dist = 36;}, 800);
+                $timeout(function() { $scope.game.anim = 3;$scope.game.dist = 30;}, 800);
             }
             
         }
