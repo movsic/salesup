@@ -107,9 +107,11 @@
                                     <div class="card-description">
                                         <p>Количество продаж <span class="badge badge-success text-white fs-13 ">N</span></p>
 
-                                        <div class="irs-wrapper primary m-l-20 m-r-20 m-t-5">
+                                        <input class="primary m-l-20 m-r-20 m-t-5" ion-range-slider ng-model="newChallenge.count" apply="apply" range-options="{min: 0, max: 5, step: 1, grid: true, type:'single', postfix:' шт.', prettify_enabled: false}">
+
+                                        <!--<div class="irs-wrapper primary m-l-20 m-r-20 m-t-5">
                                             <input type="text" id="example_p2p" name="example_name" value="3" ng-model="newChallenge.count"/>
-                                        </div><br>
+                                        </div>--><br>
                                         <p>Наименование товара <span class="badge badge-success text-white fs-13 ">X</span></p>
 
                                         <div class="radio radio-success">
@@ -192,7 +194,7 @@
                                         <h5>Результат</h5>
                                     </div>
                                     <div class="card-description">
-                                        <p>Кто первый продаст <span class="badge badge-success text-white fs-13 ">{{newChallenge.count}}</span> наименований товара <span class="badge badge-success text-white fs-13 ">{{newChallenge.product}}</span>, тот получает призовой фонд!</p>
+                                        <p>Кто первый продаст <span class="badge badge-success text-white fs-13 ">{{newChallenge.count}} шт.</span> наименований товара <span class="badge badge-success text-white fs-13 ">{{newChallenge.product}}</span>, тот получает призовой фонд!</p>
                                         <a ui-sref="app.home" class="btn btn-primary full-width btn-cons semi-bold fs-12 font-geometria  m-t-5" ng-click="createChallenge()">Запустить челлендж</a>
                                     </div>
                                 </div>
