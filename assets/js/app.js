@@ -8,10 +8,10 @@
 
 angular.module('app', [
     'ui.router',
-    'ui.utils',
     'ui.bootstrap',
     'oc.lazyLoad',
-    'pascalprecht.translate',
-    'ui.odometer'
+    'pascalprecht.translate'
 ]);
+
+//    'ui.utils',    'ui.odometer'
  

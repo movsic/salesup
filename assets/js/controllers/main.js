@@ -3,10 +3,26 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('MainCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
+    .controller('MainCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', function($scope, $translate, ActionService, HelperService) {
     	ActionService.loadInitData();
 
-    	$scope.profileData = ActionService.getStorageData('profile');
+        $scope.configData = ActionService.getStorageData('config');
+        $scope.profileData = ActionService.getStorageData('profile');
+
+        $scope.updateProfileData = function (profileData, configData) {
+            profileData.level = HelperService.getLevelForPoints(profileData.points, configData);
+            profileData.pointsNextLevel = HelperService.getPointsForLevel(profileData.level+1, configData);
+            profileData.pointsPrevLevel = HelperService.getPointsForLevel(profileData.level, configData);
+        }
+        $scope.updateProfileData($scope.profileData, $scope.configData);
+        $scope.$watch(
+            function () { return $scope.profileData; }, 
+            function (newValue, oldValue) {
+                if (oldValue.points !== newValue.points)
+                    $scope.updateProfileData($scope.profileData, $scope.configData);
+            },
+            true);
+
     	$scope.showNotification = ActionService.showNotification;
     	$scope.showModal = ActionService.showModal;
 

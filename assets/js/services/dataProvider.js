@@ -1,15 +1,6 @@
 angular.module('app')
 	.service('DataProviderService', function (HelperService) {
-	    this.getProfileData = function () { 
-            return JSON.parse(JSON.stringify(this.updateProfile(profileData)));
-        };
-
-        this.updateProfile = function (profileData){
-            profileData.level = HelperService.getLevelForPoints(profileData.points, configData);
-            profileData.nextLevel = HelperService.getPointsForLevel(profileData.level+1, configData);
-            profileData.prevLevel = HelperService.getPointsForLevel(profileData.level, configData);
-            return profileData;
-        };
+	    this.getProfileData = function () { return JSON.parse(JSON.stringify(profileData));};
 
 	    this.getNewsData = function () { return JSON.parse(JSON.stringify(newsData))};
 
@@ -28,6 +19,7 @@ angular.module('app')
 	    this.getSalesAggregateData = function () { return JSON.parse(JSON.stringify(salesAggregateData))};
 	    this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
 	    this.getRatingData = function () { return JSON.parse(JSON.stringify(personData));};
+        this.getConfigData = function () { return JSON.parse(JSON.stringify(configData));};
 
         this.getChallengeTypeData = function () { return challengeTypeData};
         this.getPersonData = function (name) { 
@@ -80,15 +72,19 @@ angular.module('app')
 
         //debug
         this.addSale = function(){
+            //save lvl to check did we get new level?
+            var startLevel = HelperService.getLevelForPoints(profileData.points, configData);
+
             var update = {"data":[],"notifications":[],"modals":[]};
             var newSale = {"type":"Phone","typeId":1,"name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
             var lvl = profileData.level;
             salesData.push(newSale);
-            profileData.points += this.getPointsForSell(profileData.level);
+            profileData.points += HelperService.getPointsForAction(profileData.points, configData);
             update.data.push({"name":"sales","type":"add","data":newSale});
             
             update.notifications.push({"type":"success","text":"your-sale","params":{"sale":newSale.name,"points":this.getPointsForSell(profileData.level)}});
             
+            //check if any challenge is finished
             for (var i in challengeData){
                 if ((challengeData[i].productId.indexOf(newSale.typeId) > -1 || challengeData[i].productId.indexOf(productData[newSale.typeId].typed) > -1)
                     && challengeData[i].status == 1 && challengeData[i].type == 0){
@@ -96,7 +92,7 @@ angular.module('app')
                     if (challengeData[i].yourProgress >= challengeData[i].amount){
                         challengeData[i].status = 2;
                         profileData.coins += challengeData[i].reward.coins;
-                        profileData.points += challengeData[i].reward.points;
+                        profileData.points += HelperService.getPointsForChallenge(profileData.points, configData);
                         update.modals.push({"type":"win","event":challengeData[i]});
                     }
                     update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
@@ -105,12 +101,12 @@ angular.module('app')
 
             update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
             update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
-            var newLvl = this.updateProfile(profileData).level;
-            if(lvl < newLvl){
-                update.data.push({"name":"profile","type":"update","data":{"key":"level","value":profileData.level}});
-                update.data.push({"name":"profile","type":"update","data":{"key":"prevLevel","value":profileData.prevLevel}});
-                update.data.push({"name":"profile","type":"update","data":{"key":"nextLevel","value":profileData.nextLevel}});
-                update.modals.push({"type":"levelup","event":{"level":profileData.level}});
+
+            //level recalculation
+            var endLevel = HelperService.getLevelForPoints(profileData.points, configData);
+            if(endLevel < startLevel){
+                //this should be the firs event!!! to prevent everything from update!
+                update.modals.push({"type":"levelup","event":{"level":endLevel}});
             }
 
             return update;
@@ -134,7 +130,9 @@ angular.module('app')
         }
 
         var configData = {
-            "pointsToLevel":[0,1,16,81,256,625,1296,2401,4096,6561,10000],
+            "pointsToLevel":[0,10,50,100,200,500,1000,2000,3000,5000],
+            "pointsForChallenge":[0,1,5,10,20,50,100,200,300,500],
+            "pointsForAction":[0,1,2,5,10,25,50,100,150,250],
         };
 
         //block of debug data!
@@ -243,7 +241,7 @@ angular.module('app')
                 "acceptDate": null,
                 "endDate": "2017-11-13 12:00",
                 "fee": 5,
-                "reward": {"coins":100,"points":200},
+                "reward": {"coins":100},
                 "acceptedby":["Scott Pilgrim", "Ramona Flowers"],
                 "status": 0
             },
@@ -261,7 +259,7 @@ angular.module('app')
                 "acceptDate": null,
                 "endDate": "2017-10-10 12:00",
                 "fee": 30,
-                "reward": {"coins":100,"points":200},
+                "reward": {"coins":100},
                 "acceptedby":["Knives Chau"],
                 "status": 0
             },
@@ -279,7 +277,7 @@ angular.module('app')
                 "acceptDate": "2017-07-14 12:00",
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
-                "reward": {"coins":90,"points":300},
+                "reward": {"coins":90},
                 "acceptedby":["Kim Pine"],
                 "status": 1
             },
@@ -297,7 +295,7 @@ angular.module('app')
                 "acceptDate": "2017-07-14 12:00",
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
-                "reward": {"coins":90,"points":300},
+                "reward": {"coins":90},
                 "acceptedby":["Kim Pine"],
                 "status": 1
             },
@@ -315,7 +313,7 @@ angular.module('app')
                 "acceptDate": null,
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
-                "reward": {"coins":90,"points":300},
+                "reward": {"coins":90},
                 "acceptedby":["Young Neil"],
                 "status": 2
             },
@@ -333,7 +331,7 @@ angular.module('app')
                 "acceptDate": null,
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
-                "reward": {"coins":90,"points":300},
+                "reward": {"coins":90},
                 "acceptedby":["Stephen Stills","Stacey Pilgrim"],
                 "status": 3
             },
@@ -351,7 +349,7 @@ angular.module('app')
                 "acceptDate": null,
                 "endDate": "2017-10-13 12:00",
                 "fee": 20,
-                "reward": {"coins":90,"points":300},
+                "reward": {"coins":90},
                 "acceptedby":[],
                 "status": 4
             },

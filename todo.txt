@@ -92,6 +92,10 @@ calendar of challenges?
 AUTOGENERATE TEST DATA!!!
 move noti status icons from profiles
 formatTime function from main to angular moment
+add balancing graph for gonfig values
+multiple lvl gain? <- should be impossible!
+do we need lvl info about points gain in new level modal?
+to think - own data in rating -> how to store?
 
 Notifications:
 define types notifications

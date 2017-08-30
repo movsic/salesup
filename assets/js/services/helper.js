@@ -14,4 +14,16 @@ angular.module('app')
             return configData.pointsToLevel[level];
             //return Math.pow(level,3);
         }
+
+        this.getPointsForChallenge = function (points, configData) {
+            var level = this.getLevelForPoints(points,configData);
+            return configData.pointsForChallenge[level];
+            //return Math.pow(level,3);
+        }
+
+        this.getPointsForAction = function (points, configData) {
+            var level = this.getLevelForPoints(points,configData);
+            return configData.pointsForAction[level];
+            //return Math.pow(level,3);
+        }
 	});

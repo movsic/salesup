@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('app', ["nvd3"])
+angular.module('app', ["nvd3", "ngOdometer"])
     // Chart controller 
     .controller('HomeCtrl', ['$scope', 'DataProviderService', function($scope, DataProviderService) {
 
