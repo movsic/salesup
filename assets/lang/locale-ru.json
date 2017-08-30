@@ -53,11 +53,11 @@
 	"notification-example-header":"Scott Piligrim",
 	"notification-example-text":"Выиграл миссию!",
 
-	"ChallengeStatus0": "Новый",
-	"ChallengeStatus1": "Текущий",
-	"ChallengeStatus2": "Успешный",
-	"ChallengeStatus3": "Проваленый",
-	"ChallengeStatus4": "Ожидающий",
+	"challenge-status-0": "Новый",
+	"challenge-status-1": "Текущий",
+	"challenge-status-2": "Успешный",
+	"challenge-status-3": "Проваленый",
+	"challenge-status-4": "Ожидающий",
 
 	"NewChallengeType0": "Миссия по продаже",
 
@@ -119,5 +119,9 @@
 	"debug-modal-win":"Экран победы",
 	"debug-modal-levelup":"Экран уровня",
 	"debug-sale-other":"Продажа оппонента",
-	"debug-sale-own":"Своя продажа"
+	"debug-sale-own":"Своя продажа",
+
+	"news-type-0":"Начал миссию",
+	"news-type-1":"Выиграл миссию",
+	"news-type-2":"Получил бейдж"
 }

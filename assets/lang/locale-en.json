@@ -54,11 +54,11 @@
 	"notification-example-text":"Won challenge!",
 
 
-	"ChallengeStatus0": "Open",
-	"ChallengeStatus1": "In Progress",
-	"ChallengeStatus2": "Successful",
-	"ChallengeStatus3": "Failed",
-	"ChallengeStatus4": "Pending",
+	"challenge-status-0": "Open",
+	"challenge-status-1": "In Progress",
+	"challenge-status-2": "Successful",
+	"challenge-status-3": "Failed",
+	"challenge-status-4": "Pending",
 
 	"NewChallengeType0": "Selling challenge",
 
@@ -120,5 +120,9 @@
 	"debug-modal-win":"Show Win",
 	"debug-modal-levelup":"Show LevelUp",
 	"debug-sale-other":"Add Opponent Sale",
-	"debug-sale-own":"Add Own Sale"
+	"debug-sale-own":"Add Own Sale",
+
+	"news-type-0":"Started Challenge",
+	"news-type-1":"Won Challenge",
+	"news-type-2":"Earned Badge"
 }

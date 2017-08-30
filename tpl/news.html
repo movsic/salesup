@@ -2,13 +2,13 @@
     <div class="timeline-container top-circle">
         <section class="timeline">
             <div class="timeline-block" ng-repeat="i in newsData">
-                <div class="timeline-point warning" ng-if="i.type==1">
+                <div class="timeline-point warning" ng-if="i.type==0">
                     <i class="pg-plus"></i>
                 </div>
-                <div class="timeline-point success" ng-if="i.type==2">
+                <div class="timeline-point success" ng-if="i.type==1">
                     <i class="fa fa-thumbs-up"></i>
                 </div>
-                <div class="timeline-point success" ng-if="i.type==3">
+                <div class="timeline-point success" ng-if="i.type==2">
                     <i class="fa fa-star"></i>
                 </div>
                 <!--
@@ -27,7 +27,7 @@
                             <h5>{{i.name}}</h5>
                         </div>
                         <div class="card-description">
-                            <p>{{getType(i.type)}} {{i.result}}</p>
+                            <p translate>{{'news-type-' + i.type}}</p>
                         </div>
                         <!-- likes? shares?
                         <div class="card-footer clearfix" ng-show="false">

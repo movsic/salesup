@@ -129,6 +129,16 @@ angular.module('app')
             return update;
         }
 
+        var getRandomTimestamp = function (days){
+            var timestamp = moment();
+            if(days > 0){
+                timestamp = timestamp.add(days,'days').add(Math.floor((Math.random() * 1440) + 720),'minutes');
+            }else{
+                timestamp = timestamp.subtract(days,'days').subtract(Math.floor((Math.random() * 1440) + 720),'minutes');
+            }
+            return timestamp.unix()
+        }
+
         var configData = {
             "pointsToLevel":[0,10,50,100,200,500,1000,2000,3000,5000],
             "pointsForChallenge":[0,1,5,10,20,50,100,200,300,500],
@@ -179,53 +189,40 @@ angular.module('app')
 	    	"mail":"d.minina@cubesolutions.ru",
 	    	"company": "cubesolutions",
 	    	"group": "Moscow",
-	    	"points":90,
-            "level":null,
-            "prevLevel":null,
-            "nextLevel":null,          
-	    	"position":3,
-	    	"totalPositions":10,
+	    	"points":90,       
             "coins":20,
-            "coinsChange":5,
             "lastLogin": 1500649789,
             "badges":[
-                {"type": 1, "timestamp": 1499697164},
-                {"type": 2, "timestamp": 1499697164},
-                {"type": 3, "timestamp": 1499697164},
-                {"type": 4, "timestamp": 1499697164},
+                {"type": 1, "timestamp": getRandomTimestamp(-1)},
+                {"type": 2, "timestamp": getRandomTimestamp(-2)},
+                {"type": 3, "timestamp": getRandomTimestamp(-3)},
+                {"type": 4, "timestamp": getRandomTimestamp(-4)},
             ]
         };
 
+        //type 0=Started Challenge 1=Won Challenge 2=Earned Badge
         var newsData = [
         	{
-                "id": 1,
-                "timestamp":1499786564,
-                "branch": "Strogino",
-                "img": "dasha.jpeg",
-                "name": "Daria Minina",
+                "timestamp":getRandomTimestamp(-1),
+                "user": {"id":1},
+                "type": 0,
+                "params": {}
+            },
+            {
+                "timestamp":getRandomTimestamp(-2),
+                "user": {"id":2},
                 "type": 1,
-                "result": "Sell 5 of Sony Xperia XA1 Dual"
+                "params": {}
             },
             {
-                "id": 2,
-                "timestamp":1499786564,
-                "branch": "Universitet",
-                "img": "vlad.jpeg",
-                "name": "Dmitry Nikolaev",
+                "timestamp":getRandomTimestamp(-3),
+                "user": {"id":3},
                 "type": 2,
-                "result": "Sell 5 of Samsung Galaxy 7"
-            },
-            {
-                "id": 3,
-                "timestamp":1499786564,
-                "branch": "Kievskaya",
-                "img": "max.jpeg",
-                "name": "Alexandr Sorokin",
-                "type": 3,
-                "result": "Best agent today!"
+                "params": {}
             }
         ];
 
+        //type 0=Open 1=In Progress 2=Successful 3=Failed 4=Pending
         var challengeData = [
             {
             	"id":0,
@@ -237,9 +234,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": null,
                 "opponentProgress": 0,
-                "createDate": "2017-07-13 12:00",
+                "createDate": getRandomTimestamp(3),
                 "acceptDate": null,
-                "endDate": "2017-11-13 12:00",
+                "endDate": getRandomTimestamp(1),
                 "fee": 5,
                 "reward": {"coins":100},
                 "acceptedby":["Scott Pilgrim", "Ramona Flowers"],
@@ -255,9 +252,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": 1,
                 "opponentProgress": 0,
-                "createDate": "2017-07-15 12:00",
+                "createDate": getRandomTimestamp(3),
                 "acceptDate": null,
-                "endDate": "2017-10-10 12:00",
+                "endDate": getRandomTimestamp(1),
                 "fee": 30,
                 "reward": {"coins":100},
                 "acceptedby":["Knives Chau"],
