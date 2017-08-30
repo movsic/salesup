@@ -1,6 +1,7 @@
 
 <!-- BEGIN SIDEBPANEL-->
 <!-- END SIDEBPANEL-->
+<link href="../assets/plugins/nvd3/src/nv.d3.css" rel="stylesheet" type="text/css" media="screen"/>
 <!-- START PAGE-CONTAINER -->
 <div class="page-container">
     <div class="header header-sm-height">
@@ -21,98 +22,31 @@
         <!-- START PAGE CONTENT -->
         <div class="content">
             <div class="container-fluid p-l-25 p-r-25 p-t-0 p-b-25 sm-padding-10">
-                <!-- START ROW -->
-                <!--
                 <div class="row">
                     <div class="col-lg-12 m-b-10">
                         <h4 class="font-geometria bold p-l-10 p-r-10">Мои продажи</h4>
                         <div class="container-fluid p-l-25 p-r-25 p-t-0  sm-padding-10 ">
                             <div class="row">
                                 <div class="col-lg-4 m-b-10">
-                                    <div class="card social-card share full-width m-b-10 no-border" data-social="item">
+                                    <div class="card social-card share full-width full-height m-b-10 no-border" data-social="item">
                                         <div class="card-header">
-                                            <div class="pull-right">
-                                                <span class="badge badge-success text-white inline">Месяц</span></h5>
-                                                <span class="badge badge-success text-white inline">Квартал</span></h5>
-                                                <span class="badge badge-success text-white inline">Год</span></h5>
-                                            </div>
+                                                <span class="badge badge-success text-white inline pull-left">По количеству</span>
+                                                <span class="badge badge-success text-white inline pull-right">Месяц</span>
                                             <div class="clearfix"></div>
                                         </div>
-                                        График
+                                        <div class="card-description">
+                                            <div class="ar-1-1">
+                                                <div class='widget-7-chart line-chart' data-y-grid="false" data-points="false" data-stroke-width="5">
+                                                    <svg></svg>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 m-b-10">
-                        <h4 class="font-geometria bold p-l-10 p-r-10">Мои монеты</h4>
-                        <div class="container-fluid p-l-25 p-r-25 p-t-0  sm-padding-10 ">
-                            <div class="row">
-                                <div class="col-lg-4 m-b-10">
-                                    <div class="card social-card share full-width m-b-10 no-border" data-social="item">
-                                        <div class="card-header">
-                                            <div class="pull-right">
-                                                <span class="badge badge-success text-white inline">Месяц</span></h5>
-                                                <span class="badge badge-success text-white inline">Квартал</span></h5>
-                                                <span class="badge badge-success text-white inline">Год</span></h5>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        График
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 m-b-10">
-                        <h4 class="font-geometria bold p-l-10 p-r-10">Мой уровень</h4>
-                        <div class="container-fluid p-l-25 p-r-25 p-t-0  sm-padding-10 ">
-                            <div class="row">
-                                <div class="col-lg-4 m-b-10">
-                                    <div class="card social-card share full-width m-b-10 no-border" data-social="item">
-                                        <div class="card-header">
-                                            <div class="pull-right">
-                                                <span class="badge badge-success text-white inline">Месяц</span></h5>
-                                                <span class="badge badge-success text-white inline">Квартал</span></h5>
-                                                <span class="badge badge-success text-white inline">Год</span></h5>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        График
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-                </div>
-                 <div class="row">
-                    <div class="col-lg-12 m-b-10">
-                        <h4 class="font-geometria bold p-l-10 p-r-10">Статистика челленджи</h4>
-                        <div class="container-fluid p-l-25 p-r-25 p-t-0  sm-padding-10 ">
-                            <div class="row">
-                                <div class="col-lg-4 m-b-10">
-                                    <div class="card social-card share full-width m-b-10 no-border" data-social="item">
-                                        <div class="card-header">
-                                            <div class="pull-right">
-                                                <span class="badge badge-success text-white inline">Месяц</span></h5>
-                                                <span class="badge badge-success text-white inline">Квартал</span></h5>
-                                                <span class="badge badge-success text-white inline">Год</span></h5>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        График
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            -->
                  <div class="row">
                     <div class="col-lg-12 m-b-10">
                         <h4 class="font-geometria bold p-l-10 p-r-10">Мои бейджи</h4>
@@ -347,3 +281,257 @@
     <!-- END PAGE CONTENT WRAPPER -->
 </div>
 <!-- END PAGE CONTAINER -->
+
+<script src="../assets/plugins/nvd3/lib/d3.v3.js" type="text/javascript"></script>
+<script src="../assets/plugins/nvd3/nv.d3.min.js" type="text/javascript"></script>
+
+<script src="../assets/plugins/rickshaw/rickshaw.min.js"></script>
+
+<script>
+    /*
+     Widget specific JS (ie: init scripts of
+     plugins used in the widget) go here
+     */
+
+    nv.addGraph(function() {
+        var data = [{key: "Товары", values:
+                [
+                    {
+                        "x": 1,
+                        "y": 300
+                    },
+                    {
+                        "x": 2,
+                        "y": 350
+                    },
+                    {
+                        "x": 3,
+                        "y": 300
+                    },
+                    {
+                        "x": 4,
+                        "y": 500
+                    },
+                    {
+                        "x": 5,
+                        "y": 550
+                    }
+                ],"area": true },
+            {key: "Услуги", values:
+                    [
+                        {
+                            "x": 1,
+                            "y": 210
+                        },
+                        {
+                            "x": 2,
+                            "y": 250
+                        },
+                        {
+                            "x": 3,
+                            "y": 200
+                        },
+                        {
+                            "x": 4,
+                            "y": 310
+                        },
+                        {
+                            "x": 5,
+                            "y": 370
+                        }
+                    ],"area": true },
+            {key: "Подключения", values:
+                    [
+                        {
+                            "x": 1,
+                            "y": 130
+                        },
+                        {
+                            "x": 2,
+                            "y": 150
+                        },
+                        {
+                            "x": 3,
+                            "y": 100
+                        },
+                        {
+                            "x": 4,
+                            "y": 110
+                        },
+                        {
+                            "x": 5,
+                            "y": 170
+                        }
+                    ],"area": true }];
+
+        var chart = nv.models.lineChart()
+                .x(function(d) {
+                    return d.x
+                })
+                .y(function(d) {
+                    return d.y
+                })
+                .color([
+                    $.Pages.getColor('danger'),
+                    $.Pages.getColor('complete'),
+                    $.Pages.getColor('primary'),
+                    $.Pages.getColor('success')
+                ])
+                .showLegend(true)
+                .forceY([0])
+                .margin({
+                    left: 30,
+                    right: 15,
+                    bottom: 45
+                })
+                .interpolate("monotone")
+                .useInteractiveGuideline(true);
+
+
+        chart.legend.margin({top: 10, right:0, left:0, bottom: 15});
+
+        chart.legend.align(false);
+
+        chart.yAxis
+                .tickFormat(d3.format(".f"));
+
+        chart.xAxis
+                .tickValues([1,2,3,4,5,6,7,8,9,10,11,12])
+                .axisLabel('Период')
+                .tickFormat(function(d) {
+                    return ['', 'Jan', 'Feb', 'Mar', 'Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d];
+                });
+
+        d3.select('.widget-7-chart svg')
+                .datum(data)
+                .transition().duration(500)
+                .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        $('.widget-7-chart').data('chart', chart);
+
+        return chart;
+    });
+</script>
+<script type='text/javascript'>
+    var chart;
+    var ticks = [];
+    var data = [{key: "Generated", values:
+            [
+                {
+                    "x": "20% discount",
+                    "y": 25
+                },
+                {
+                    "x": "50 TL discount",
+                    "y": 36
+                },
+                {
+                    "x": "10% discount",
+                    "y": 58
+                }
+            ],"area": true },
+        {key: "Sent", values:
+                [
+                    {
+                        "x": "20% discount",
+                        "y": 20
+                    },
+                    {
+                        "x": "50 TL discount",
+                        "y": 30
+                    },
+                    {
+                        "x": "10% discount",
+                        "y": 40
+                    }
+                ],"area": true },
+        {key: "Used", values:
+                [
+                    {
+                        "x": "20% discount",
+                        "y": 15
+                    },
+                    {
+                        "x": "50 TL discount",
+                        "y": 11
+                    },
+                    {
+                        "x": "10% discount",
+                        "y": 33
+                    }
+                ],"area": true }];
+
+    nv.addGraph(function() {
+        chart = nv.models.multiBarChart()
+                .x(function(d) {
+                    return d.x
+                })
+                .y(function(d) {
+                    return d.y
+                })
+                .color([
+                    $.Pages.getColor('info-lighter'),
+                    $.Pages.getColor('complete'),
+                    $.Pages.getColor('success'),
+                    $.Pages.getColor('complete'),
+                    $.Pages.getColor('warning'),
+                    $.Pages.getColor('menu', .2) //antarctica
+                ])
+                .forceY([0])
+                //  .useInteractiveGuideline(true)
+                //       .transitionDuration(300)
+                .showYAxis(true)
+                .showXAxis(true)
+
+                .margin({
+                    top: 20,
+                    right: 0,
+                    bottom: 50,
+                    left: 30
+                })
+                .tooltips(true)        //Don't show tooltips
+                .tooltipContent(function (key, date, e, graph) {
+                    var value = graph.value;
+                    return  "<h8>Time range: " + date +
+                            "<br>Value: " + value +
+                            "<br>Campaign: " + key + "</h8>";
+                })
+                .showLegend(true)
+                .transitionDuration(150)
+                .reduceXTicks(false)   //If 'false', every single x-axis tick label will be rendered.
+                .rotateLabels(0)      //Angle to rotate x-axis labels.
+                .showControls(true)  //Allow user to switch between 'Grouped' and 'Stacked' mode.
+                .groupSpacing(0.4)
+                .stacked(false)
+        //	.interpolate("monotone")
+        ;
+
+        //  chart.xAxis
+        //          .tickValues([1, 2, 3,4,5,6,7,8,9,10,11,12])
+        //          //.axisLabel('Time interval')
+        //          .tickFormat(function(d) {
+        //            return ['', 'Jan', 'Feb', 'Mar', 'Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d];
+        //          });
+
+        chart.yAxis
+                .tickFormat(d3.format(".f"));
+
+        chart.legend.align(false);
+
+        d3.select('.widget-4-chart svg')
+                .datum(data)
+                .call(chart);
+
+        nv.utils.windowResize(function() {
+            chart.update();
+        });
+
+
+        $('.widget-4-chart').data('chart', chart);
+
+        return chart;
+
+    });
+</script>
