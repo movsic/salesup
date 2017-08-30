@@ -29,4 +29,25 @@ angular.module('app')
         	}
         }
 
-    }]);
+    }]).directive('ionRangeSlider', function ionRangeSlider() {
+   return {
+      restrict: 'A',
+      scope: {
+         rangeOptions: '=',
+         model: '=ngModel',
+         apply: '=apply'
+      },
+      link: function (scope, elem, attrs) {
+         elem.ionRangeSlider(scope.rangeOptions);
+         scope.$watch('apply',function () {
+          if (scope.apply) {
+            scope.apply = false;
+            var slider = elem.data("ionRangeSlider");            
+            slider.update({
+               from: scope.model
+            });
+          }
+         });
+      }
+   }
+});
