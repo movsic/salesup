@@ -69,6 +69,18 @@ angular.module('app')
                         }]
                     }
                 })
+                .state('app.test2', {
+                    url: '/test2',
+                    controller: 'TestCtrl',
+                    templateUrl: 'tpl/salesup_tests_2.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/test.js',
+                            ]);
+                        }]
+                    }
+                })
                 .state('app.new', {
                     url: '/new',
                     controller: 'NewCtrl',
@@ -85,18 +97,6 @@ angular.module('app')
                             .then(function() {
                                 return $ocLazyLoad.load('assets/js/controllers/new.js');
                             });
-                        }]
-                    }
-                })
-                .state('app.test2', {
-                    url: '/test2',
-                    controller: 'TestCtrl',
-                    templateUrl: 'tpl/salesup_tests_2.html',
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                'assets/js/controllers/test.js',
-                            ]);
                         }]
                     }
                 })
