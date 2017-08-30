@@ -113,5 +113,11 @@
 	"rating-table-th-name": "Имя",
 	"rating-table-th-level": "Уровень",
 	"rating-table-th-group": "Филиал",
-	"rating-table-th-points": "Очки"
+	"rating-table-th-points": "Очки",
+
+	"debug-notification":"Уведомление",
+	"debug-modal-win":"Экран победы",
+	"debug-modal-levelup":"Экран уровня",
+	"debug-sale-other":"Продажа оппонента",
+	"debug-sale-own":"Своя продажа"
 }

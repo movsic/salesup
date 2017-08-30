@@ -114,5 +114,11 @@
 	"rating-table-th-name": "Name",
 	"rating-table-th-level": "Level",
 	"rating-table-th-group": "Group",
-	"rating-table-th-points": "Points"
+	"rating-table-th-points": "Points",
+
+	"debug-notification":"Show Notification",
+	"debug-modal-win":"Show Win",
+	"debug-modal-levelup":"Show LevelUp",
+	"debug-sale-other":"Add Opponent Sale",
+	"debug-sale-own":"Add Own Sale"
 }

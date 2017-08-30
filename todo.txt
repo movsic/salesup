@@ -7,7 +7,7 @@ news ???? add notifications in news
 challenge name in modal
 chellenge type -> disable if one
 create challenge wizard with different screens?
-strange validation behaviour for product on new challenge
+strange fields validation behaviour for product on new challenge screen
 filter on date
 dynamic dates -> dynamic data
 ?message box to p2p new challenge
@@ -53,11 +53,17 @@ league with timelimit + modal + cheat
 add pagnation
 
 Coins:
-coins page with bonus calculation (list of successful challenges and sales)
+coins page with bonus calculation (list of successful challenges and sales) <- needed?
 
 Badges:
 badge modal
 badges definition
+=badges in config
+-actions done: 1, 10,...
+-challenges done: 1,10, 
+-level gained: 1,5,10
+?time in system: 
+
 
 Profile:
 add level to profile
@@ -72,6 +78,7 @@ move config to service
 social integration
 scallable width -> mobile support 
 badges with new items counter (timestamp before last login) + (notifications while being logged in)
+notifications for new events - stucked (13 sailes)
 LOGIN
 list of pics
 raiting challenges - timelimit to get to first place
