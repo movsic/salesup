@@ -107,7 +107,9 @@
                                     <div class="card-description">
                                         <p>Количество продаж <span class="badge badge-success text-white fs-13 ">N</span></p>
 
-                                        <input class="primary m-l-20 m-r-20 m-t-5" ion-range-slider ng-model="newChallenge.count" apply="apply" range-options="{min: 0, max: 5, step: 1, grid: true, type:'single', postfix:' шт.', prettify_enabled: false}">
+                                        <div class="irs-wrapper primary m-l-20 m-r-20 m-t-5">
+                                            <input ion-range-slider ng-model="newChallenge.count" apply="apply" range-options="{min: 0, max: 5, step: 1, grid: true, type:'single', postfix:' шт.', prettify_enabled: false}">
+                                        </div>
 
                                         <!--<div class="irs-wrapper primary m-l-20 m-r-20 m-t-5">
                                             <input type="text" id="example_p2p" name="example_name" value="3" ng-model="newChallenge.count"/>

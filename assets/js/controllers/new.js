@@ -6,17 +6,6 @@ angular.module('app')
     .controller('NewCtrl', ['$scope', 'ActionService', function($scope, ActionService) {
         $scope.newChallenge=ActionService.newChallenge;
 
-        $("#example_p2p").ionRangeSlider({
-            min: 0,
-            max: 6,
-            from: 0,
-            type: 'single',
-            step: 1,
-            postfix: " шт.",
-            prettify_enabled: false,
-            grid: true
-        });
-
         $scope.createChallenge = function () {
         	console.log($scope.newChallenge)
         }
