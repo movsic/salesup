@@ -16,21 +16,17 @@ angular.module('app')
 		    this.updateStorage(DataProviderService.getNotifications());
 		};
 
-		this.getChallengeTypeData = function(){return DataProviderService.getChallengeTypeData();};
-		this.getProductData = function(name){return DataProviderService.getProductData(name);};
-		this.getPersonData = function(name){return DataProviderService.getPersonData(name);};
+		//this.getChallengeTypeData = function(){return DataProviderService.getChallengeTypeData();};
+		//this.getProductData = function(name){return DataProviderService.getProductData(name);};
+		//this.getPersonData = function(name){return DataProviderService.getPersonData(name);};
 
 		this.acceptChallenge = function(item){ 
-			this.updateStorage(DataProviderService.acceptChallenge(item));
+			this.updateStorage(DataProviderService.acceptChallenge(item.id));
 			
 		};
 
-		this.addSale = function(){
-			this.updateStorage(DataProviderService.addSale());
-		}
-
-		this.addOpponentSale = function(){
-			this.updateStorage(DataProviderService.addOpponentSale());
+		this.addSale = function(id){
+			this.updateStorage(DataProviderService.addSale(id));
 		}
 
 		this.updateStorage = function(response) {

@@ -34,6 +34,7 @@ sales time periods week month year? data from server? or not?
 change all dates in dataprovider to dynamic
 
 //--------------------------
+REDO LOGIC TO PROPER IDS!!!
 challenge name in notifications and modals
 coins and points before button click )= 
 redo sale to challenge callculation -> addSale(userId, .....)
@@ -50,6 +51,7 @@ add discriptions to rating tables
 lvl in rating -> config points-to-lvl -> client calculation
 stars in cahllenge (q: how to end challenge)
 limit max level points gain
+product type? translate? id?
 //--------------------------
 
 Rating:
@@ -69,6 +71,7 @@ badges definition
 -level gained: 1,5,10
 ?time in system: 
 
+dev console?
 
 Profile:
 add level to profile

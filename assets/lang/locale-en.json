@@ -100,11 +100,13 @@
 	"sales-table-th-sum": "Sum",
 	"sales-table-th-date": "Date",
 
-	"tooltip_level": "Level",
-	"tooltip_points": "Points",
-	"tooltip_coins": "Coins",
-	"tooltip_debug": "Debug",
-	"tooltip_lang": "Language",
+	"sales-table-price": "{{price}} €",
+
+	"tooltip-level": "Level",
+	"tooltip-points": "Points",
+	"tooltip-coins": "Coins",
+	"tooltip-debug": "Debug",
+	"tooltip-lang": "Language",
 
 	"rating-tab-group": "Your Branch Rating",
 	"rating-tab-top": "Top Rating",
@@ -126,6 +128,6 @@
 	"news-type-1":"Won Challenge",
 	"news-type-2":"Earned Badge",
 
-	"challenge-name-0": "Sell {{params.amount}} of {{params.product.name}}"
+	"challenge-name-0": "Sell {{amount}} of [{{products}}]"
 
 }

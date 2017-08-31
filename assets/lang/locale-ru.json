@@ -99,11 +99,13 @@
 	"sales-table-th-sum": "Сумма",
 	"sales-table-th-date": "Дата",
 
-	"tooltip_level": "Уровень",
-	"tooltip_points": "Очки",
-	"tooltip_coins": "Монеты",
-	"tooltip_debug": "Дебаг",
-	"tooltip_lang": "Язык",
+	"sales-table-price": "{{price}} €",
+
+	"tooltip-level": "Уровень",
+	"tooltip-points": "Очки",
+	"tooltip-coins": "Монеты",
+	"tooltip-debug": "Дебаг",
+	"tooltip-lang": "Язык",
 
 	"rating-tab-group": "Рейтинг Филиала",
 	"rating-tab-top": "Рейтинг лидеров",
@@ -125,5 +127,5 @@
 	"news-type-1":"Выиграл миссию",
 	"news-type-2":"Получил бейдж",
 
-	"challenge-name-0": "Продажа {{params.amount}}шт. {{params.product.name}}"
+	"challenge-name-0": "Продажа {{params.amount}}шт. [{{params.product.name}}]"
 }

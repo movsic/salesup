@@ -29,7 +29,10 @@
                         <div class="card-description">
                             <p>
                                 <span translate>{{'news-type-' + i.type}}</span>
-                                <span class="bold label fs-13" translate ng-show="i.type==0 || i.type==1" translate-values='{ params: i.params }'>{{'challenge-name-' + i.params.type}}</span>
+                                <span class="bold label fs-13" ng-show="i.type==0 || i.type==1">
+                                    <span translate translate-values='{ amount: i.params.amount, products:getProductNames(i.params.products)}'> {{'challenge-name-' + i.params.type}}</span>
+                                </span>
+                                
                                 <span class="bold label fs-13" translate ng-show="i.type==2">{{'badge-name-' + i.params.type}}</span>
                             </p>
                         </div>

@@ -5,6 +5,7 @@
 angular.module('app')
     .controller('MainCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', 'amMoment', function($scope, $translate, ActionService, HelperService, amMoment) {
     	ActionService.loadInitData();
+        $scope.action = ActionService;
 
         $scope.configData = ActionService.getStorageData('config');
         $scope.profileData = ActionService.getStorageData('profile');
@@ -21,17 +22,8 @@ angular.module('app')
                 if (oldValue.points !== newValue.points)
                     $scope.updateProfileData($scope.profileData, $scope.configData);
             },
-            true);
-
-    	$scope.showNotification = ActionService.showNotification;
-    	$scope.showModal = ActionService.showModal;
-
-    	$scope.addSale = function(){
-    		ActionService.addSale();
-    	};
-    	$scope.addOpponentSale = function(){
-    		ActionService.addOpponentSale();
-    	};
+            true
+        );
 
     	$scope.changeLanguage = function () {
     		if($translate.use()=='en'){

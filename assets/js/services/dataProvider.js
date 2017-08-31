@@ -4,7 +4,7 @@ angular.module('app')
 
 	    this.getNewsData = function () {
             for( var i in newsData){
-                newsData[i].user = this.findProfileById(newsData[i].user.id);
+                this.buildNews(newsData[i]);
             }
             return JSON.parse(JSON.stringify(newsData))
         };
@@ -16,29 +16,71 @@ angular.module('app')
             return JSON.parse(JSON.stringify(challengeData));
         };
 
+        this.getSalesData = function () {
+            for( var i in salesData[profileData.id]){
+                this.buildSale(salesData[profileData.id][i]);
+            }
+            return JSON.parse(JSON.stringify(salesData[profileData.id]));
+        };
+
         this.findProfileById = function(id) {
             for (var i in personData){
                 if (personData[i].id == id){
                     return personData[i];
                 }
             }
-            return id;
+        };
+        this.findProductById = function(id) {
+            for (var i in productData){
+                if (productData[i].id == id){
+                    return productData[i];
+                }
+            }
         };
 
-	    this.getSalesData = function () { 
-            return JSON.parse(JSON.stringify(salesData));
-        };
+        this.buildSale = function(item){
+            item.product = this.findProductById(item.product.id);
+            return item;
+        }
 
-	    this.getSalesAggregateData = function () { return JSON.parse(JSON.stringify(salesAggregateData))};
+        this.buildNews = function(item){
+            item.user = this.findProfileById(item.user.id);
+            if(item.type == 0 || item.type == 1){
+                for(var i in item.params.products){
+                    item.params.products[i] = this.findProductById(item.params.products[i].id);
+                }
+                //TODO: uncommit later
+                //buildChallenge(news.params);
+            }
+            return item;
+        }
+
+        var buildChallenge = function(challenge){
+            for(var i in challenge.products){
+                challenge.products[i] = findProductById(challenge.products[i].id);
+            }
+            for(var i in challenge.participants){
+                challenge.participants[i].profile = findPersonById(challenge.products[i].profile.id);
+            }
+            return challenge;
+        }
+        //ADD BUILD NEWS FUNCTION 
+        //this.build
+
 	    this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
 	    this.getRatingData = function () { return JSON.parse(JSON.stringify(personData));};
         this.getConfigData = function () { return JSON.parse(JSON.stringify(configData));};
+        
 
-        this.getChallengeTypeData = function () { return challengeTypeData};
-        this.getPersonData = function (name) { 
-            return personData;
-        };
+        //this.getSalesAggregateData = function () { return JSON.parse(JSON.stringify(salesAggregateData))};
 
+        //TODO: redo?
+        //this.getChallengeTypeData = function () { return challengeTypeData};
+
+        //TODO: why parameter?
+        //this.getPersonData = function (name) { return JSON.parse(JSON.stringify(personData); };
+
+        //debug TODO: needs to be trough server?
         this.getNotifications = function() {
             return {"notifications":[{
                 "type":"success",
@@ -47,14 +89,7 @@ angular.module('app')
             }]};
         }
 
-        this.getPointsForSell = function (level) {
-            return level;
-        }
-
-        this.getPointsForChallenge = function (level) {
-            return level * 2;
-        }
-
+        /*needs redo
         this.getProductData = function (name) { 
             var productTypes = [];
             for(var i in productData){
@@ -68,9 +103,10 @@ angular.module('app')
             }
             return productTypes;
         };
+        */
 
-        this.acceptChallenge = function(challenge){
-            var challenge = challengeData.find(x => x.id === challenge.id);
+        this.acceptChallenge = function(id){
+            var challenge = challengeData.find(x => x.id === id);
             if(profileData.coins < challenge.fee)
                 return {"error":"error-not-enough-coins","text":"error-coins"};
             profileData.coins -= challenge.fee;
@@ -82,67 +118,98 @@ angular.module('app')
                 //"user": {"id":1},
                 //"type": 0,
                 //"params": {"id":1,"type":0,"amount":10,"product":{"id":4,"name":"iPhone SE"}}
-
-            //problem with product in challenge -> redo!!!
             return {"data":[
-                {"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":0,"user":profileData,"params":challenge}},
+                {"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":0,"user":profileData,"params":this.buildChallenge(challenge)}},
                 {"name":"challenges","type":"update","data":challenge},
                 {"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}},
             ]};
         }
 
         //debug
-        this.addSale = function(){
-            //save lvl to check did we get new level?
-            var startLevel = HelperService.getLevelForPoints(profileData.points, configData);
+        this.addSale = function(userId, sale){
+            if(!sale){
+                sale = {"product":{"id":0},"timestamp": moment().unix()};
+            }
+            var profile = this.findProfileById(userId);
+            //TODO hack, replace "me"
+            if (userId == profileData.id){
+               profile = profileData;
+            }
+            if(!profile){
+                //TODO redo errors
+                return {"error":"profile-not-found"};
+            }
 
-            var update = {"data":[],"notifications":[],"modals":[]};
-            var newSale = {"type":"Phone","typeId":1,"name":"iPhone SE","sum": 600,"timestamp": moment().unix()};
-            var lvl = profileData.level;
-            salesData.push(newSale);
-            profileData.points += HelperService.getPointsForAction(profileData.points, configData);
-            update.data.push({"name":"sales","type":"add","data":newSale});
-            
-            update.notifications.push({"type":"success","text":"your-sale","params":{"sale":newSale.name,"points":this.getPointsForSell(profileData.level)}});
+            //save lvl to check did we get new level
+            var startLevel = HelperService.getLevelForPoints(profile.points, configData);
+
+            //TODO move update object outside function
+            //update with positive index - updates for users
+            //update with negative number - update for all
+            var update = {};
+            var sale = this.buildSale(sale);
+
+            salesData[userId].push(sale);
+            profile.points += HelperService.getPointsForAction(profile.points, configData);
+
+            update[profile.id].data.push({"name":"sales","type":"add","data":sale});
+            update[profile.id].notifications.push({"type":"success","text":"your-sale","params":{"sale":sale.product.name,"points":this.getPointsForSell(profile.level)}});
+
+            //TODO sent update to other challenge participants
             
             //check if any challenge is finished
             for (var i in challengeData){
-                if ((challengeData[i].productId.indexOf(newSale.typeId) > -1 || challengeData[i].productId.indexOf(productData[newSale.typeId].typed) > -1)
-                    && challengeData[i].status == 1 && challengeData[i].type == 0){
-                    challengeData[i].yourProgress += 1;
-                    if (challengeData[i].yourProgress >= challengeData[i].amount){
-                        challengeData[i].status = 2;
-                        profileData.coins += challengeData[i].reward.coins;
-                        profileData.points += HelperService.getPointsForChallenge(profileData.points, configData);
-                        update.modals.push({"type":"win","event":challengeData[i]});
+                //if challenge is accepted and productId fits
+                //TODO support challenge type 1 and 2
+                // && (challengeData[i].type == 1 || challengeData[i].type == 2)
+                if (profile.id in challengeData[i].participants && challengeData[i].participants[profile.id].status == 1 && sale.product.id in challengeData[i].products){
+                    challengeData[i].participants[profile.id].progress += 1;
+                    
+                    if (challengeData[i].participants[profile.id].progress >= challengeData[i].amount){
+                        challengeData[i].participants[profile.id].status = 2;
+                        //TODO do this only if challenge type == 2
+                        for ( var userId in challengeData[i].participants ){
+                            //TODO support params in front
+                            update[userId].notifications.push({"type":"error","text":"challenge-loss","params":{"user":profile,"challenge":challengeData[i]}});
+                            //TODO if challenge type 2 - stop challenge after winning it!
+                        }
+                        profile.coins += challengeData[i].reward.coins;
+                        profile.points += HelperService.getPointsForChallenge(profile.points, configData);
+                        update[profile.id].modals.push({"type":"win","event":challengeData[i]});
+                        update[-1].data.push({"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}});
+                    }else{
+                        for ( var userId in challengeData[i].participants ){
+                            //TODO support params in front
+                            update[userId].notifications.push({"type":"warning","text":"opponent-sale","params":{"user":profile,"challenge":challengeData[i]}});
+                        }
                     }
-                    update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
+                    update[profile.id].data.push({"name":"challenges","type":"update","data":challengeData[i]});
                 }
             }
-
-            update.data.push({"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}});
-            update.data.push({"name":"profile","type":"update","data":{"key":"points","value":profileData.points}});
+            update[profile.id].data.push({"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}});
+            update[profile.id].data.push({"name":"profile","type":"update","data":{"key":"points","value":profile.points}});
 
             //level recalculation
-            var endLevel = HelperService.getLevelForPoints(profileData.points, configData);
+            var endLevel = HelperService.getLevelForPoints(profile.points, configData);
             if(endLevel < startLevel){
                 //this should be the firs event!!! to prevent everything from update!
-                update.modals.push({"type":"levelup","event":{"level":endLevel}});
+                update[profile.id].modals.push({"type":"levelup","event":{"level":endLevel}});
             }
 
-            return update;
+            return update[profile.id];
         }
 
         this.addOpponentSale = function(){
-            var opponentId = 1;
+            var opponent = this.findProfileById(1);
             var update = {"data":[],"notifications":[],"modals":[]};
             update.notifications[0]={"type":"warning","text":"opponent-sale"};
             for (var i in challengeData){
-                if (challengeData[i].opponentId == opponentId && challengeData[i].status == 1 && challengeData[i].type == 0){
+                if (challengeData[i].opponentId == opponent.id && challengeData[i].status == 1 && challengeData[i].type == 0){
                     challengeData[i].opponentProgress += 1;
                     if (challengeData[i].opponentProgress >= challengeData[i].amount){
                         challengeData[i].status = 2;
                         update.notifications[0]={"type":"error","text":"challenge-loss"};
+                        update.data.push({"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":opponent,"params":challenge}});
                     }
                     update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
                 }
@@ -164,39 +231,31 @@ angular.module('app')
 
         //block of debug data!
 	    var productData = [
-            {"id":0, "name":"Anything", "type":0},
-            {"id":1, "name":"Phone", "type":0},
-            {"id":2, "name":"Tablet", "type":0},
-            {"id":3, "name":"Notebook", "type":0},
-            {"id":4, "name":"iPhone SE", "type":1},
-            {"id":5, "name":"iPhone 6S", "type":1},
-            {"id":6, "name":"iPhone 7", "type":1},
-            {"id":7, "name":"iPad Pro", "type":2},
-            {"id":8, "name":"iPad", "type":2},
-            {"id":9, "name":"iPad Mini", "type":2},
-            {"id":10, "name":"Macbook", "type":3},
-            {"id":11, "name":"Macbook Air", "type":3},
-            {"id":12, "name":"Macbook Pro", "type":3},
+            {"id":0, "name":"iPhone SE", "type":"Phone", "price":325},
+            {"id":1, "name":"iPhone 6S", "type":"Phone", "price":550},
+            {"id":2, "name":"iPhone 7", "type":"Phone", "price":700},
+            {"id":3, "name":"iPad Pro", "type":"Tablet", "price":800},
+            {"id":4, "name":"iPad", "type":"Tablet", "price":400},
+            {"id":5, "name":"iPad Mini", "type":"Tablet", "price":400},
+            {"id":6, "name":"Macbook", "type":"Notebook", "price":1200},
+            {"id":7, "name":"Macbook Air", "type":"Notebook", "price":900},
+            {"id":8, "name":"Macbook Pro", "type":"Notebook", "price":1400},
         ];
 
         var personData = [
-            {"id":1,"name":"Scott Pilgrim","img":"1.jpg","points":10240,"group":"Vologda"},
-            {"id":2,"name":"Ramona Flowers","img":"2.jpg","points":20480,"group":"Moscow"},
-            {"id":3,"name":"Wallace Wells","img":"3.jpg","points":5120,"group":"Vologda"},
-            {"id":4,"name":"Knives Chau","img":"4.jpg","points":2560,"group":"Moscow"},
-            {"id":5,"name":"Stephen Stills","img":"5.jpg","points":1280,"group":"Vologda"},
-            {"id":6,"name":"Kim Pine","img":"6.jpg","points":640,"group":"Moscow"},
-            {"id":7,"name":"Young Neil","img":"7.jpg","points":320,"group":"Vologda"},
-            {"id":8,"name":"Envy Adams","img":"8.jpg","points":160,"group":"Moscow"},
-            {"id":9,"name":"Stacey Pilgrim","img":"9.jpg","points":80,"group":"Vologda"},
-            {"id":10,"name":"Julie Powers","img":"a.jpg","points":40,"group":"Moscow"},
-            {"id":11,"name":"Lynette Guycott","img":"c.jpg","points":20,"group":"Vologda"},
-            {"id":12,"name":"Michael Comeau","img":"be.jpg","points":10,"group":"Moscow"},
-            {"id":13,"name":"Simon Lee","img":"d.jpg","points":0,"group":"Vologda"},
-        ];
-
-        var challengeTypeData = [
-            {"id":0,"name":"SellingChallenge"},
+            {"id":1,"name":"Spiky Hedgehog","img":"1.jpg","points":10240,"group":"Vologda"},
+            {"id":2,"name":"Deadly Bunny","img":"2.jpg","points":20480,"group":"Moscow"},
+            {"id":3,"name":"Sly Fox","img":"3.jpg","points":5120,"group":"Vologda"},
+            {"id":4,"name":"Grey Mouse","img":"4.jpg","points":2560,"group":"Moscow"},
+            {"id":5,"name":"Monochrome Zebra","img":"5.jpg","points":1280,"group":"Vologda"},
+            {"id":6,"name":"Swift Turtle","img":"6.jpg","points":640,"group":"Moscow"},
+            {"id":7,"name":"Invisible Elephant","img":"7.jpg","points":320,"group":"Vologda"},
+            {"id":8,"name":"Cute Giraffe","img":"8.jpg","points":160,"group":"Moscow"},
+            {"id":9,"name":"Pinky Piggy","img":"9.jpg","points":80,"group":"Vologda"},
+            {"id":10,"name":"Lazy Crocodile","img":"a.jpg","points":40,"group":"Moscow"},
+            {"id":11,"name":"Furious Kitten","img":"c.jpg","points":20,"group":"Vologda"},
+            {"id":12,"name":"Giant Python","img":"be.jpg","points":10,"group":"Moscow"},
+            {"id":13,"name":"Dreamy Whale","img":"d.jpg","points":0,"group":"Vologda"},
         ];
 
 	    var profileData = {
@@ -223,13 +282,13 @@ angular.module('app')
                 "timestamp":getRandomTimestamp(-1),
                 "user": {"id":1},
                 "type": 0,
-                "params": {"id":1,"type":0,"amount":10,"product":{"id":4,"name":"iPhone SE"}}
+                "params": {"id":1,"type":0,"amount":10,"products":[{"id":0},{"id":1},{"id":2}]}
             },
             {
                 "timestamp":getRandomTimestamp(-2),
                 "user": {"id":2},
                 "type": 1,
-                "params": {"id":2,"type":0,"amount":3,"product":{"id":12,"name":"Macbook Pro"}}
+                "params": {"id":2,"type":0,"amount":3,"products":[{"id":8}]}
             },
             {
                 "timestamp":getRandomTimestamp(-3),
@@ -239,25 +298,42 @@ angular.module('app')
             }
         ];
 
+        var salesData = {
+            0:[
+            {"product":{"id":1},"timestamp": getRandomTimestamp(-0)},
+            {"product":{"id":2},"timestamp": getRandomTimestamp(-2)},
+            {"product":{"id":3},"timestamp": getRandomTimestamp(-3)},
+            {"product":{"id":4},"timestamp": getRandomTimestamp(-4)},
+            {"product":{"id":5},"timestamp": getRandomTimestamp(-5)},
+            {"product":{"id":6},"timestamp": getRandomTimestamp(-0)},
+            {"product":{"id":7},"timestamp": getRandomTimestamp(-1)},
+            {"product":{"id":8},"timestamp": getRandomTimestamp(-2)},
+            {"product":{"id":0},"timestamp": getRandomTimestamp(-3)},
+            {"product":{"id":1},"timestamp": getRandomTimestamp(-4)},
+            {"product":{"id":2},"timestamp": getRandomTimestamp(-5)},
+            {"product":{"id":3},"timestamp": getRandomTimestamp(-6)},
+            ],
+        };
+
         //status 0=New 1=In Progress 2=Successful 3=Failed 4=Pending
         var challengeData = [
             {
             	"id":0,
                 "type": 0,
                 "amount": 20,
-                "product": ['Phone'],
-                "productId": [1],
-                "yourProgress": 0,
-                "opponent": null,
-                "opponentId": null,
-                "opponentProgress": 0,
+                "products": {0:{"id":0}},
+                "participants":{
+                    0:{
+                        "progress":0,
+                        "status":0,
+                        "acceptDate":null,
+                        "profile":{"id":0},
+                    },
+                },
                 "createDate": getRandomTimestamp(-3),
-                "acceptDate": null,
                 "endDate": getRandomTimestamp(3),
                 "fee": 5,
                 "reward": {"coins":100},
-                "acceptedby":["Scott Pilgrim", "Ramona Flowers"],
-                "status": 0
             },
             {
                 "id":1,
@@ -368,93 +444,6 @@ angular.module('app')
                 "status": 4
             },
 
-        ];
-
-        var salesData = [
-            {
-                "type":"Phone",
-                "typeId":4,
-                "name":"iPhone SE",
-                "sum": 600,
-                "timestamp": getRandomTimestamp(-0)
-            },
-            {
-                "type":"Phone",
-                "typeId":5,
-                "name":"iPhone 6S",
-                "sum": 800,
-                "timestamp": getRandomTimestamp(-2)
-            },
-            {
-                "type":"Phone",
-                "typeId":6,
-                "name":"iPhone 7",
-                "sum": 900,
-                "timestamp": getRandomTimestamp(-3)
-            },
-            {
-                "type":"Phone",
-                "typeId":6,
-                "name":"iPhone 7",
-                "sum": 900,
-                "timestamp": getRandomTimestamp(-4)
-            },
-            {
-                "type":"Phone",
-                "typeId":6,
-                "name":"iPhone 7",
-                "sum": 900,
-                "timestamp": getRandomTimestamp(-5)
-            },
-            {
-                "type":"Phone",
-                "typeId":6,
-                "name":"iPhone 7",
-                "sum": 900,
-                "timestamp": getRandomTimestamp(0)
-            },
-            {
-                "type":"Tablet",
-                "typeId":7,
-                "name":"iPad Pro",
-                "sum": 800,
-                "timestamp": getRandomTimestamp(-1)
-            },
-            {
-                "type":"Tablet",
-                "typeId":8,
-                "name":"iPad",
-                "sum": 500,
-                "timestamp": getRandomTimestamp(-2)
-            },
-            {
-                "type":"Tablet",
-                "typeId":9,
-                "name":"iPad Mini",
-                "sum": 400,
-                "timestamp": getRandomTimestamp(-3)
-            },
-            {
-                "type":"Tablet",
-                "typeId":9,
-                "name":"iPad Mini",
-                "sum": 400,
-                "timestamp": getRandomTimestamp(-4)
-            },
-            {
-                "type":"Tablet",
-                "typeId":9,
-                "name":"iPad Mini",
-                "sum": 400,
-                "timestamp": getRandomTimestamp(-5)
-            },
-            {
-                "type":"Tablet",
-                "typeId":9,
-                "name":"iPad Mini",
-                "sum": 400,
-                "timestamp": getRandomTimestamp(-6)
-            },
         ];
 
         var coinsData = [

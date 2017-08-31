@@ -13,27 +13,27 @@ angular.module('app', ['ui.select'])
             $scope.activeTab=id;
         };
 
-        $scope.getChallengeTypes = function(){
-            return ActionService.getChallengeTypeData();
-        };
+        //$scope.getChallengeTypes = function(){
+        //    return ActionService.getChallengeTypeData();
+        //};
 
-        $scope.findProduct = function(name){
-            return ActionService.getProductData(name);
-        }
+        //$scope.findProduct = function(name){
+        //    return ActionService.getProductData(name);
+        //}
 
-        $scope.findPerson = function(name){
-            return ActionService.getPersonData(name);
-        }
+        //$scope.findPerson = function(name){
+        //    return ActionService.getPersonData(name);
+        //}
 
-        $scope.acceptChallenge = function(item) {
-            ActionService.acceptChallenge(item);
-        }
+        //$scope.acceptChallenge = function(item) {
+        //    ActionService.acceptChallenge(item);
+        //}
 
         $scope.newChallenge = {};
 
-        $scope.transleteGroup = function (item){
-            return $translate.instant('ProductType' + item.type);
-        };
+        //$scope.transleteGroup = function (item){
+        //    return $translate.instant('ProductType' + item.type);
+        //};
 
         $scope.createChallenge = function(form){
             //do not submit on invalid form

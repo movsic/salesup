@@ -31,13 +31,13 @@
                     <tbody>
                         <tr ng-repeat="i in salesData | orderBy:'timestamp':true track by $index">
                             <td class="v-align-middle">
-                                <p>{{i.name}}</p>
+                                <p>{{i.product.name}}</p>
                             </td>
                             <td class="v-align-middle">
-                                <p translate>{{i.type}}</p>
+                                <p translate>{{i.product.type}}</p>
                             </td>
                             <td class="v-align-middle">
-                                <p>{{i.sum}}</p>
+                                <p translate translate-values='{ price: i.product.price }'>{{'sales-table-price'}}</p>
                             </td>
                             <td class="v-align-middle">
                                 <p am-time-ago="i.timestamp*1000"></p>

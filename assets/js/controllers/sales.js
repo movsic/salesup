@@ -25,15 +25,15 @@ angular.module('app', ['nvd3'])
             var nvd3array = [];
             var timePeriod = 7;
             for(var i in data){
-                if(!(data[i].type in dataArray)){
-                    dataArray[data[i].type] = [];
+                if(!(data[i].product.type in dataArray)){
+                    dataArray[data[i].product.type] = [];
                     for(var d = 0; d < timePeriod; d++){
                         var day = moment().subtract(d,'days').format("DD.MM.YYYY");
-                        dataArray[data[i].type][day] = 0;
+                        dataArray[data[i].product.type][day] = 0;
                     }
                 }
                 var time = moment(data[i].timestamp*1000).format("DD.MM.YYYY");
-                dataArray[data[i].type][time] += data[i].sum;
+                dataArray[data[i].product.type][time] += data[i].product.price;
             }
             for(var i in dataArray){
 
