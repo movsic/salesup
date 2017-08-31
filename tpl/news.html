@@ -1,7 +1,7 @@
 <div class="container-fluid container-fixed-lg sm-p-l-5">
     <div class="timeline-container top-circle">
         <section class="timeline">
-            <div class="timeline-block" ng-repeat="i in newsData">
+            <div class="timeline-block" ng-repeat="i in newsData | orderBy:'timestamp':true">
                 <div class="timeline-point warning" ng-if="i.type==0">
                     <i class="pg-plus"></i>
                 </div>
@@ -23,11 +23,15 @@
                         <div class="circle" data-toggle="tooltip" title="Label" data-container="body">
                         </div>
                         <div class="card-header clearfix">
-                            <user-pic data="{{i.img}}"></user-pic>
-                            <h5>{{i.name}}</h5>
+                            <user-pic data="{{i.user.img}}"></user-pic>
+                            <h5>{{i.user.name}}</h5>
                         </div>
                         <div class="card-description">
-                            <p translate>{{'news-type-' + i.type}}</p>
+                            <p>
+                                <span translate>{{'news-type-' + i.type}}</span>
+                                <span class="bold label fs-13" translate ng-show="i.type==0 || i.type==1" translate-values='{ params: i.params }'>{{'challenge-name-' + i.params.type}}</span>
+                                <span class="bold label fs-13" translate ng-show="i.type==2">{{'badge-name-' + i.params.type}}</span>
+                            </p>
                         </div>
                         <!-- likes? shares?
                         <div class="card-footer clearfix" ng-show="false">
@@ -42,8 +46,8 @@
                         -->
                     </div>
                     <div class="event-date">
-                        <h6 class="font-montserrat all-caps hint-text m-t-0">{{i.branch}}</h6>
-                        <small class="fs-12 hint-text">{{i.timestamp*1000 | date:"d MMMM yyyy, H:mm"}}</small>
+                        <h6 class="font-montserrat all-caps hint-text m-t-0">{{i.user.group}}</h6>
+                        <small class="fs-12 hint-text"><p am-time-ago="i.timestamp*1000"></p></small>
                     </div>
                 </div>
                 <!-- timeline-content -->

@@ -56,22 +56,22 @@
                                 </div>
                             </td>
                             <td class="v-align-middle">
-                                <p>{{formatDate(i.endDate, "fromNow")}}</p>
+                                <p am-time-ago="i.endDate*1000"></p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==0">
                                 <button class="btn btn-success btn-cons" ng-click="acceptChallenge(i)" translate>{{'challenge-button-accept'}}</button>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==1">
-                                <p translate>{{challenge-status-1}}</p>
+                                <p translate>{{'challenge-status-1'}}</p>
                             </td>
                             <!--<td class="v-align-middle" ng-show="i.status==1">
                                 <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-abort'}}</button>
                             </td>-->
                             <td class="v-align-middle" ng-show="i.status==2">
-                                <p translate>{{challenge-status-2}}</p>
+                                <p translate>{{'challenge-status-2'}}</p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==3">
-                                <p translate>{{challenge-status-3}}</p>
+                                <p translate>{{'challenge-status-3'}}</p>
                             </td>
                             <td class="v-align-middle" ng-show="i.status==4">
                                 <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-cancel'}}</button>
@@ -82,9 +82,18 @@
                             <td colspan=4>
                                 <p ng-if="i.opponent" translate translate-values='{opponent: i.opponent}'> {{'challenge-details-p2p'}}</p>
                                 <p ng-if="!i.opponent" translate>{{'challenge-details-regular'}}</p>
-                                <p translate translate-values='{date: formatDate(i.createDate, "full")}'>{{'challenge-details-created'}}</p>
-                                <p ng-if="i.acceptDate" translate translate-values='{date: formatDate(i.acceptDate, "full")}'> {{'challenge-details-accepted'}}</p>
-                                <p translate translate-values='{date: formatDate(i.endDate, "full")}'>{{'challenge-details-ends'}} </p>
+                                <p>
+                                    <span translate>{{'challenge-details-created'}}</span> 
+                                    <span am-time-ago="i.createDate*1000"></span>
+                                </p>
+                                <p ng-if="i.acceptDate">
+                                    <span translate> {{'challenge-details-accepted'}}</span> 
+                                    <span am-time-ago="i.accepteDate*1000"></span>
+                                </p>
+                                <p>
+                                    <span translate>{{'challenge-details-ends'}}</span> 
+                                    <span am-time-ago="i.endDate*1000"></span>
+                                </p>
                                 <p translate translate-values='{fee: i.fee}'>{{'challenge-details-fee'}}</p>
                                 <p translate translate-values='{reward: i.reward}'>{{'challenge-details-reward'}}</p>
                                 <p translate translate-values='{accepted: i.acceptedby.join(", ")}'>{{'challenge-details-acceptedby'}}</p>

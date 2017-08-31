@@ -40,7 +40,7 @@
                                 <p>{{i.sum}}</p>
                             </td>
                             <td class="v-align-middle">
-                                <p>{{formatDate(i.timestamp)}}</p>
+                                <p am-time-ago="i.timestamp*1000"></p>
                             </td>
                         </tr>
                     </tbody>

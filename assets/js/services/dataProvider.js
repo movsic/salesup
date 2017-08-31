@@ -2,14 +2,27 @@ angular.module('app')
 	.service('DataProviderService', function (HelperService) {
 	    this.getProfileData = function () { return JSON.parse(JSON.stringify(profileData));};
 
-	    this.getNewsData = function () { return JSON.parse(JSON.stringify(newsData))};
+	    this.getNewsData = function () {
+            for( var i in newsData){
+                newsData[i].user = this.findProfileById(newsData[i].user.id);
+            }
+            return JSON.parse(JSON.stringify(newsData))
+        };
 
-	    this.getChallengesData = function () { 
+	    this.getChallengesData = function () {
             for( var i in challengeData){
-                if(challengeData[i].opponentId in personData)
-                    challengeData[i].opponent = personData[challengeData[i].opponentId].name;
+                challengeData[i].opponent = this.findProfileById(challengeData[i].opponentId);
             }
             return JSON.parse(JSON.stringify(challengeData));
+        };
+
+        this.findProfileById = function(id) {
+            for (var i in personData){
+                if (personData[i].id == id){
+                    return personData[i];
+                }
+            }
+            return id;
         };
 
 	    this.getSalesData = function () { 
@@ -59,12 +72,20 @@ angular.module('app')
         this.acceptChallenge = function(challenge){
             var challenge = challengeData.find(x => x.id === challenge.id);
             if(profileData.coins < challenge.fee)
-                return {"error":"ErrorNotEnoughCoins","text":"error-coins"};
+                return {"error":"error-not-enough-coins","text":"error-coins"};
             profileData.coins -= challenge.fee;
             challenge.status = 1;
             challenge.acceptDate = new Date().getTime();
 
+
+                //"timestamp":getRandomTimestamp(-1),
+                //"user": {"id":1},
+                //"type": 0,
+                //"params": {"id":1,"type":0,"amount":10,"product":{"id":4,"name":"iPhone SE"}}
+
+            //problem with product in challenge -> redo!!!
             return {"data":[
+                {"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":0,"user":profileData,"params":challenge}},
                 {"name":"challenges","type":"update","data":challenge},
                 {"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}},
             ]};
@@ -130,13 +151,9 @@ angular.module('app')
         }
 
         var getRandomTimestamp = function (days){
-            var timestamp = moment();
-            if(days > 0){
-                timestamp = timestamp.add(days,'days').add(Math.floor((Math.random() * 1440) + 720),'minutes');
-            }else{
-                timestamp = timestamp.subtract(days,'days').subtract(Math.floor((Math.random() * 1440) + 720),'minutes');
-            }
-            return timestamp.unix()
+            //rnd +- 6 hours
+            var minutes = days * 60 * 24 + Math.floor(Math.random() * -360);
+            return moment().add(minutes,'minutes').unix();
         }
 
         var configData = {
@@ -206,23 +223,23 @@ angular.module('app')
                 "timestamp":getRandomTimestamp(-1),
                 "user": {"id":1},
                 "type": 0,
-                "params": {}
+                "params": {"id":1,"type":0,"amount":10,"product":{"id":4,"name":"iPhone SE"}}
             },
             {
                 "timestamp":getRandomTimestamp(-2),
                 "user": {"id":2},
                 "type": 1,
-                "params": {}
+                "params": {"id":2,"type":0,"amount":3,"product":{"id":12,"name":"Macbook Pro"}}
             },
             {
                 "timestamp":getRandomTimestamp(-3),
                 "user": {"id":3},
                 "type": 2,
-                "params": {}
+                "params": {"type":1}
             }
         ];
 
-        //type 0=Open 1=In Progress 2=Successful 3=Failed 4=Pending
+        //status 0=New 1=In Progress 2=Successful 3=Failed 4=Pending
         var challengeData = [
             {
             	"id":0,
@@ -234,9 +251,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": null,
                 "opponentProgress": 0,
-                "createDate": getRandomTimestamp(3),
+                "createDate": getRandomTimestamp(-3),
                 "acceptDate": null,
-                "endDate": getRandomTimestamp(1),
+                "endDate": getRandomTimestamp(3),
                 "fee": 5,
                 "reward": {"coins":100},
                 "acceptedby":["Scott Pilgrim", "Ramona Flowers"],
@@ -252,9 +269,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": 1,
                 "opponentProgress": 0,
-                "createDate": getRandomTimestamp(3),
+                "createDate": getRandomTimestamp(-3),
                 "acceptDate": null,
-                "endDate": getRandomTimestamp(1),
+                "endDate": getRandomTimestamp(3),
                 "fee": 30,
                 "reward": {"coins":100},
                 "acceptedby":["Knives Chau"],
@@ -270,9 +287,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": 2,
                 "opponentProgress": 3,
-                "createDate": "2017-07-13 12:00",
-                "acceptDate": "2017-07-14 12:00",
-                "endDate": "2017-10-13 12:00",
+                "createDate": getRandomTimestamp(-2),
+                "acceptDate": getRandomTimestamp(-1),
+                "endDate": getRandomTimestamp(5),
                 "fee": 20,
                 "reward": {"coins":90},
                 "acceptedby":["Kim Pine"],
@@ -288,9 +305,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": null,
                 "opponentProgress": 0,
-                "createDate": "2017-07-13 12:00",
-                "acceptDate": "2017-07-14 12:00",
-                "endDate": "2017-10-13 12:00",
+                "createDate": getRandomTimestamp(-4),
+                "acceptDate": getRandomTimestamp(-2),
+                "endDate": getRandomTimestamp(5),
                 "fee": 20,
                 "reward": {"coins":90},
                 "acceptedby":["Kim Pine"],
@@ -306,9 +323,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": null,
                 "opponentProgress": 0,
-                "createDate": "2017-09-13 12:00",
-                "acceptDate": null,
-                "endDate": "2017-10-13 12:00",
+                "createDate": getRandomTimestamp(-6),
+                "acceptDate": getRandomTimestamp(-4),
+                "endDate": getRandomTimestamp(-2),
                 "fee": 20,
                 "reward": {"coins":90},
                 "acceptedby":["Young Neil"],
@@ -324,9 +341,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": null,
                 "opponentProgress": 0,
-                "createDate": "2017-09-13 12:00",
-                "acceptDate": null,
-                "endDate": "2017-10-13 12:00",
+                "createDate": getRandomTimestamp(-7),
+                "acceptDate": getRandomTimestamp(-3),
+                "endDate": getRandomTimestamp(-1),
                 "fee": 20,
                 "reward": {"coins":90},
                 "acceptedby":["Stephen Stills","Stacey Pilgrim"],
@@ -342,9 +359,9 @@ angular.module('app')
                 "opponent": null,
                 "opponentId": 4,
                 "opponentProgress": 0,
-                "createDate": "2017-09-13 12:00",
-                "acceptDate": null,
-                "endDate": "2017-10-13 12:00",
+                "createDate": getRandomTimestamp(-10),
+                "acceptDate": getRandomTimestamp(-9),
+                "endDate": getRandomTimestamp(-6),
                 "fee": 20,
                 "reward": {"coins":90},
                 "acceptedby":[],
@@ -359,86 +376,85 @@ angular.module('app')
                 "typeId":4,
                 "name":"iPhone SE",
                 "sum": 600,
-                "timestamp": moment().subtract(1,'days').unix()
+                "timestamp": getRandomTimestamp(-0)
             },
             {
                 "type":"Phone",
                 "typeId":5,
                 "name":"iPhone 6S",
                 "sum": 800,
-                "timestamp": moment().subtract(2,'days').unix()
+                "timestamp": getRandomTimestamp(-2)
             },
             {
                 "type":"Phone",
                 "typeId":6,
                 "name":"iPhone 7",
                 "sum": 900,
-                "timestamp": moment().subtract(3,'days').unix()
+                "timestamp": getRandomTimestamp(-3)
             },
             {
                 "type":"Phone",
                 "typeId":6,
                 "name":"iPhone 7",
                 "sum": 900,
-                "timestamp": moment().subtract(4,'days').unix()
+                "timestamp": getRandomTimestamp(-4)
             },
             {
                 "type":"Phone",
                 "typeId":6,
                 "name":"iPhone 7",
                 "sum": 900,
-                "timestamp": moment().subtract(5,'days').unix()
+                "timestamp": getRandomTimestamp(-5)
             },
             {
                 "type":"Phone",
                 "typeId":6,
                 "name":"iPhone 7",
                 "sum": 900,
-                "timestamp": moment().subtract(6,'days').unix()
+                "timestamp": getRandomTimestamp(0)
             },
             {
                 "type":"Tablet",
                 "typeId":7,
                 "name":"iPad Pro",
                 "sum": 800,
-                "timestamp": moment().subtract(1,'days').unix()
+                "timestamp": getRandomTimestamp(-1)
             },
             {
                 "type":"Tablet",
                 "typeId":8,
                 "name":"iPad",
                 "sum": 500,
-                "timestamp": moment().subtract(2,'days').unix()
+                "timestamp": getRandomTimestamp(-2)
             },
             {
                 "type":"Tablet",
                 "typeId":9,
                 "name":"iPad Mini",
                 "sum": 400,
-                "timestamp": moment().subtract(3,'days').unix()
+                "timestamp": getRandomTimestamp(-3)
             },
             {
                 "type":"Tablet",
                 "typeId":9,
                 "name":"iPad Mini",
                 "sum": 400,
-                "timestamp": moment().subtract(4,'days').unix()
+                "timestamp": getRandomTimestamp(-4)
             },
             {
                 "type":"Tablet",
                 "typeId":9,
                 "name":"iPad Mini",
                 "sum": 400,
-                "timestamp": moment().subtract(5,'days').unix()
+                "timestamp": getRandomTimestamp(-5)
             },
             {
                 "type":"Tablet",
                 "typeId":9,
                 "name":"iPad Mini",
                 "sum": 400,
-                "timestamp": moment().subtract(6,'days').unix()
+                "timestamp": getRandomTimestamp(-6)
             },
-
         ];
 
         var coinsData = [

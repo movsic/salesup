@@ -23,7 +23,7 @@
 	"Tablet": "Tablet",
 	"Notebook": "Notebook",
 
-	"ErrorNotEnoughCoins": "Not enough coins!",
+	"error-not-enough-coins": "Not enough coins!",
 
 	"modal-win-congratulations": "Congratulations!",
 	"modal-win-name": "You won the challenge!",
@@ -54,7 +54,7 @@
 	"notification-example-text":"Won challenge!",
 
 
-	"challenge-status-0": "Open",
+	"challenge-status-0": "New",
 	"challenge-status-1": "In Progress",
 	"challenge-status-2": "Successful",
 	"challenge-status-3": "Failed",
@@ -69,9 +69,9 @@
 
 	"challenge-details-p2p": "Type: P2P Challenge with {{opponent}}",
 	"challenge-details-regular": "Type: Regular Challenge",
-	"challenge-details-created": "Created: {{date}}",
-	"challenge-details-accepted": "Accepted: {{date}}",
-	"challenge-details-ends": "Ends: {{date}}",
+	"challenge-details-created": "Created: ",
+	"challenge-details-accepted": "Accepted: ",
+	"challenge-details-ends": "Ends: ",
 	"challenge-details-fee": "Fee: {{fee}} coins",
 	"challenge-details-reward": "Rewards: {{reward.coins}} coins and {{reward.points}} points",
 	"challenge-details-acceptedby": "Already accepted by: {{accepted}}",
@@ -124,5 +124,8 @@
 
 	"news-type-0":"Started Challenge",
 	"news-type-1":"Won Challenge",
-	"news-type-2":"Earned Badge"
+	"news-type-2":"Earned Badge",
+
+	"challenge-name-0": "Sell {{params.amount}} of {{params.product.name}}"
+
 }

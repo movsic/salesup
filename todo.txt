@@ -17,6 +17,11 @@ challenge name translation problem + vs
 CREATE NEW CHALLENGE VIA CONTROLLER!!!
 new and active challenges redo
 points reward, coins reward, callenge fee -> config
+bug: scroll on pages switches
+
+news:
+tabs - own branch all
+likes for news
 
 Uncaught Error: tile data is missing.
 script to load js async

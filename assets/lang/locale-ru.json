@@ -68,9 +68,9 @@
 
 	"challenge-details-p2p": "Тип: P2P миссия против {{opponent}}",
 	"challenge-details-regular": "Тип: Стандартная миссия",
-	"challenge-details-created": "Создано: {{date}}",
-	"challenge-details-accepted": "Принято: {{date}}",
-	"challenge-details-ends": "Заканчивается: {{date}}",
+	"challenge-details-created": "Создано: ",
+	"challenge-details-accepted": "Принято: ",
+	"challenge-details-ends": "Заканчивается: ",
 	"challenge-details-fee": "Цена: {{fee}} монет",
 	"challenge-details-reward": "Награда: {{reward.coins}} монет и {{reward.points}} очков",
 	"challenge-details-acceptedby": "Также учавствуют: {{accepted}}",
@@ -123,5 +123,7 @@
 
 	"news-type-0":"Начал миссию",
 	"news-type-1":"Выиграл миссию",
-	"news-type-2":"Получил бейдж"
+	"news-type-2":"Получил бейдж",
+
+	"challenge-name-0": "Продажа {{params.amount}}шт. {{params.product.name}}"
 }
