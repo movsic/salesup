@@ -3,9 +3,6 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('NewsCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService)  {
+    .controller('NewsCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', function($scope, $translate, ActionService, HelperService)  {
         $scope.newsData = ActionService.getStorageData('news');
-        $scope.getProductNames = function(products){
-        	return products.map(function(e){return e.name;}).join(",");
-        }
     }]);

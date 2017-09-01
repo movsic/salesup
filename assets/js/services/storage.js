@@ -3,11 +3,9 @@ angular.module('app')
 		var data = {};
 
 		this.apply = function (upd){
-			for(i in upd){
-				if(!(upd[i].name in data))
-					throw "Error Data Update! Key " + upd[i].name + " does not exist!";
-				this[upd[i].type](upd[i].name,upd[i].data);
-			}
+			if(!(upd.name in data))
+				throw "Error Data Update! Key " + upd.name + " does not exist!";
+			this[upd.type](upd.name,upd.data);
 		};
 		this.get = function (name){
 			return data[name];

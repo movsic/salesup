@@ -16,14 +16,15 @@
 	"challenge-tab-failed": "Проваленные",
 	"challenge-tab-pending": "Ожидающие",
 
-	"ChallengeType0": "Продать",
+	"error-not-enough-coins-header": "Ошибка!",
+	"error-profile-not-found-header": "Ошибка!",
+	"error-not-challenge-participant-header": "Ошибка!",
+	"error-challenge-not-found-header":"Ошибка!",
 
-	"Anything": "Любой",
-	"Phone": "Телефон",
-	"Tablet": "Планшет",
-	"Notebook": "Ноутбук",
-
-	"ErrorNotEnoughCoins": "Недостаточно монет!",
+	"error-not-enough-coins-text": "Недостаточно монет!",
+	"error-profile-not-found-text": "Профайл не найден!",
+	"error-not-challenge-participant-text": "Не участник миссии!",
+	"error-challenge-not-found-text":"Миссия не найдена!",
 
 	"modal-win-congratulations": "Поздравляем!",
 	"modal-win-name": "Вы успешно завершили миссию!",
@@ -53,15 +54,12 @@
 	"notification-example-header":"Scott Piligrim",
 	"notification-example-text":"Выиграл миссию!",
 
-	"challenge-status-0": "Новый",
-	"challenge-status-1": "Текущий",
-	"challenge-status-2": "Успешный",
-	"challenge-status-3": "Проваленый",
-	"challenge-status-4": "Ожидающий",
+	"challenge-status-0": "Текущий",
+	"challenge-status-1": "Новый",
+	"challenge-status-2": "Ожидающий",
+	"challenge-status-3": "Успешный",
 
-	"NewChallengeType0": "Миссия по продаже",
-
-	"ChallengeTitle0": "Продать {{amount}} продуктов {{product}}",
+	"challenge-no-data": "Миссии не найдены",
 
 	"challenge-your-progress": "Ваш прогресс {{progress | number:0}}%",
 	"challenge-opponent-progress": "Прогресс оппонента {{progress | number:0}}%",
@@ -72,7 +70,7 @@
 	"challenge-details-accepted": "Принято: ",
 	"challenge-details-ends": "Заканчивается: ",
 	"challenge-details-fee": "Цена: {{fee}} монет",
-	"challenge-details-reward": "Награда: {{reward.coins}} монет и {{reward.points}} очков",
+	"challenge-details-reward": "Награда: {{coins}} монет и {{points}} очков",
 	"challenge-details-acceptedby": "Также учавствуют: {{accepted}}",
 
 	"challenge-modal-caption":"Новая P2P миссия",
@@ -127,5 +125,6 @@
 	"news-type-1":"Выиграл миссию",
 	"news-type-2":"Получил бейдж",
 
-	"challenge-name-0": "Продажа {{params.amount}}шт. [{{params.product.name}}]"
+	"challenge-name-0": "Продажа {{amount}}шт. [{{products}}]",
+	"challenge-name-1": "Продажа {{amount}}шт. [{{products}}] против [{{participants}}]"
 }

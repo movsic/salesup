@@ -18,6 +18,7 @@ CREATE NEW CHALLENGE VIA CONTROLLER!!!
 new and active challenges redo
 points reward, coins reward, callenge fee -> config
 bug: scroll on pages switches
+challenge tooltip with accepted challenge participants and may be progress
 
 news:
 tabs - own branch all

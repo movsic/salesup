@@ -26,4 +26,18 @@ angular.module('app')
             return configData.pointsForAction[level];
             //return Math.pow(level,3);
         }
+
+        this.flattenArray = function(items){
+            var flatArray = [];
+            for (var i in items){
+                flatArray.push(items[i].name);
+            }
+            return flatArray.join(",");
+            //return items.map(function(e){return e["name"];}).join(",");
+        }
+
+        this.getChallengeFee = function(challenge, configData){
+            var fee = challenge.fee || Math.ceil(challenge.reward.coins * configData.challengeFee);
+            return fee;
+        }
 	});

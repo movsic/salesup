@@ -11,7 +11,8 @@ angular.module('app', [
     'ui.bootstrap',
     'oc.lazyLoad',
     'pascalprecht.translate',
-    'angularMoment'
+    'angularMoment',
+    'ngOdometer'
 ]);
 
 //    'ui.utils',    'ui.odometer'

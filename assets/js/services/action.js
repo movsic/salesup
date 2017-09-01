@@ -20,8 +20,8 @@ angular.module('app')
 		//this.getProductData = function(name){return DataProviderService.getProductData(name);};
 		//this.getPersonData = function(name){return DataProviderService.getPersonData(name);};
 
-		this.acceptChallenge = function(item){ 
-			this.updateStorage(DataProviderService.acceptChallenge(item.id));
+		this.acceptChallenge = function(user, item){ 
+			this.updateStorage(DataProviderService.acceptChallenge(user.id, item.id));
 			
 		};
 
@@ -31,26 +31,30 @@ angular.module('app')
 
 		this.updateStorage = function(response) {
 			console.log(response);
-			//first show error if any
-			if(response.error){
-				this.showNotification("error", response.text);
-				throw "Error " + response.text;
-			}
-			//next it's time for notifications
-			if(response.notifications){
-				for(var i in response.notifications){
-					var notification = response.notifications[i];
-					this.showNotification(notification.type, notification.text, notification.params);
+			//apply all errors!
+			for(var i in response){
+				switch(response[i].type){
+					case "error":
+						this.showNotification("error", "error-"+response[i].data.text);
+						throw "Error " + response[i].data.text;
+						break;
+					case "modal":
+						var modal = response[i].data;
+						this.showModal(modal.type, modal.event);
+						//TODO and wait for conformation!
+						break;
+					case "notification":
+						var notification = response[i].data;
+						this.showNotification(notification.type, "notification-"+notification.text, notification.params);
+						break;
+					case "update":
+						var update = response[i].data;
+						StorageService.apply(update);
+						break;
+					default:
+						throw "Error update type " + response[i].type;
 				}
 			}
-			if(response.modals){
-				for(var i in response.modals){
-					var modal = response.modals[i];
-					this.showModal(modal.type, modal.event);
-				}
-			}
-			//and now let's apply changed to model data
-			StorageService.apply(response.data);
 		};
 
 		this.showNotification = function(type, header, text, img){

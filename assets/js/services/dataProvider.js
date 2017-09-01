@@ -11,7 +11,7 @@ angular.module('app')
 
 	    this.getChallengesData = function () {
             for( var i in challengeData){
-                challengeData[i].opponent = this.findProfileById(challengeData[i].opponentId);
+                this.buildChallenge(challengeData[i]);
             }
             return JSON.parse(JSON.stringify(challengeData));
         };
@@ -23,13 +23,22 @@ angular.module('app')
             return JSON.parse(JSON.stringify(salesData[profileData.id]));
         };
 
+        //this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
+        this.getRatingData = function () { return JSON.parse(JSON.stringify(personData));};
+        this.getConfigData = function () { return JSON.parse(JSON.stringify(configData));};
+
         this.findProfileById = function(id) {
+            //TODO hack, replace "me"
+            if (id == profileData.id)
+               return profileData;
+
             for (var i in personData){
                 if (personData[i].id == id){
                     return personData[i];
                 }
             }
         };
+
         this.findProductById = function(id) {
             for (var i in productData){
                 if (productData[i].id == id){
@@ -55,22 +64,15 @@ angular.module('app')
             return item;
         }
 
-        var buildChallenge = function(challenge){
+        this.buildChallenge = function(challenge){
             for(var i in challenge.products){
-                challenge.products[i] = findProductById(challenge.products[i].id);
+                challenge.products[i] = this.findProductById(challenge.products[i].id);
             }
             for(var i in challenge.participants){
-                challenge.participants[i].profile = findPersonById(challenge.products[i].profile.id);
+                challenge.participants[i].profile = this.findProfileById(i);
             }
             return challenge;
         }
-        //ADD BUILD NEWS FUNCTION 
-        //this.build
-
-	    this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
-	    this.getRatingData = function () { return JSON.parse(JSON.stringify(personData));};
-        this.getConfigData = function () { return JSON.parse(JSON.stringify(configData));};
-        
 
         //this.getSalesAggregateData = function () { return JSON.parse(JSON.stringify(salesAggregateData))};
 
@@ -82,11 +84,11 @@ angular.module('app')
 
         //debug TODO: needs to be trough server?
         this.getNotifications = function() {
-            return {"notifications":[{
+            return [{"type":"notification","data":{
                 "type":"success",
                 "text":"greeting",
                 "params":{"name":profileData.name}
-            }]};
+            }}];
         }
 
         /*needs redo
@@ -105,55 +107,72 @@ angular.module('app')
         };
         */
 
-        this.acceptChallenge = function(id){
-            var challenge = challengeData.find(x => x.id === id);
-            if(profileData.coins < challenge.fee)
-                return {"error":"error-not-enough-coins","text":"error-coins"};
-            profileData.coins -= challenge.fee;
-            challenge.status = 1;
-            challenge.acceptDate = new Date().getTime();
+        this.acceptChallenge = function(userId, challengeId){
+            var update = [];
 
+            var challenge = challengeData.find(x => x.id === challengeId);
+            if(!challenge || challenge.endDate < moment().unix()){
+                return [{"type":"error","data":{"text":"challenge-not-found"}}];
+            }
+            this.buildChallenge(challenge);
+            //challenge fee may be empty for regular challenges
+            challenge.fee = HelperService.getChallengeFee(challenge, configData);
 
-                //"timestamp":getRandomTimestamp(-1),
-                //"user": {"id":1},
-                //"type": 0,
-                //"params": {"id":1,"type":0,"amount":10,"product":{"id":4,"name":"iPhone SE"}}
-            return {"data":[
-                {"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":0,"user":profileData,"params":this.buildChallenge(challenge)}},
-                {"name":"challenges","type":"update","data":challenge},
-                {"name":"profile","type":"update","data":{"key":"coins","value":profileData.coins}},
-            ]};
+            var profile = this.findProfileById(userId);
+            if(!profile){
+                return [{"type":"error","data":{"text":"profile-not-found"}}];
+            }
+            if(!(profile.id in challenge.participants) || challenge.participants[profile.id].status !== 1){
+                return [{"type":"error","data":{"text":"not-challenge-participant"}}];
+            }
+            if(profile.coins < challenge.fee){
+                return [{"type":"error","data":{"text":"not-enough-coins"}}];
+            }
+
+            //TODO what if we would have more ids?
+            update[profile.id] = [];
+            update[-1] = []; 
+
+            //TODO if last pending and challenge P2P - inform everybody that challenge starts
+            profile.coins -= challenge.fee;
+            challenge.participants[profile.id].status = 0;
+            challenge.participants[profile.id].acceptDate = new Date().getTime();
+
+            update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":0,"user":profile,"params":challenge}}});
+            update[profile.id].push({"type":"update","data":{"name":"challenges","type":"update","data":challenge}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}}});
+
+            return update[profile.id].concat(update[-1]);
         }
 
         //debug
-        this.addSale = function(userId, sale){
-            if(!sale){
-                sale = {"product":{"id":0},"timestamp": moment().unix()};
-            }
-            var profile = this.findProfileById(userId);
-            //TODO hack, replace "me"
-            if (userId == profileData.id){
-               profile = profileData;
-            }
-            if(!profile){
-                //TODO redo errors
-                return {"error":"profile-not-found"};
-            }
-
-            //save lvl to check did we get new level
-            var startLevel = HelperService.getLevelForPoints(profile.points, configData);
-
+        this.addSale = function(userId, productId){
             //TODO move update object outside function
             //update with positive index - updates for users
             //update with negative number - update for all
             var update = {};
-            var sale = this.buildSale(sale);
 
+            productId = productId || 0;
+            sale = this.buildSale({"product":{"id":productId},"timestamp": moment().unix()});
+
+            var profile = this.getProfileData(userId);
+            if(!profile){
+                //TODO redo errors
+                return [{"type":"error","data":{"text":"profile-not-found"}}];
+            } 
+
+            //prepare objects
+            //TODO what if we would have more ids?
+            update[profile.id] = [];
+            update[-1] = [];  
+
+            //save lvl to check did we get new level
+            var startLevel = HelperService.getLevelForPoints(profile.points, configData);
             salesData[userId].push(sale);
-            profile.points += HelperService.getPointsForAction(profile.points, configData);
-
-            update[profile.id].data.push({"name":"sales","type":"add","data":sale});
-            update[profile.id].notifications.push({"type":"success","text":"your-sale","params":{"sale":sale.product.name,"points":this.getPointsForSell(profile.level)}});
+            var bonusPoints = HelperService.getPointsForAction(profile.points, configData)
+            profile.points += bonusPoints;
+            update[profile.id].push({"type":"update","data":{"name":"sales","type":"add","data":sale}});
+            update[profile.id].push({"type":"notification","data":{"type":"success","text":"your-sale","params":{"sale":sale.product.name,"points":bonusPoints}}});
 
             //TODO sent update to other challenge participants
             
@@ -162,43 +181,57 @@ angular.module('app')
                 //if challenge is accepted and productId fits
                 //TODO support challenge type 1 and 2
                 // && (challengeData[i].type == 1 || challengeData[i].type == 2)
-                if (profile.id in challengeData[i].participants && challengeData[i].participants[profile.id].status == 1 && sale.product.id in challengeData[i].products){
+                //TODO more complex logic for status -> for p2p 
+                if (profile.id in challengeData[i].participants 
+                    && challengeData[i].participants[profile.id].status == 0 
+                    && sale.product.id in challengeData[i].products
+                    && challengeData[i].endDate > moment().unix()){
                     challengeData[i].participants[profile.id].progress += 1;
                     
                     if (challengeData[i].participants[profile.id].progress >= challengeData[i].amount){
+                        //set status to successful
                         challengeData[i].participants[profile.id].status = 2;
                         //TODO do this only if challenge type == 2
                         for ( var userId in challengeData[i].participants ){
-                            //TODO support params in front
-                            update[userId].notifications.push({"type":"error","text":"challenge-loss","params":{"user":profile,"challenge":challengeData[i]}});
+                            //do not send notification to yourself
+                            if( challengeData[i].participants[userId].profile.id ){
+                                //TODO support params in front
+                                update[userId].push({"type":"notification","data":{"type":"error","text":"challenge-loss","params":{"user":profile,"challenge":challengeData[i]}}});
+                            }
                             //TODO if challenge type 2 - stop challenge after winning it!
                         }
                         profile.coins += challengeData[i].reward.coins;
                         profile.points += HelperService.getPointsForChallenge(profile.points, configData);
-                        update[profile.id].modals.push({"type":"win","event":challengeData[i]});
-                        update[-1].data.push({"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}});
+                        update[profile.id].push({"type":"modal","data":{"type":"win","event":challengeData[i]}});
+                        update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}}});
                     }else{
+                        //inform others that one is performing
+                        //TODO do it for regular challenge?
                         for ( var userId in challengeData[i].participants ){
-                            //TODO support params in front
-                            update[userId].notifications.push({"type":"warning","text":"opponent-sale","params":{"user":profile,"challenge":challengeData[i]}});
+                            //do not send notification to yourself
+                            if( challengeData[i].participants[userId].profile.id !== profile.id){
+                                //TODO support params in front
+                                update[userId].push({"type":"notification","data":{"type":"warning","text":"opponent-sale","params":{"user":profile,"challenge":challengeData[i]}}});
+                            }
                         }
                     }
-                    update[profile.id].data.push({"name":"challenges","type":"update","data":challengeData[i]});
+                    update[profile.id].push({"type":"update","data":{"name":"challenges","type":"update","data":challengeData[i]}});
                 }
             }
-            update[profile.id].data.push({"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}});
-            update[profile.id].data.push({"name":"profile","type":"update","data":{"key":"points","value":profile.points}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"points","value":profile.points}}});
 
             //level recalculation
             var endLevel = HelperService.getLevelForPoints(profile.points, configData);
             if(endLevel < startLevel){
                 //this should be the firs event!!! to prevent everything from update!
-                update[profile.id].modals.push({"type":"levelup","event":{"level":endLevel}});
+                update[profile.id].push({"type":"modal","data":{"type":"levelup","event":{"level":endLevel}}});
             }
-
-            return update[profile.id];
+            //joining peronal updates with public updates
+            return update[profile.id].concat(update[-1]);
         }
 
+        /*
         this.addOpponentSale = function(){
             var opponent = this.findProfileById(1);
             var update = {"data":[],"notifications":[],"modals":[]};
@@ -216,6 +249,7 @@ angular.module('app')
             }
             return update;
         }
+        */
 
         var getRandomTimestamp = function (days){
             //rnd +- 6 hours
@@ -227,6 +261,7 @@ angular.module('app')
             "pointsToLevel":[0,10,50,100,200,500,1000,2000,3000,5000],
             "pointsForChallenge":[0,1,5,10,20,50,100,200,300,500],
             "pointsForAction":[0,1,2,5,10,25,50,100,150,250],
+            "challengeFee":0.2,
         };
 
         //block of debug data!
@@ -315,26 +350,104 @@ angular.module('app')
             ],
         };
 
-        //status 0=New 1=In Progress 2=Successful 3=Failed 4=Pending
+        //status 0=In Progress 1=New 2=Successful 3=Pending
         var challengeData = [
             {
+                "comment":"active challenge for product id 0",
             	"id":0,
                 "type": 0,
-                "amount": 20,
+                "amount": 5,
+                "products": {0:{"id":0}},
+                "participants":{
+                    0:{
+                        "progress":3,
+                        "status":0,
+                        "acceptDate":getRandomTimestamp(-1),
+                        "profile":{"id":0},
+                    },
+                },
+                "startDate": getRandomTimestamp(-3),
+                "endDate": getRandomTimestamp(3),
+                "fee": 5,
+                "reward": {"coins":100},
+            },
+            {
+                "comment":"active challenge ENDED",
+                "id":1,
+                "type": 0,
+                "amount": 1,
                 "products": {0:{"id":0}},
                 "participants":{
                     0:{
                         "progress":0,
                         "status":0,
+                        "acceptDate":getRandomTimestamp(-1),
+                        "profile":{"id":0},
+                    },
+                },
+                "startDate": getRandomTimestamp(-3),
+                "endDate": getRandomTimestamp(-1),
+                "fee": 5,
+                "reward": {"coins":100},
+            },
+            {
+                "comment":"New challenge accepted by other user",
+                "id":2,
+                "type": 0,
+                "amount": 10,
+                "products": {6:{"id":6},7:{"id":7},8:{"id":8}},
+                "participants":{
+                    0:{
+                        "progress":0,
+                        "status":1,
+                        "acceptDate":null,
+                        "profile":{"id":0},
+                    },
+                    1:{
+                        "progress":2,
+                        "status":0,
+                        "acceptDate":getRandomTimestamp(-3),
+                        "profile":{"id":1},
+                    },
+                    2:{
+                        "progress":10,
+                        "status":2,
+                        "acceptDate":getRandomTimestamp(-3),
+                        "profile":{"id":2},
+                    },
+                    3:{
+                        "progress":3,
+                        "status":0,
+                        "acceptDate":getRandomTimestamp(-3),
+                        "profile":{"id":3},
+                    },
+                },
+                "startDate": getRandomTimestamp(-3),
+                "endDate": getRandomTimestamp(5),
+                "fee": 0,
+                "reward": {"coins":100},
+            },
+            {
+                "comment":"too expencive challenge",
+                "id":3,
+                "type": 0,
+                "amount": 15,
+                "products": {3:{"id":3}},
+                "participants":{
+                    0:{
+                        "progress":0,
+                        "status":1,
                         "acceptDate":null,
                         "profile":{"id":0},
                     },
                 },
-                "createDate": getRandomTimestamp(-3),
+                "startDate": getRandomTimestamp(-3),
                 "endDate": getRandomTimestamp(3),
-                "fee": 5,
-                "reward": {"coins":100},
+                "fee": 0,
+                "reward": {"coins":100000},
             },
+        ];
+        /*
             {
                 "id":1,
                 "type": 0,
@@ -445,6 +558,7 @@ angular.module('app')
             },
 
         ];
+        */
 
         var coinsData = [
             {

@@ -9,19 +9,16 @@
                 </button>
                 <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
                     <li ng-class="{'active': activeTab==0}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'challenge-tab-new'}}</a>
-                    </li">
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'challenge-tab-active'}}</a>
+                    </li>
                     <li ng-class="{'active': activeTab==1}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'challenge-tab-active'}}</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'challenge-tab-new'}}</a>
                     </li>
                     <li ng-class="{'active': activeTab==2}">
                         <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(2)" translate>{{'challenge-tab-successful'}}</a>
-                    </li>
+                    </li>    
                     <li ng-class="{'active': activeTab==3}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(3)" translate>{{'challenge-tab-failed'}}</a>
-                    </li>
-                    <li ng-class="{'active': activeTab==4}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(4)" translate>{{'challenge-tab-pending'}}</a>
+                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(3)" translate>{{'challenge-tab-pending'}}</a>
                     </li>
                 </ul>
             </div>
@@ -37,30 +34,37 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat-start="i in challengeData | filter:{ status: activeTab }" ng-class="{'shown':showDetails==i.id}"  ng-click="expand(i.id)">
+                        <tr ng-if="(challengeData | filter:statusFilter(activeTab)).length < 1" class="row-details">
+                            <td colspan="4" ><div class="text-center hint-text" translate>{{'challenge-no-data'}}</div></td>
+                        </tr>
+                        <tr ng-repeat-start="i in challengeData | filter:statusFilter(activeTab) | orderBy:'endDate':true" ng-class="{'shown':showDetails==i.id}"  ng-click="expand(i.id)"  ng-show="isRunning(i)">
                             <td class="v-align-middle">
-                                <challenge-title data="i"></challenge-title>
+                                <span translate translate-values='{ amount: i.amount, products:helper.flattenArray(i.products)}'> {{'challenge-name-' + i.type}}</span>
                             </td>
                             <td class="v-align-middle">
                                 <div>
-                                    <p class="small hint-text" translate translate-values='{ progress: i.yourProgress/i.amount*100 }'>{{'challenge-your-progress'}}</p>
+                                    <p class="small hint-text" translate translate-values='{ progress: i.participants[profileData.id].progress/i.amount*100 }'>{{'challenge-your-progress'}}</p>
                                     <div class="progress">
-                                        <div class="progress-bar bg-success" style="width:{{i.yourProgress/i.amount*100}}%"></div>
+                                        <div class="progress-bar bg-success" style="width:{{i.participants[profileData.id].progress/i.amount*100}}%"></div>
                                     </div>
                                 </div>
+                                <!--
                                 <div ng-if="i.opponent">
                                     <p class="small hint-text" translate  translate-values='{ progress: i.opponentProgress/i.amount*100 }'>{{'challenge-opponent-progress'}}</p>
                                     <div class="progress">
                                         <div class="progress-bar bg-warning" style="width:{{i.opponentProgress/i.amount*100}}%"></div>
                                     </div>
                                 </div>
+                                -->
                             </td>
                             <td class="v-align-middle">
                                 <p am-time-ago="i.endDate*1000"></p>
                             </td>
-                            <td class="v-align-middle" ng-show="i.status==0">
-                                <button class="btn btn-success btn-cons" ng-click="action.acceptChallenge(i)" translate>{{'challenge-button-accept'}}</button>
+
+                            <td class="v-align-middle" ng-show="i.participants[profileData.id].status==1">
+                                <button class="btn btn-success btn-cons" ng-click="action.acceptChallenge(profileData, i)" translate>{{'challenge-button-accept'}}</button>
                             </td>
+                            <!-- TODO
                             <td class="v-align-middle" ng-show="i.status==1">
                                 <p translate>{{'challenge-status-1'}}</p>
                             </td>
@@ -84,19 +88,19 @@
                                 <p ng-if="!i.opponent" translate>{{'challenge-details-regular'}}</p>
                                 <p>
                                     <span translate>{{'challenge-details-created'}}</span> 
-                                    <span am-time-ago="i.createDate*1000"></span>
+                                    <span am-time-ago="i.startDate*1000"></span>
                                 </p>
                                 <p ng-if="i.acceptDate">
                                     <span translate> {{'challenge-details-accepted'}}</span> 
-                                    <span am-time-ago="i.accepteDate*1000"></span>
+                                    <span am-time-ago="i.participants[profileData.id].accepteDate*1000"></span>
                                 </p>
                                 <p>
                                     <span translate>{{'challenge-details-ends'}}</span> 
                                     <span am-time-ago="i.endDate*1000"></span>
                                 </p>
-                                <p translate translate-values='{fee: i.fee}'>{{'challenge-details-fee'}}</p>
-                                <p translate translate-values='{reward: i.reward}'>{{'challenge-details-reward'}}</p>
-                                <p translate translate-values='{accepted: i.acceptedby.join(", ")}'>{{'challenge-details-acceptedby'}}</p>
+                                <p translate translate-values='{fee: getFee(i)}'>{{'challenge-details-fee'}}</p>
+                                <p translate translate-values='{coins: i.reward.coins,points: getPointsForChallenge(profileData.points)}'>{{'challenge-details-reward'}}</p>
+                                <p translate translate-values='{accepted: getParticipants(i)}'>{{'challenge-details-acceptedby'}}</p>
                             </td>
                         </tr>
                         <!--END OF DETAILED INFO ABOUT CHALLENGE-->

@@ -16,14 +16,15 @@
 	"challenge-tab-failed": "Failed",
 	"challenge-tab-pending": "Pending",
 
-	"ChallengeType0": "Sell",
+	"error-not-enough-coins-header": "Error!",
+	"error-profile-not-found-header": "Error!",
+	"error-not-challenge-participant-header": "Error!",
+	"error-challenge-not-found-header":"Error!",
 
-	"Anything": "Anything",
-	"Phone": "Phone",
-	"Tablet": "Tablet",
-	"Notebook": "Notebook",
-
-	"error-not-enough-coins": "Not enough coins!",
+	"error-not-enough-coins-text": "Not enough coins!",
+	"error-profile-not-found-text": "Profile not found!",
+	"error-not-challenge-participant-text": "Not challenge participant!",
+	"error-challenge-not-found-text":"Challenge not found!",
 
 	"modal-win-congratulations": "Congratulations!",
 	"modal-win-name": "You won the challenge!",
@@ -54,15 +55,12 @@
 	"notification-example-text":"Won challenge!",
 
 
-	"challenge-status-0": "New",
-	"challenge-status-1": "In Progress",
-	"challenge-status-2": "Successful",
-	"challenge-status-3": "Failed",
-	"challenge-status-4": "Pending",
+	"challenge-status-0": "In Progress",
+	"challenge-status-1": "New",
+	"challenge-status-2": "Pending",
+	"challenge-status-3": "Successful",
 
-	"NewChallengeType0": "Selling challenge",
-
-	"ChallengeTitle0": "Sell {{amount}} of {{product}}",
+	"challenge-no-data": "No challenges found",
 
 	"challenge-your-progress": "Your progress {{progress | number:0}}%",
 	"challenge-opponent-progress": "Opponent's progress {{progress | number:0}}%",
@@ -73,7 +71,7 @@
 	"challenge-details-accepted": "Accepted: ",
 	"challenge-details-ends": "Ends: ",
 	"challenge-details-fee": "Fee: {{fee}} coins",
-	"challenge-details-reward": "Rewards: {{reward.coins}} coins and {{reward.points}} points",
+	"challenge-details-reward": "Rewards: {{coins}} coins and {{points}} points",
 	"challenge-details-acceptedby": "Already accepted by: {{accepted}}",
 
 	"challenge-modal-caption":"New P2P Challenge",
@@ -128,6 +126,6 @@
 	"news-type-1":"Won Challenge",
 	"news-type-2":"Earned Badge",
 
-	"challenge-name-0": "Sell {{amount}} of [{{products}}]"
-
+	"challenge-name-0": "Sell {{amount}} of [{{products}}]",
+	"challenge-name-1": "Sell {{amount}} of [{{products}}] vs [{{participants}}]"
 }

@@ -6,6 +6,7 @@ angular.module('app')
     .controller('MainCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', 'amMoment', function($scope, $translate, ActionService, HelperService, amMoment) {
     	ActionService.loadInitData();
         $scope.action = ActionService;
+        $scope.helper = HelperService;
 
         $scope.configData = ActionService.getStorageData('config');
         $scope.profileData = ActionService.getStorageData('profile');

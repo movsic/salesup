@@ -9,8 +9,8 @@ angular.module('app')
 	       	}
 	        $('body').pgNotification({
 	            style: 'circle',
-	            title: $translate.instant('notification-' + text + '-header', { "params": params }),
-	            message: $translate.instant('notification-' + text + '-text', { "params": params }),
+	            title: $translate.instant(text + '-header', { "params": params }),
+	            message: $translate.instant(text + '-text', { "params": params }),
 	            position: "top-right",
 	            type: type,
 	            timeout: 5000,
