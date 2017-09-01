@@ -28,12 +28,12 @@
 
 	"modal-win-congratulations": "Congratulations!",
 	"modal-win-name": "You won the challenge!",
-	"modal-win-reward": "Your reward is {{challenge.reward.coins}} coins and {{challenge.reward.points}} points!",
+	"modal-win-reward": "Your reward is {{params.challenge.reward.coins}} coins and {{params.points}} points!",
 	"modal-win-done": "Collect your reward!",
 
 	"modal-levelup-congratulations":"Level Up!",
-	"modal-levelup-name":"You've reached level {{level}}!",
-	"modal-levelup-reward":"You will receive more coins and points!",
+	"modal-levelup-name":"You've reached level {{params.level}}!",
+	"modal-levelup-reward":"You will receive more points!",
 	"modal-levelup-done":"Close",
 
 	"notification-challenge-loss-header":"You've lost the challenge!",
@@ -125,6 +125,7 @@
 	"news-type-0":"Started Challenge",
 	"news-type-1":"Won Challenge",
 	"news-type-2":"Earned Badge",
+	"news-type-3":"Reached New Level {{params.level}}",
 
 	"challenge-name-0": "Sell {{amount}} of [{{products}}]",
 	"challenge-name-1": "Sell {{amount}} of [{{products}}] vs [{{participants}}]"

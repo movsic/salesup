@@ -115,6 +115,7 @@ angular.module('app')
                 return [{"type":"error","data":{"text":"challenge-not-found"}}];
             }
             this.buildChallenge(challenge);
+
             //challenge fee may be empty for regular challenges
             challenge.fee = HelperService.getChallengeFee(challenge, configData);
 
@@ -155,7 +156,7 @@ angular.module('app')
             productId = productId || 0;
             sale = this.buildSale({"product":{"id":productId},"timestamp": moment().unix()});
 
-            var profile = this.getProfileData(userId);
+            var profile = this.findProfileById(userId);
             if(!profile){
                 //TODO redo errors
                 return [{"type":"error","data":{"text":"profile-not-found"}}];
@@ -169,10 +170,10 @@ angular.module('app')
             //save lvl to check did we get new level
             var startLevel = HelperService.getLevelForPoints(profile.points, configData);
             salesData[userId].push(sale);
-            var bonusPoints = HelperService.getPointsForAction(profile.points, configData)
-            profile.points += bonusPoints;
+            var actionBonusPoints = HelperService.getPointsForAction(profile.points, configData);
+            profile.points += actionBonusPoints;
             update[profile.id].push({"type":"update","data":{"name":"sales","type":"add","data":sale}});
-            update[profile.id].push({"type":"notification","data":{"type":"success","text":"your-sale","params":{"sale":sale.product.name,"points":bonusPoints}}});
+            update[profile.id].push({"type":"notification","data":{"type":"success","text":"your-sale","params":{"sale":sale.product.name,"points":actionBonusPoints}}});
 
             //TODO sent update to other challenge participants
             
@@ -201,8 +202,9 @@ angular.module('app')
                             //TODO if challenge type 2 - stop challenge after winning it!
                         }
                         profile.coins += challengeData[i].reward.coins;
-                        profile.points += HelperService.getPointsForChallenge(profile.points, configData);
-                        update[profile.id].push({"type":"modal","data":{"type":"win","event":challengeData[i]}});
+                        var challengeBonusPoints = HelperService.getPointsForChallenge(profile.points, configData)
+                        profile.points += challengeBonusPoints;
+                        update[profile.id].push({"type":"modal","data":{"type":"win","params":{"challenge":challengeData[i]},"points":challengeBonusPoints}});
                         update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}}});
                     }else{
                         //inform others that one is performing
@@ -223,9 +225,10 @@ angular.module('app')
 
             //level recalculation
             var endLevel = HelperService.getLevelForPoints(profile.points, configData);
-            if(endLevel < startLevel){
-                //this should be the firs event!!! to prevent everything from update!
-                update[profile.id].push({"type":"modal","data":{"type":"levelup","event":{"level":endLevel}}});
+            if(endLevel > startLevel){
+                //TODO this should be the firs event!!! to prevent everything from update!
+                update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":3,"user":profile,"params":{"level":endLevel} }}});
+                update[profile.id].push({"type":"modal","data":{"type":"levelup","params":{"level":endLevel,"actionPoints":HelperService.getPointsForAction(endLevel, configData),"challengePoints":HelperService.getPointsForChallenge(endLevel, configData)}}});
             }
             //joining peronal updates with public updates
             return update[profile.id].concat(update[-1]);
@@ -311,7 +314,7 @@ angular.module('app')
             ]
         };
 
-        //type 0=Started Challenge 1=Won Challenge 2=Earned Badge
+        //type 0=Started Challenge 1=Won Challenge 2=Earned Badge 3=Levelup
         var newsData = [
         	{
                 "timestamp":getRandomTimestamp(-1),
@@ -330,6 +333,12 @@ angular.module('app')
                 "user": {"id":3},
                 "type": 2,
                 "params": {"type":1}
+            },
+            {
+                "timestamp":getRandomTimestamp(-3),
+                "user": {"id":4},
+                "type": 3,
+                "params": {"level":2}
             }
         ];
 

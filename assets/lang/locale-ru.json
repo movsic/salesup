@@ -28,11 +28,11 @@
 
 	"modal-win-congratulations": "Поздравляем!",
 	"modal-win-name": "Вы успешно завершили миссию!",
-	"modal-win-reward": "Ваша награда: {{challenge.reward.coins}} монет и {{challenge.reward.points}} очков!",
+	"modal-win-reward": "Ваша награда: {{params.challenge.reward.coins}} монет и {{params.points}} очков!",
 	"modal-win-done": "Собрать награду!",
 
 	"modal-levelup-congratulations":"Новый уровень!",
-	"modal-levelup-name":"Вы достигли уровня {{level}}!",
+	"modal-levelup-name":"Вы достигли уровня {{params.level}}!",
 	"modal-levelup-reward":"Теперь вы будете получать больше монет и очков!",
 	"modal-levelup-done":"Закрыть",
 

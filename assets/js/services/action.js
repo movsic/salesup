@@ -40,7 +40,7 @@ angular.module('app')
 						break;
 					case "modal":
 						var modal = response[i].data;
-						this.showModal(modal.type, modal.event);
+						this.showModal(modal.type, modal.params);
 						//TODO and wait for conformation!
 						break;
 					case "notification":
@@ -60,8 +60,8 @@ angular.module('app')
 		this.showNotification = function(type, header, text, img){
 			NotificationService.showNotification(type, header, text, img);
 		}
-		this.showModal = function(type, event){
-			NotificationService.showModal(type, event);
+		this.showModal = function(type, params){
+			NotificationService.showModal(type, params);
 		}
 
 	});
