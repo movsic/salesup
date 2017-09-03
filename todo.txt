@@ -72,6 +72,8 @@ badges definition
 -level gained: 1,5,10
 -money earned
 -same daily
+add notifications
+add news
 
 ?time in system: 
 

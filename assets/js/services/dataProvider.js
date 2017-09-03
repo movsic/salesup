@@ -237,7 +237,7 @@ angular.module('app')
             }
             update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}}});
             update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"points","value":profile.points}}});
-            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"achievements","value":profile.acievements}}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"achievements","value":profile.achievements}}});
 
             //level recalculation
             var endLevel = HelperService.getLevelForPoints(profile.points, configData);
