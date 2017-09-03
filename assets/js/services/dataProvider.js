@@ -160,7 +160,19 @@ angular.module('app')
             if(!profile){
                 //TODO redo errors
                 return [{"type":"error","data":{"text":"profile-not-found"}}];
-            } 
+            }
+
+            //udate achievements
+            profile.achievements.total.sales += 1;
+            profile.achievements.total.money += sale.product.price;
+            
+            if(profile.achievements.day !== moment().startOf('day').unix()){
+                profile.achievements.day = moment().startOf('day').unix();
+                profile.achievements.daily = {"sales":0,"challenges":0,"money":0};
+            }
+
+            profile.achievements.daily.sales += 1;
+            profile.achievements.daily.money += sale.product.price;
 
             //prepare objects
             //TODO what if we would have more ids?
@@ -204,7 +216,10 @@ angular.module('app')
                         profile.coins += challengeData[i].reward.coins;
                         var challengeBonusPoints = HelperService.getPointsForChallenge(profile.points, configData)
                         profile.points += challengeBonusPoints;
-                        update[profile.id].push({"type":"modal","data":{"type":"win","params":{"challenge":challengeData[i]},"points":challengeBonusPoints}});
+                        profile.achievements.total.challenges += 1;
+                        profile.achievements.daily.challenges += 1;
+
+                        update[profile.id].push({"type":"modal","data":{"type":"win","params":{"challenge":challengeData[i],"points":challengeBonusPoints}}});
                         update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}}});
                     }else{
                         //inform others that one is performing
@@ -222,6 +237,7 @@ angular.module('app')
             }
             update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}}});
             update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"points","value":profile.points}}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"achievements","value":profile.acievements}}});
 
             //level recalculation
             var endLevel = HelperService.getLevelForPoints(profile.points, configData);
@@ -264,6 +280,7 @@ angular.module('app')
             "pointsToLevel":[0,10,50,100,200,500,1000,2000,3000,5000],
             "pointsForChallenge":[0,1,5,10,20,50,100,200,300,500],
             "pointsForAction":[0,1,2,5,10,25,50,100,150,250],
+            "achievements":[0,1,5,10,20,50,100],
             "challengeFee":0.2,
         };
 
@@ -307,11 +324,16 @@ angular.module('app')
             "coins":20,
             "lastLogin": 1500649789,
             "badges":[
-                {"type": 1, "timestamp": getRandomTimestamp(-1)},
-                {"type": 2, "timestamp": getRandomTimestamp(-2)},
-                {"type": 3, "timestamp": getRandomTimestamp(-3)},
-                {"type": 4, "timestamp": getRandomTimestamp(-4)},
-            ]
+                {"type": 1, "rank":1, "timestamp": getRandomTimestamp(-1)},
+                {"type": 2, "rank":1, "timestamp": getRandomTimestamp(-2)},
+                {"type": 3, "rank":1, "timestamp": getRandomTimestamp(-3)},
+                {"type": 4, "rank":1, "timestamp": getRandomTimestamp(-4)},
+            ],
+            "achievements":{
+                "total":{"sales":3,"challenges":4,"money":1256},
+                "daily":{"sales":1,"challenges":1,"money":100},
+                "day":moment().format("DD.MM.YYYY"),
+            }
         };
 
         //type 0=Started Challenge 1=Won Challenge 2=Earned Badge 3=Levelup
