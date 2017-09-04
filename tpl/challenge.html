@@ -84,8 +84,6 @@
                         <!--DETAILED INFO ABOUT CHALLENGE-->
                         <tr class="row-details" ng-repeat-end ng-show="showDetails==i.id">
                             <td colspan=4>
-                                <p ng-if="i.opponent" translate translate-values='{opponent: i.opponent}'> {{'challenge-details-p2p'}}</p>
-                                <p ng-if="!i.opponent" translate>{{'challenge-details-regular'}}</p>
                                 <p>
                                     <span translate>{{'challenge-details-created'}}</span> 
                                     <span am-time-ago="i.startDate*1000"></span>
@@ -100,7 +98,8 @@
                                 </p>
                                 <p translate translate-values='{fee: getFee(i)}'>{{'challenge-details-fee'}}</p>
                                 <p translate translate-values='{coins: i.reward.coins,points: getPointsForChallenge(profileData.points)}'>{{'challenge-details-reward'}}</p>
-                                <p translate translate-values='{accepted: getParticipants(i)}'>{{'challenge-details-acceptedby'}}</p>
+                                <p translate translate-values='{accepted: getParticipants(i)}'>{{'challenge-details-participants'}}</p>
+                                <p ng-repeat="user in i.participants"> {{user.profile.name}} {{user.status}} {{user.progress}}/{{i.amount}}</p>
                             </td>
                         </tr>
                         <!--END OF DETAILED INFO ABOUT CHALLENGE-->

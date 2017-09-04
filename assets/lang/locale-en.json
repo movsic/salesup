@@ -71,14 +71,12 @@
 	"challenge-your-progress": "Your progress {{progress | number:0}}%",
 	"challenge-opponent-progress": "Opponent's progress {{progress | number:0}}%",
 
-	"challenge-details-p2p": "Type: P2P Challenge with {{opponent}}",
-	"challenge-details-regular": "Type: Regular Challenge",
 	"challenge-details-created": "Created: ",
 	"challenge-details-accepted": "Accepted: ",
 	"challenge-details-ends": "Ends: ",
 	"challenge-details-fee": "Fee: {{fee}} coins",
 	"challenge-details-reward": "Rewards: {{coins}} coins and {{points}} points",
-	"challenge-details-acceptedby": "Already accepted by: {{accepted}}",
+	"challenge-details-participants": "Participants: {{accepted}}",
 
 	"challenge-modal-caption":"New P2P Challenge",
 	"challenge-modal-subcaption":"We need information about your new challenge",
@@ -136,5 +134,5 @@
 	"badge-name":"{{name | translate}} rank {{rank}}",
 
 	"challenge-name-0": "Sell {{amount}} of [{{products}}]",
-	"challenge-name-1": "Sell {{amount}} of [{{products}}] vs [{{participants}}]"
+	"challenge-name-1": "P2P Sell {{amount}} of [{{products}}]"
 }

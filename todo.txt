@@ -1,8 +1,9 @@
 Challenges:
-timestamp of last login
+timestamp of last login -> to check which notifications to show?
 timestamp of status change -> badges with new
 ??type field
 challenge abort(is it possible at all?) -> modal
+challenge abort by timeout???
 news ???? add notifications in news
 challenge name in modal
 chellenge type -> disable if one
@@ -20,10 +21,13 @@ points reward, coins reward, callenge fee -> config
 bug: scroll on pages switches
 challenge tooltip with accepted challenge participants and may be progress
 ?move notification logic to frontend?
+add challenge name to notification
+P2P challenge create - pricing for creator
 
 news:
 tabs - own branch all
 likes for news
+switch show only own news?
 
 Uncaught Error: tile data is missing.
 script to load js async
@@ -71,7 +75,7 @@ daily badges?
 check badges translation text
 badges rank -> use diferent pictures and names
 different pictures for different badges
-badges progress
+badges progress in frontend
 badges refactor to one function
 
 

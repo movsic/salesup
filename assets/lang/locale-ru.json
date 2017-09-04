@@ -71,14 +71,12 @@
 	"challenge-your-progress": "Ваш прогресс {{progress | number:0}}%",
 	"challenge-opponent-progress": "Прогресс оппонента {{progress | number:0}}%",
 
-	"challenge-details-p2p": "Тип: P2P миссия против {{opponent}}",
-	"challenge-details-regular": "Тип: Стандартная миссия",
 	"challenge-details-created": "Создано: ",
 	"challenge-details-accepted": "Принято: ",
 	"challenge-details-ends": "Заканчивается: ",
 	"challenge-details-fee": "Цена: {{fee}} монет",
 	"challenge-details-reward": "Награда: {{coins}} монет и {{points}} очков",
-	"challenge-details-acceptedby": "Также учавствуют: {{accepted}}",
+	"challenge-details-participants": "Участники: {{accepted}}",
 
 	"challenge-modal-caption":"Новая P2P миссия",
 	"challenge-modal-subcaption":"Зполните необходимые поля",
@@ -136,5 +134,5 @@
 	"badge-name":"{{name | translate}} ранг {{rank}}",
 
 	"challenge-name-0": "Продажа {{amount}}шт. [{{products}}]",
-	"challenge-name-1": "Продажа {{amount}}шт. [{{products}}] против [{{participants}}]"
+	"challenge-name-1": "P2P Продажа {{amount}}шт. [{{products}}]"
 }

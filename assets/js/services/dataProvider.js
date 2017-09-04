@@ -164,7 +164,11 @@ angular.module('app')
 
             //prepare objects
             //TODO what if we would have more ids?
+            //TODO move updates to separate function! & check if user is online!
             update[profile.id] = [];
+            update[profileData.id] = [];
+            update[1] = [];
+            update[2] = [];
             update[-1] = [];  
 
             //udate statistics
@@ -184,7 +188,7 @@ angular.module('app')
             if(HelperService.getRankForBadge(badgeName, profile.statistics.earned - sale.product.price, configData) !==  HelperService.getRankForBadge(badgeName, profile.statistics.earned, configData)){
                 var rank = HelperService.getRankForBadge(badgeName, profile.statistics.earned, configData);
                 update[profile.id].push(
-                    {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                    {"type":"notification","data":{"type":"info","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
                 );
                 update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
             }
@@ -217,18 +221,24 @@ angular.module('app')
                         challengeData[i].participants[profile.id].status = 2;
                         //TODO do this only if challenge type == 2
                         for ( var userId in challengeData[i].participants ){
-                            //do not send notification to yourself
-                            if( challengeData[i].participants[userId].profile.id ){
-                                //TODO support params in front
-                                update[userId].push({"type":"notification","data":{"type":"error","text":"challenge-loss","params":{"user":profile,"challenge":challengeData[i]}}});
+                            //if this is P2P challenge...
+                            if( challengeData[i].type == 1 ){
+                                //do not send notification to yourself
+                                if( challengeData[i].participants[userId].profile.id !== profile.id){
+                                    //fail challenge for others
+                                    challengeData[i].participants[userId].status = 4;
+                                    update[userId].push({"type":"update","data":{"name":"challenges","type":"update","obj":challengeData[i]}});
+                                    //TODO support params in front
+                                    update[userId].push({"type":"notification","data":{"type":"error","text":"challenge-loss","params":{"user":profile,"challenge":challengeData[i]}}});
+                                }
                             }
-                            //TODO if challenge type 2 - stop challenge after winning it!
                         }
                         profile.coins += challengeData[i].reward.coins;
                         var challengeBonusPoints = HelperService.getPointsForChallenge(profile.points, configData)
                         profile.points += challengeBonusPoints;
                         profile.statistics.won += 1;
 
+                        //check for new badges
                         var badgeName = "won";
                         if(HelperService.getRankForBadge(badgeName, profile.statistics.won-1, configData) !==  HelperService.getRankForBadge(badgeName, profile.statistics.won, configData)){
                             var rank = HelperService.getRankForBadge("won", profile.statistics.won, configData);
@@ -241,13 +251,18 @@ angular.module('app')
                         update[profile.id].push({"type":"modal","data":{"type":"win","params":{"challenge":challengeData[i],"points":challengeBonusPoints}}});
                         update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}}});
                     }else{
-                        //inform others that one is performing
-                        //TODO do it for regular challenge?
-                        for ( var userId in challengeData[i].participants ){
-                            //do not send notification to yourself
-                            if( challengeData[i].participants[userId].profile.id !== profile.id){
-                                //TODO support params in front
-                                update[userId].push({"type":"notification","data":{"type":"warning","text":"opponent-sale","params":{"user":profile,"challenge":challengeData[i]}}});
+                        //if it is P2P challenge - send challenge updates to other users
+                        //if it is regular challenge - updates are too expencive
+                        if( challengeData[i].type == 1 ){
+                            //inform others that one is performing
+                            for ( var userId in challengeData[i].participants ){
+                                //do not send notification to yourself
+                                if( challengeData[i].participants[userId].profile.id !== profile.id){
+                                    //TODO support params in front
+                                    update[userId].push({"type":"notification","data":{"type":"warning","text":"opponent-sale","params":{"user":profile,"challenge":challengeData[i]}}});
+                                    //send challenge update to others
+                                    update[userId].push({"type":"update","data":{"name":"challenges","type":"update","obj":challengeData[i]}});
+                                }
                             }
                         }
                     }
@@ -261,6 +276,7 @@ angular.module('app')
             //level recalculation
             var endLevel = HelperService.getLevelForPoints(profile.points, configData);
             if(endLevel > startLevel){
+                //check for new badges
                 var badgeName = "level";
                 if(HelperService.getRankForBadge(badgeName, endLevel, configData) !==  HelperService.getRankForBadge(badgeName, startLevel, configData)){
                     var rank = HelperService.getRankForBadge(badgeName, profile.statistics.earned, configData);
@@ -275,7 +291,8 @@ angular.module('app')
             }
 
             //joining peronal updates with public updates
-            return update[profile.id].concat(update[-1]);
+            //TODO -> fix sending update to test account!
+            return update[profileData.id].concat(update[-1]);
         }
 
         /*
@@ -331,19 +348,19 @@ angular.module('app')
         ];
 
         var personData = [
-            {"id":1,"name":"Spiky Hedgehog","img":"1.jpg","points":10240,"group":"Vologda"},
-            {"id":2,"name":"Deadly Bunny","img":"2.jpg","points":20480,"group":"Moscow"},
-            {"id":3,"name":"Sly Fox","img":"3.jpg","points":5120,"group":"Vologda"},
-            {"id":4,"name":"Grey Mouse","img":"4.jpg","points":2560,"group":"Moscow"},
-            {"id":5,"name":"Monochrome Zebra","img":"5.jpg","points":1280,"group":"Vologda"},
-            {"id":6,"name":"Swift Turtle","img":"6.jpg","points":640,"group":"Moscow"},
-            {"id":7,"name":"Invisible Elephant","img":"7.jpg","points":320,"group":"Vologda"},
-            {"id":8,"name":"Cute Giraffe","img":"8.jpg","points":160,"group":"Moscow"},
-            {"id":9,"name":"Pinky Piggy","img":"9.jpg","points":80,"group":"Vologda"},
-            {"id":10,"name":"Lazy Crocodile","img":"a.jpg","points":40,"group":"Moscow"},
-            {"id":11,"name":"Furious Kitten","img":"c.jpg","points":20,"group":"Vologda"},
-            {"id":12,"name":"Giant Python","img":"be.jpg","points":10,"group":"Moscow"},
-            {"id":13,"name":"Dreamy Whale","img":"d.jpg","points":0,"group":"Vologda"},
+            {"id":1,"name":"Spiky Hedgehog","img":"1.jpg","points":10240,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":2,"name":"Deadly Bunny","img":"2.jpg","points":20480,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":3,"name":"Sly Fox","img":"3.jpg","points":5120,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":4,"name":"Grey Mouse","img":"4.jpg","points":2560,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":5,"name":"Monochrome Zebra","img":"5.jpg","points":1280,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":6,"name":"Swift Turtle","img":"6.jpg","points":640,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":7,"name":"Invisible Elephant","img":"7.jpg","points":320,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":8,"name":"Cute Giraffe","img":"8.jpg","points":160,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":9,"name":"Pinky Piggy","img":"9.jpg","points":80,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":10,"name":"Lazy Crocodile","img":"a.jpg","points":40,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":11,"name":"Furious Kitten","img":"c.jpg","points":20,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":12,"name":"Giant Python","img":"be.jpg","points":10,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":13,"name":"Dreamy Whale","img":"d.jpg","points":0,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
         ];
 
 	    var profileData = {
@@ -406,9 +423,10 @@ angular.module('app')
             {"product":{"id":2},"timestamp": getRandomTimestamp(-5)},
             {"product":{"id":3},"timestamp": getRandomTimestamp(-6)},
             ],
+            1:[],
         };
 
-        //status 0=In Progress 1=New 2=Successful 3=Pending
+        //status 0=In Progress 1=New 2=Successful 3=Pending 4=Failed
         var challengeData = [
             {
                 "comment":"active challenge for product id 0",
@@ -422,6 +440,12 @@ angular.module('app')
                         "status":0,
                         "acceptDate":getRandomTimestamp(-1),
                         "profile":{"id":0},
+                    },
+                    1:{
+                        "progress":3,
+                        "status":0,
+                        "acceptDate":getRandomTimestamp(-1),
+                        "profile":{"id":1},
                     },
                 },
                 "startDate": getRandomTimestamp(-3),
@@ -503,6 +527,31 @@ angular.module('app')
                 "endDate": getRandomTimestamp(3),
                 "fee": 0,
                 "reward": {"coins":100000},
+            },
+            {
+                "comment":"P2P challenge",
+                "id":4,
+                "type": 1,
+                "amount": 5,
+                "products": {0:{"id":0}},
+                "participants":{
+                    0:{
+                        "progress":3,
+                        "status":0,
+                        "acceptDate":getRandomTimestamp(-1),
+                        "profile":{"id":0},
+                    },
+                    1:{
+                        "progress":3,
+                        "status":0,
+                        "acceptDate":getRandomTimestamp(-1),
+                        "profile":{"id":1},
+                    },
+                },
+                "startDate": getRandomTimestamp(-3),
+                "endDate": getRandomTimestamp(3),
+                "fee": 5,
+                "reward": {"coins":100},
             },
         ];
         /*
