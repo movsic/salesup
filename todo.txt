@@ -53,6 +53,8 @@ lvl in rating -> config points-to-lvl -> client calculation
 stars in cahllenge (q: how to end challenge)
 limit max level points gain
 product type? translate? id?
+PENDING DO NOT EXIST!!!
+NO USERS, PROFILES
 //--------------------------
 
 Rating:
