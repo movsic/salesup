@@ -5,7 +5,7 @@ angular.module('app')
 		this.apply = function (upd){
 			if(!(upd.name in data))
 				throw "Error Data Update! Key " + upd.name + " does not exist!";
-			this[upd.type](upd.name,upd.data);
+			this[upd.type](upd.name,upd.obj);
 		};
 		this.get = function (name){
 			return data[name];

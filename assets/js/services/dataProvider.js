@@ -139,9 +139,9 @@ angular.module('app')
             challenge.participants[profile.id].status = 0;
             challenge.participants[profile.id].acceptDate = new Date().getTime();
 
-            update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":0,"user":profile,"params":challenge}}});
-            update[profile.id].push({"type":"update","data":{"name":"challenges","type":"update","data":challenge}});
-            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}}});
+            update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":0,"user":profile,"params":challenge}}});
+            update[profile.id].push({"type":"update","data":{"name":"challenges","type":"update","obj":challenge}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","obj":{"key":"coins","value":profile.coins}}});
 
             return update[profile.id].concat(update[-1]);
         }
@@ -184,7 +184,7 @@ angular.module('app')
             salesData[userId].push(sale);
             var actionBonusPoints = HelperService.getPointsForAction(profile.points, configData);
             profile.points += actionBonusPoints;
-            update[profile.id].push({"type":"update","data":{"name":"sales","type":"add","data":sale}});
+            update[profile.id].push({"type":"update","data":{"name":"sales","type":"add","obj":sale}});
             update[profile.id].push({"type":"notification","data":{"type":"success","text":"your-sale","params":{"sale":sale.product.name,"points":actionBonusPoints}}});
 
             //TODO sent update to other challenge participants
@@ -220,7 +220,7 @@ angular.module('app')
                         profile.statistics.daily.challenges += 1;
 
                         update[profile.id].push({"type":"modal","data":{"type":"win","params":{"challenge":challengeData[i],"points":challengeBonusPoints}}});
-                        update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}}});
+                        update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}}});
                     }else{
                         //inform others that one is performing
                         //TODO do it for regular challenge?
@@ -232,18 +232,18 @@ angular.module('app')
                             }
                         }
                     }
-                    update[profile.id].push({"type":"update","data":{"name":"challenges","type":"update","data":challengeData[i]}});
+                    update[profile.id].push({"type":"update","data":{"name":"challenges","type":"update","obj":challengeData[i]}});
                 }
             }
-            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"coins","value":profile.coins}}});
-            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"points","value":profile.points}}});
-            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","data":{"key":"statistics","value":profile.statistics}}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","obj":{"key":"coins","value":profile.coins}}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","obj":{"key":"points","value":profile.points}}});
+            update[profile.id].push({"type":"update","data":{"name":"profile","type":"update","obj":{"key":"statistics","value":profile.statistics}}});
 
             //level recalculation
             var endLevel = HelperService.getLevelForPoints(profile.points, configData);
             if(endLevel > startLevel){
                 //TODO this should be the firs event!!! to prevent everything from update!
-                update[-1].push({"type":"update","data":{"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":3,"user":profile,"params":{"level":endLevel} }}});
+                update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":3,"user":profile,"params":{"level":endLevel} }}});
                 update[profile.id].push({"type":"modal","data":{"type":"levelup","params":{"level":endLevel,"actionPoints":HelperService.getPointsForAction(endLevel, configData),"challengePoints":HelperService.getPointsForChallenge(endLevel, configData)}}});
             }
             //joining peronal updates with public updates
