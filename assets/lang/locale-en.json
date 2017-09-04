@@ -54,6 +54,12 @@
 	"notification-example-header":"Scott Piligrim",
 	"notification-example-text":"Won challenge!",
 
+	"notification-badge-new-header":"You've earned new badge!",
+	"notification-badge-new-text":"{{params.name | translate}} rank {{params.rank}}",
+
+	"badge-actions": "Sales maker",
+	"badge-earned": "Money earner",
+	"badge-won": "Challenge winner",
 
 	"challenge-status-0": "In Progress",
 	"challenge-status-1": "New",
@@ -126,6 +132,8 @@
 	"news-type-1":"Won Challenge",
 	"news-type-2":"Earned Badge",
 	"news-type-3":"Reached New Level {{params.level}}",
+
+	"badge-name":"{{name | translate}} rank {{rank}}",
 
 	"challenge-name-0": "Sell {{amount}} of [{{products}}]",
 	"challenge-name-1": "Sell {{amount}} of [{{products}}] vs [{{participants}}]"

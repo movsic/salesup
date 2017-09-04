@@ -8,8 +8,11 @@
                 <div class="timeline-point success" ng-if="i.type==1">
                     <i class="fa fa-thumbs-up"></i>
                 </div>
-                <div class="timeline-point success" ng-if="i.type==2">
+                <div class="timeline-point primary" ng-if="i.type==2">
                     <i class="fa fa-star"></i>
+                </div>
+                <div class="timeline-point success" ng-if="i.type==3">
+                    <i class="fa fa-arrow-up"></i>
                 </div>
                 <!--
                 for now cancel is not used
@@ -33,11 +36,11 @@
                                     <span translate translate-values='{ amount: i.params.amount, products:helper.flattenArray(i.params.products)}'> {{'challenge-name-' + i.params.type}}</span>
                                 </span>
                                 
-                                <span class="bold label fs-13" translate ng-show="i.type==2">{{'badge-name-' + i.params.type}}</span>
+                                <span class="bold label fs-13" ng-show="i.type==2" translate translate-values='{ name: i.params.name, rank: i.params.rank }'>{{'badge-name'}}</span>
                                 <span class="bold label fs-13" translate ng-show="i.type==3">{{i.params.level}}</span>
                             </p>
                         </div>
-                        <!-- likes? shares?
+                        <!-- TODO likes? shares? -> for future social
                         <div class="card-footer clearfix" ng-show="false">
                             <div class="time">few seconds ago</div>
                             <ul class="reactions">

@@ -83,7 +83,7 @@ angular.module('app')
         //this.getPersonData = function (name) { return JSON.parse(JSON.stringify(personData); };
 
         //debug TODO: needs to be trough server?
-        this.getNotifications = function() {
+        this.getUpdates = function() {
             return [{"type":"notification","data":{
                 "type":"success",
                 "text":"greeting",
@@ -162,22 +162,33 @@ angular.module('app')
                 return [{"type":"error","data":{"text":"profile-not-found"}}];
             }
 
-            //udate statistics
-            profile.statistics.total.sales += 1;
-            profile.statistics.total.money += sale.product.price;
-            
-            if(profile.statistics.day !== moment().startOf('day').unix()){
-                profile.statistics.day = moment().startOf('day').unix();
-                profile.statistics.daily = {"sales":0,"challenges":0,"money":0};
-            }
-
-            profile.statistics.daily.sales += 1;
-            profile.statistics.daily.money += sale.product.price;
-
             //prepare objects
             //TODO what if we would have more ids?
             update[profile.id] = [];
             update[-1] = [];  
+
+            //udate statistics
+            profile.statistics.actions += 1;
+            profile.statistics.earned += sale.product.price;
+
+            //check for new badges
+            var badgeName = "actions";
+            if(HelperService.getRankForBadge(badgeName, profile.statistics.actions - 1, configData) !==   HelperService.getRankForBadge(badgeName, profile.statistics.actions, configData)){
+                var rank = HelperService.getRankForBadge("actions", profile.statistics.actions, configData);
+                update[profile.id].push(
+                    {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                );
+                update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
+            }
+            var badgeName = "earned";
+            if(HelperService.getRankForBadge(badgeName, profile.statistics.earned - sale.product.price, configData) !==  HelperService.getRankForBadge(badgeName, profile.statistics.earned, configData)){
+                var rank = HelperService.getRankForBadge(badgeName, profile.statistics.earned, configData);
+                update[profile.id].push(
+                    {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                );
+                update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
+            }
+
 
             //save lvl to check did we get new level
             var startLevel = HelperService.getLevelForPoints(profile.points, configData);
@@ -216,8 +227,16 @@ angular.module('app')
                         profile.coins += challengeData[i].reward.coins;
                         var challengeBonusPoints = HelperService.getPointsForChallenge(profile.points, configData)
                         profile.points += challengeBonusPoints;
-                        profile.statistics.total.challenges += 1;
-                        profile.statistics.daily.challenges += 1;
+                        profile.statistics.won += 1;
+
+                        var badgeName = "won";
+                        if(HelperService.getRankForBadge(badgeName, profile.statistics.won-1, configData) !==  HelperService.getRankForBadge(badgeName, profile.statistics.won, configData)){
+                            var rank = HelperService.getRankForBadge("won", profile.statistics.won, configData);
+                            update[profile.id].push(
+                                {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                            );
+                            update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
+                        }
 
                         update[profile.id].push({"type":"modal","data":{"type":"win","params":{"challenge":challengeData[i],"points":challengeBonusPoints}}});
                         update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":1,"user":profile,"params":challengeData[i]}}});
@@ -242,10 +261,19 @@ angular.module('app')
             //level recalculation
             var endLevel = HelperService.getLevelForPoints(profile.points, configData);
             if(endLevel > startLevel){
+                var badgeName = "level";
+                if(HelperService.getRankForBadge(badgeName, endLevel, configData) !==  HelperService.getRankForBadge(badgeName, startLevel, configData)){
+                    var rank = HelperService.getRankForBadge(badgeName, profile.statistics.earned, configData);
+                    update[profile.id].push(
+                        {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                    );
+                    update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
+                }
                 //TODO this should be the firs event!!! to prevent everything from update!
                 update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":3,"user":profile,"params":{"level":endLevel} }}});
                 update[profile.id].push({"type":"modal","data":{"type":"levelup","params":{"level":endLevel,"actionPoints":HelperService.getPointsForAction(endLevel, configData),"challengePoints":HelperService.getPointsForChallenge(endLevel, configData)}}});
             }
+
             //joining peronal updates with public updates
             return update[profile.id].concat(update[-1]);
         }
@@ -280,7 +308,12 @@ angular.module('app')
             "pointsToLevel":[0,10,50,100,200,500,1000,2000,3000,5000],
             "pointsForChallenge":[0,1,5,10,20,50,100,200,300,500],
             "pointsForAction":[0,1,2,5,10,25,50,100,150,250],
-            "achievements":[0,1,5,10,20,50,100],
+            "badges":{
+                "actions":[0,1,5,10,20,50,100],
+                "won":[0,1,5,10,20,50,100],
+                "earned":[0,1000,5000,10000,20000,50000,100000],
+                "level":[0,1,5,10,20,50,100],
+            },
             "challengeFee":0.2,
         };
 
@@ -323,18 +356,12 @@ angular.module('app')
 	    	"points":90,       
             "coins":20,
             "lastLogin": 1500649789,
-            "badges":[
-                {"type": 1, "rank":1, "timestamp": getRandomTimestamp(-1)},
-                {"type": 2, "rank":1, "timestamp": getRandomTimestamp(-2)},
-                {"type": 3, "rank":1, "timestamp": getRandomTimestamp(-3)},
-                {"type": 4, "rank":1, "timestamp": getRandomTimestamp(-4)},
-            ],
             "statistics":{
-                "total":{"actions":3,"challengesWon":4,"challengesAccepted":4,"money":1256},
-                "daily":{"actions":1,"challengesWon":1,"challengesAccepted":4,"money":100},
-                "day":moment().format("DD.MM.YYYY"),
+                "actions":3,"won":4,"earned":1256,
             }
         };
+        //"daily":{"actions":1,"challengesWon":1,"challengesAccepted":4,"money":100},
+        //"day":moment().format("DD.MM.YYYY"),
 
         //type 0=Started Challenge 1=Won Challenge 2=Earned Badge 3=Levelup
         var newsData = [
@@ -354,7 +381,7 @@ angular.module('app')
                 "timestamp":getRandomTimestamp(-3),
                 "user": {"id":3},
                 "type": 2,
-                "params": {"type":1}
+                "params": {"name":"badge-actions","rank":3}
             },
             {
                 "timestamp":getRandomTimestamp(-3),

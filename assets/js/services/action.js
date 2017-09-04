@@ -13,7 +13,7 @@ angular.module('app')
 		    StorageService.set('config',DataProviderService.getConfigData());
 		    //add yourself to rating
 		    this.getStorageData('rating').push(this.getStorageData('profile'));
-		    this.updateStorage(DataProviderService.getNotifications());
+		    this.updateStorage(DataProviderService.getUpdates());
 		};
 
 		//this.getChallengeTypeData = function(){return DataProviderService.getChallengeTypeData();};

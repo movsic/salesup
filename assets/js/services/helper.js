@@ -40,4 +40,12 @@ angular.module('app')
             var fee = challenge.fee || Math.ceil(challenge.reward.coins * configData.challengeFee);
             return fee;
         }
+
+        this.getRankForBadge = function(badge, count, configData){
+            for(var i in configData.badges[badge]){
+                if(count <= configData.badges[badge][i]){
+                    return i-1;
+                }
+            }
+        }
 	});

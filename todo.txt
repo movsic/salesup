@@ -19,6 +19,7 @@ new and active challenges redo
 points reward, coins reward, callenge fee -> config
 bug: scroll on pages switches
 challenge tooltip with accepted challenge participants and may be progress
+?move notification logic to frontend?
 
 news:
 tabs - own branch all
@@ -66,16 +67,13 @@ Coins:
 coins page with bonus calculation (list of successful challenges and sales) <- needed?
 
 Badges:
-badge modal
-badges definition
-=badges in config
--actions done: 1, 10,...
--challenges done: 1,10, 
--level gained: 1,5,10
--money earned
--same daily
-add notifications
-add news
+daily badges?
+check badges translation text
+badges rank -> use diferent pictures and names
+different pictures for different badges
+badges progress
+badges refactor to one function
+
 
 ?time in system: 
 

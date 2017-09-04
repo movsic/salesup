@@ -52,7 +52,7 @@ challengeFee: float, стоимость участия в челленжде в 
 	"statistics":{
 	    "total":{"actions":3,"challengesWon":4,"challengesAccepted":4,"money":1256},
 	    "daily":{"actions":1,"challenges":1,"money":100},
-	    "day":moment().format("DD.MM.YYYY"),
+	    "day":1500649789,
 	}
 }
 

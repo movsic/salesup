@@ -54,6 +54,13 @@
 	"notification-example-header":"Scott Piligrim",
 	"notification-example-text":"Выиграл миссию!",
 
+	"notification-badge-new-header":"Ты получил новый бейдж!",
+	"notification-badge-new-text":"{{params.name | translate}} ранг {{params.rank}}",
+
+	"badge-actions": "Паровоз",
+	"badge-earned": "Лучший менеджер",
+	"badge-won": "Победитель",
+
 	"challenge-status-0": "Текущий",
 	"challenge-status-1": "Новый",
 	"challenge-status-2": "Ожидающий",
@@ -123,7 +130,10 @@
 
 	"news-type-0":"Начал миссию",
 	"news-type-1":"Выиграл миссию",
-	"news-type-2":"Получил бейдж",
+	"news-type-2":"Получил новый бейдж",
+	"news-type-3":"Получил новый уровень",
+
+	"badge-name":"{{name | translate}} ранг {{rank}}",
 
 	"challenge-name-0": "Продажа {{amount}}шт. [{{products}}]",
 	"challenge-name-1": "Продажа {{amount}}шт. [{{products}}] против [{{participants}}]"
