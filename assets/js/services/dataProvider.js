@@ -381,7 +381,7 @@ angular.module('app')
             ],
         };
 
-        //status 0=In Progress 1=New 2=Successful
+        //status 0=In Progress 1=New 2=Successful 3=Pending
         var challengeData = [
             {
                 "comment":"active challenge for product id 0",
