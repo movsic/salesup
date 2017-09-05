@@ -72,9 +72,7 @@ angular.module('app')
                                     'assets/js/controllers/sales.js',
                                     'assets/js/controllers/news.js',
                                     'assets/js/controllers/home.js',
-                                ], {
-                                    insertBefore: '#lazyload_placeholder'
-                                });
+                                ]);
                             });
                         }]
                     }

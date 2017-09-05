@@ -65,7 +65,7 @@ angular.module('app', ['nvd3'])
                 tooltips: false,
                 stacked: true,
                 showControls: false,
-                height: 400,
+
                 reduceXTicks: false,
                 refreshDataOnly: true,
                 deepWatchData: true,
@@ -74,7 +74,8 @@ angular.module('app', ['nvd3'])
                 color: [
                     $.Pages.getColor('success', .7),
                     $.Pages.getColor('danger', .7),
-                    $.Pages.getColor('warning', .7)
+                    $.Pages.getColor('warning', .7),
+                    $.Pages.getColor('info', .7),
                 ],
                 showValues: true,
                 duration: 500,

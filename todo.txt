@@ -26,6 +26,7 @@ notification - new challenge for you
 add coins for sale???
 or challenges with 0 fee??
 challenges that need no accept
+js controller not registered in main
 
 news:
 tabs - own branch all

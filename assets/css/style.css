@@ -154,3 +154,8 @@
 .tooltip {
   opacity: 0.9 !important;;
 }
+
+/*no arrors for bootstrap carousel*/
+.right.carousel-control, .left.carousel-control {
+    display: none;
+}
