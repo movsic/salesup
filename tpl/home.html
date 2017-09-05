@@ -6,30 +6,11 @@
             <div class="row">
                 <div class="col-md-12 m-b-10">
                     <div class="ar-1-2">
-                        <!-- START WIDGET -->
-                        <div class="bg-complete-light panel no-border no-margin widget widget-loader-circle" ui-sref="app.challenge">
-                            <div class="panel-heading">
-                                <div class="panel-title text-black hint-text">
-                                    <span class="font-montserrat fs-11 all-caps">ONGOING CHALLENGES <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="p-t-20" ng-repeat="i in challengeData">
-                                    <div class="">      
-                                        <div class="pull-left">
-                                            <h5 class="no-margin overflow-ellipsis">{{getChallengeTitle(i.type,i.amount,i.product)}}</h5>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <p class="small hint-text text-black">Complete {{i.progress}}%</p>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width:{{i.progress}}%"></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- CHALLENGES WIDGET -->
+                        <div class="panel no-border no-margin widget widget-loader-circle" ui-sref="app.challenges" ui-view="challenges">
+                            
                         </div>
-                        <!-- END WIDGET -->
+                        <!-- CHALLENGES END WIDGET -->
                     </div>
                 </div>
             </div>
@@ -38,18 +19,8 @@
             <div class="row">
                 <div class="col-md-12 m-b-10">
                     <div class="ar-2-1">
-                        <div class="panel panel-condensed no-margin no-border widget-loader-circle" ui-sref="app.sales">
-                            <div class="panel-heading">
-                                <div class="panel-title text-black hint-text">
-                                    <span class="font-montserrat fs-11 all-caps">MONTHLY SALES <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="panel-body no-padding">
-                                <div class="tab-pane" id="tab-nvd3-area">
-                                    <nvd3 options='nvd3_sales_options' class="line-chart m-t-30 text-center" data='nvd3_sales_data'></nvd3>
-                                </div>
-                            </div>
+                        <div class="panel panel-condensed no-margin no-border widget-loader-circle" ui-sref="app.sales" ui-view="sales">
+                            
                         </div>  
                     </div>
                 </div>
@@ -58,42 +29,8 @@
                 <div class="col-md-12 m-b-10">
                     <div class="ar-2-1">
                         <!-- START WIDGET -->
-                        <div class="panel bg-warning-light" ui-sref="app.news" >  
-                            <div class="panel-heading">
-                                <div class="panel-title text-black hint-text">
-                                    <span class="font-montserrat fs-11 all-caps">LATEST NEWS <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </div>
-                            </div>                      
-                            <div class="panel-body no-padding">
-                                <div class="metro live-tile" data-mode="carousel" data-start-now="true" data-speed="750" data-delay="5000" ui-jq="liveTile">
-                                    <div class="tiles" ng-class="i.id == 1 ? 'slide-front slide active':'slide-back'" ng-repeat="i in newsData">
-                                        <div class="padding-30">
-                                            <div class="pull-top">
-                                                <div class="pull-left visible-lg visible-xlg">
-                                                    <i class="pg-map"></i>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="pull-bottom p-b-30">
-                                                 <div class="row p-l-20 p-r-20 p-b-30">
-                                                    <user-pic data="{{i.img}}"></user-pic>
-                                                    <div class="no-padding">
-                                                        <h3 class="text-black">{{i.name}}</h3>
-                                                        <h4 class="text-black">{{getNewsType(i.type)}} {{i.result}}</h4>
-                                                        <div class="clearfix">
-                                                            <div class="text-black pull-left small hint-text">
-                                                                <h6 class="font-montserrat all-caps hint-text m-t-0">{{i.branch}}</h6>
-                                                                <small class="fs-12 hint-text">{{i.timestamp*1000 | date:"d MMMM yyyy, H:mm"}}</small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="panel" ui-sref="app.news" ui-view="news">  
+                           
                         </div>
                         <!--END WIDGET-->
                     </div>
@@ -105,7 +42,7 @@
                 <div class="col-sm-12 m-b-10">
                     <div class="ar-2-1">
                         <!-- START WIDGET -->
-                        <div class="widget bg-primary-light panel no-border widget-loader-circle-lg no-margin" ui-sref="app.rating">
+                        <div class="widget panel no-border widget-loader-circle-lg no-margin" ui-sref="app.rating">
                             <div class="panel-heading">
                                 <div class="panel-title text-black hint-text">
                                     <span class="font-montserrat fs-11 all-caps">POSITION &amp; TOTAL <i class="fa fa-chevron-right"></i>
@@ -130,7 +67,7 @@
                 <div class="col-sm-12 m-b-10">
                     <div class="ar-2-1">
                         <!-- START WIDGET -->
-                        <div class="widget bg-success panel no-border widget-loader-circle-lg no-margin" ui-sref="app.rating">
+                        <div class="widget panel no-border widget-loader-circle-lg no-margin" ui-sref="app.rating">
                             <div class="panel-heading">
                                 <div class="panel-title text-black hint-text">
                                     <span class="font-montserrat fs-11 all-caps">LEVEL &amp; POINTS<i class="fa fa-chevron-right"></i>
@@ -158,7 +95,7 @@
                 <div class="col-sm-12 m-b-10">
                     <div class="ar-2-1">
                         <!-- START WIDGET -->
-                        <div class="widget panel no-border bg-complete widget-loader-circle-lg no-margin" ui-sref="app.profile">
+                        <div class="widget panel no-border widget-loader-circle-lg no-margin" ui-sref="app.profile">
                             <div class="panel-heading">
                                 <div class="panel-title text-black hint-text">
                                     <span class="font-montserrat fs-11 all-caps">TOP BADGES <i class="fa fa-chevron-right"></i>
@@ -183,7 +120,7 @@
                 <div class="col-sm-12 m-b-10">
                     <div class="ar-2-1">
                         <!-- START WIDGET -->
-                        <div class="panel no-border bg-danger-light widget widget-loader-circle-lg no-margin"  ui-sref="app.shop">
+                        <div class="panel no-border widget widget-loader-circle-lg no-margin"  ui-sref="app.shop">
                             <div class="panel-heading">
                                 <div class="panel-title text-black hint-text">
                                     <span class="font-montserrat fs-11 all-caps">COINS <i class="fa fa-chevron-right"></i>

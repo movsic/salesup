@@ -21,7 +21,7 @@
     "components-font-awesome": "4.x",
     "angular": "1.6.x",
     "angular-ui-router":"1.x",
-    "angular-ui-utils":"3.x",
+    "angular-ui-utils":"0.2.2",
     "angular-sanitize":"1.x",
     "oclazyload":"1.0.x",
     "angular-translate": "2.x",

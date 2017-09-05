@@ -1,0 +1,20 @@
+<div class="panel-heading">
+    <div class="panel-title text-black hint-text">
+        <span class="font-montserrat fs-11 all-caps" translate>{{'home-caption-challenges'}} <i class="fa fa-chevron-right"></i>
+        </span>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="p-t-20" ng-repeat="i in challengeData | filter:statusFilter(activeTab) | orderBy:'endDate':true" ng-show="isRunning(i)">
+        <div class="">      
+            <div class="pull-left">
+                <h5 class="no-margin overflow-ellipsis" translate translate-values='{ amount: i.amount, products:helper.flattenArray(i.products)}'> {{'challenge-name-' + i.type}}</h5>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <p class="small hint-text text-black">Complete {{i.participants[profileData.id].progress/i.amount*100}}%</p>
+        <div class="progress">
+            <div class="progress-bar" style="width:{{i.participants[profileData.id].progress/i.amount*100}}%"></div>
+        </div>
+    </div>
+</div>

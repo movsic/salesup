@@ -135,5 +135,17 @@
 	"badge-name":"{{name | translate}} ранг {{rank}}",
 
 	"challenge-name-0": "Продажа {{amount}}шт. [{{products}}]",
-	"challenge-name-1": "P2P Продажа {{amount}}шт. [{{products}}]"
+	"challenge-name-1": "P2P Продажа {{amount}}шт. [{{products}}]",
+
+	"breadcrumbs-dashboard":"Главная",
+	"breadcrumbs-sales":"Продажи",
+	"breadcrumbs-news":"Новости",
+	"breadcrumbs-rating":"Рейтинг",
+	"breadcrumbs-challenges":"Миссии",
+	"breadcrumbs-profile":"Профиль",
+	"breadcrumbs-shop":"Магазин",
+
+	"home-caption-challenges":"Текушие миссии",
+	"home-caption-sales":"Продажи за неделю",
+	"home-caption-news":"Последние новости"
 }

@@ -3,8 +3,8 @@
         <div class="inner">
             <!-- START BREADCRUMB -->
             <ul class="breadcrumb">
-                <li><a ui-sref="app.home" class="">Dashboard</a></li>
-                <li><a href="" class="active">{{getState()}}</a></li>
+                <li><a ui-sref="app.home" class="" translate>{{'breadcrumbs-dashboard'}}</a></li>
+                <li><a href="" class="active" translate>{{'breadcrumbs-'+getState()}}</a></li>
             </ul>
             <!-- END BREADCRUMB -->
         </div>

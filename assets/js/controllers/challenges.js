@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('app', ['ui.select'])
-    .controller('ChallengeCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', function($scope, $translate, ActionService, HelperService) {
+    .controller('ChallengesCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', function($scope, $translate, ActionService, HelperService) {
 
         $scope.challengeData = ActionService.getStorageData('challenges');
 

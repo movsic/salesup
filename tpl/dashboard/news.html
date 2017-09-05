@@ -1,0 +1,40 @@
+ <div class="panel-heading">
+    <div class="panel-title text-black hint-text">
+        <span class="font-montserrat fs-11 all-caps" translate>{{'home-caption-news'}}<i class="fa fa-chevron-right"></i>
+        </span>
+    </div>
+</div>                      
+<div class="panel-body no-padding">
+    <div class="metro live-tile" data-mode="carousel" data-start-now="true" data-speed="750" data-delay="5000" ui-jq="liveTile">
+        <div class="tiles" ng-class="i.id == 1 ? 'slide-front slide active':'slide-back'" ng-repeat="i in newsData">
+            <div class="padding-30">
+                <div class="pull-top">
+                    <div class="clearfix"></div>
+                </div>
+                <div class="pull-bottom p-b-30">
+                     <div class="row p-l-20 p-r-20 p-b-30">
+                        <user-pic data="{{i.user.img}}"></user-pic>
+                        <div class="no-padding">
+                            <h3 class="text-black">{{i.user.name}}</h3>
+                            <h4 translate>{{'news-type-' + i.type}}</h4>
+                            <h4 class="text-black label">
+                                <span class="bold label fs-13" ng-show="i.type==0 || i.type==1">
+                                    <span translate translate-values='{ amount: i.params.amount, products:helper.flattenArray(i.params.products)}'> {{'challenge-name-' + i.params.type}}</span>
+                                </span>
+                                
+                                <span class="bold label fs-13" ng-show="i.type==2" translate translate-values='{ name: i.params.name, rank: i.params.rank }'>{{'badge-name'}}</span>
+                                <span class="bold label fs-13" translate ng-show="i.type==3">{{i.params.level}}</span>
+                            </h4>
+                            <div class="clearfix">
+                                <div class="text-black pull-left small hint-text">
+                                    <h6 class="font-montserrat all-caps hint-text m-t-0">{{i.user.group}}</h6>
+                                    <small class="fs-12 hint-text" am-time-ago="i.timestamp*1000"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

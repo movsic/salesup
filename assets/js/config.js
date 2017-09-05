@@ -39,32 +39,72 @@ angular.module('app')
                 })
                 .state('app.home', {
                     url: "/home",
-                    templateUrl: "tpl/home.html",
-                    controller: 'HomeCtrl',
+                    views:{
+                        "":{
+                            templateUrl: "tpl/home.html",
+                            controller: 'HomeCtrl',
+                        },
+                        "challenges@app.home":{
+                            templateUrl: "tpl/dashboard/challenges.html",
+                            controller: 'ChallengesCtrl',
+                        },
+                        "sales@app.home":{
+                            templateUrl: "tpl/dashboard/sales.html",
+                            controller: 'SalesCtrl',
+                        },
+                        "news@app.home":{
+                            templateUrl: "tpl/dashboard/news.html",
+                            controller: 'NewsCtrl',
+                        },
+                    },
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 'nvd3',
-                                'metrojs'
+                                'metrojs',
+                                'select',
                             ], {
                                 insertBefore: '#lazyload_placeholder'
                             })
                             .then(function() {
                                 return $ocLazyLoad.load([
-                                    'assets/js/controllers/home.js'
-                                ]);
+                                    'assets/js/controllers/challenges.js',
+                                    'assets/js/controllers/sales.js',
+                                    'assets/js/controllers/news.js',
+                                    'assets/js/controllers/home.js',
+                                ], {
+                                    insertBefore: '#lazyload_placeholder'
+                                });
                             });
                         }]
                     }
                 })
-                .state('app.rating', {
-                    url: '/rating',
-                    controller: 'RatingCtrl',
-                    templateUrl: 'tpl/rating.html',
+                .state('app.challenges', {
+                    url: '/challenges',
+                    controller: 'ChallengesCtrl',
+                    templateUrl: 'tpl/challenges.html',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
-                                'assets/js/controllers/rating.js',
+                                'select',
+                                'datepicker'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/challenges.js');
+                            });
+                        }]
+                    }
+                })
+                .state('app.news', {
+                    url: '/news',
+                    controller: 'NewsCtrl',
+                    templateUrl: 'tpl/news.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/news.js'
                             ]);
                         }]
                     }
@@ -84,6 +124,18 @@ angular.module('app')
                                 .then(function() {
                                     return $ocLazyLoad.load('assets/js/controllers/sales.js');
                                 });
+                        }]
+                    }
+                })
+                .state('app.rating', {
+                    url: '/rating',
+                    controller: 'RatingCtrl',
+                    templateUrl: 'tpl/rating.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/rating.js',
+                            ]);
                         }]
                     }
                 })
@@ -121,37 +173,6 @@ angular.module('app')
                             .then(function() {
                                 return $ocLazyLoad.load('assets/js/controllers/shop.js');
                             });
-                        }]
-                    }
-                })
-                .state('app.challenge', {
-                    url: '/challenge',
-                    controller: 'ChallengeCtrl',
-                    templateUrl: 'tpl/challenge.html',
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                'select',
-                                //'moment',
-                                'datepicker'
-                            ], {
-                                insertBefore: '#lazyload_placeholder'
-                            })
-                            .then(function() {
-                                return $ocLazyLoad.load('assets/js/controllers/challenge.js');
-                            });
-                        }]
-                    }
-                })
-                .state('app.news', {
-                    url: '/news',
-                    controller: 'NewsCtrl',
-                    templateUrl: 'tpl/news.html',
-                    resolve: {
-                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
-                            return $ocLazyLoad.load([
-                                'assets/js/controllers/news.js'
-                            ]);
                         }]
                     }
                 })

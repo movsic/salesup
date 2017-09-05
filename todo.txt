@@ -23,6 +23,9 @@ challenge tooltip with accepted challenge participants and may be progress
 add challenge name to notification
 P2P challenge create - pricing for creator
 notification - new challenge for you
+add coins for sale???
+or challenges with 0 fee??
+challenges that need no accept
 
 news:
 tabs - own branch all

@@ -17,6 +17,7 @@ angular.module('app')
             profileData.pointsPrevLevel = HelperService.getPointsForLevel(profileData.level, configData);
         }
         $scope.updateProfileData($scope.profileData, $scope.configData);
+        
         $scope.$watch(
             function () { return $scope.profileData; }, 
             function (newValue, oldValue) {

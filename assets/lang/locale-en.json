@@ -135,5 +135,17 @@
 	"badge-name":"{{name | translate}} rank {{rank}}",
 
 	"challenge-name-0": "Sell {{amount}} of [{{products}}]",
-	"challenge-name-1": "P2P Sell {{amount}} of [{{products}}]"
+	"challenge-name-1": "P2P Sell {{amount}} of [{{products}}]",
+
+	"breadcrumbs-dashboard":"Dashboard",
+	"breadcrumbs-sales":"Sales",
+	"breadcrumbs-news":"News",
+	"breadcrumbs-rating":"Rating",
+	"breadcrumbs-challenges":"Challenges",
+	"breadcrumbs-profile":"Profile",
+	"breadcrumbs-shop":"Shop",
+
+	"home-caption-challenges":"Ongoing challenges",
+	"home-caption-sales":"Weekly sales",
+	"home-caption-news":"Latest news"
 }

@@ -295,26 +295,6 @@ angular.module('app')
             return update[profileData.id].concat(update[-1]);
         }
 
-        /*
-        this.addOpponentSale = function(){
-            var opponent = this.findProfileById(1);
-            var update = {"data":[],"notifications":[],"modals":[]};
-            update.notifications[0]={"type":"warning","text":"opponent-sale"};
-            for (var i in challengeData){
-                if (challengeData[i].opponentId == opponent.id && challengeData[i].status == 1 && challengeData[i].type == 0){
-                    challengeData[i].opponentProgress += 1;
-                    if (challengeData[i].opponentProgress >= challengeData[i].amount){
-                        challengeData[i].status = 2;
-                        update.notifications[0]={"type":"error","text":"challenge-loss"};
-                        update.data.push({"name":"news","type":"add","data":{"timestamp":moment().unix(),"type":1,"user":opponent,"params":challenge}});
-                    }
-                    update.data.push({"name":"challenges","type":"update","data":challengeData[i]});
-                }
-            }
-            return update;
-        }
-        */
-
         var getRandomTimestamp = function (days){
             //rnd +- 6 hours
             var minutes = days * 60 * 24 + Math.floor(Math.random() * -360);
