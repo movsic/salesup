@@ -65,6 +65,7 @@
 	"challenge-status-1": "New",
 	"challenge-status-2": "Pending",
 	"challenge-status-3": "Successful",
+	"challenge-status-4": "Failed",
 
 	"challenge-no-data": "No challenges found",
 

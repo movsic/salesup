@@ -99,7 +99,7 @@
                                 <p translate translate-values='{fee: getFee(i)}'>{{'challenge-details-fee'}}</p>
                                 <p translate translate-values='{coins: i.reward.coins,points: getPointsForChallenge(profileData.points)}'>{{'challenge-details-reward'}}</p>
                                 <p translate translate-values='{accepted: getParticipants(i)}'>{{'challenge-details-participants'}}</p>
-                                <p ng-repeat="user in i.participants"> {{user.profile.name}} {{user.status}} {{user.progress}}/{{i.amount}}</p>
+                                <p ng-repeat="user in i.participants"> {{user.profile.name}} {{'challenge-status-' + user.status | translate}} {{user.progress/i.amount*100}}%</p>
                             </td>
                         </tr>
                         <!--END OF DETAILED INFO ABOUT CHALLENGE-->

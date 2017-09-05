@@ -492,7 +492,7 @@ angular.module('app')
                         "profile":{"id":1},
                     },
                     2:{
-                        "progress":10,
+                        "progress":0,
                         "status":2,
                         "acceptDate":getRandomTimestamp(-3),
                         "profile":{"id":2},

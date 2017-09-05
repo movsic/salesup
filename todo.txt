@@ -2,9 +2,8 @@ Challenges:
 timestamp of last login -> to check which notifications to show?
 timestamp of status change -> badges with new
 ??type field
-challenge abort(is it possible at all?) -> modal
+challenge abort(is it possible at all?) -> modal -> at least for p2p challenges
 challenge abort by timeout???
-news ???? add notifications in news
 challenge name in modal
 chellenge type -> disable if one
 create challenge wizard with different screens?
@@ -23,6 +22,7 @@ challenge tooltip with accepted challenge participants and may be progress
 ?move notification logic to frontend?
 add challenge name to notification
 P2P challenge create - pricing for creator
+notification - new challenge for you
 
 news:
 tabs - own branch all
