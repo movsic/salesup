@@ -67,12 +67,16 @@ angular.module('app')
                                 insertBefore: '#lazyload_placeholder'
                             })
                             .then(function() {
-                                return $ocLazyLoad.load([
-                                    'assets/js/controllers/challenges.js',
-                                    'assets/js/controllers/sales.js',
-                                    'assets/js/controllers/news.js',
-                                    'assets/js/controllers/home.js',
-                                ]);
+                                return $ocLazyLoad.load('/assets/js/controllers/home.js');
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('/assets/js/controllers/sales.js');
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('/assets/js/controllers/news.js');
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('/assets/js/controllers/challenges.js');
                             });
                         }]
                     }
