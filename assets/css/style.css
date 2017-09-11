@@ -4,132 +4,6 @@
 
 */
 
-.badges-set {
-  background: url('../img/badges/gamification_sm.png') no-repeat;
-  position: relative;
-  display: block;
-}.badges-set.star1 {
-  background-position: -1px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.star2 {
-  background-position: -67px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.star3 {
-  background-position: -133px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.star4 {
-  background-position: -200px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.ok {
-  background-position: -267px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.run {
-  background-position: -334px -1px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.alarm {
-  background-position: -1px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.smile {
-  background-position: -67px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.man {
-  background-position: -133px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.light {
-  background-position: -200px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.basket {
-  background-position: -267px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.eighty {
-  background-position: -334px -67px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.fire {
-  background-position: -1px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.calendar {
-  background-position: -67px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.love {
-  background-position: -133px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.group {
-  background-position: -200px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.ninety {
-  background-position: -267px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.badges-set.chat {
-  background-position: -334px -133px;
-  width: 67px;
-  height: 67px;
-  top: 2px;
-}
-.coin {
-  background-image: url('../../assets/img/social/coin.png');
-  position: relative;
-  display: block;
-  height:40px;
-  width:40px;
-}
-.cup {
-  background-image: url('../../assets/img/social/cup2.png');
-  position: relative;
-  display: block;
-  height:106px;
-  width:79px;
-}
 
 /*MetroJS overwrite*/
 .live-tile,
@@ -158,4 +32,9 @@
 /*no arrors for bootstrap carousel*/
 .right.carousel-control, .left.carousel-control {
     display: none;
+}
+
+/*hight fix for bootstrap carousel*/
+.carousel .carousel-inner {
+  height: 100% !important;
 }

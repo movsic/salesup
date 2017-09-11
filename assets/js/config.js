@@ -56,6 +56,10 @@ angular.module('app')
                             templateUrl: "tpl/dashboard/news.html",
                             controller: 'NewsCtrl',
                         },
+                        "rating@app.home":{
+                            templateUrl: "tpl/dashboard/rating.html",
+                            controller: 'RatingCtrl',
+                        },
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -77,6 +81,9 @@ angular.module('app')
                             })
                             .then(function() {
                                 return $ocLazyLoad.load('/assets/js/controllers/challenges.js');
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('/assets/js/controllers/rating.js');
                             });
                         }]
                     }

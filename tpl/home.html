@@ -6,11 +6,9 @@
             <div class="row">
                 <div class="col-md-12 m-b-10">
                     <div class="ar-1-2">
-                        <!-- CHALLENGES WIDGET -->
                         <div class="panel no-border no-margin widget widget-loader-circle" ui-sref="app.challenges" ui-view="challenges">
-                            
+                            <!-- CHALLENGES WIDGET -->
                         </div>
-                        <!-- CHALLENGES END WIDGET -->
                     </div>
                 </div>
             </div>
@@ -28,11 +26,9 @@
             <div class="row">
                 <div class="col-md-12 m-b-10">
                     <div class="ar-2-1">
-                        <!-- START WIDGET -->
                         <div class="panel" ui-sref="app.news" ui-view="news">  
-                           
+                           <!-- NEWS WIDGET -->
                         </div>
-                        <!--END WIDGET-->
                     </div>
                 </div>
             </div>
@@ -41,25 +37,9 @@
             <div class="row">
                 <div class="col-sm-12 m-b-10">
                     <div class="ar-2-1">
-                        <!-- START WIDGET -->
-                        <div class="widget panel no-border widget-loader-circle-lg no-margin" ui-sref="app.rating">
-                            <div class="panel-heading">
-                                <div class="panel-title text-black hint-text">
-                                    <span class="font-montserrat fs-11 all-caps">POSITION &amp; TOTAL <i class="fa fa-chevron-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-                                <div class="pull-bottom">
-                                    <div>
-                                        <h2 class="no-margin text-white inline">{{profileData.position}}</h2>
-                                        <h4 class="no-margin text-white inline">/{{profileData.totalPositions}}</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <nvd3 options='nvd3_rating_options' class="widget-8-chart line-chart" data='nvd3_rating_data' data-line-color="black" data-points="true" data-point-color="success" data-stroke-width="2"></nvd3>
+                        <div class="widget panel no-border widget-loader-circle-lg no-margin" ui-sref="app.rating"  ui-view="rating">
+                            <!-- START WIDGET -->
                         </div>
-                        <!-- END WIDGET -->
                     </div>
                 </div>
             </div>

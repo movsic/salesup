@@ -3,11 +3,11 @@ angular.module('app')
 
 		this.getLevelForPoints = function (points, configData) {
             for(var i in configData.pointsToLevel){
-                if(points <= configData.pointsToLevel[i]){
-                    return i-1;
+                if(points < configData.pointsToLevel[i]){
+                    return Number(i);
                 }
             }
-            //return Math.floor(Math.pow(points,1/3));
+            return Number(i)+1;
         }
 
         this.getPointsForLevel = function (level, configData) {

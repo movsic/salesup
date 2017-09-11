@@ -11,6 +11,10 @@ angular.module('app')
         $scope.configData = ActionService.getStorageData('config');
         $scope.profileData = ActionService.getStorageData('profile');
 
+        $scope.getLevel = function(points){
+            return HelperService.getLevelForPoints(points, $scope.configData);
+        }
+
         $scope.updateProfileData = function (profileData, configData) {
             profileData.level = HelperService.getLevelForPoints(profileData.points, configData);
             profileData.pointsNextLevel = HelperService.getPointsForLevel(profileData.level+1, configData);

@@ -302,9 +302,9 @@ angular.module('app')
         }
 
         var configData = {
-            "pointsToLevel":[0,10,50,100,200,500,1000,2000,3000,5000],
-            "pointsForChallenge":[0,1,5,10,20,50,100,200,300,500],
-            "pointsForAction":[0,1,2,5,10,25,50,100,150,250],
+            "pointsToLevel":[10,50,100,200,500,1000,2000,3000,5000],
+            "pointsForChallenge":[1,5,10,20,50,100,200,300,500],
+            "pointsForAction":[1,2,5,10,25,50,100,150,250],
             "badges":{
                 "actions":[0,1,5,10,20,50,100],
                 "won":[0,1,5,10,20,50,100],
@@ -328,19 +328,19 @@ angular.module('app')
         ];
 
         var personData = [
-            {"id":1,"name":"Spiky Hedgehog","img":"1.jpg","points":10240,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":2,"name":"Deadly Bunny","img":"2.jpg","points":20480,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":3,"name":"Sly Fox","img":"3.jpg","points":5120,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":4,"name":"Grey Mouse","img":"4.jpg","points":2560,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":5,"name":"Monochrome Zebra","img":"5.jpg","points":1280,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":6,"name":"Swift Turtle","img":"6.jpg","points":640,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":7,"name":"Invisible Elephant","img":"7.jpg","points":320,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":8,"name":"Cute Giraffe","img":"8.jpg","points":160,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":9,"name":"Pinky Piggy","img":"9.jpg","points":80,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":10,"name":"Lazy Crocodile","img":"a.jpg","points":40,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":11,"name":"Furious Kitten","img":"c.jpg","points":20,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":12,"name":"Giant Python","img":"be.jpg","points":10,"group":"Moscow","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
-            {"id":13,"name":"Dreamy Whale","img":"d.jpg","points":0,"group":"Vologda","points":0,"coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":1,"name":"Spiky Hedgehog","img":"1.jpg","points":10240,"group":"Vologda","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":2,"name":"Deadly Bunny","img":"2.jpg","points":20480,"group":"Moscow","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":3,"name":"Sly Fox","img":"3.jpg","points":5120,"group":"Vologda","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":4,"name":"Grey Mouse","img":"4.jpg","points":2560,"group":"Moscow","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":5,"name":"Monochrome Zebra","img":"5.jpg","points":1280,"group":"Vologda","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":6,"name":"Swift Turtle","img":"6.jpg","points":640,"group":"Moscow","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":7,"name":"Invisible Elephant","img":"7.jpg","points":320,"group":"Vologda","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":8,"name":"Cute Giraffe","img":"8.jpg","points":160,"group":"Moscow","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":9,"name":"Pinky Piggy","img":"9.jpg","points":80,"group":"Vologda","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":10,"name":"Lazy Crocodile","img":"a.jpg","points":40,"group":"Moscow","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":11,"name":"Furious Kitten","img":"c.jpg","points":20,"group":"Vologda","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":12,"name":"Giant Python","img":"be.jpg","points":10,"group":"Moscow","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
+            {"id":13,"name":"Dreamy Whale","img":"d.jpg","points":0,"group":"Vologda","coins":0,"statistics":{"actions":0,"won":0,"earned":0}},
         ];
 
 	    var profileData = {

@@ -1,40 +1,36 @@
  <div class="panel-heading">
     <div class="panel-title text-black hint-text">
-        <span class="font-montserrat fs-11 all-caps" translate>{{'home-caption-news'}}<i class="fa fa-chevron-right"></i>
-        </span>
+        <span class="font-montserrat fs-11 all-caps" translate>{{'home-caption-news'}}</span>
+        <i class="fa fa-chevron-right"></i>
     </div>
 </div>                      
 <div class="panel-body no-padding">
-
-
-
-    <div class="metro">
-    <div uib-carousel active="0" interval="5000">
-        <div uib-slide ng-repeat="i in newsData track by $index" index="$index">
-            <div class="tiles">
-                <div class="padding-30">
-                    <div class="pull-top">
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="pull-bottom p-b-30">
-                         <div class="row p-l-20 p-r-20 p-b-30">
-                            <user-pic data="{{i.user.img}}"></user-pic>
-                            <div class="no-padding">
-                                {{$index}}
-                                <h3 class="text-black">{{i.user.name}}</h3>
-                                <h4 translate>{{'news-type-' + i.type}}</h4>
-                                <h4 class="text-black label">
-                                    <span class="bold label fs-13" ng-show="i.type==0 || i.type==1">
-                                        <span translate translate-values='{ amount: i.params.amount, products:helper.flattenArray(i.params.products)}'> {{'challenge-name-' + i.params.type}}</span>
-                                    </span>
-                                    
-                                    <span class="bold label fs-13" ng-show="i.type==2" translate translate-values='{ name: i.params.name, rank: i.params.rank }'>{{'badge-name'}}</span>
-                                    <span class="bold label fs-13" translate ng-show="i.type==3">{{i.params.level}}</span>
-                                </h4>
-                                <div class="clearfix">
-                                    <div class="text-black pull-left small hint-text">
-                                        <h6 class="font-montserrat all-caps hint-text m-t-0">{{i.user.group}}</h6>
-                                        <small class="fs-12 hint-text" am-time-ago="i.timestamp*1000"></small>
+    <div class="metro full-height">
+        <div uib-carousel active="0" interval="5000" class="full-height">
+            <div uib-slide ng-repeat="i in newsData track by $index" index="$index" class="full-height">
+                <div class="tiles full-height">
+                    <div class="padding-30">
+                        <div class="pull-top">
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="pull-top p-b-30">
+                             <div class="row p-l-20 p-r-20 p-b-30">
+                                <div class="no-padding text-left">
+                                    <user-pic data="{{i.user.img}}"></user-pic>
+                                    <div class="p-l-10"><h3 class="text-black"> {{i.user.name}}</h3></div>
+                                    <div class="p-b-10">
+                                        <span class="text-black fs-15" translate>{{'news-type-' + i.type}} </span>
+                                        <span class="text-black label bold fs-14">
+                                            <span ng-show="i.type==0 || i.type==1" translate translate-values='{ amount: i.params.amount, products:helper.flattenArray(i.params.products)}'>{{'challenge-name-' + i.params.type}}</span>   
+                                            <span ng-show="i.type==2" translate translate-values='{ name: i.params.name, rank: i.params.rank }'>{{'badge-name'}}</span>
+                                            <span ng-show="i.type==3" translate>{{i.params.level}}</span>
+                                        </span>
+                                    </div>
+                                    <div class="clearfix">
+                                        <div class="text-black small hint-text">
+                                            <h6 class="font-montserrat all-caps hint-text m-t-0">{{i.user.group}}</h6>
+                                            <small class="fs-12 hint-text" am-time-ago="i.timestamp*1000"></small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +38,6 @@
                     </div>
                 </div>
             </div>
-        </slide>
-    </carousel>
+        </div>
     </div>
 </div>
