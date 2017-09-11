@@ -15,18 +15,18 @@ angular.module('app')
             return HelperService.getLevelForPoints(points, $scope.configData);
         }
 
-        $scope.updateProfileData = function (profileData, configData) {
+        function updateProfileData(profileData, configData) {
             profileData.level = HelperService.getLevelForPoints(profileData.points, configData);
             profileData.pointsNextLevel = HelperService.getPointsForLevel(profileData.level+1, configData);
             profileData.pointsPrevLevel = HelperService.getPointsForLevel(profileData.level, configData);
         }
-        $scope.updateProfileData($scope.profileData, $scope.configData);
+        updateProfileData($scope.profileData, $scope.configData);
         
         $scope.$watch(
             function () { return $scope.profileData; }, 
             function (newValue, oldValue) {
                 if (oldValue.points !== newValue.points)
-                    $scope.updateProfileData($scope.profileData, $scope.configData);
+                    updateProfileData($scope.profileData, $scope.configData);
             },
             true
         );

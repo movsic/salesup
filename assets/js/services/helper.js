@@ -11,7 +11,8 @@ angular.module('app')
         }
 
         this.getPointsForLevel = function (level, configData) {
-            return configData.pointsToLevel[level];
+            if(level == 0) return 0;
+            return configData.pointsToLevel[level-1];
             //return Math.pow(level,3);
         }
 
