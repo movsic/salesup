@@ -4,12 +4,6 @@
     <list default="true" id="3f4b50ff-dacc-4d45-b8db-2e501b6bc891" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/salesup_main.html" afterPath="$PROJECT_DIR$/tpl/salesup_main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/salesup_news.html" afterPath="$PROJECT_DIR$/tpl/salesup_news.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/salesup_p2p.html" afterPath="$PROJECT_DIR$/tpl/salesup_p2p.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/salesup_results.html" afterPath="$PROJECT_DIR$/tpl/salesup_results.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/salesup_shop.html" afterPath="$PROJECT_DIR$/tpl/salesup_shop.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/salesup_tests.html" afterPath="$PROJECT_DIR$/tpl/salesup_tests.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/salesup_tests_2.html" afterPath="$PROJECT_DIR$/tpl/salesup_tests_2.html" />
     </list>
     <ignored path="salesup.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="salesup_main.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="salesup_main.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tpl/salesup_main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="406" column="47" selection-start-line="406" selection-start-column="47" selection-end-line="406" selection-end-column="47" />
+            <state relative-caret-position="105">
+              <caret line="369" column="75" selection-start-line="369" selection-start-column="75" selection-end-line="369" selection-end-column="75" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -54,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="salesup_p2p.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="salesup_p2p.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tpl/salesup_p2p.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+            <state relative-caret-position="345">
+              <caret line="23" column="58" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -116,10 +110,10 @@
         <option value="$PROJECT_DIR$/tpl/salesup_news.html" />
         <option value="$PROJECT_DIR$/tpl/salesup_results.html" />
         <option value="$PROJECT_DIR$/tpl/salesup_shop.html" />
-        <option value="$PROJECT_DIR$/tpl/salesup_main.html" />
         <option value="$PROJECT_DIR$/tpl/salesup_tests.html" />
         <option value="$PROJECT_DIR$/tpl/salesup_tests_2.html" />
         <option value="$PROJECT_DIR$/tpl/salesup_p2p.html" />
+        <option value="$PROJECT_DIR$/tpl/salesup_main.html" />
       </list>
     </option>
   </component>
@@ -284,7 +278,7 @@
       <updated>1504073404495</updated>
       <workItem from="1504073407284" duration="6978000" />
       <workItem from="1504507166090" duration="115000" />
-      <workItem from="1505117625446" duration="5489000" />
+      <workItem from="1505117625446" duration="5601000" />
     </task>
     <task id="LOCAL-00001" summary="Screen fixed">
       <created>1504074863503</created>
@@ -307,11 +301,18 @@
       <option name="project" value="LOCAL" />
       <updated>1504082822550</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Screen fixed">
+      <created>1505128347492</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1505128347492</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12582000" />
+    <option name="totallyTimeSpent" value="12694000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="736" extended-state="0" />
@@ -350,6 +351,7 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="Screen fixed" />
     <option name="LAST_COMMIT_MESSAGE" value="Screen fixed" />
   </component>
@@ -407,16 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/salesup_main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="406" column="47" selection-start-line="406" selection-start-column="47" selection-end-line="406" selection-end-column="47" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tpl/salesup_shop.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -451,9 +443,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tpl/salesup_p2p.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        <state relative-caret-position="345">
+          <caret line="23" column="58" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/salesup_main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="369" column="75" selection-start-line="369" selection-start-column="75" selection-end-line="369" selection-end-column="75" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
