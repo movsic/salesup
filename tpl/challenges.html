@@ -2,111 +2,109 @@
 <div class="container-fluid container-fixed-lg bg-white">
     <!-- START PANEL -->
     <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <button class="btn btn-success pull-right" id="btnToggleSlideUpSize" ng-click="showNewChallenge()">
+                <i class="fa fa-plus"></i> <span translate>{{'challenge-button-new'}}</>
+            </button>
+            <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+                <li ng-class="{'active': activeTab==0}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'challenge-tab-active'}}</a>
+                </li>
+                <li ng-class="{'active': activeTab==1}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'challenge-tab-new'}}</a>
+                </li>
+                <li ng-class="{'active': activeTab==2}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(2)" translate>{{'challenge-tab-successful'}}</a>
+                </li>    
+                <li ng-class="{'active': activeTab==3}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(3)" translate>{{'challenge-tab-pending'}}</a>
+                </li>
+            </ul>
+        </div>
         <div class="panel-body">
-            <div class="panel">
-                <button class="btn btn-success pull-right" id="btnToggleSlideUpSize" ng-click="showNewChallenge()">
-                    <i class="fa fa-plus"></i> <span translate>{{'challenge-button-new'}}</>
-                </button>
-                <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
-                    <li ng-class="{'active': activeTab==0}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'challenge-tab-active'}}</a>
-                    </li>
-                    <li ng-class="{'active': activeTab==1}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'challenge-tab-new'}}</a>
-                    </li>
-                    <li ng-class="{'active': activeTab==2}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(2)" translate>{{'challenge-tab-successful'}}</a>
-                    </li>    
-                    <li ng-class="{'active': activeTab==3}">
-                        <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(3)" translate>{{'challenge-tab-pending'}}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="table-responsive">
-                <div class="table-responsive">
-                    <table class="table table-hover table-condensed table-detailed" id="detailedTable" ui-options="options">
-                    <thead>
-                        <tr>
-                            <th style="width:40%" translate>{{'challenge-table-th-challenge'}}</th>
-                            <th style="width:30%" translate>{{'challenge-table-th-progress'}}</th>
-                            <th style="width:15%" translate>{{'challenge-table-th-expires'}}</th>
-                            <th style="width:15%" translate>{{'challenge-table-th-status'}}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-if="(challengeData | filter:statusFilter(activeTab)).length < 1" class="row-details">
-                            <td colspan="4" ><div class="text-center hint-text" translate>{{'challenge-no-data'}}</div></td>
-                        </tr>
-                        <tr ng-repeat-start="i in challengeData | filter:statusFilter(activeTab) | orderBy:'endDate':true" ng-class="{'shown':showDetails==i.id}"  ng-click="expand(i.id)"  ng-show="isRunning(i)">
-                            <td class="v-align-middle">
-                                <span translate translate-values='{ amount: i.amount, products:helper.flattenArray(i.products)}'> {{'challenge-name-' + i.type}}</span>
-                            </td>
-                            <td class="v-align-middle">
-                                <div>
-                                    <p class="small hint-text" translate translate-values='{ progress: i.participants[profileData.id].progress/i.amount*100 }'>{{'challenge-your-progress'}}</p>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" style="width:{{i.participants[profileData.id].progress/i.amount*100}}%"></div>
-                                    </div>
+            <div class="table">
+                <table class="table table-hover table-condensed table-detailed" id="detailedTable" ui-options="options">
+                <thead>
+                    <tr>
+                        <th style="width:40%" translate>{{'challenge-table-th-challenge'}}</th>
+                        <th style="width:30%" translate>{{'challenge-table-th-progress'}}</th>
+                        <th style="width:15%" translate>{{'challenge-table-th-expires'}}</th>
+                        <th style="width:15%" translate>{{'challenge-table-th-status'}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="(challengeData | filter:statusFilter(activeTab)).length < 1" class="row-details">
+                        <td colspan="4" ><div class="text-center hint-text" translate>{{'challenge-no-data'}}</div></td>
+                    </tr>
+                    <tr ng-repeat-start="i in challengeData | filter:statusFilter(activeTab) | orderBy:'endDate':true" ng-class="{'shown':showDetails==i.id}"  ng-click="expand(i.id)"  ng-show="isRunning(i)">
+                        <td class="v-align-middle">
+                            <span translate translate-values='{ amount: i.amount, products:helper.flattenArray(i.products)}'> {{'challenge-name-' + i.type}}</span>
+                        </td>
+                        <td class="v-align-middle">
+                            <div>
+                                <p class="small hint-text" translate translate-values='{ progress: i.participants[profileData.id].progress/i.amount*100 }'>{{'challenge-your-progress'}}</p>
+                                <div class="progress">
+                                    <div class="progress-bar bg-success" style="width:{{i.participants[profileData.id].progress/i.amount*100}}%"></div>
                                 </div>
-                                <!--
-                                <div ng-if="i.opponent">
-                                    <p class="small hint-text" translate  translate-values='{ progress: i.opponentProgress/i.amount*100 }'>{{'challenge-opponent-progress'}}</p>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" style="width:{{i.opponentProgress/i.amount*100}}%"></div>
-                                    </div>
+                            </div>
+                            <!--
+                            <div ng-if="i.opponent">
+                                <p class="small hint-text" translate  translate-values='{ progress: i.opponentProgress/i.amount*100 }'>{{'challenge-opponent-progress'}}</p>
+                                <div class="progress">
+                                    <div class="progress-bar bg-warning" style="width:{{i.opponentProgress/i.amount*100}}%"></div>
                                 </div>
-                                -->
-                            </td>
-                            <td class="v-align-middle">
-                                <p am-time-ago="i.endDate*1000"></p>
-                            </td>
+                            </div>
+                            -->
+                        </td>
+                        <td class="v-align-middle">
+                            <p am-time-ago="i.endDate*1000"></p>
+                        </td>
 
-                            <td class="v-align-middle" ng-show="i.participants[profileData.id].status==1">
-                                <button class="btn btn-success btn-cons" ng-click="action.acceptChallenge(profileData, i)" translate>{{'challenge-button-accept'}}</button>
-                            </td>
-                            <!-- TODO
-                            <td class="v-align-middle" ng-show="i.status==1">
-                                <p translate>{{'challenge-status-1'}}</p>
-                            </td>
-                            <!--<td class="v-align-middle" ng-show="i.status==1">
-                                <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-abort'}}</button>
-                            </td>-->
-                            <td class="v-align-middle" ng-show="i.status==2">
-                                <p translate>{{'challenge-status-2'}}</p>
-                            </td>
-                            <td class="v-align-middle" ng-show="i.status==3">
-                                <p translate>{{'challenge-status-3'}}</p>
-                            </td>
-                            <td class="v-align-middle" ng-show="i.status==4">
-                                <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-cancel'}}</button>
-                            </td>
-                        </tr>
-                        <!--DETAILED INFO ABOUT CHALLENGE-->
-                        <tr class="row-details" ng-repeat-end ng-show="showDetails==i.id">
-                            <td colspan=4>
-                                <p>
-                                    <span translate>{{'challenge-details-created'}}</span> 
-                                    <span am-time-ago="i.startDate*1000"></span>
-                                </p>
-                                <p ng-if="i.acceptDate">
-                                    <span translate> {{'challenge-details-accepted'}}</span> 
-                                    <span am-time-ago="i.participants[profileData.id].accepteDate*1000"></span>
-                                </p>
-                                <p>
-                                    <span translate>{{'challenge-details-ends'}}</span> 
-                                    <span am-time-ago="i.endDate*1000"></span>
-                                </p>
-                                <p translate translate-values='{fee: getFee(i)}'>{{'challenge-details-fee'}}</p>
-                                <p translate translate-values='{coins: i.reward.coins,points: getPointsForChallenge(profileData.points)}'>{{'challenge-details-reward'}}</p>
-                                <p translate translate-values='{accepted: getParticipants(i)}'>{{'challenge-details-participants'}}</p>
-                                <p ng-repeat="user in i.participants"> {{user.profile.name}} {{'challenge-status-' + user.status | translate}} {{user.progress/i.amount*100}}%</p>
-                            </td>
-                        </tr>
-                        <!--END OF DETAILED INFO ABOUT CHALLENGE-->
-                        
-                    </tbody>
-                </table>
-            </div>
+                        <td class="v-align-middle" ng-show="i.participants[profileData.id].status==1">
+                            <button class="btn btn-success btn-cons" ng-click="action.acceptChallenge(profileData, i)" translate>{{'challenge-button-accept'}}</button>
+                        </td>
+                        <!-- TODO
+                        <td class="v-align-middle" ng-show="i.status==1">
+                            <p translate>{{'challenge-status-1'}}</p>
+                        </td>
+                        <!--<td class="v-align-middle" ng-show="i.status==1">
+                            <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-abort'}}</button>
+                        </td>-->
+                        <td class="v-align-middle" ng-show="i.status==2">
+                            <p translate>{{'challenge-status-2'}}</p>
+                        </td>
+                        <td class="v-align-middle" ng-show="i.status==3">
+                            <p translate>{{'challenge-status-3'}}</p>
+                        </td>
+                        <td class="v-align-middle" ng-show="i.status==4">
+                            <button class="btn btn-danger btn-cons" ng-click="challengeAbort(i.id)" translate>{{'challenge-button-cancel'}}</button>
+                        </td>
+                    </tr>
+                    <!--DETAILED INFO ABOUT CHALLENGE-->
+                    <tr class="row-details" ng-repeat-end ng-show="showDetails==i.id">
+                        <td colspan=4>
+                            <p>
+                                <span translate>{{'challenge-details-created'}}</span> 
+                                <span am-time-ago="i.startDate*1000"></span>
+                            </p>
+                            <p ng-if="i.acceptDate">
+                                <span translate> {{'challenge-details-accepted'}}</span> 
+                                <span am-time-ago="i.participants[profileData.id].accepteDate*1000"></span>
+                            </p>
+                            <p>
+                                <span translate>{{'challenge-details-ends'}}</span> 
+                                <span am-time-ago="i.endDate*1000"></span>
+                            </p>
+                            <p translate translate-values='{fee: getFee(i)}'>{{'challenge-details-fee'}}</p>
+                            <p translate translate-values='{coins: i.reward.coins,points: getPointsForChallenge(profileData.points)}'>{{'challenge-details-reward'}}</p>
+                            <p translate translate-values='{accepted: getParticipants(i)}'>{{'challenge-details-participants'}}</p>
+                            <p ng-repeat="user in i.participants"> {{user.profile.name}} {{'challenge-status-' + user.status | translate}} {{user.progress/i.amount*100}}%</p>
+                        </td>
+                    </tr>
+                    <!--END OF DETAILED INFO ABOUT CHALLENGE-->
+                    
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- END PANEL -->

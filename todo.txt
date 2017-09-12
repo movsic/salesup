@@ -27,6 +27,7 @@ add coins for sale???
 or challenges with 0 fee??
 challenges that need no accept
 js controller not registered in main
+parralax background dashboard
 
 news:
 tabs - own branch all
