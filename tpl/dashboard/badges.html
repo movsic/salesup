@@ -1,0 +1,15 @@
+<div class="panel-heading">
+    <div class="panel-title text-black hint-text">
+        <span class="font-arial fs-12 all-caps" translate>{{'home-caption-badges'}}</span>
+        <i class="fa fa-chevron-right"></i>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="pull-top padding-5">
+        <div>
+            <div class="p-t-10" ng-repeat="(key, value) in profileData.statistics">
+                <span class="fs-13" translate translate-values='{name:"badge-"+key,rank:getRankForBadge(key,value)}'>{{'badge-name'}}</span>
+            </div>
+        </div>
+    </div>
+</div>

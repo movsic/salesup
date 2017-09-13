@@ -1,0 +1,18 @@
+<div class="panel-heading">
+    <div class="panel-title text-black hint-text">
+        <span class="font-arial fs-12 all-caps" translate>{{'home-caption-profile'}}</span>
+        <i class="fa fa-chevron-right"></i>
+    </div>
+</div>
+<div class="panel-body">
+    <div class="pull-top"> 
+        <div>
+            <div class="m-l-10 m-t-5" translate translate-values='{level:profileData.level+1}'>{{'home-profile-level'}}</div>
+            <div class="m-l-10 m-t-5" translate translate-values='{points:profileData.points}'>{{'home-profile-points'}}</div>
+        </div>  
+        <span class="small hint-text padding-15" translate translate-values='{points: profileData.pointsNextLevel-profileData.points}'>{{'home-profile-points-to-next-level'}}</span>
+        <div class="progress progress-small m-b-20">
+            <div class="progress-bar progress-bar-success" style="width:{{((profileData.points-profileData.pointsPrevLevel)/(profileData.pointsNextLevel-profileData.pointsPrevLevel))*100}}%"></div>
+        </div>
+    </div>
+</div>

@@ -64,7 +64,8 @@ stars in cahllenge (q: how to end challenge)
 limit max level points gain
 product type? translate? id?
 PENDING DO NOT EXIST!!!
-NO USERS, PROFILES
+NO USERS, change everything to PROFILES in dataProvider
+home headers grey?
 //--------------------------
 
 Rating:
@@ -77,6 +78,7 @@ coins page with bonus calculation (list of successful challenges and sales) <- n
 
 Badges:
 daily badges?
+badges tooltips
 check badges translation text
 badges rank -> use diferent pictures and names
 different pictures for different badges

@@ -180,7 +180,7 @@ angular.module('app')
             if(HelperService.getRankForBadge(badgeName, profile.statistics.actions - 1, configData) !==   HelperService.getRankForBadge(badgeName, profile.statistics.actions, configData)){
                 var rank = HelperService.getRankForBadge("actions", profile.statistics.actions, configData);
                 update[profile.id].push(
-                    {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                    {"type":"notification","data":{"type":"info","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
                 );
                 update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
             }
@@ -243,7 +243,7 @@ angular.module('app')
                         if(HelperService.getRankForBadge(badgeName, profile.statistics.won-1, configData) !==  HelperService.getRankForBadge(badgeName, profile.statistics.won, configData)){
                             var rank = HelperService.getRankForBadge("won", profile.statistics.won, configData);
                             update[profile.id].push(
-                                {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                                {"type":"notification","data":{"type":"info","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
                             );
                             update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
                         }
@@ -281,7 +281,7 @@ angular.module('app')
                 if(HelperService.getRankForBadge(badgeName, endLevel, configData) !==  HelperService.getRankForBadge(badgeName, startLevel, configData)){
                     var rank = HelperService.getRankForBadge(badgeName, profile.statistics.earned, configData);
                     update[profile.id].push(
-                        {"type":"notification","data":{"type":"primary","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
+                        {"type":"notification","data":{"type":"info","text":"badge-new","params":{"name":"badge-"+badgeName,"img":"badge.png","rank":rank}}}
                     );
                     update[-1].push({"type":"update","data":{"name":"news","type":"add","obj":{"timestamp":moment().unix(),"type":2,"user":profile,"params":{"name":"badge-"+badgeName,"rank":rank}}}});
                 }
@@ -534,256 +534,4 @@ angular.module('app')
                 "reward": {"coins":100},
             },
         ];
-        /*
-            {
-                "id":1,
-                "type": 0,
-                "amount": 5,
-                "product": ['iPhone SE','iPhone 6S'],
-                "productId": [4,5],
-                "yourProgress": 0,
-                "opponent": null,
-                "opponentId": 1,
-                "opponentProgress": 0,
-                "createDate": getRandomTimestamp(-3),
-                "acceptDate": null,
-                "endDate": getRandomTimestamp(3),
-                "fee": 30,
-                "reward": {"coins":100},
-                "acceptedby":["Knives Chau"],
-                "status": 0
-            },
-            {
-            	"id":2,
-                "type": 0,
-                "amount": 5,
-                "product": ['Tablet'],
-                "productId": [2],
-                "yourProgress": 4,
-                "opponent": null,
-                "opponentId": 2,
-                "opponentProgress": 3,
-                "createDate": getRandomTimestamp(-2),
-                "acceptDate": getRandomTimestamp(-1),
-                "endDate": getRandomTimestamp(5),
-                "fee": 20,
-                "reward": {"coins":90},
-                "acceptedby":["Kim Pine"],
-                "status": 1
-            },
-            {
-                "id":3,
-                "type": 0,
-                "amount": 3,
-                "product": ['Phone'],
-                "productId": [1],
-                "yourProgress": 0,
-                "opponent": null,
-                "opponentId": null,
-                "opponentProgress": 0,
-                "createDate": getRandomTimestamp(-4),
-                "acceptDate": getRandomTimestamp(-2),
-                "endDate": getRandomTimestamp(5),
-                "fee": 20,
-                "reward": {"coins":90},
-                "acceptedby":["Kim Pine"],
-                "status": 1
-            },
-            {
-            	"id":4,
-                "type": 0,
-                "amount": 30,
-                "product": ['Notebook'],
-                "productId": [3],
-                "yourProgress": 30,
-                "opponent": null,
-                "opponentId": null,
-                "opponentProgress": 0,
-                "createDate": getRandomTimestamp(-6),
-                "acceptDate": getRandomTimestamp(-4),
-                "endDate": getRandomTimestamp(-2),
-                "fee": 20,
-                "reward": {"coins":90},
-                "acceptedby":["Young Neil"],
-                "status": 2
-            },
-            {
-            	"id":5,
-                "type": 0,
-                "amount": 40,
-                "product": ['Phone'],
-                "productId": [1],
-                "yourProgress": 30,
-                "opponent": null,
-                "opponentId": null,
-                "opponentProgress": 0,
-                "createDate": getRandomTimestamp(-7),
-                "acceptDate": getRandomTimestamp(-3),
-                "endDate": getRandomTimestamp(-1),
-                "fee": 20,
-                "reward": {"coins":90},
-                "acceptedby":["Stephen Stills","Stacey Pilgrim"],
-                "status": 3
-            },
-            {
-            	"id":6,
-                "type": 0,
-                "amount": 50,
-                "product": ['Tablet'],
-                "productId": [2],
-                "yourProgress": 0,
-                "opponent": null,
-                "opponentId": 4,
-                "opponentProgress": 0,
-                "createDate": getRandomTimestamp(-10),
-                "acceptDate": getRandomTimestamp(-9),
-                "endDate": getRandomTimestamp(-6),
-                "fee": 20,
-                "reward": {"coins":90},
-                "acceptedby":[],
-                "status": 4
-            },
-
-        ];
-        */
-
-        var coinsData = [
-            {
-                "type":2,
-                "sum": 50,
-                "timestamp": 1499686564
-            },
-            {
-                "type":1,
-                "sum": -5,
-                "timestamp": 1499686564
-            },
-            {
-                "type":3,
-                "sum": 10,
-                "timestamp": 1499686564
-            },
-            {
-                "type": 3,
-                "sum": 50,
-                "timestamp": 1499686564
-            },
-            {
-                "type": 3,
-                "sum": 70,
-                "timestamp": 1499686564
-            },
-            {
-                "type": 3,
-                "sum": 20,
-                "timestamp": 1499596564
-            },
-            {
-                "type": 2,
-                "sum": 10,
-                "timestamp": 1498966564
-            },
-            {
-                "type": 1,
-                "sum": 300,
-                "timestamp": 1497656564
-            },
-            {
-                "type": 3,
-                "sum": 30,
-                "timestamp": 1495486564
-            },
-            {
-                "type": 3,
-                "sum": 60,
-                "timestamp": 1492386564
-            },
-            {
-                "type": 3,
-                "sum": 80,
-                "timestamp": 1499483564
-            }
-        ];
-
-        var salesAggregateData = [
-            {
-                "key":"phones",
-                "values":[
-                    {
-                        "label":1499130000,"value":10
-                    },
-                    {
-                        "label":1499214600,"value":20
-                    },
-                    {
-                        "label":1499299200,"value":40
-                    },
-                    {
-                        "label":1499385600,"value":80
-                    },
-                    {
-                        "label":1499472000,"value":160
-                    },
-                    {
-                        "label":1499558400,"value":320
-                    },
-                    {
-                        "label":1499644800,"value":640
-                    },
-                ],
-            },
-            {
-                "key":"tablets",
-                "values":[
-                    {
-                        "label":1499130000,"value":10
-                    },
-                    {
-                        "label":1499214600,"value":20
-                    },
-                    {
-                        "label":1499299200,"value":40
-                    },
-                    {
-                        "label":1499385600,"value":80
-                    },
-                    {
-                        "label":1499472000,"value":160
-                    },
-                    {
-                        "label":1499558400,"value":320
-                    },
-                    {
-                        "label":1499644800,"value":640
-                    },
-                ]
-            },
-            {
-                "key":"laptops",
-                "values":[
-                    {
-                        "label":1499130000,"value":10
-                    },
-                    {
-                        "label":1499214600,"value":20
-                    },
-                    {
-                        "label":1499299200,"value":40
-                    },
-                    {
-                        "label":1499385600,"value":80
-                    },
-                    {
-                        "label":1499472000,"value":160
-                    },
-                    {
-                        "label":1499558400,"value":320
-                    },
-                    {
-                        "label":1499644800,"value":640
-                    },
-                ]
-            }
-        ];
-
 	});

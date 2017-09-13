@@ -1,6 +1,6 @@
 <div class="panel-heading">
     <div class="panel-title text-black hint-text">
-        <span class="font-montserrat fs-11 all-caps" translate>{{'home-caption-challenges'}}</span>
+        <span class="font-arial fs-12 all-caps" translate>{{'home-caption-challenges'}}</span>
         <i class="fa fa-chevron-right"></i>
     </div>
 </div>
@@ -12,7 +12,7 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <p class="small hint-text text-black">Complete {{i.participants[profileData.id].progress/i.amount*100}}%</p>
+        <p class="small hint-text text-black" translate translate-values='{ progress: i.participants[profileData.id].progress/i.amount*100 }'>{{'challenge-your-progress'}}</p>
         <div class="progress">
             <div class="progress-bar" style="width:{{i.participants[profileData.id].progress/i.amount*100}}%"></div>
         </div>

@@ -57,7 +57,7 @@
 	"notification-badge-new-header":"You've earned new badge!",
 	"notification-badge-new-text":"{{params.name | translate}} rank {{params.rank}}",
 
-	"badge-actions": "Sales maker",
+	"badge-actions": "Action maker",
 	"badge-earned": "Money earner",
 	"badge-won": "Challenge winner",
 
@@ -114,6 +114,8 @@
 	"rating-tab-group": "Your Branch Rating",
 	"rating-tab-global": "Top Rating",
 
+	"rating-player-position": "{{position}} from {{count}}",
+
 	"rating-table-th-position": "#",
 	"rating-table-th-image": "",
 	"rating-table-th-name": "Name",
@@ -148,5 +150,13 @@
 	"home-caption-challenges":"Ongoing challenges",
 	"home-caption-sales":"Weekly sales",
 	"home-caption-news":"Latest news",
-	"home-caption-rating":"Lederboard"
+	"home-caption-rating":"Leaderboard",
+	"home-caption-profile":"Your Profile",
+	"home-caption-badges":"Top Badges",
+	"home-caption-shop":"Shop",
+
+	"home-profile-level":"Level: {{level}}",
+	"home-profile-points":"Points: {{points}}",
+	"home-profile-points-to-next-level":"{{points}} more points to the next level",
+	"home-shop-coins":"You have {{coins}} coins"
 }

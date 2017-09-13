@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('RatingCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
+    .controller('RatingCtrl', ['$scope', '$filter', '$translate', 'ActionService', function($scope, $filter, $translate, ActionService) {
         $scope.ratingData = ActionService.getStorageData('rating');
 
         $scope.activeTab = 0;
@@ -20,5 +20,18 @@ angular.module('app')
 			    default:
 			        break;
 			}
+		}
+
+		$scope.getPosition = function(filter){
+			var filtered = $filter('filter')($scope.ratingData, filter);
+			var ordered = $filter('orderBy')(filtered, '-points');
+			var me = $filter('filter')(ordered, { id: $scope.profileData.id  }, true)[0];
+		    var position = ordered.indexOf(me);
+		    return position+1;	
+		}
+
+		$scope.getRatingCount = function(filter){
+			var count = $filter('filter')($scope.ratingData, filter).length;
+			return count;
 		}
     }]);

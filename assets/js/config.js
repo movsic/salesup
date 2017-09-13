@@ -60,6 +60,18 @@ angular.module('app')
                             templateUrl: "tpl/dashboard/rating.html",
                             controller: 'RatingCtrl',
                         },
+                        "profile@app.home":{
+                            templateUrl: "tpl/dashboard/profile.html",
+                            controller: 'ProfileCtrl',
+                        },
+                        "badges@app.home":{
+                            templateUrl: "tpl/dashboard/badges.html",
+                            controller: 'ProfileCtrl',
+                        },
+                        "shop@app.home":{
+                            templateUrl: "tpl/dashboard/shop.html",
+                            controller: 'ShopCtrl',
+                        },
                     },
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
@@ -84,6 +96,12 @@ angular.module('app')
                             })
                             .then(function() {
                                 return $ocLazyLoad.load('/assets/js/controllers/rating.js');
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('/assets/js/controllers/profile.js');
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('/assets/js/controllers/shop.js');
                             });
                         }]
                     }
