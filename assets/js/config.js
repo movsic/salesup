@@ -23,6 +23,9 @@ angular.module('app')
             $urlRouterProvider
                 .otherwise('/app/home');
 
+            $urlRouterProvider
+                .when('/admin', '/admin/dashboard');
+
             $stateProvider
                 .state('app', {
                     abstract: true,
@@ -211,6 +214,43 @@ angular.module('app')
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
                                 'assets/js/controllers/profile.js',
+                            ]);
+                        }]
+                    }
+                })
+                .state('admin', {
+                    url: '/admin',
+                    abstract: true,
+                    controller: 'AdminCtrl',
+                    templateUrl: "tpl/app.html",
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/admin/admin.js',
+                            ]);
+                        }]
+                    }
+                })
+                .state('admin.dashboard', {
+                    url: '/dashboard',
+                    controller: 'AdminDashboardCtrl',
+                    templateUrl: 'tpl/admin/dashboard.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/admin/dashboard.js',
+                            ]);
+                        }]
+                    }
+                })
+                .state('admin.challenges', {
+                    url: '/challenges',
+                    controller: 'AdminChallengesCtrl',
+                    templateUrl: 'tpl/admin/challenges.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'assets/js/controllers/admin/challenges.js',
                             ]);
                         }]
                     }

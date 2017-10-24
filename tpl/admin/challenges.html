@@ -1,0 +1,61 @@
+<!-- START CONTAINER FLUID -->
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
+                <li ng-class="{'active': activeTab == 0}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'rating-tab-group'}}</a>
+                </li>
+                <li ng-class="{'active': activeTab == 1}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'rating-tab-global'}}</a>
+                </li> 
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="table">
+                    <table class="table table-hover" id="basicTable" ui-options="options">
+                        <thead>
+                            <tr>
+                                <th translate>{{'rating-table-th-position'}}</th>
+                                <th translate>{{'rating-table-th-image'}}</th>
+                                <th translate>{{'rating-table-th-name'}}</th>
+                                <th translate>{{'rating-table-th-level'}}</th>
+                                <th translate>{{'rating-table-th-group'}}</th>
+                                <th translate>{{'rating-table-th-points'}}</th>
+                                <th>Coins</th>
+                                <th>Badges</th>
+                                <th>Statistics</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="i in ratingData | filter:{ group: groupFilter } | orderBy : '-points'" ng-class="{'success':i.id==profileData.id}">
+                                <td class="v-align-middle">
+                                    <p>{{ $index+1 }}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <user-pic data="{{i.img}}"></user-pic>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p>{{i.name}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p>{{getLevel(i.points)+1}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p>{{i.group}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p>{{i.points}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>
+<!-- END CONTAINER FLUID -->
