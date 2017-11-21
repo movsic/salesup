@@ -4,35 +4,100 @@
 
 angular.module('app', ["nvd3"])
     // Chart controller 
-    .controller('HomeCtrl', ['$scope', '$timeout', 'ActionService', 'DataProviderService', function($scope, $timeout, ActionService, DataProviderService) {
+    .controller('HomeCtrl', ['$scope', '$rootScope', '$timeout', 'ActionService', 'DataProviderService', function($scope, $rootScope, $timeout, ActionService, DataProviderService) {
 
-    ActionService.initParallax()
+    ActionService.initParallax();
+    $scope.c1count=0;
+    $scope.c2count=3;
+    $scope.doneGame={0:true,1:true,2:false,3:false,4:false};
+    renderSlider();
 
     $scope.new = ActionService.newChallenge;
 
-    $("#example_camp").ionRangeSlider({
-            min: 0,
-            max: 5,
-            from: 3,
-            type: 'single',
-            step: 1,
-            postfix: " аб.",
-            prettify_enabled: false,
-            grid: true,
-            disable: true
-        });
+    $scope.challengeAccepted = false;
+    $scope.acceptChallenge = function(){
+        $scope.challengeAccepted = true;
+    }
 
-    $("#example_new").ionRangeSlider({
-            min: 0,
-            max: 5,
-            from: 0,
-            type: 'single',
-            step: 1,
-            postfix: " шт.",
-            prettify_enabled: false,
-            grid: true,
-            disable: true
+    $scope.cancelChallenge = function(){
+        $scope.challengeAccepted = false;
+    }
+
+    $scope.addSell = function(){
+        ActionService.showNotification("success","your-sale", {sale:"Samsung S8", points:10});
+        $scope.c1count += 1;
+        changeSlider();
+        if($scope.c1count == 5){
+            ActionService.showModal('win', {'reward':{'coins':250,'points':10}})
+        } 
+    }
+
+    $scope.incGame = function(){
+        for(var i in $scope.doneGame){
+            if($scope.doneGame[i] == false){
+                $scope.doneGame[i] = true;
+                break;
+            }
+        }
+    }
+
+    $scope.incPlan = function(){
+        console.log($("#my_plan > .progress-circle-thick > .pie > .right-side"))
+        $("#my_plan > .progress-circle-thick > .pie > .right-side").css('transform', 'rotate(90deg)');
+        $("#office > .progress-circle-thick > .pie > .left-side").css('transform', 'rotate(286deg)');
+        $("#services > .progress-circle-thick > .pie > .right-side").css('transform', 'rotate(160deg)');
+        $("#enroll > .progress-circle-thick > .pie > .right-side").css('transform', 'rotate(145deg)');
+    }
+
+    $rootScope.$on('keypress', function (evt, obj, key) {
+        $scope.$apply(function () {
+            console.log("Key pressed: " + key);
+            switch(key){
+                case "a":
+                    $scope.addSell();
+                    break;
+                case "p":
+                    $scope.incPlan();
+                    break;
+                case "z":
+                    $scope.incGame();
+                    break;
+                default:
+                    console.log("No handler for key " + key);
+            }
         });
+    })
+
+    function changeSlider(){
+        $("#new_challenge > .irs > .irs-bar").width(Math.min($scope.c1count / 5 * 100,100) + "%");
+        
+    };
+
+    function renderSlider(){
+        $("#example_camp").ionRangeSlider({
+                min: 0,
+                max: 5,
+                from: $scope.c2count,
+                type: 'single',
+                step: 1,
+                postfix: " аб.",
+                prettify_enabled: false,
+                grid: true,
+                disable: true
+            });
+
+        $("#example_new").ionRangeSlider({
+                min: 0,
+                max: 5,
+                from: $scope.c1count,
+                type: 'single',
+                step: 1,
+                postfix: " шт.",
+                prettify_enabled: false,
+                grid: true,
+                disable: true
+            });
+    };
 
 
     var badgeData = {

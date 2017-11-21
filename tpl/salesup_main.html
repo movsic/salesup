@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container"  keypress-events>
     <div class="header header-sm-height">
         <div class="container-fluid sm-p-l-0 sm-p-r-0 no-padding no-margin">
             <div class="inner">
@@ -28,7 +28,7 @@
                         <div class="pull-top top-left text-white p-b-100 p-l-10" style="top:160px">
                             <div class="social-user-profile col-xs-height text-center col-top">
                                 <div class="thumbnail-wrapper circular d80 bg-white">
-                                    <img width="80" height="80" data-src-retina="assets/img/profiles/mylogo_big.png" data-src="assets/img/profiles/mylogo_big.png" alt="" src="assets/img/profiles/mylogo_big.png">
+                                    <img width="80" height="80" data-src-retina="assets/img/profiles/avatar2x.jpg" data-src="assets/img/profiles/avatar2x.jpg" alt="" src="assets/img/profiles/avatar2x.jpg">
                                 </div>
                             </div>
                             <div class="col-xs-height p-l-20">
@@ -94,19 +94,19 @@
                                                 <input type="text" name="" value="2000" class="ion_slider" disabled />
                                             </div>-->
                                             <div class="row ">
-                                                <div class="col-3 text-center">
+                                                <div id="my_plan" class="col-3 text-center">
                                                     <input class="progress-circle" data-pages-progress="circle" value="15" type="hidden" data-thick="true" data-color="primary">
                                                     <p>My&nbspplan</p>
                                                 </div>
-                                                <div class="col-3 text-center">
+                                                <div id="office"  class="col-3 text-center">
                                                     <input class="progress-circle" data-pages-progress="circle" value="75" type="hidden" data-thick="true" data-color="primary">
                                                     <p>Office</p>
                                                 </div>
-                                                <div class="col-3 text-center">
+                                                <div id="services"  class="col-3 text-center">
                                                     <input class="progress-circle" data-pages-progress="circle" value="35" type="hidden" data-thick="true" data-color="primary">
                                                     <p>Services</p>
                                                 </div>
-                                                <div class="col-3 text-center">
+                                                <div id="enroll"  class="col-3 text-center">
                                                     <input class="progress-circle" data-pages-progress="circle" value="25" type="hidden" data-thick="true" data-color="primary">
                                                     <p>Enroll</p>
                                                 </div>
@@ -130,7 +130,10 @@
                                             <div class="clearfix"></div>
                                         </div>
                                         <div class="card-description">
-                                            <p>Sell <span class="badge badge-success text-white fs-13 ">Samsung S8</span> until the end of the day and get a reward of <span class="badge badge-disable text-white fs-13"><i class="fa fa-bitcoin"></i> 250</span> and <span class="badge badge-disable text-white fs-13"><i class="fa fa-star"></i> 10</span></p>
+                                            <p>Sell 5 <span class="badge badge-success text-white fs-13 ">Samsung S8</span> until the end of the day and get a reward of <span class="badge badge-disable text-white fs-13"><i class="fa fa-bitcoin"></i> 250</span> and <span class="badge badge-disable text-white fs-13"><i class="fa fa-star"></i> 10</span></p>
+                                        </div>
+                                        <div class="irs-wrapper primary m-l-30 m-r-30 m-t-5" id="new_challenge">
+                                            <input type="text" id="example_new" name="example_name" value={{c1count}}  ng-show="challengeAccepted"/>
                                         </div>
                                         <div class="m-l-20 m-r-20">
                                             <div id="collapse1" class="panel-collapse collapse m-t-10" role="tabpanel" aria-labelledby="heading1">
@@ -147,9 +150,12 @@
                                                 <button data-toggle="collapse" data-parent="#accordion" href="#collapse1"
                                                    aria-expanded="false" aria-controls="collapse1" class="btn btn-primary btn-xs semi-bold fs-12 font-geometria fs-12 collapsed pull-left ">Show more</button>
                                             </div>
-                                            <div class="pull-right">
-                                                <button class="btn btn-primary btn-xs semi-bold fs-12 font-geometria fs-12 collapsed pull-right m-l-5">Accept</button>
+                                            <div class="pull-right" ng-show="!challengeAccepted">
+                                                <button class="btn btn-primary btn-xs semi-bold fs-12 font-geometria fs-12 collapsed pull-right m-l-5" ng-click="acceptChallenge()">Accept</button>
                                                 <button class="btn btn-primary btn-xs semi-bold fs-12 font-geometria fs-12 collapsed pull-right m-r-5">Reject</button>
+                                            </div>
+                                            <div class="pull-right" ng-show="challengeAccepted">
+                                                <button class="btn btn-primary btn-xs semi-bold fs-12 font-geometria fs-12 collapsed pull-right " ng-click="cancelChallenge()">Cancel</button>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
@@ -166,7 +172,7 @@
                                             <p>Enroll <span class="badge badge-success text-white fs-13 ">5</span> subscribers for tariff <span class="badge badge-success text-white fs-13 ">No limit</span> for <span class="badge badge-success text-white fs-13 ">3</span> hours and get a reward <span class="badge badge-disable text-white fs-13 "><i class="fa fa-bitcoin"></i> 1000</span> and <span class="badge badge-disable text-white fs-13 "><i class="fa fa-star"></i> 50</span></p>
                                         </div>
                                         <div class="irs-wrapper primary m-l-30 m-r-30 m-t-5">
-                                            <input type="text" id="example_camp" name="example_name" value="3" />
+                                            <input type="text" id="example_camp" name="example_name" value={{c2count}} />
                                         </div>
                                         <div class="m-l-20 m-r-20">
                                             <div id="collapse2" class="panel-collapse collapse m-t-10" role="tabpanel" aria-labelledby="heading2">
@@ -259,21 +265,17 @@
                                                 </div>
                                             </div>
 
-                                                    <div class="m-t-40 pull-bottom m-l-20">
-                                                        <div class="thumbnail-wrapper d32 circular m-t-5 bg-white">
-                                                                <i class="fa fa-info"></i>
-                                                        </div>
-                                                        <div class="inline m-l-10">
-                                                            <p class="no-margin text-white"><i class="fa fa-clock-o text-white"></i> less 30 min.</p>
-                                                            <p class="rating text-white">Sells:
-                                                                <i class="fa fa-check-circle text-white"></i>
-                                                                <i class="fa fa-check-circle text-white"></i>
-                                                                <i class="fa fa-circle-o text-white"></i>
-                                                                <i class="fa fa-circle-o text-white"></i>
-                                                                <i class="fa fa-circle-o text-white"></i>
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                            <div class="m-t-40 pull-bottom m-l-20">
+                                                <div class="thumbnail-wrapper d32 circular m-t-5 bg-white">
+                                                        <i class="fa fa-info"></i>
+                                                </div>
+                                                <div class="inline m-l-10">
+                                                    <p class="no-margin text-white"><i class="fa fa-clock-o text-white"></i> less 30 min.</p>
+                                                    <p class="rating text-white">Sells:
+                                                        <i class="fa fa-check-circle text-white" ng-repeat="i in doneGame" ng-class="{'fa-check-circle': i == true, 'fa-circle-o': i == false}"></i>
+                                                    </p>
+                                                </div>
+                                            </div>
 
                                         </div>
 

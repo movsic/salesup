@@ -12,6 +12,7 @@ angular.module('app', [
     'ui.bootstrap',
     'oc.lazyLoad',
     'pascalprecht.translate',
-    'ui.odometer'
+    'ui.odometer',
+    'angular-svg-round-progressbar'
 ]);
  

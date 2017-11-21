@@ -17,7 +17,7 @@ angular.module('app')
 
             $translateProvider
                 // load 'en' table on startup
-                .preferredLanguage('ru');
+                .preferredLanguage('en');
                 
 
             $urlRouterProvider
