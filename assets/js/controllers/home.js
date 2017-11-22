@@ -10,6 +10,7 @@ angular.module('app', ["nvd3"])
     $scope.c1count=0;
     $scope.c2count=3;
     $scope.doneGame={0:true,1:true,2:false,3:false,4:false};
+    $scope.showChallenge=false;
     renderSlider();
 
     $scope.new = ActionService.newChallenge;
@@ -41,8 +42,22 @@ angular.module('app', ["nvd3"])
         }
     }
 
+    $scope.showNew = function(){
+        $scope.showChallenge=true;
+        ActionService.showNotification("success","new");
+    }
+
+
+    $scope.my_plan_count = 54;
+    $scope.office_count = 4;
+    $scope.services_count = 10;
+    $scope.enroll_count = 15;
     $scope.incPlan = function(){
-        console.log($("#my_plan > .progress-circle-thick > .pie > .right-side"))
+        var my_plan_count = 10;
+        var office_count = 4;
+        var services_count = 10;
+        var enroll_count = 15;
+
         $("#my_plan > .progress-circle-thick > .pie > .right-side").css('transform', 'rotate(90deg)');
         $("#office > .progress-circle-thick > .pie > .left-side").css('transform', 'rotate(286deg)');
         $("#services > .progress-circle-thick > .pie > .right-side").css('transform', 'rotate(160deg)');
@@ -61,6 +76,9 @@ angular.module('app', ["nvd3"])
                     break;
                 case "z":
                     $scope.incGame();
+                    break;
+                case "n":
+                    $scope.showNew();
                     break;
                 default:
                     console.log("No handler for key " + key);

@@ -53,6 +53,9 @@
 	"notification-example-header":"Scott Piligrim",
 	"notification-example-text":"Won challenge!",
 
+	"notification-new-header":"New challenge!",
+	"notification-new-text":"Sell 5 Samsung S8",
+
 
 	"ChallengeStatus0": "Open",
 	"ChallengeStatus1": "In Progress",
