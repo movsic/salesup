@@ -45,7 +45,7 @@
 	"notification-error-coins-text":"Not enough coins!",
 
 	"notification-your-sale-header":"You sold {{params.sale}}!",
-	"notification-your-sale-text":"You get {{params.points}} points!",
+	"notification-your-sale-text":"You got {{params.points}} points!",
 
 	"notification-opponent-sale-header":"Your opponent made a sale!",
 	"notification-opponent-sale-text":"Try to catch up!",
@@ -54,7 +54,7 @@
 	"notification-example-text":"Won challenge!",
 
 	"notification-new-header":"New challenge!",
-	"notification-new-text":"Sell 5 Samsung S8",
+	"notification-new-text":"Sell 5 Samsung S8 today",
 
 
 	"ChallengeStatus0": "Open",
