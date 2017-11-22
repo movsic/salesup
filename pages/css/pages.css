@@ -5205,7 +5205,7 @@ body > .pgn-wrapper {
 			}*/
 }
 .modal.fade.fill-in > .close {
-  opacity: 0.6;
+  opacity: 0.2;
   z-index: 9999;
 }
 .modal.fade.fill-in > .close > i {
