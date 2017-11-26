@@ -1,0 +1,51 @@
+<!-- START CONTAINER FLUID -->
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent">
+        <div class="panel-heading">
+            <!--search-->
+        </div>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="table">
+                    <table class="table table-hover" id="basicTable" ui-options="options">
+                        <thead>
+                            <tr>
+                                <th style="width:25%" translate>{{'sales-table-th-name'}}</th>
+                                <th style="width:25%" translate>{{'sales-table-th-group'}}</th>
+                                <th style="width:25%" translate>{{'sales-table-th-product'}}</th>
+                                <th style="width:25%" translate>{{'sales-table-th-type'}}</th>
+                                <th style="width:25%" translate>{{'sales-table-th-sum'}}</th>
+                                <th style="width:25%" translate>{{'sales-table-th-date'}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="i in salesData | orderBy:'timestamp':true track by $index">
+                                <td class="v-align-middle">
+                                    <p>{{i.user.name}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p>{{i.user.group}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p>{{i.product.name}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p translate>{{i.product.type}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p translate translate-values='{ price: i.product.price }'>{{'sales-table-price'}}</p>
+                                </td>
+                                <td class="v-align-middle">
+                                    <p am-time-ago="i.timestamp*1000"></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>
+<!-- END CONTAINER FLUID -->

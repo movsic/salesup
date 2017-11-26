@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('app', ['nvd3'])
-    .controller('SalesCtrl', ['$scope', '$translate', 'ActionService', function($scope, $translate, ActionService) {
+    .controller('SalesCtrl', ['$scope', '$translate', function($scope, $translate) {
 
-        $scope.salesData = ActionService.getStorageData('sales');
+        $scope.salesData = $scope.action.getStorageData('sales');
         
         var calcTimeline = function(salesData){
             var salesKeyValue=[];

@@ -2,25 +2,38 @@ angular.module('app')
 	.service('DataProviderService', function (HelperService) {
 	    this.getProfileData = function () { return JSON.parse(JSON.stringify(profileData));};
 
+        //this.getPersonData = function () {
+        //    for( var i in personData){
+        //        this.buildPerson(personData[i]);
+        //    }
+        //    return JSON.parse(JSON.stringify(personData));
+        //}
+
 	    this.getNewsData = function () {
             for( var i in newsData){
                 this.buildNews(newsData[i]);
             }
-            return JSON.parse(JSON.stringify(newsData))
+            return JSON.parse(JSON.stringify(newsData));
         };
 
-	    this.getChallengesData = function () {
+	    this.getChallengesData = function (id = -1) {
+            var challenges = [];
             for( var i in challengeData){
-                this.buildChallenge(challengeData[i]);
+                if( id in  challengeData[i].participants || id == -1 ){
+                    challenges.push(this.buildChallenge(challengeData[i]));
+                }
             }
-            return JSON.parse(JSON.stringify(challengeData));
+            return JSON.parse(JSON.stringify(challenges));
         };
 
-        this.getSalesData = function () {
-            for( var i in salesData[profileData.id]){
-                this.buildSale(salesData[profileData.id][i]);
+        this.getSalesData = function (id = -1) {
+            var sales = [];
+            for( var i in salesData){
+                if( salesData[i].user.id == id || id == -1 ){
+                    sales.push(this.buildSale(salesData[i]));
+                }
             }
-            return JSON.parse(JSON.stringify(salesData[profileData.id]));
+            return JSON.parse(JSON.stringify(sales));
         };
 
         //this.getCoinsData = function () { return JSON.parse(JSON.stringify(coinsData))};
@@ -49,6 +62,7 @@ angular.module('app')
 
         this.buildSale = function(item){
             item.product = this.findProductById(item.product.id);
+            item.user = this.findProfileById(item.user.id);
             return item;
         }
 
@@ -388,23 +402,20 @@ angular.module('app')
             }
         ];
 
-        var salesData = {
-            0:[
-            {"product":{"id":1},"timestamp": getRandomTimestamp(-0)},
-            {"product":{"id":2},"timestamp": getRandomTimestamp(-2)},
-            {"product":{"id":3},"timestamp": getRandomTimestamp(-3)},
-            {"product":{"id":4},"timestamp": getRandomTimestamp(-4)},
-            {"product":{"id":5},"timestamp": getRandomTimestamp(-5)},
-            {"product":{"id":6},"timestamp": getRandomTimestamp(-0)},
-            {"product":{"id":7},"timestamp": getRandomTimestamp(-1)},
-            {"product":{"id":8},"timestamp": getRandomTimestamp(-2)},
-            {"product":{"id":0},"timestamp": getRandomTimestamp(-3)},
-            {"product":{"id":1},"timestamp": getRandomTimestamp(-4)},
-            {"product":{"id":2},"timestamp": getRandomTimestamp(-5)},
-            {"product":{"id":3},"timestamp": getRandomTimestamp(-6)},
-            ],
-            1:[],
-        };
+        var salesData = [
+            {"product":{"id":1},"user":{"id":0},"timestamp": getRandomTimestamp(-0)},
+            {"product":{"id":2},"user":{"id":0},"timestamp": getRandomTimestamp(-2)},
+            {"product":{"id":3},"user":{"id":0},"timestamp": getRandomTimestamp(-3)},
+            {"product":{"id":4},"user":{"id":0},"timestamp": getRandomTimestamp(-4)},
+            {"product":{"id":5},"user":{"id":0},"timestamp": getRandomTimestamp(-5)},
+            {"product":{"id":6},"user":{"id":0},"timestamp": getRandomTimestamp(-0)},
+            {"product":{"id":7},"user":{"id":0},"timestamp": getRandomTimestamp(-1)},
+            {"product":{"id":8},"user":{"id":0},"timestamp": getRandomTimestamp(-2)},
+            {"product":{"id":0},"user":{"id":0},"timestamp": getRandomTimestamp(-3)},
+            {"product":{"id":1},"user":{"id":0},"timestamp": getRandomTimestamp(-4)},
+            {"product":{"id":2},"user":{"id":0},"timestamp": getRandomTimestamp(-5)},
+            {"product":{"id":3},"user":{"id":0},"timestamp": getRandomTimestamp(-6)},
+        ];
 
         //status 0=In Progress 1=New 2=Successful 3=Pending 4=Failed
         var challengeData = [
@@ -426,6 +437,12 @@ angular.module('app')
                         "status":0,
                         "acceptDate":getRandomTimestamp(-1),
                         "profile":{"id":1},
+                    },
+                    2:{
+                        "progress":5,
+                        "status":2,
+                        "acceptDate":getRandomTimestamp(-1),
+                        "profile":{"id":2},
                     },
                 },
                 "startDate": getRandomTimestamp(-3),
@@ -472,7 +489,7 @@ angular.module('app')
                         "profile":{"id":1},
                     },
                     2:{
-                        "progress":0,
+                        "progress":10,
                         "status":2,
                         "acceptDate":getRandomTimestamp(-3),
                         "profile":{"id":2},

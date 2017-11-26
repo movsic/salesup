@@ -7,8 +7,8 @@ angular.module('app')
 		this.loadInitData = function(){
 			StorageService.set('profile',DataProviderService.getProfileData());
 	    	StorageService.set('news',DataProviderService.getNewsData());
-		    StorageService.set('challenges',DataProviderService.getChallengesData());
-		    StorageService.set('sales',DataProviderService.getSalesData());
+		    StorageService.set('challenges',DataProviderService.getChallengesData(this.getStorageData('profile').id));
+		    StorageService.set('sales',DataProviderService.getSalesData(this.getStorageData('profile').id));
 		    StorageService.set('rating',DataProviderService.getRatingData());
 		    StorageService.set('config',DataProviderService.getConfigData());
 		    //add yourself to rating

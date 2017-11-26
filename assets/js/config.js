@@ -19,12 +19,11 @@ angular.module('app')
                 // load 'en' table on startup
                 .preferredLanguage('en');
                 
+            $urlRouterProvider
+                .when('/app/admin', '/app/admin/dashboard');
 
             $urlRouterProvider
                 .otherwise('/app/home');
-
-            $urlRouterProvider
-                .when('/admin', '/admin/dashboard');
 
             $stateProvider
                 .state('app', {
@@ -218,11 +217,10 @@ angular.module('app')
                         }]
                     }
                 })
-                .state('admin', {
+                .state('app.admin', {
                     url: '/admin',
                     abstract: true,
                     controller: 'AdminCtrl',
-                    templateUrl: "tpl/app.html",
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
@@ -231,7 +229,7 @@ angular.module('app')
                         }]
                     }
                 })
-                .state('admin.dashboard', {
+                .state('app.admin.dashboard', {
                     url: '/dashboard',
                     controller: 'AdminDashboardCtrl',
                     templateUrl: 'tpl/admin/dashboard.html',
@@ -243,15 +241,54 @@ angular.module('app')
                         }]
                     }
                 })
-                .state('admin.challenges', {
+                .state('app.admin.challenges', {
                     url: '/challenges',
-                    controller: 'AdminChallengesCtrl',
+                    controller: 'ChallengesCtrl',
                     templateUrl: 'tpl/admin/challenges.html',
                     resolve: {
                         deps: ['$ocLazyLoad', function($ocLazyLoad) {
                             return $ocLazyLoad.load([
-                                'assets/js/controllers/admin/challenges.js',
-                            ]);
+                                'select'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/challenges.js');
+                            });
+                        }]
+                    }
+                })
+                .state('app.admin.users', {
+                    url: '/users',
+                    controller: 'AdminUsersCtrl',
+                    templateUrl: 'tpl/admin/users.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'select'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/admin/users.js');
+                            });
+                        }]
+                    }
+                })
+                .state('app.admin.sales', {
+                    url: '/sales',
+                    controller: 'AdminSalesCtrl',
+                    templateUrl: 'tpl/admin/sales.html',
+                    resolve: {
+                        deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                            return $ocLazyLoad.load([
+                                'select'
+                            ], {
+                                insertBefore: '#lazyload_placeholder'
+                            })
+                            .then(function() {
+                                return $ocLazyLoad.load('assets/js/controllers/admin/sales.js');
+                            });
                         }]
                     }
                 })

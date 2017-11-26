@@ -4,22 +4,24 @@
 
 angular.module('app')
     .controller('MainCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', 'amMoment', function($scope, $translate, ActionService, HelperService, amMoment) {
-    	ActionService.loadInitData();
         $scope.action = ActionService;
         $scope.helper = HelperService;
 
-        $scope.configData = ActionService.getStorageData('config');
-        $scope.profileData = ActionService.getStorageData('profile');
+        $scope.action.loadInitData();
+
+        $scope.configData = $scope.action.getStorageData('config');
+        $scope.profileData = $scope.action.getStorageData('profile');
 
         $scope.getLevel = function(points){
-            return HelperService.getLevelForPoints(points, $scope.configData);
+            return $scope.helper.getLevelForPoints(points, $scope.configData);
         }
 
         function updateProfileData(profileData, configData) {
-            profileData.level = HelperService.getLevelForPoints(profileData.points, configData);
-            profileData.pointsNextLevel = HelperService.getPointsForLevel(profileData.level+1, configData);
-            profileData.pointsPrevLevel = HelperService.getPointsForLevel(profileData.level, configData);
+            profileData.level = $scope.helper.getLevelForPoints(profileData.points, configData);
+            profileData.pointsNextLevel = $scope.helper.getPointsForLevel(profileData.level+1, configData);
+            profileData.pointsPrevLevel = $scope.helper.getPointsForLevel(profileData.level, configData);
         }
+
         updateProfileData($scope.profileData, $scope.configData);
         
         $scope.$watch(

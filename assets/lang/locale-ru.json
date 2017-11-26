@@ -9,6 +9,7 @@
 	"challenge-table-th-expires": "Истекает",
 	"challenge-table-th-progress": "Прогресс",
 	"challenge-table-th-status": "Статус",
+	"challenge-table-th-type": "Тип",
 
 	"challenge-tab-new": "Новые",
 	"challenge-tab-active": "Активные",
@@ -63,12 +64,13 @@
 
 	"challenge-status-0": "Текущий",
 	"challenge-status-1": "Новый",
-	"challenge-status-2": "Ожидающий",
-	"challenge-status-3": "Успешный",
+	"challenge-status-2": "Успешный",
+	"challenge-status-3": "Ожидающий",
 	"challenge-status-4": "Проигранный",
 
 	"challenge-no-data": "Миссии не найдены",
 
+	"challenge-progress": "Прогресс {{progress | number:0}}%",
 	"challenge-your-progress": "Ваш прогресс {{progress | number:0}}%",
 	"challenge-opponent-progress": "Прогресс оппонента {{progress | number:0}}%",
 

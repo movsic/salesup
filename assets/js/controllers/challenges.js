@@ -3,9 +3,9 @@
 /* Controllers */
 
 angular.module('app', ['ui.select'])
-    .controller('ChallengesCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', function($scope, $translate, ActionService, HelperService) {
+    .controller('ChallengesCtrl', ['$scope', function($scope) {
 
-        $scope.challengeData = ActionService.getStorageData('challenges');
+        $scope.challengeData = $scope.action.getStorageData('challenges');
 
         //active tab
         $scope.activeTab=0;
@@ -31,7 +31,7 @@ angular.module('app', ['ui.select'])
         };
 
         $scope.getPointsForChallenge = function( points ) {
-            return HelperService.getPointsForChallenge(points, $scope.configData);
+            return $scope.helper.getPointsForChallenge(points, $scope.configData);
         }
 
         $scope.getParticipants = function (challenge){
@@ -48,7 +48,7 @@ angular.module('app', ['ui.select'])
         }
 
         $scope.getFee = function(challenge){
-            return HelperService.getChallengeFee(challenge, $scope.configData)
+            return $scope.helper.getChallengeFee(challenge, $scope.configData)
         }
 
         //$scope.getChallengeTypes = function(){

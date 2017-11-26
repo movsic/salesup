@@ -28,11 +28,13 @@ or challenges with 0 fee??
 challenges that need no accept
 js controller not registered in main
 parralax background dashboard
+generate names with image badges and level
 
 news:
 tabs - own branch all
 likes for news
 switch show only own news?
+news sort by type
 
 Uncaught Error: tile data is missing.
 script to load js async
@@ -128,6 +130,7 @@ add balancing graph for gonfig values
 multiple lvl gain? <- should be impossible!
 do we need lvl info about points gain in new level modal?
 to think - own data in rating -> how to store?
+send config data to helperservice on init
 
 Notifications:
 define types notifications
@@ -145,5 +148,8 @@ http://gametrek.ru/%D0%B1%D0%BB%D0%BE%D0%B3/
 
 admin:
 challenges + filters
+filters for challenges in users
+search
+unify controller for admin. let only the template be different
 users + filters
 sales + filters

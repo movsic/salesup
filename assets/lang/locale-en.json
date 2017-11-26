@@ -9,6 +9,7 @@
 	"challenge-table-th-expires": "Expires",
 	"challenge-table-th-progress": "Progress",
 	"challenge-table-th-status": "Status",
+	"challenge-table-th-type": "Type",
 
 	"challenge-tab-new": "New",
 	"challenge-tab-active": "Active",
@@ -63,12 +64,13 @@
 
 	"challenge-status-0": "In Progress",
 	"challenge-status-1": "New",
-	"challenge-status-2": "Pending",
-	"challenge-status-3": "Successful",
+	"challenge-status-2": "Successful",
+	"challenge-status-3": "Pending",
 	"challenge-status-4": "Failed",
 
 	"challenge-no-data": "No challenges found",
 
+	"challenge-progress": "Progress {{progress | number:0}}%",
 	"challenge-your-progress": "Your progress {{progress | number:0}}%",
 	"challenge-opponent-progress": "Opponent's progress {{progress | number:0}}%",
 

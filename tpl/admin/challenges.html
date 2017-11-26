@@ -3,51 +3,58 @@
     <!-- START PANEL -->
     <div class="panel panel-transparent">
         <div class="panel-heading">
+            <button class="btn btn-success pull-right" id="btnToggleSlideUpSize" ng-click="showNewChallenge()">
+                <i class="fa fa-plus"></i> <span translate>{{'challenge-button-new'}}</>
+            </button>
             <ul class="nav nav-tabs nav-tabs-simple" role="tablist">
-                <li ng-class="{'active': activeTab == 0}">
-                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'rating-tab-group'}}</a>
+                <li ng-class="{'active': activeTab==0}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(0)" translate>{{'challenge-tab-active'}}</a>
                 </li>
-                <li ng-class="{'active': activeTab == 1}">
-                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'rating-tab-global'}}</a>
-                </li> 
+                <li ng-class="{'active': activeTab==1}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(1)" translate>{{'challenge-tab-upcoming'}}</a>
+                </li>
+                <li ng-class="{'active': activeTab==2}">
+                    <a data-toggle="tab" pg-tab role="tab" ng-click="setActive(2)" translate>{{'challenge-tab-finished'}}</a>
+                </li>    
             </ul>
         </div>
         <div class="panel-body">
             <div class="tab-content">
                 <div class="table">
-                    <table class="table table-hover" id="basicTable" ui-options="options">
+                    <table class="table table-hover table-condensed table-detailed" id="detailedTable" ui-options="options">
                         <thead>
                             <tr>
-                                <th translate>{{'rating-table-th-position'}}</th>
-                                <th translate>{{'rating-table-th-image'}}</th>
-                                <th translate>{{'rating-table-th-name'}}</th>
-                                <th translate>{{'rating-table-th-level'}}</th>
-                                <th translate>{{'rating-table-th-group'}}</th>
-                                <th translate>{{'rating-table-th-points'}}</th>
-                                <th>Coins</th>
-                                <th>Badges</th>
-                                <th>Statistics</th>
+                                <th style="width:40%" translate>{{'challenge-table-th-challenge'}}</th>
+                                <th style="width:30%" translate>{{'challenge-table-th-expires'}}</th>
+                                <th>type</th>
+                                <th>created</th>
+                                <th>reward</th>
+                                <th>participants/finished</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="i in ratingData | filter:{ group: groupFilter } | orderBy : '-points'" ng-class="{'success':i.id==profileData.id}">
+                            <tr ng-repeat-start="i in challengeData" ng-click="expand(i.id)"  ng-class="{'shown':showDetails==i.id}">
                                 <td class="v-align-middle">
-                                    <p>{{ $index+1 }}</p>
+                                    <span translate translate-values='{ amount: i.amount, products:helper.flattenArray(i.products)}'> {{'challenge-name-' + i.type}}</span>
                                 </td>
                                 <td class="v-align-middle">
-                                    <user-pic data="{{i.img}}"></user-pic>
+                                    <p am-time-ago="i.endDate*1000"></p>
                                 </td>
-                                <td class="v-align-middle">
-                                    <p>{{i.name}}</p>
-                                </td>
-                                <td class="v-align-middle">
-                                    <p>{{getLevel(i.points)+1}}</p>
-                                </td>
-                                <td class="v-align-middle">
-                                    <p>{{i.group}}</p>
-                                </td>
-                                <td class="v-align-middle">
-                                    <p>{{i.points}}</p>
+                            </tr>
+                            <tr class="row-details" ng-repeat-end ng-show="showDetails==i.id">
+                                <td colspan=4>
+                                    <table class="table">
+                                        <tr ng-repeat="user in i.participants"> 
+                                            <td>{{user.profile.name}}</td>
+                                            <td>{{'challenge-status-' + user.status | translate}}</td>
+                                            <td>
+                                                <p class="small hint-text" translate translate-values='{ progress: user.progress/i.amount*100 }'>{{'challenge-progress'}}</p>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" style="width:{{user.progress/i.amount*100}}%"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </tbody>

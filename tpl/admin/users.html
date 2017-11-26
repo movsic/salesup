@@ -1,0 +1,60 @@
+<!-- START CONTAINER FLUID -->
+<div class="container-fluid container-fixed-lg bg-white">
+    <!-- START PANEL -->
+    <div class="panel panel-transparent">
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="table">
+                    <table class="table table-hover table-condensed table-detailed" id="detailedTable" ui-options="options">
+                        <thead>
+                            <tr>
+                                <th style="width:40%" translate>{{'users-table-th-name'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-points'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-level'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-coins'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-group'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-email'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-registered'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-last-login'}}</th>
+                                <th style="width:30%" translate>{{'users-table-th-actions'}}</th>
+                            </tr>
+                        </thead>
+                        <!--show sales, show challenges-->
+                        <tbody>
+                            <tr ng-repeat-start="i in usersData" ng-click="expand(i.id)"  ng-class="{'shown':showDetails==i.id}">
+                                <td><user-pic data="{{i.img}}"></user-pic> <span>[{{i.id}}] {{i.name}}</span></td>
+                                <td>{{i.points}}</td>
+                                <td>{{getLevel(i.points)+1}}</td>
+                                <td>{{i.coins}}</td>
+                                <td>{{i.group}}</td>
+                                <td>{{i.email}}</td>
+                                <td><span am-time-ago="i.registered*1000"></span></td>
+                                <td><span am-time-ago="i.last_login*1000"></span></td>
+                                <td></td>
+                            </tr>
+                            <tr class="row-details" ng-repeat-end ng-show="showDetails==i.id">
+                                <td colspan=9>
+                                    <p ng-show="challengesData.length < 1" translate>{{'challenge-no-data'}}</p>
+                                    <table class="table">
+                                        <tr ng-repeat="challenge in challengesData"> 
+                                            <td><span translate translate-values='{ amount: challenge.amount, products:helper.flattenArray(challenge.products)}'> {{'challenge-name-' + challenge.type}}</span></td>
+                                            <td>{{'challenge-status-' + challenge.participants[i.id].status | translate}}</td>
+                                            <td>
+                                                <p class="small hint-text" translate translate-values='{ progress: challenge.participants[i.id].progress/challenge.amount*100 }'>{{'challenge-progress'}}</p>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success" style="width:{{challenge.participants[i.id].progress/challenge.amount*100}}%"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END PANEL -->
+</div>
+<!-- END CONTAINER FLUID -->

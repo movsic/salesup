@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('RatingCtrl', ['$scope', '$filter', '$translate', 'ActionService', function($scope, $filter, $translate, ActionService) {
-        $scope.ratingData = ActionService.getStorageData('rating');
+    .controller('RatingCtrl', ['$scope', '$filter', function($scope, $filter) {
+        $scope.ratingData = $scope.action.getStorageData('rating');
 
         $scope.activeTab = 0;
         $scope.groupFilter = $scope.profileData.group;

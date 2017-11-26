@@ -3,6 +3,6 @@
 /* Controllers */
 
 angular.module('app')
-    .controller('NewsCtrl', ['$scope', '$translate', 'ActionService', 'HelperService', function($scope, $translate, ActionService, HelperService)  {
-        $scope.newsData = ActionService.getStorageData('news');
+    .controller('NewsCtrl', ['$scope', function($scope)  {
+        $scope.newsData = $scope.action.getStorageData('news');
     }]);
